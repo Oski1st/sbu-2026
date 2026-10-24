@@ -1,12 +1,14 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { demoTrips } from "../data/demoTrips";
 import type { Trip } from "../types/transit";
 import { DelaySimulation } from "../components/journey/DelaySimulation";
+import { JourneyDemoControls } from "../components/journey/JourneyDemoControls";
 import { RecoveryRecommendation } from "../components/journey/RecoveryRecommendation";
 import { SegmentCard } from "../components/journey/SegmentCard";
 import { TransferAssistant } from "../components/journey/TransferAssistant";
 import { agencyStyles } from "../components/journey/journeyUtils";
+import { initialJourneyDemoState, journeyStepCount, nextJourneyStep, previousJourneyStep, startJourneyDemo, stepAt } from "../components/journey/journeyProgress";
 
 function JourneyNotFound() {
   return (
@@ -24,12 +26,27 @@ export default function JourneyPage() {
   const trip = useMemo<Trip | undefined>(() => demoTrips.find((candidate) => candidate.id === tripId), [tripId]);
   const [expandedLegId, setExpandedLegId] = useState<string | null>(null);
   const [isDelaySimulated, setIsDelaySimulated] = useState(false);
+  const [demoState, setDemoState] = useState(initialJourneyDemoState);
+
+  useEffect(() => {
+    setExpandedLegId(null);
+    setIsDelaySimulated(false);
+    setDemoState(initialJourneyDemoState());
+  }, [tripId]);
 
   if (!trip) return <JourneyNotFound />;
 
   const affectedLeg = trip.legs[0];
   const affectedConnection = trip.legs.length > 1 ? trip.legs[1] : undefined;
   const agencies = [...new Set(trip.legs.map((leg) => leg.agency))];
+  const demoStepCount = journeyStepCount(trip.legs.length);
+  const currentDemoStep = demoState.isActive ? stepAt(demoState.currentStep, trip.legs.length) : null;
+
+  function resetJourneyExperience() {
+    setExpandedLegId(null);
+    setIsDelaySimulated(false);
+    setDemoState(initialJourneyDemoState());
+  }
 
   return (
     <main className="min-h-screen bg-[#fbfcfe] pb-16 text-slate-950">
@@ -42,15 +59,6 @@ export default function JourneyPage() {
           .one-line-journey-enter { animation: one-line-journey-enter 450ms cubic-bezier(.2,.8,.2,1) both; }
         }
       `}</style>
-      <div className="border-b border-slate-200 bg-white/85 backdrop-blur">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4 sm:px-6">
-          <Link to="/" className="inline-flex min-h-10 items-center gap-2 rounded-lg px-1 text-sm font-bold text-slate-700 transition hover:text-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950">
-            <span aria-hidden="true">←</span> Search routes
-          </Link>
-          <span className="text-sm font-extrabold tracking-tight text-slate-950">OneLine</span>
-        </div>
-      </div>
-
       <div className="mx-auto max-w-3xl px-5 pt-8 sm:px-6 sm:pt-12">
         <header className="one-line-journey-enter">
           <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Your journey</p>
@@ -68,6 +76,18 @@ export default function JourneyPage() {
             <span aria-hidden="true">→</span>
           </Link>
         </header>
+
+        <JourneyDemoControls
+          destination={trip.destination}
+          legs={trip.legs}
+          state={demoState}
+          step={currentDemoStep}
+          stepCount={demoStepCount}
+          onStart={() => setDemoState(startJourneyDemo(demoStepCount))}
+          onNext={() => setDemoState((state) => nextJourneyStep(state, demoStepCount))}
+          onPrevious={() => setDemoState((state) => previousJourneyStep(state))}
+          onReset={resetJourneyExperience}
+        />
 
         {affectedLeg && (
           <div className="mt-8 one-line-journey-enter">
@@ -96,6 +116,7 @@ export default function JourneyPage() {
                   index={index}
                   isExpanded={expandedLegId === leg.id}
                   isDelayed={isDelaySimulated && leg.id === affectedLeg?.id}
+                  isCurrent={currentDemoStep?.kind === "leg" && currentDemoStep.legIndex === index}
                   onToggle={() => setExpandedLegId((current) => current === leg.id ? null : leg.id)}
                 />
                 {index < trip.legs.length - 1 && (
@@ -103,6 +124,7 @@ export default function JourneyPage() {
                     arrivingLeg={leg}
                     nextLeg={trip.legs[index + 1]}
                     isAffected={isDelaySimulated && leg.id === affectedLeg?.id}
+                    isCurrent={currentDemoStep?.kind === "transfer" && currentDemoStep.legIndex === index}
                   />
                 )}
               </div>

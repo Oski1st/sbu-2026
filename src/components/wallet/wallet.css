@@ -21,23 +21,12 @@
   text-underline-offset:4px;
 }
 
-.oneline-wallet nav,.oneline-wallet .ol-section-heading,.oneline-wallet .ol-ticket-top {
+.oneline-wallet .ol-section-heading,.oneline-wallet .ol-ticket-top {
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
   flex-wrap:wrap;
-}
-
-.oneline-wallet nav {
-  padding-bottom:24px;
-  border-bottom:1px solid var(--ol-border);
-}
-
-.oneline-wallet .ol-brand {
-  font-size:24px;
-  font-weight:850;
-  text-decoration:none;
 }
 
 .oneline-wallet .ol-header {
@@ -300,12 +289,31 @@
     flex-direction:column;
   }
 
-  .oneline-wallet nav {
-    font-size:13px;
-  }
-
   .oneline-wallet .ol-section-heading {
     gap:4px;
   }
 
+}
+
+.oneline-wallet .ol-coverage {
+  padding:12px 14px;
+  border-left:3px solid #20664c;
+  background:#edf4e9;
+  border-radius:4px 8px 8px 4px;
+}
+
+.oneline-wallet .ol-feed-summary {
+  font-weight:700;
+}
+
+.oneline-wallet .ol-button[aria-disabled=true] {
+  opacity:.65;
+  cursor:wait;
+}
+
+.oneline-wallet .ol-ticket,
+.oneline-wallet .ol-live,
+.oneline-wallet .ol-section-heading > * {
+  min-width:0;
+  overflow-wrap:anywhere;
 }

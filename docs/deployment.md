@@ -2,7 +2,7 @@
 
 OneLine is a static React build plus a small Node server (`server/index.mjs`). The server serves `dist/`, the SPA deep-link fallback, and the same-origin SEPTA proxy (`GET /api/transit/septa/trains`) from one origin. It uses only Node built-ins, so `pnpm start` adds no runtime dependency.
 
-**Status (October 24, 2026):** rehearsed from a clean checkout of `main` at `5efcd3b` (Search, Compare, Journey, Wallet and the SEPTA proxy), then re-run on `73635ac` with Node 22.23.4, pnpm 11.25.0 and `HOST=0.0.0.0 PORT=8080 NODE_ENV=production`. All 6 checks in `qa/smoke.mjs` passed over the laptop's LAN address, including a live SEPTA response. **No hosted deployment exists yet.** Going live needs a team member to connect the repository to a host account on a free tier. Nobody should start a paid service for the demo.
+**Status (October 24, 2026):** rehearsed from a clean checkout of `main` at `5efcd3b` (Search, Compare, Journey, Wallet and the SEPTA proxy), then re-run on `73635ac` and on `93c0408` (clean checkout using the `render.yaml` build command) with Node 22.23.4, pnpm 11.25.0 and `HOST=0.0.0.0 PORT=8080 NODE_ENV=production`. All 6 checks in `qa/smoke.mjs` passed over the laptop's LAN address, including a live SEPTA response. **No hosted deployment exists yet.** Going live needs a team member to connect the repository to a host account on a free tier. Nobody should start a paid service for the demo.
 
 ## Requirements
 
