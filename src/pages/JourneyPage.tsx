@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { demoTrips } from "../data/demoTrips";
+import { getTripById } from "../data/tripLookup";
 import { formatDuration } from "../data/tripUtils";
 import type { Trip } from "../types/transit";
 import { DelaySimulation } from "../components/journey/DelaySimulation";
@@ -24,7 +24,7 @@ function JourneyNotFound() {
 
 export default function JourneyPage() {
   const { tripId } = useParams<{ tripId: string }>();
-  const trip = useMemo<Trip | undefined>(() => demoTrips.find((candidate) => candidate.id === tripId), [tripId]);
+  const trip = useMemo<Trip | undefined>(() => getTripById(tripId), [tripId]);
   const [expandedLegId, setExpandedLegId] = useState<string | null>(null);
   const [isDelaySimulated, setIsDelaySimulated] = useState(false);
   const [demoState, setDemoState] = useState(initialJourneyDemoState);

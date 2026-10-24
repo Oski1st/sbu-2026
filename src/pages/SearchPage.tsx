@@ -5,7 +5,7 @@ import {
   writeSearchState,
   type SearchState,
 } from "../data/searchState";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -24,8 +24,8 @@ import {
 } from "lucide-react";
 import { cities, featuredCorridors, resolveCity } from "../data/eastCoast";
 import { agencies } from "../data/agencies";
-import { demoTrips } from "../data/demoTrips";
-import { findTrips, sortTrips } from "../data/tripUtils";
+import { planTrips } from "../data/tripLookup";
+import { sortTrips } from "../data/tripUtils";
 import { CorridorMap } from "../components/search/CorridorMap";
 import { SearchForm } from "../components/search/SearchForm";
 import { RouteCard } from "../components/search/RouteCard";
@@ -57,7 +57,10 @@ export default function SearchPage() {
     setCompareIds([]);
     setCompareOpen(false);
   }, [searchKey]);
-  const matches = findTrips(demoTrips, query.origin, query.destination);
+  const matches = useMemo(
+    () => planTrips(query.origin, query.destination),
+    [query.origin, query.destination],
+  );
   const trips = sortTrips(
     matches.filter(
       (trip) =>
