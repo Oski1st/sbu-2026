@@ -1,7 +1,8 @@
 # On-demand concept routing — integration stage
 
-This separate feature branch is based on expansion SHA
-`21d77dd618538284d77ee48db7fc34821a04bd99`. It changes no graph edges, city coverage,
+This separate feature branch preserves the expansion graph at
+`21d77dd618538284d77ee48db7fc34821a04bd99` and incorporates readiness
+`49742e76a289f2cf5d396cc66ead01d0ab56c62f` via a normal history-preserving merge. It changes no graph edges, city coverage,
 fares, original demo values, live feed behavior or frozen QA target.
 
 ## APIs and ownership handoff
@@ -56,7 +57,7 @@ P2/P1 must coordinate these changes before removing the final eager export:
 5. Run the integrated build/tests/browser protocol on a newly named exact SHA.
 
 P3 owns the routing/lookup and Wallet changes; P2 owns Search/Journey, P1 currently
-owns the concurrent integration/TripContext work. No owner files were edited here.
+owns the concurrent integration/TripContext work. No direct owner-file edits were made; the approved readiness merge preserves P1’s canonical-ID fix and its six tests.
 No merge/deployment is authorized by this draft or its performance measurements.
 
 ## Correctness and reproducible measurement
