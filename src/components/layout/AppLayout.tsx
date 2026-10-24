@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { NavLink, Link, Outlet } from "react-router-dom";
 import { ArrowUpRight, MoveRight, Search, Route, Wallet } from "lucide-react";
 import { useSelectedTrip } from "./TripContext";
@@ -34,9 +35,17 @@ export function AppLayout() {
           Less switching. More going.
         </span>
       </header>
-      <main id="main-content" tabIndex={-1}>
-        <Outlet />
-      </main>
+      <div id="main-content" tabIndex={-1}>
+        <Suspense
+          fallback={
+            <main className="page-loading" role="status">
+              Connecting your journey…
+            </main>
+          }
+        >
+          <Outlet />
+        </Suspense>
+      </div>
       <footer className="site-footer">
         <div>
           <Link to="/" aria-label="OneLine home">

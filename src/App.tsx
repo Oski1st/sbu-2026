@@ -29,6 +29,11 @@ function page(kind: "journey" | "wallet"): ComponentType<HostedPageProps> {
 }
 const Journey = page("journey"),
   Wallet = page("wallet");
+// Wallet intentionally renders a div; the host supplies its page landmark.
+function WalletRoute() {
+  const content = <Wallet septaEndpoint="/api/transit/septa/trains" />;
+  return modules["./pages/WalletPage.tsx"] ? <main>{content}</main> : content;
+}
 function SelectionEntry({ kind }: { kind: "journey" | "wallet" }) {
   const { selectedTrip } = useSelectedTrip();
   return selectedTrip ? (
@@ -64,18 +69,15 @@ export default function App() {
             <Route path="journey" element={<SelectionEntry kind="journey" />} />
             <Route path="journey/:tripId" element={<Journey />} />
             <Route path="wallet" element={<SelectionEntry kind="wallet" />} />
-            <Route
-              path="wallet/:tripId"
-              element={<Wallet septaEndpoint="/api/transit/septa/trains" />}
-            />
+            <Route path="wallet/:tripId" element={<WalletRoute />} />
             <Route
               path="*"
               element={
-                <div className="empty-state">
+                <main className="empty-state">
                   <h1>A little off the line.</h1>
                   <p>Let’s get you back on track.</p>
                   <Link to="/">Return to search</Link>
-                </div>
+                </main>
               }
             />
           </Route>
