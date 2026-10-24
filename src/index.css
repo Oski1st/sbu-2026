@@ -245,11 +245,14 @@
   width: 1px;
   background: #ccd7c3;
 }
-.corridor-map {
-  position: relative;
+.corridor-map-wrap {
   min-width: 0;
   align-self: stretch;
   margin: 27px 22px 16px 0;
+}
+.corridor-map {
+  position: relative;
+  height: 100%;
   border-radius: 12px;
   mask-image: linear-gradient(
     to right,
@@ -1447,7 +1450,6 @@
   }
   .corridor-map {
     height: 276px;
-    margin: 0 10px 5px;
     mask-image: linear-gradient(
       to bottom,
       transparent,
@@ -1455,6 +1457,9 @@
       black 91%,
       transparent
     );
+  }
+  .corridor-map-wrap {
+    margin: 0 10px 13px;
   }
   .map-art {
     object-fit: contain;
@@ -1487,11 +1492,8 @@
   }
   .map-city-legend {
     display: block;
-    position: absolute;
-    left: 12px;
-    right: 12px;
-    bottom: 1px;
-    margin: 0;
+    margin: 6px 0 0;
+    padding: 0 8px;
     color: #405e50;
     font-size: 11px;
     line-height: 1.35;

@@ -21,14 +21,15 @@ const mobileLabels = [
   [435, 158, "New York"],
   [190, 205, "Washington, DC"],
   [160, 345, "Orlando"],
-  [330, 393, "Miami"],
+  [330, 365, "Miami"],
 ] as const;
 const conceptPath = stops.map(([x, y], i) => `${i ? "L" : "M"}${x} ${y}`).join(" ");
 
 export function CorridorMap() {
   return (
-    <div className="corridor-map east-map" role="img" aria-label="Geographic map of the eastern United States, with state boundaries and city markers from Portland, Maine to Miami, Florida and Stony Brook on Long Island. Dashed city connections are illustrative concepts, not verified services or actual rail and road alignments.">
-      <svg viewBox="0 0 640 430" className="map-art" aria-hidden="true">
+    <div className="corridor-map-wrap">
+      <div className="corridor-map east-map" role="img" aria-label="Geographic map of the eastern United States, with state boundaries and city markers from Portland, Maine to Miami, Florida and Stony Brook on Long Island. Dashed city connections are illustrative concepts, not verified services or actual rail and road alignments.">
+        <svg viewBox="0 0 640 430" className="map-art" aria-hidden="true">
         <defs>
           <pattern id="east-grid" width="24" height="24" patternUnits="userSpaceOnUse">
             <circle cx="1" cy="1" r=".8" fill="#cbd9c9" />
@@ -77,9 +78,10 @@ export function CorridorMap() {
           </g>
           <g transform="translate(566 65)" fill="#526e5d" textAnchor="middle"><text fontSize="10" y="-8">N</text><path d="M0 0L-4 12H4Z" /></g>
         </g>
-      </svg>
-      <span className="map-caption">MAINE TO FLORIDA <span>↗</span></span>
-      <span className="map-scale">Natural Earth geography · Connections unverified</span>
+        </svg>
+        <span className="map-caption">MAINE TO FLORIDA <span>↗</span></span>
+        <span className="map-scale">Natural Earth geography · Connections unverified</span>
+      </div>
       <p className="map-city-legend">
         City markers: Portland, Boston, New York, Philadelphia, Washington, DC, Raleigh, Charleston, Orlando, Miami, and Stony Brook. Connections are illustrative and unverified.
       </p>
