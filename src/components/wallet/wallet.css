@@ -1,0 +1,311 @@
+.oneline-wallet {
+  --ol-ink:#142e2b;
+  --ol-muted:#506762;
+  --ol-border:#d7e2dc;
+  box-sizing:border-box;
+  max-width:960px;
+  margin:0 auto;
+  padding:28px 28px 56px;
+  color:var(--ol-ink);
+  background:#f7f9f5;
+  font-family:Inter,system-ui,sans-serif;
+  line-height:1.55;
+}
+
+.oneline-wallet * {
+  box-sizing:border-box;
+}
+
+.oneline-wallet a {
+  color:#165c49;
+  text-underline-offset:4px;
+}
+
+.oneline-wallet nav,.oneline-wallet .ol-section-heading,.oneline-wallet .ol-ticket-top {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.oneline-wallet nav {
+  padding-bottom:24px;
+  border-bottom:1px solid var(--ol-border);
+}
+
+.oneline-wallet .ol-brand {
+  font-size:24px;
+  font-weight:850;
+  text-decoration:none;
+}
+
+.oneline-wallet .ol-header {
+  padding:48px 0 24px;
+}
+
+.oneline-wallet .ol-eyebrow {
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.15em;
+}
+
+.oneline-wallet h1 {
+  font-size:clamp(34px,6vw,60px);
+  line-height:1.08;
+  letter-spacing:-.045em;
+  margin:20px 0 24px;
+}
+
+.oneline-wallet h2 {
+  font-size:21px;
+  line-height:1.3;
+  margin:16px 0;
+}
+
+.oneline-wallet .ol-route {
+  font-size:22px;
+  font-weight:650;
+}
+
+.oneline-wallet .ol-muted,.oneline-wallet .ol-fine {
+  color:var(--ol-muted);
+}
+
+.oneline-wallet .ol-notice {
+  border:1px solid #b8d0bc;
+  border-left:4px solid #20664c;
+  background:#edf4e9;
+  padding:20px 24px;
+  border-radius:4px 14px 14px 4px;
+}
+
+.oneline-wallet p {
+  margin:10px 0;
+}
+
+.oneline-wallet .ol-progress {
+  margin:28px 0;
+}
+
+.oneline-wallet progress {
+  width:100%;
+  height:9px;
+  accent-color:#20664c;
+}
+
+.oneline-wallet .ol-ticket-list {
+  padding:0;
+  margin:0;
+  list-style:none;
+  display:grid;
+  gap:18px;
+}
+
+.oneline-wallet .ol-ticket {
+  padding:26px;
+  border:1px solid var(--ol-border);
+  border-radius:18px;
+  background:white;
+  box-shadow:0 4px 16px #142e2b06;
+}
+
+.oneline-wallet .ol-ticket-checked {
+  border-color:#7ba98b;
+  background:#f3faf4;
+}
+
+.oneline-wallet .ol-agency {
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.025em;
+}
+
+.oneline-wallet .ol-status {
+  display:inline-block;
+  font-size:12px;
+  font-weight:700;
+  background:#fff1d8;
+  color:#704d0a;
+  padding:6px 10px;
+  border-radius:8px;
+}
+
+.oneline-wallet .ol-status-done {
+  background:#dcefe1;
+  color:#205233;
+}
+
+.oneline-wallet .ol-stations {
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:20px;
+  margin:22px 0;
+}
+
+.oneline-wallet .ol-stations strong {
+  display:block;
+  font-size:19px;
+  overflow-wrap:anywhere;
+}
+
+.oneline-wallet .ol-label {
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--ol-muted);
+}
+
+.oneline-wallet .ol-arrow {
+  align-self:center;
+  font-size:25px;
+}
+
+.oneline-wallet .ol-schedule {
+  font-size:13px;
+  color:var(--ol-muted);
+}
+
+.oneline-wallet .ol-ticket-actions {
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-top:22px;
+}
+
+.oneline-wallet .ol-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  background:#184e3e;
+  color:white;
+  border:1px solid #184e3e;
+  border-radius:10px;
+  padding:12px 17px;
+  font:inherit;
+  font-weight:700;
+  font-size:14px;
+  text-decoration:none;
+  cursor:pointer;
+  min-height:46px;
+}
+
+.oneline-wallet .ol-secondary {
+  background:white;
+  color:#184e3e;
+}
+
+.oneline-wallet button:disabled {
+  opacity:.6;
+  cursor:wait;
+}
+
+.oneline-wallet .ol-check {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  font-size:13px;
+  cursor:pointer;
+  min-height:44px;
+}
+
+.oneline-wallet input[type=checkbox] {
+  width:19px;
+  height:19px;
+  accent-color:#20664c;
+  flex-shrink:0;
+}
+
+.oneline-wallet .ol-fine {
+  font-size:12px;
+  border-top:1px dashed var(--ol-border);
+  padding-top:16px;
+  margin-top:20px;
+}
+
+.oneline-wallet .ol-live {
+  margin-top:28px;
+  padding:24px;
+  border:1px solid var(--ol-border);
+  border-radius:16px;
+  background:#eef2ee;
+  font-size:14px;
+}
+
+.oneline-wallet .ol-trains {
+  list-style:none;
+  padding:0;
+}
+
+.oneline-wallet .ol-trains li {
+  display:grid;
+  gap:3px;
+  border-top:1px solid var(--ol-border);
+  padding:12px 0;
+}
+
+.oneline-wallet .ol-footer {
+  font-size:12px;
+  color:var(--ol-muted);
+  padding-top:32px;
+}
+
+.oneline-wallet .ol-empty {
+  padding:56px 0;
+}
+
+.oneline-wallet :focus-visible {
+  outline:3px solid #ad5b00;
+  outline-offset:4px;
+}
+
+.oneline-wallet .ol-sr-only {
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border:0;
+}
+
+@media(max-width:560px) {
+  .oneline-wallet {
+    padding:20px 16px 40px;
+  }
+
+  .oneline-wallet .ol-header {
+    padding-top:30px;
+  }
+
+  .oneline-wallet .ol-ticket {
+    padding:20px;
+  }
+
+  .oneline-wallet .ol-stations {
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .oneline-wallet .ol-arrow {
+    display:none;
+  }
+
+  .oneline-wallet .ol-ticket-actions {
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .oneline-wallet nav {
+    font-size:13px;
+  }
+
+  .oneline-wallet .ol-section-heading {
+    gap:4px;
+  }
+
+}
