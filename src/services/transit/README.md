@@ -132,3 +132,72 @@ pnpm build
 pnpm test
 pnpm start
 ```
+
+## Wallet clarity follow-up — October 24, 2026
+
+`feat/wallet-clarity` starts from integrated main `73635ac` after the wallet and
+shared shell integration merges. No shared router/backend/dependency files change.
+The host's existing `/api/transit/septa/trains` endpoint is forwarded unchanged.
+
+- Connected LIRR legs now explicitly explain that New York Penn Station to Stony
+  Brook may share one through ticket. This is a coverage reminder, not a fare rule
+  or a verified purchase. Unconnected legs do not get this explanation.
+- Each checkbox is a per-leg demo planning note. Both checked and unchecked states
+  avoid purchase claims. Each input describes its no-purchase/validity disclaimer;
+  LIRR inputs also reference the through-ticket note for assistive technology.
+- Feed updates use a concise atomic polite status announcement; the whole train
+  list is not repeatedly announced. Retrieval uses a semantic time element with
+  date, seconds and timezone. Empty/unavailable/expired/loading states differ.
+- Expiry and Refresh instructions accompany successful snapshots, including empty
+  feeds. Refresh remains focusable while aria-disabled during a pending request,
+  retains keyboard focus, and ignores repeated activations until it settles.
+- Browser checks: both demo routes at 320px (no horizontal overflow), Space checkbox
+  toggling, Tab order with visible outline, Enter refresh with retained focus, and
+  real observations through the existing production proxy.
+- External React DOM checks: client-side regional/Amtrak switching resets marks,
+  through-ticket hints persist, input help IDs resolve, pending refreshes reject
+  duplicate clicks, and empty/expired/unavailable states retain honest wording.
+- Regression suite: `pnpm install --frozen-lockfile`, `pnpm build`, and `pnpm test`
+  passed; 5 suites / 39 tests. New cases cover both shared demo trips' connected
+  LIRR hints, no purchase claims, semantic retrieval time, atomic status, and
+  expired/empty/unavailable/loading output. Existing timeout and expiry tests pass.
+
+## QA finding #4: duplicate Wallet navigation
+
+Continued PR #8 against latest integrated main `73635ac` (already up to date).
+Removed the Wallet-local OneLine / Back to journey search bar and its unused CSS.
+The shared shell is the sole page navigation. The empty-state Find a journey link
+now uses React Router Link; official external ticket/feed links remain external.
+The Wallet root stays a div and the host supplies its main landmark.
+
+Actual follow-up validation:
+
+- `pnpm build` passed; `pnpm test` passed 5 suites / 42 tests. Regression cases
+  cover regional, Amtrak and invalid IDs without local nav, branding or main.
+- Production browser checked both demo trips at 320px and 390px: no horizontal
+  overflow, one main landmark, zero Wallet-local navs, two LIRR through-ticket notes,
+  and correct 4/3 planning-item counts.
+- Keyboard Tab reaches ticket links with visible focus; Space toggles planning
+  notes; the invalid-wallet Find a journey link is keyboard-focusable and Enter
+  opens Search.
+- External React DOM regression checked client-side recovery preserves the mounted
+  shell's state. Trip switching/reset and existing feed lifecycle checks also pass.
+- LIRR clarification, honest checklist labels, existing proxy and every feed state
+  remain intact. No shared router/backend/layout/style files changed.
+
+## Integrated-main revalidation — Person 3
+
+Merged latest main `93c0408` into PR #8 with a normal merge. The duplicate Wallet
+navigation fix and React Router recovery Link were already present and required no
+further functional changes. Wallet remains a div under the host's single main.
+
+- Locked install, production build, and all 42 tests (5 suites) pass on the new base.
+- Production browser: regional and Amtrak routes, each at 320px and 390px, retain
+  4/3 legs and two LIRR hints; zero local navs, one main, and no horizontal overflow.
+- Reload preserves the selected Amtrak route and resets demo marks. Space toggles
+  a planning note; Tab reaches the next agency link with visible focus. Keyboard
+  Enter on invalid-trip recovery opens Search.
+- External React DOM checks reconfirm client-side routing preserves mounted shell
+  state, trip switching resets marks, and feed-state/refresh behavior stays honest.
+- No new proxy, purchase logic, live-to-itinerary mutation, shared-file edits, or
+  force push. Coordination uses the existing Person 3 hub report, issue #1.
