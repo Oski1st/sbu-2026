@@ -1,4 +1,11 @@
-import { useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import {
+  defaultSearch,
+  readSearchState,
+  writeSearchState,
+  type SearchState,
+} from "../data/searchState";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -24,19 +31,32 @@ import { SearchForm } from "../components/search/SearchForm";
 import { RouteCard } from "../components/search/RouteCard";
 import { RouteComparison } from "../components/search/RouteComparison";
 export default function SearchPage() {
-  const [query, setQuery] = useState({
-    origin: "Philadelphia",
-    destination: "Stony Brook",
-  });
-  const [order, setOrder] = useState("recommended");
-  const [includeAmtrak, setIncludeAmtrak] = useState(true);
-  const [mode, setMode] = useState("all");
-  const [operator, setOperator] = useState("all");
-  const [searched, setSearched] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const criteria = readSearchState(searchParams);
+  const query = { origin: criteria.origin, destination: criteria.destination };
+  const { order, includeAmtrak, mode, operator } = criteria;
+  const searched = searchParams.has("from") || searchParams.has("to");
+  function updateCriteria(patch: Partial<SearchState>) {
+    // History updates before React commits navigation; read it so rapid filter changes compose.
+    const current = new URLSearchParams(window.location.search);
+    setSearchParams(
+      writeSearchState({ ...readSearchState(current), ...patch }, current),
+    );
+  }
+  const setOrder = (order: string) => updateCriteria({ order });
+  const setMode = (mode: string) => updateCriteria({ mode });
+  const setOperator = (operator: string) => updateCriteria({ operator });
+  const setIncludeAmtrak = (includeAmtrak: boolean) =>
+    updateCriteria({ includeAmtrak });
   const [formVersion, setFormVersion] = useState(0);
   const resultsRef = useRef<HTMLElement>(null);
   const [compareIds, setCompareIds] = useState<string[]>([]);
   const [compareOpen, setCompareOpen] = useState(false);
+  const searchKey = searchParams.toString();
+  useEffect(() => {
+    setCompareIds([]);
+    setCompareOpen(false);
+  }, [searchKey]);
   const matches = findTrips(demoTrips, query.origin, query.destination);
   const trips = sortTrips(
     matches.filter(
@@ -62,9 +82,15 @@ export default function SearchPage() {
         : [...ids, id].slice(-2),
     );
   }
-  function search(origin: string, destination: string) {
-    setQuery({ origin: origin.trim(), destination: destination.trim() });
-    setSearched(true);
+  function search(origin: string, destination: string, resetFilters = false) {
+    updateCriteria({
+      origin: origin.trim(),
+      destination: destination.trim(),
+      ...(resetFilters
+        ? { mode: "all", operator: "all", includeAmtrak: true }
+        : {}),
+    });
+    setFormVersion((version) => version + 1);
     setCompareIds([]);
     setCompareOpen(false);
     window.setTimeout(() => {
@@ -162,7 +188,7 @@ export default function SearchPage() {
       )}
       <div className="content-wrap">
         <SearchForm
-          key={formVersion}
+          key={`${formVersion}|${query.origin}|${query.destination}`}
           initialOrigin={query.origin}
           initialDestination={query.destination}
           onSearch={search}
@@ -187,11 +213,7 @@ export default function SearchPage() {
                 key={corridor.origin}
                 className="corridor-pick"
                 onClick={() => {
-                  setMode("all");
-                  setOperator("all");
-                  setIncludeAmtrak(true);
-                  setFormVersion((v) => v + 1);
-                  search(corridor.origin, corridor.destination);
+                  search(corridor.origin, corridor.destination, true);
                 }}
               >
                 <span>{corridor.region}</span>
@@ -381,14 +403,7 @@ export default function SearchPage() {
                   </p>
                   <button
                     onClick={() => {
-                      setQuery({
-                        origin: "Philadelphia",
-                        destination: "Stony Brook",
-                      });
-                      setIncludeAmtrak(true);
-                      setMode("all");
-                      setOperator("all");
-                      setSearched(false);
+                      updateCriteria(defaultSearch);
                       setFormVersion((version) => version + 1);
                     }}
                   >

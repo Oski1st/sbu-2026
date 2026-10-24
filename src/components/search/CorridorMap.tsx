@@ -1,4 +1,3 @@
-import { ArrowUpRight, Bus, TrainFront } from "lucide-react";
 const stops = [
   [440, 56, "Portland"],
   [411, 94, "Boston"],
@@ -83,6 +82,21 @@ export function CorridorMap() {
         <text x="465" y="127" fontSize="12" fill="#244d3e" fontWeight="700">
           Stony Brook
         </text>
+        <g transform="translate(66 136)" fill="#526e5d" fontSize="10">
+          <path d="M0 0H24" stroke="#2e7969" strokeWidth="3" />
+          <text x="31" y="4">
+            Rail concept
+          </text>
+          <path
+            d="M0 19H24"
+            stroke="#7e9b3b"
+            strokeWidth="3"
+            strokeDasharray="4 4"
+          />
+          <text x="31" y="23">
+            Coach concept
+          </text>
+        </g>
         {stops.map(([x, y, name]) => (
           <g key={name}>
             <circle
@@ -112,16 +126,6 @@ export function CorridorMap() {
           Go a little further.
         </text>
       </svg>
-      <div className="map-stamp">
-        <span className="stamp-icon">
-          <TrainFront size={18} />
-        </span>
-        <div>
-          Rail + intercity bus.<strong>One way forward.</strong>
-        </div>
-        <Bus size={18} />
-        <ArrowUpRight size={19} />
-      </div>
       <span className="map-caption">
         THE EAST COAST, REIMAGINED <span>↗</span>
       </span>
