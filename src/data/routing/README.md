@@ -38,27 +38,29 @@ so consumer mutation cannot poison the cache. No user coordinates or live snapsh
 are cached; SEPTA's expiry is untouched. Bump dataset/schema versions when inputs
 change. Test hooks deliberately have no production UI or external endpoint.
 
-## Important: remaining integration gate
+## Integration candidate status
 
-**This PR stage does not claim app-wide zero eager initialization.** `demoTrips`
-retains its compatibility batch export until all owners migrate existing consumers.
-New direct `tripLookup` imports build zero routes at initialization. Wallet now uses
-that lookup, but App still imports other legacy consumers.
+Candidate `feat/routing-integration` starts directly at reviewed P2 consumer head
+`e24b794d7e231b07687bd4f17241bde7d7f77976`, containing engine
+`05dbaa31d981dca20fbae9b5f300b62b044765cf` and readiness
+`49742e76a289f2cf5d396cc66ead01d0ab56c62f`. Source PR heads are not moved.
+Search uses planTrips; Journey, Wallet and TripContext use getTripById. The final
+production eager call is removed; demoTrips keeps its named export and original two
+samples. Exhaustive legacy arrays are explicitly constructed only in owned tests.
+Cold App/data import regression asserts zero routing/trip creation/cache entries.
+Expanded IDs reconstruct independently of Search, selection or a populated cache.
 
-P2/P1 must coordinate these changes before removing the final eager export:
+Initial candidate run:73/78 passed; five pre-existing Journey fixture lookups still
+used demoTrips.find for east IDs. P2 owns that two-file fixture correction and will
+supply a separate unchanged patch. No assertions are weakened. Candidate build and
+two startup checks pass. Final integrated test totals/patch SHA will be recorded
+in the coordination report after actual full checks; this paragraph preserves the
+initial failure evidence. Do not treat the initial candidate as a green QA target.
 
-1. Search: use `planTrips(origin,destination)` instead of filtering the global array.
-2. Journey: use `getTripById(tripId)`; update Journey fixtures to resolve IDs explicitly.
-3. TripContext: use `getTripById` for saved/URL IDs while retaining P1's concurrent
-   canonical-path versus legacy-query priority fix. Do not overwrite that work.
-4. Migrate the remaining shared catalogue tests; remove the batch startup call only
-   after no runtime consumer relies on enumerating all trips. Preserve both original
-   IDs/times and all supported deep links after reload.
-5. Run the integrated build/tests/browser protocol on a newly named exact SHA.
-
-P3 owns the routing/lookup and Wallet changes; P2 owns Search/Journey, P1 currently
-owns the concurrent integration/TripContext work. No direct owner-file edits were made; the approved readiness merge preserves P1’s canonical-ID fix and its six tests.
-No merge/deployment is authorized by this draft or its performance measurements.
+No direct Search/Journey/TripContext owner-file edits by P3. P1's canonical-path
+priority and its tests remain preserved. No merge/deployment or production claim.
+The prior engine-stage Node benchmark remains an isolated-module measurement,
+not a browser performance measurement of this integration candidate.
 
 ## Correctness and reproducible measurement
 

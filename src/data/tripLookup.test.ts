@@ -1,5 +1,7 @@
 import { beforeEach, expect, test } from 'vitest';
-import { demoTrips } from './demoTrips';
+import { buildEastCoastTrips } from './eastCoast';
+// Explicit legacy reference fixtures, not production startup work.
+const demoTrips = [...originalDemoTrips, ...buildEastCoastTrips()];
 import { cities } from './eastCoast';
 import { originalDemoTrips } from './originalDemoTrips';
 import { clearRoutingCacheForTests, getConceptTrip, getRoutingDiagnostics, getTripById,
