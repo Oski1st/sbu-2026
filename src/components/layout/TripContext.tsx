@@ -35,12 +35,12 @@ export function TripProvider({ children }: { children: ReactNode }) {
     </SelectionContext.Provider>
   );
 }
-/** Teammates can use this hook, or resolve ?trip= against demoTrips directly. */
+/** Canonical route IDs win; legacy query IDs are supported on selection entry routes. */
 export function useSelectedTrip() {
   const context = useContext(SelectionContext);
   const [params] = useSearchParams();
   const { tripId } = useParams();
-  const requested = params.get("trip") ?? tripId ?? null;
+  const requested = tripId ?? params.get("trip") ?? null;
   return {
     ...context,
     selectedTrip:
