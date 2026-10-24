@@ -184,3 +184,20 @@ Actual follow-up validation:
   shell's state. Trip switching/reset and existing feed lifecycle checks also pass.
 - LIRR clarification, honest checklist labels, existing proxy and every feed state
   remain intact. No shared router/backend/layout/style files changed.
+
+## Integrated-main revalidation — Person 3
+
+Merged latest main `93c0408` into PR #8 with a normal merge. The duplicate Wallet
+navigation fix and React Router recovery Link were already present and required no
+further functional changes. Wallet remains a div under the host's single main.
+
+- Locked install, production build, and all 42 tests (5 suites) pass on the new base.
+- Production browser: regional and Amtrak routes, each at 320px and 390px, retain
+  4/3 legs and two LIRR hints; zero local navs, one main, and no horizontal overflow.
+- Reload preserves the selected Amtrak route and resets demo marks. Space toggles
+  a planning note; Tab reaches the next agency link with visible focus. Keyboard
+  Enter on invalid-trip recovery opens Search.
+- External React DOM checks reconfirm client-side routing preserves mounted shell
+  state, trip switching resets marks, and feed-state/refresh behavior stays honest.
+- No new proxy, purchase logic, live-to-itinerary mutation, shared-file edits, or
+  force push. Coordination uses the existing Person 3 hub report, issue #1.
