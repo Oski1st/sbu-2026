@@ -132,3 +132,32 @@ pnpm build
 pnpm test
 pnpm start
 ```
+
+## Wallet clarity follow-up — October 24, 2026
+
+`feat/wallet-clarity` starts from integrated main `73635ac` after the wallet and
+shared shell integration merges. No shared router/backend/dependency files change.
+The host's existing `/api/transit/septa/trains` endpoint is forwarded unchanged.
+
+- Connected LIRR legs now explicitly explain that New York Penn Station to Stony
+  Brook may share one through ticket. This is a coverage reminder, not a fare rule
+  or a verified purchase. Unconnected legs do not get this explanation.
+- Each checkbox is a per-leg demo planning note. Both checked and unchecked states
+  avoid purchase claims. Each input describes its no-purchase/validity disclaimer;
+  LIRR inputs also reference the through-ticket note for assistive technology.
+- Feed updates use a concise atomic polite status announcement; the whole train
+  list is not repeatedly announced. Retrieval uses a semantic time element with
+  date, seconds and timezone. Empty/unavailable/expired/loading states differ.
+- Expiry and Refresh instructions accompany successful snapshots, including empty
+  feeds. Refresh remains focusable while aria-disabled during a pending request,
+  retains keyboard focus, and ignores repeated activations until it settles.
+- Browser checks: both demo routes at 320px (no horizontal overflow), Space checkbox
+  toggling, Tab order with visible outline, Enter refresh with retained focus, and
+  real observations through the existing production proxy.
+- External React DOM checks: client-side regional/Amtrak switching resets marks,
+  through-ticket hints persist, input help IDs resolve, pending refreshes reject
+  duplicate clicks, and empty/expired/unavailable states retain honest wording.
+- Regression suite: `pnpm install --frozen-lockfile`, `pnpm build`, and `pnpm test`
+  passed; 5 suites / 39 tests. New cases cover both shared demo trips' connected
+  LIRR hints, no purchase claims, semantic retrieval time, atomic status, and
+  expired/empty/unavailable/loading output. Existing timeout and expiry tests pass.

@@ -309,3 +309,26 @@
   }
 
 }
+
+.oneline-wallet .ol-coverage {
+  padding:12px 14px;
+  border-left:3px solid #20664c;
+  background:#edf4e9;
+  border-radius:4px 8px 8px 4px;
+}
+
+.oneline-wallet .ol-feed-summary {
+  font-weight:700;
+}
+
+.oneline-wallet .ol-button[aria-disabled=true] {
+  opacity:.65;
+  cursor:wait;
+}
+
+.oneline-wallet .ol-ticket,
+.oneline-wallet .ol-live,
+.oneline-wallet .ol-section-heading > * {
+  min-width:0;
+  overflow-wrap:anywhere;
+}
