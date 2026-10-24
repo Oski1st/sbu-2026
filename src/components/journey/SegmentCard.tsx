@@ -6,16 +6,23 @@ type SegmentCardProps = {
   index: number;
   isExpanded: boolean;
   isDelayed: boolean;
+  isCurrent: boolean;
   onToggle: () => void;
 };
 
-export function SegmentCard({ leg, index, isExpanded, isDelayed, onToggle }: SegmentCardProps) {
+export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onToggle }: SegmentCardProps) {
   const styles = agencyStyles[leg.agency];
   const duration = legDuration(leg);
   const detailId = `segment-details-${leg.id}`;
 
   return (
-    <article className={`rounded-3xl border bg-white p-4 shadow-[0_10px_35px_-24px_rgba(15,23,42,0.45)] transition duration-300 sm:p-5 ${isDelayed ? "border-amber-300 ring-4 ring-amber-100" : "border-slate-200"}`}>
+    <article aria-label={isCurrent ? `${leg.line}, current manual demo step` : undefined} className={`rounded-3xl border bg-white p-4 shadow-[0_10px_35px_-24px_rgba(15,23,42,0.45)] transition duration-300 motion-reduce:transition-none sm:p-5 ${isCurrent ? "border-emerald-400 ring-4 ring-emerald-100" : isDelayed ? "border-amber-300 ring-4 ring-amber-100" : "border-slate-200"}`}>
+      {isCurrent && (
+        <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-900">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" aria-hidden="true" />
+          Current manual demo step
+        </p>
+      )}
       {isDelayed && (
         <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-900">
           <span className="h-1.5 w-1.5 rounded-full bg-amber-600" aria-hidden="true" />
