@@ -4,7 +4,7 @@
 
 ## Before the demo (T–10 min)
 
-- [ ] Open the deployed URL, or run `pnpm build && pnpm start` locally. Wake a sleeping free-tier host now.
+- [ ] Open <https://oneline-sbu-2026.onrender.com> about 2 minutes early to wake the free Render instance (or run `pnpm build && pnpm start` locally). Production rehearsal on Oct 24 (`6df372e`): 8 / 8 steps online and offline.
 - [ ] Use a fresh browser profile or private window so there is no old selection in `localStorage`. Zoom 110–125% for the projector.
 - [ ] Open `/wallet/regional-connection` once to check the SEPTA panel. Note whether it says **Live feed fetched** or **Live data unavailable**; both are fine (see fallbacks).
 - [ ] Return to `/`.
