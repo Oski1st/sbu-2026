@@ -6,11 +6,26 @@ Owner: Person 4. Each run is against the production server (`pnpm build && pnpm 
 
 | Run | `main` commit | Contents | Build / tests | Browser checks | Proxy outage | Deploy smoke |
 | --- | --- | --- | --- | --- | --- | --- |
-| Final | _pending_ | Person 1's initial-focus and footer fixes | Not run yet | Not run yet | Not run yet | Not run yet |
+| **Final** (Oct 24) | **`93c0408`** "Merge keyboard focus, data labels and reproducible QA" | Person 1's initial-focus and footer fixes; Playwright 1.64.1 devDependency; `render.yaml` | Pass; 33 / 33 tests | **117 / 121** (see below) | 5 / 5 | 6 / 6 (clean checkout, `render.yaml` build command, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
 | **Interim** (Oct 24) | **`73635ac`** "Merge shared shell integration fixes" (PR #7) | Adds the one-`<main>` shell contract | Pass; 33 / 33 tests | 114 / 119 (see below) | 5 / 5 | 6 / 6 (`HOST=0.0.0.0 PORT=8080`, LAN IP) |
 | Baseline (Oct 24) | `5efcd3b` "Merge reviewed OneLine ticket wallet" | Search, Compare, Journey, Wallet, SEPTA proxy | Pass; 33 / 33 tests | 102 / 105 | 5 / 5 | 6 / 6 (clean checkout, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
 
 The browser suite grew between runs, which is why the totals differ. The interim run adds one-`<main>` checks on every page, duplicate page-navigation checks and a footer-wording check. The footer check was added after the interim run, so it first runs on the final commit.
+
+## Final run: `93c0408`
+
+Toolchain: Node 22.23.4, pnpm 11.25.0, Playwright 1.64.1 (locked devDependency) with its Chromium. Commands: `pnpm install --frozen-lockfile`, `pnpm build`, `pnpm test`, `pnpm exec playwright install chromium`, `pnpm test:e2e`, `pnpm test:proxy`, `pnpm test:smoke`. The deploy smoke test used a clean checkout of `93c0408` built with the `render.yaml` build command (`--prod=false`, `NODE_ENV=production`). This is a local run; no hosted URL exists yet.
+
+| Area | Result |
+| --- | --- |
+| First Tab on a fresh load | **Pass:** reaches "Skip to content". Finding 3 is resolved. |
+| Focus after route change | Pass: still moves to `#main-content` |
+| Footer wording, both trips | **Pass:** "Sample itineraries · Live data limited to labelled SEPTA snapshots". Finding 5 is resolved. |
+| Landmarks, Search → Compare → Journey → Wallet, invalid IDs, 320px / 390px, button text, SEPTA states | Pass, as in the interim run. The real SEPTA feed returned **24 records** at test time. Sample itinerary times are unchanged in every SEPTA state. |
+| Duplicate page navigation | **Fail, 4 checks:** Journey and Wallet on both trips (finding 4, Persons 2 and 3) |
+| Page or console errors | None |
+
+`pnpm test:e2e` exits with code 1 because of the 4 finding-4 checks; that's expected until finding 4 is fixed.
 
 ## Interim run: `73635ac`
 
@@ -146,14 +161,14 @@ Status reflects the latest verified run. "Fix pending" means a fix is in progres
 | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Person 2 (Journey) | Medium: demo flow | **Resolved**, verified on `5efcd3b` | The Journey page had no in-page link to the Wallet. It now has **View ticket wallet →**. | n/a | n/a |
 | 2 | Person 2 / Person 1 (shell) | Medium: a11y | **Resolved** by PR #7, verified on `73635ac` | `JourneyPage` rendered `<main>` inside the layout's `<main id="main-content">`. The shell now uses a `<div id="main-content">`, and each page has exactly one `<main>`. | Run `document.querySelectorAll('main').length` on any page; it returns `1`. | [baseline screenshot](qa-screenshots/bug-journey-nested-main-duplicate-header.png) |
-| 3 | Person 1 (`App.tsx`) | Low: a11y | Open: fix pending (Person 1) | `NavigationEffects` also runs on first load and focuses `#main-content`, so the first Tab skips "Skip to content" and the header nav. Still present on `73635ac`. | Load `/` fresh and press Tab once; focus lands past the skip link. | [screenshot](qa-screenshots/bug-first-tab-skips-skip-link.png) |
-| 4 | Person 2 (Journey), Person 3 (Wallet) | Low: visual | Open | Duplicate page navigation under the site header. Journey draws "← Search routes / OneLine" (`src/pages/JourneyPage.tsx:48`). Wallet draws "OneLine ↗ / Back to journey search" (`src/pages/WalletPage.tsx:49`), and those `<a href="/">` links reload the whole page instead of using client-side navigation. Separate from finding 2; PR #7 did not change it. | Open `/journey/regional-connection` or `/wallet/regional-connection`: a second nav bar sits under the header. Click the Wallet's "Back to journey search"; DevTools shows a document reload. | [Journey 320px](qa-screenshots/duplicate-nav-journey-320.png), [Wallet 320px](qa-screenshots/duplicate-nav-wallet-320.png) |
-| 5 | Person 1 (`AppLayout`) | Low: copy | Open: fix pending (Person 1) | The footer says "Sample itineraries · No live arrival data" while the Wallet shows a live SEPTA snapshot. Still present on `73635ac`. Suggested wording: "Sample itineraries · Live data limited to labelled SEPTA snapshots". | Open `/wallet/regional-connection` and compare the footer with the SEPTA panel. | [screenshot](qa-screenshots/septa-live-panel.png) |
+| 3 | Person 1 (`App.tsx`) | Low: a11y | **Resolved**, verified on `93c0408` | `NavigationEffects` also runs on first load and focuses `#main-content`, so the first Tab skips "Skip to content" and the header nav. Was present through `73635ac`. | Load `/` fresh and press Tab once; focus lands past the skip link. | [screenshot](qa-screenshots/bug-first-tab-skips-skip-link.png) |
+| 4 | Person 2 (Journey), Person 3 (Wallet) | Low: visual | Open: still failing on `93c0408` | Duplicate page navigation under the site header. Journey draws "← Search routes / OneLine" (`src/pages/JourneyPage.tsx:48`). Wallet draws "OneLine ↗ / Back to journey search" (`src/pages/WalletPage.tsx:49`), and those `<a href="/">` links reload the whole page instead of using client-side navigation. Separate from finding 2; PR #7 did not change it. | Open `/journey/regional-connection` or `/wallet/regional-connection`: a second nav bar sits under the header. Click the Wallet's "Back to journey search"; DevTools shows a document reload. | [Journey 320px](qa-screenshots/duplicate-nav-journey-320.png), [Wallet 320px](qa-screenshots/duplicate-nav-wallet-320.png) |
+| 5 | Person 1 (`AppLayout`) | Low: copy | **Resolved**, verified on `93c0408` | The footer says "Sample itineraries · No live arrival data" while the Wallet shows a live SEPTA snapshot. Was present through `73635ac`. Suggested wording: "Sample itineraries · Live data limited to labelled SEPTA snapshots". | Open `/wallet/regional-connection` and compare the footer with the SEPTA panel. | [screenshot](qa-screenshots/septa-live-panel.png) |
 
 None of the open findings blocks the demo.
 
 
-## Person 1 integration candidate, October 24
+## Person 1 integration candidate, October 24 (reported by Person 1)
 
 Validated main `73635ac` plus QA scripts at `f9abf68` and Person 1's initial-focus/footer fixes. This is a local candidate run, not a claim that a hosted deployment exists.
 
