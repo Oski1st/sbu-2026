@@ -12,7 +12,8 @@
     "start": "node server/index.mjs",
     "test:e2e": "node qa/e2e-check.cjs",
     "test:proxy": "node qa/septa-proxy-outage.mjs",
-    "test:smoke": "node qa/smoke.mjs"
+    "test:smoke": "node qa/smoke.mjs",
+    "typecheck": "tsc -b"
   },
   "dependencies": {
     "lucide-react": "^0.468.0",
