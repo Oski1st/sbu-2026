@@ -161,3 +161,26 @@ The host's existing `/api/transit/septa/trains` endpoint is forwarded unchanged.
   passed; 5 suites / 39 tests. New cases cover both shared demo trips' connected
   LIRR hints, no purchase claims, semantic retrieval time, atomic status, and
   expired/empty/unavailable/loading output. Existing timeout and expiry tests pass.
+
+## QA finding #4: duplicate Wallet navigation
+
+Continued PR #8 against latest integrated main `73635ac` (already up to date).
+Removed the Wallet-local OneLine / Back to journey search bar and its unused CSS.
+The shared shell is the sole page navigation. The empty-state Find a journey link
+now uses React Router Link; official external ticket/feed links remain external.
+The Wallet root stays a div and the host supplies its main landmark.
+
+Actual follow-up validation:
+
+- `pnpm build` passed; `pnpm test` passed 5 suites / 42 tests. Regression cases
+  cover regional, Amtrak and invalid IDs without local nav, branding or main.
+- Production browser checked both demo trips at 320px and 390px: no horizontal
+  overflow, one main landmark, zero Wallet-local navs, two LIRR through-ticket notes,
+  and correct 4/3 planning-item counts.
+- Keyboard Tab reaches ticket links with visible focus; Space toggles planning
+  notes; the invalid-wallet Find a journey link is keyboard-focusable and Enter
+  opens Search.
+- External React DOM regression checked client-side recovery preserves the mounted
+  shell's state. Trip switching/reset and existing feed lifecycle checks also pass.
+- LIRR clarification, honest checklist labels, existing proxy and every feed state
+  remain intact. No shared router/backend/layout/style files changed.

@@ -21,23 +21,12 @@
   text-underline-offset:4px;
 }
 
-.oneline-wallet nav,.oneline-wallet .ol-section-heading,.oneline-wallet .ol-ticket-top {
+.oneline-wallet .ol-section-heading,.oneline-wallet .ol-ticket-top {
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:16px;
   flex-wrap:wrap;
-}
-
-.oneline-wallet nav {
-  padding-bottom:24px;
-  border-bottom:1px solid var(--ol-border);
-}
-
-.oneline-wallet .ol-brand {
-  font-size:24px;
-  font-weight:850;
-  text-decoration:none;
 }
 
 .oneline-wallet .ol-header {
@@ -298,10 +287,6 @@
   .oneline-wallet .ol-ticket-actions {
     align-items:stretch;
     flex-direction:column;
-  }
-
-  .oneline-wallet nav {
-    font-size:13px;
   }
 
   .oneline-wallet .ol-section-heading {

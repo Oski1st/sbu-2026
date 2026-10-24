@@ -38,6 +38,16 @@ describe('shared wallet integration', () => {
     const html = markup('missing-trip');
     expect(html).toContain('Journey not found');
     expect(html).not.toContain('type="checkbox"');
+    expect(html).toContain('href="/"');
+  });
+
+  test.each(['regional-connection', 'amtrak-connection', 'missing-trip'])('%s leaves navigation and the main landmark to the shared shell', id => {
+    const html = markup(id);
+    expect(html).toMatch(/^<div class="oneline-wallet">/);
+    expect(html).not.toContain('<main');
+    expect(html).not.toContain('<nav');
+    expect(html).not.toContain('ol-brand');
+    expect(html).not.toContain('Back to journey search');
   });
 
   test.each(['regional-connection', 'amtrak-connection'])('%s explains shared LIRR coverage without equating legs to purchases', id => {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import type { Trip } from '../types/transit';
 import { demoTrips } from '../data/demoTrips';
 import { TicketCard } from '../components/wallet/TicketCard';
@@ -47,7 +47,6 @@ export default function WalletPage({ tripId, septaEndpoint }: WalletPageProps) {
   const id = tripId ?? routeTripId ?? tripIdFromLocation();
   const trip = demoTrips.find((item: Trip) => item.id === id);
   return <div className="oneline-wallet">
-    <nav aria-label="Wallet navigation"><a className="ol-brand" href="/">OneLine<span aria-hidden="true"> ↗</span></a><a href="/">Back to journey search</a></nav>
-    {trip ? <TripWallet key={trip.id} trip={trip} septaEndpoint={septaEndpoint} /> : <section className="ol-empty"><span className="ol-eyebrow">TRIP WALLET</span><h1>{id ? 'Journey not found' : 'Choose your journey first'}</h1><p>Open a wallet from the journey search results. No tickets or itinerary have been created.</p><a className="ol-button" href="/">Find a journey</a></section>}
+    {trip ? <TripWallet key={trip.id} trip={trip} septaEndpoint={septaEndpoint} /> : <section className="ol-empty"><span className="ol-eyebrow">TRIP WALLET</span><h1>{id ? 'Journey not found' : 'Choose your journey first'}</h1><p>Open a wallet from the journey search results. No tickets or itinerary have been created.</p><Link className="ol-button" to="/">Find a journey</Link></section>}
   </div>;
 }
