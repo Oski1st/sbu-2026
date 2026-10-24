@@ -16,16 +16,17 @@ export interface TicketCardProps {
   index: number;
   checked: boolean;
   onToggle: () => void;
+  throughTicketNote?: string;
 }
 
-export function TicketCard({ leg, index, checked, onToggle }: TicketCardProps) {
+export function TicketCard({ leg, index, checked, onToggle, throughTicketNote }: TicketCardProps) {
   const agency = ticketing[leg.agency];
   return (
     <li className={`ol-ticket ${checked ? 'ol-ticket-checked' : ''}`}>
       <div className="ol-ticket-top">
         <span className="ol-agency">{agency?.name ?? 'Unsupported agency'} · Leg {index + 1}</span>
         <span className={`ol-status ${checked ? 'ol-status-done' : ''}`}>
-          {checked ? '✓ Demo checklist complete' : 'Purchase needed · not verified'}
+          {checked ? '✓ Demo item checked' : 'Demo item not checked'}
         </span>
       </div>
       <h2>{leg.line}</h2>
@@ -36,11 +37,12 @@ export function TicketCard({ leg, index, checked, onToggle }: TicketCardProps) {
       </div>
       <p className="ol-schedule">Demo itinerary: {itineraryTime(leg.departure)} → {itineraryTime(leg.arrival)}</p>
       <p>{agency?.help ?? 'This agency is outside the current shared integration contract. Confirm ticketing with the agency.'}</p>
+      {throughTicketNote && <p className="ol-coverage" id={`ol-coverage-${index}`}>{throughTicketNote}</p>}
       <div className="ol-ticket-actions">
         {agency && <a className="ol-button" href={officialPurchaseUrl(leg.agency, leg.purchaseUrl)} target="_blank" rel="noopener noreferrer">{agency.label} <span aria-hidden="true">↗</span><span className="ol-sr-only"> (opens in a new tab)</span></a>}
-        <label className="ol-check"><input type="checkbox" checked={checked} onChange={onToggle} />Mark demo checklist complete for leg {index + 1}</label>
+        <label className="ol-check"><input type="checkbox" checked={checked} onChange={onToggle} aria-describedby={`ol-check-help-${index}${throughTicketNote ? ` ol-coverage-${index}` : ''}`} />Mark leg {index + 1} planning note as checked</label>
       </div>
-      <p className="ol-fine">Demo mockup only · Not a ticket or proof of purchase. Actual tickets stay with the agency. Connecting legs may share a ticket; confirm coverage before buying another.</p>
+      <p className="ol-fine" id={`ol-check-help-${index}`}>Demo planning note only. Checking this box does not purchase a ticket, confirm payment, or establish ticket validity. Actual tickets stay with the agency.</p>
     </li>
   );
 }
