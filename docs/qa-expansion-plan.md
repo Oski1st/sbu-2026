@@ -1,91 +1,101 @@
-# East Coast expansion QA plan
+# East Coast expansion QA
 
-Owner: Person 4. Feature owner: Person 1 (`feat/east-coast`, linked from hub issue #3).
+Owner: Person 4. Feature owner: Person 1 (PR #13, `feat/east-coast`).
 
-**Status: plan only. No results are recorded yet.** Results go in the tables below only after hub #3 names the exact expansion PR commit. They record that SHA, and a separate run on the merged `main` SHA. Earlier QA results stay in [qa-checklist.md](qa-checklist.md) and are not affected.
+**Tested commit: `9be946d`** (`9be946d3376dc61064ad0645909e1f15f43534ad`), the PR #13 head on base `main` `6df372e`. These are **PR results, not `main` results.** Re-run on the merged `main` SHA before relying on them for the demo. Earlier `main` runs are in [qa-checklist.md](qa-checklist.md) and are unchanged.
 
-## What the expansion claims (from hub #3)
+Run on October 24, 2026 with Node 22.23.4, pnpm 11.25.0 and Playwright 1.64.1, against a clean checkout of `9be946d` served by `pnpm start`.
 
-- `Agency` gains `GREYHOUND` and `FLIXBUS`. Agencies gain `mode: rail | bus`, and `Leg` gains an optional `mode`.
-- 24 East Coast cities, rail / bus / mixed journeys, operator and mode filters, and city aliases.
-- Stable, shareable concept-trip IDs and overnight dates.
-- Original demo trip IDs and times are unchanged.
-- **Every new service, duration, fare and connection is an illustrative sample concept.** There is no live bus inventory, no live prices, no arrivals, and no ticket purchase. Booking links go to the official operator.
+## Summary
 
-## Acceptance criteria (from the coordinator, hub #2)
+| Check | Command | Result on `9be946d` |
+| --- | --- | --- |
+| Install, build | `pnpm install --frozen-lockfile && pnpm build` | Pass |
+| Unit tests | `pnpm test` | **53 / 53** (7 files) |
+| Existing browser suite (regression) | `pnpm test:e2e` | **121 / 121**, the same as `main` `ea6c065` |
+| Proxy outage | `pnpm test:proxy` | 5 / 5 |
+| Deploy smoke | `node qa/smoke.mjs` (`HOST=0.0.0.0`, LAN IP) | 6 / 6. Expanded deep links also return 200. Local only. |
+| Demo rehearsal | `node qa/demo-rehearsal.cjs`, online / `--offline` | 8 / 8 / 8 / 8 |
+| **Expansion suite** | `node qa/expansion-check.cjs <url>` (new) | **121 / 122.** The 1 failure is finding X1. |
 
-1. The existing demo still passes: `pnpm test:e2e` shows no new failures against the pre-expansion baseline, and `qa/demo-rehearsal.cjs` passes online and with `--offline`.
-2. Expanded journeys are clearly labelled sample-only.
-3. Official booking URLs stay operator-owned.
-4. Reloads work.
-5. Mobile and keyboard flows pass.
-6. Failures are recorded honestly.
+Coordinator check (hub #2): expanded routes are clearly labelled as concepts, connections are marked unverified, and ticket handoffs go to official operator sites. **Confirmed.** See D1–D5.
 
-## Scenarios
+## Findings
 
-Fill in **SHA** and **Result** only from a real run. Use "Pass", "Fail (#n)" with a finding number, or "Not run". Trip IDs are taken from the PR once it exists.
+| # | Severity | Owner | Status | Finding | Reproduce | Evidence |
+| --- | --- | --- | --- | --- | --- | --- |
+| X1 | Medium: visual, 320px | Journey timeline (`src/components/journey/SegmentCard.tsx`, Person 2's file, edited in PR #13) | Open on `9be946d` | At 320px the city column is a `min-w-0` grid cell only 66–77px wide. "Washington, DC" can't wrap ("Washington," is one word), so it spills 38px into the time column and renders as "Washingto6:35 PM · Oct 24". "Portland" overflows by 4px. At 390px and wider, and for shorter names like "Stony Brook", it's fine. This is new with the expansion: the longer city names and the "· Oct 24" date suffix on times. | Open `/journey/east-portland--miami--amtrak` at 320px width and scroll to the Boston → Washington, DC segment. | [crop](qa-screenshots/expansion/bug-320-washington-dc-overlaps-time.png) |
+| X2 | Low: UX | Search (`src/pages/SearchPage.tsx`, Person 1) | Open | The search query isn't in the URL. After searching Boston → New York, a page refresh returns to the default Philadelphia → Stony Brook demo. Journey and Wallet deep links for expanded trips do survive refresh and sharing. | Search Boston → New York, then press reload. | n/a |
+| X3 | Low: readability | Journey header (Person 2) | Open; the format predates this PR | Total duration is shown in minutes: "2010 min total" for Portland → Miami, while the segment cards show "21h 55m". | Open `/journey/east-portland--miami--amtrak`. | [390px](qa-screenshots/expansion/mobile-390-journey-portland-miami.png) |
+| X4 | Low: link hygiene | `src/data/agencies.ts` (Person 1), `src/components/wallet/ticketing.ts` and `src/services/transit/README.md` (Person 3) | Open; **already on `main`**, not from this PR | SEPTA links use `https://wwww.septa.org/…` (four w's). It currently resolves through SEPTA's wildcard DNS to their "Ways to Pay" page, so it works, but it's a typo that relies on wildcard DNS. Suggest `https://www.septa.org/…`. | `git grep wwww` | n/a |
+
+## Scenario results
+
+"Pass" means an automated assertion in `qa/expansion-check.cjs` passed, unless the row is marked *manual*.
 
 ### A. Regression: the existing demo
 
-| # | Scenario | Expected | SHA | Result |
-| --- | --- | --- | --- | --- |
-| A1 | Default search, Philadelphia → Stony Brook | The same two routes as before, with IDs `regional-connection` and `amtrak-connection` and unchanged times and fares | | |
-| A2 | `pnpm test:e2e` | No new failures compared with the last `main` run | | |
-| A3 | `qa/demo-rehearsal.cjs`, online and `--offline` | 8 / 8 steps each | | |
-| A4 | Old deep links `/journey/regional-connection` and `/wallet/amtrak-connection` | Load and survive a refresh | | |
+| # | Scenario | Result on `9be946d` |
+| --- | --- | --- |
+| A1 | Default search still shows exactly `regional-connection` and `amtrak-connection` | Pass |
+| A2 | `pnpm test:e2e` | Pass, 121 / 121 |
+| A3 | Demo rehearsal online and `--offline` | Pass, 8 / 8 each |
+| A4 | Old deep links load and survive refresh | Pass (covered by A2) |
 
 ### B. New journeys
 
-| # | Scenario | Expected | SHA | Result |
-| --- | --- | --- | --- | --- |
-| B1 | Boston → New York | Rail (Amtrak), Greyhound and FlixBus options. Each is labelled with its mode and operator and marked as a sample concept. | | |
-| B2 | Portland → Miami | Arrives the next day. The date is shown explicitly (for example "Oct 25" or "+1 day"), and the total duration is correct across midnight. | | |
-| B3 | Boston → Stony Brook | A mixed coach + LIRR journey, with the bus leg shown as bus and the LIRR leg as rail | | |
-| B4 | Reverse trips (New York → Boston, Miami → Portland, Stony Brook → Boston) | Results exist, or a clear no-results state. Never the forward trip with the labels swapped. | | |
-| B5 | Journey and Wallet pages for B1–B3 | Bus legs render with bus labels. The Wallet lists one card per leg, each with that operator's official link. | | |
+| # | Scenario | Result on `9be946d` |
+| --- | --- | --- |
+| B1 | Boston → New York offers Amtrak, Greyhound and FlixBus | Pass: 3 sample connections ([desktop](qa-screenshots/expansion/b1-boston-new-york-desktop.png)) |
+| B2 | Portland → Miami arrives the next day with an explicit date | Pass: 3 options arriving 5:30 / 5:40 / 6:10 PM · Oct 25. The Journey shows "Oct 25". See X3 for the duration format. |
+| B3 | Boston → Stony Brook is mixed coach + LIRR | Pass: the Greyhound and FlixBus options both end on LIRR, and the "Rail + bus" filter keeps them |
+| B4 | Reverse trips (New York → Boston, Miami → Portland, Stony Brook → Boston) | Pass: 3 each, all in the requested direction |
+| B5 | Journey and Wallet for 6 expanded IDs | Pass: legs are listed with the operator. *Manual:* the bus legs show Greyhound / FlixBus badges ([Wallet 320px](qa-screenshots/expansion/mobile-320-wallet-boston-stony-brook-greyhound.png)). |
 
 ### C. Search input
 
-| # | Scenario | Expected | SHA | Result |
-| --- | --- | --- | --- | --- |
-| C1 | Aliases `NYC` and `New York City` | Resolve to New York | | |
-| C2 | Alias `DC` (and `Washington, DC`) | Resolves to Washington | | |
-| C3 | Case and whitespace (`  boston `) | Resolves | | |
-| C4 | Unknown city (`Atlantis`) | A clear, accessible "not supported" message that names the input. No invented route and no crash. | | |
-| C5 | Same origin and destination | Validation message, no results | | |
-| C6 | Mode filter: rail only, bus only, mixed | Only matching journeys. The empty state is clear. | | |
-| C7 | Operator filter (for example, exclude Greyhound) | Journeys using that operator are hidden. Clearing the filter restores them. | | |
+| # | Scenario | Result on `9be946d` |
+| --- | --- | --- |
+| C1 | `NYC` and `New York City` | Pass |
+| C2 | `DC` and `Washington, DC` | Pass |
+| C3 | `  boston ` / `new york` (case and whitespace) | Pass |
+| C4 | Unknown city `Atlantis` | Pass: "0 sample connections for Atlantis → Boston" and "Choose cities from our East Coast catalogue…". No invented route ([screenshot](qa-screenshots/expansion/c4-unknown-city.png)). |
+| C5 | Same origin and destination (`Boston` / `boston`) | Pass: "Choose two different cities". **Show demo routes** restores the original demo. |
+| C6 | Mode filters on Boston → New York | Pass: Rail only shows Amtrak; Bus only shows Greyhound and FlixBus; Rail + bus shows a clear empty state ("No matching sample is not evidence that real service is unavailable"). |
+| C7 | Operator filter = Greyhound, then cleared | Pass |
 
 ### D. Data honesty
 
-| # | Scenario | Expected | SHA | Result |
-| --- | --- | --- | --- | --- |
-| D1 | New journey cards, Compare, Journey and Wallet | A visible "sample" or "concept" label on times, durations and fares | | |
-| D2 | Unknown fare | Shown as "Fare unavailable" or similar. Never `$0`, `NaN` or a guessed number. Compare and sort handle it without errors. | | |
-| D3 | Booking links | Every Greyhound and FlixBus link goes to the operator's own domain over `https`, opens in a new tab with `rel="noopener"`, and has no tracking or affiliate parameters. Existing SEPTA / NJ TRANSIT / Amtrak / LIRR links are unchanged. | | |
-| D4 | SEPTA live panel | Still appears only on journeys with a SEPTA leg. Never on bus or other-city journeys. | | |
-| D5 | No live claims | No "live", "real-time" or "book now" wording for bus inventory, prices or arrivals | | |
+| # | Scenario | Result on `9be946d` |
+| --- | --- | --- |
+| D1 | Sample / concept labels on cards, results, Journey and Wallet | Pass: cards say "SAMPLE ITINERARY" and "… concept". The results disclaimer says "city-level concepts, not verified services". The Journey says "Sample route concept … not verified services" and "LIRR connection concept · changes to confirm". |
+| D2 | Unknown fares | Pass: cards say "Check fares", legs say "Fare unavailable". No `$0` or `NaN` in cards or Compare, and sorting by fare keeps every result. |
+| D3 | Booking links | Pass for all 6 Wallets: every ticket link is `https`, on the operator's own domain (`greyhound.com`, `flixbus.com`, `amtrak.com`, `mta.info`), `target=_blank`, `rel` includes `noopener`, no tracking parameters. See X4 for an existing SEPTA typo. |
+| D4 | SEPTA live panel absent on expanded trips | Pass (6 / 6) |
+| D5 | No live, real-time or "book now" claims | Pass. The guided demo's "does not … show live arrivals" is a correct negation. |
 
 ### E. Reloads, sharing and invalid IDs
 
-| # | Scenario | Expected | SHA | Result |
-| --- | --- | --- | --- | --- |
-| E1 | Refresh on `/journey/<new-id>` and `/wallet/<new-id>` | Same journey | | |
-| E2 | Shared link in a fresh browser (no localStorage) | Opens the same journey | | |
-| E3 | Mistyped new ID | "Journey not found" with a way back | | |
+| # | Scenario | Result on `9be946d` |
+| --- | --- | --- |
+| E1 | Refresh on Journey and Wallet for 6 expanded IDs | Pass |
+| E2 | Fresh browser (no localStorage) opens each expanded link. **Copy preview link** copies `…/journey/east-boston--new-york--amtrak`. | Pass |
+| E3 | Mistyped expanded IDs | Pass: "not found" with a link back |
+| — | Refresh on a Search results page | **Returns to the default demo** (X2) |
 
 ### F. Mobile and keyboard
 
-| # | Scenario | Expected | SHA | Result |
-| --- | --- | --- | --- | --- |
-| F1 | 320px and 390px: Search with filters, results, Compare, Journey and Wallet for B1–B3 | No horizontal overflow. Every button and link is named and unclipped. Long city names wrap. | | |
-| F2 | Keyboard only: type a city, pick an alias suggestion, change filters, choose a route, open the Wallet | Every control is reachable with a visible focus ring. Filter changes are announced or reflected in a results count. | | |
-| F3 | Overnight dates at 320px | The date and "+1 day" stay visible | | |
-| F4 | Page or console errors across the run | None | | |
+| # | Scenario | Result on `9be946d` |
+| --- | --- | --- |
+| F1 | 320px / 390px: Search (Boston → Stony Brook), Journey and Wallet for 3 expanded trips | No horizontal page overflow, and every control is named and on-screen. **Fail at 320px on the Portland → Miami Journey: city text spills into the time column** (X1). 390px passes. |
+| F2 | Keyboard only: type `NYC` → `DC`, Enter, Tab to **Bus only**, Space, Tab to Choose, Enter, Tab to the Wallet link | Pass. Filters expose `aria-pressed`, with a solid focus outline. |
+| F3 | Overnight date visible at 320px / 390px | Pass |
+| F4 | Page or console errors across the run | None |
 
-## How this will be run
+## Re-running
 
-1. Check out the exact SHA from hub #3, then run `pnpm install --frozen-lockfile && pnpm build && pnpm test`.
-2. Run `pnpm start`, then `pnpm test:e2e`, `pnpm test:proxy` and `node qa/demo-rehearsal.cjs <url>` (online and `--offline`).
-3. Extend `qa/e2e-check.cjs` with sections B–F using the PR's real trip IDs and selectors, then run them. A scenario that can't be automated is checked by hand and recorded as "manual".
-4. Record each result against its SHA in this file, and report in hub issue #2.
+```sh
+git checkout <sha> && pnpm install --frozen-lockfile && pnpm build && pnpm exec playwright install chromium
+PORT=4173 pnpm start
+node qa/expansion-check.cjs http://127.0.0.1:4173 qa-results/expansion
+```
