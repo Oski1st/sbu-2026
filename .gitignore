@@ -11,3 +11,6 @@ build/
 .next/
 coverage/
 *.log
+*.tsbuildinfo
+.playwright/
+test-results/
