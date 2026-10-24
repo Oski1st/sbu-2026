@@ -2,9 +2,13 @@
 
 ## Integration
 
-Person 1's foundation is merged into main through PR #3 and has been merged into
-`feat/wallet`. The existing `src/App.tsx` automatically loads WalletPage at
-`/wallet/:tripId`; no route or dependency changes are needed in this branch.
+Person 1's foundation and fixed-upstream SEPTA proxy are merged through PRs #3
+and #4. Latest main (`3d94bff`) is merged into `feat/wallet` using a normal merge.
+The existing `src/App.tsx` automatically loads WalletPage at `/wallet/:tripId` and
+passes `septaEndpoint="/api/transit/septa/trains"`. The wallet forwards this supplied
+endpoint unchanged. No alternate proxy, router, shared dependency, or global style
+changes are included here.
+
 Named `Trip`, `Leg`, and `Agency` exports come from `src/types/transit.ts`, and
 `demoTrips: Trip[]` comes from `src/data/demoTrips.ts`. No duplicate production
 contracts or invented journeys are included here. The shared layout owns the main
@@ -49,19 +53,23 @@ Regional Rail train observations without credentials. The adapter parses train
 number, line, destination, next stop, and reported delay. It does not fabricate
 missing values, infer departures, or overwrite demo journey times.
 
-The tested response lacks `Access-Control-Allow-Origin`, so a normal browser may
-block direct access. The default browser experience safely reports unavailable.
-For browser live mode, Person 1 can supply an approved **same-origin backend proxy**:
-`<WalletPage septaEndpoint="/api/transit/septa/trains" />`. That backend must fetch
-the fixed official URL, return its JSON array, and use a short timeout and no stale
-cache. Do not implement an arbitrary-URL proxy. No backend is added outside this
-branch's authorized scope. Until this proxy is integrated, browser live mode is
-not claimed as working. Do not disable CORS or use an unaffiliated public proxy.
+The agency's direct response lacks `Access-Control-Allow-Origin`. Person 1's
+existing fixed-upstream same-origin proxy solves this for the integrated app:
+`/api/transit/septa/trains`. Both Vite and the production `pnpm start` server host
+that endpoint. The wallet uses the endpoint supplied by App.tsx and does not add
+another proxy or disable browser protections.
+
+Production validation returned HTTP 200 with a real JSON observation array and
+`Cache-Control: no-store`. The actual regional wallet rendered those observations,
+retrieval time, and agency-wide/non-journey-matched labeling. The fallback remains
+available on failure; a successful check is not an availability guarantee.
 
 Requests time out after six seconds, abort on unmount, and fall back on HTTP errors,
 bad JSON, invalid records, access restrictions, or offline conditions. An empty
 successful response is explicitly distinguished from a service outage. Failure
 never generates substitute train data. A manual refresh retries the request.
+Snapshot expiry also checks elapsed time on focus, page restoration, and visibility
+changes so throttled background timers cannot leave expired observations labeled live.
 
 ### MTA / LIRR
 
@@ -90,16 +98,26 @@ their route, date, fare product, and eligibility with the agency.
 
 ## Validation
 
-Verified against merged main (`e3a67ef`, PR #3) in the actual feature checkout:
+Verified against merged main (`3d94bff`, PRs #3 and #4) in the actual feature checkout:
 
-- `pnpm install` completed without dependency or lockfile changes.
-- `pnpm build` passed the TypeScript and Vite production build.
-- `pnpm test` passed both suites: 4 shared-trip checks and 5 transit-adapter checks.
-- Browser verification covered `/wallet/regional-connection` (four legs across
-  SEPTA, NJ TRANSIT and LIRR) and `/wallet/amtrak-connection` (three legs across
-  Amtrak and LIRR), official links, and demo-only labels.
-- The regional wallet retains the unavailable fallback without a proxy; the
-  Amtrak journey does not show unrelated SEPTA observations.
+- `pnpm install --frozen-lockfile` completed without dependency/lockfile changes.
+- `pnpm build` passed TypeScript and Vite production bundling.
+- `pnpm test`: 5 suites / 30 tests passed (shared trips, existing proxy, wallet,
+  snapshot freshness, and transit adapter).
+- `pnpm build && pnpm start` launched the integrated production server. Real
+  `/api/transit/septa/trains` response was HTTP 200, no-store, with agency records.
+- Browser verification: regional-connection shows 4 legs (SEPTA, NJ TRANSIT,
+  LIRR) and real agency-wide observations; amtrak-connection shows 3 legs (Amtrak,
+  LIRR) with no unrelated SEPTA panel. Invalid IDs show no unrelated trip.
+- Mobile 390px layout and deep-link reloads checked; no horizontal overflow.
+- SEPTA, NJ TRANSIT and MTA ticket destinations returned HTTP 200. Amtrak blocks
+  scripted curl access (403) but its real booking page loaded successfully in the
+  browser at https://www.amtrak.com/home. No purchase was attempted.
+- An external React DOM lifecycle harness verified supplied endpoint usage,
+  checklist toggles/reset, trip changes, invalid IDs, live retrieval/agency labels,
+  mocked outage/timeout/empty-feed states, stale background snapshots, and refresh
+  recovery. Sample itinerary times remained unchanged through all feed states.
+  Simulated response records are test fixtures only, never production fallbacks.
 
 `septa.test.ts` uses the host scaffold's Vitest runner and covers response validation,
 HTTP/JSON/network errors, abort, timeout, and empty feeds. External wallet integration
@@ -109,8 +127,8 @@ empty trips, trip changes, and live versus unavailable indicators.
 From this checkout, run:
 
 ```sh
-pnpm install
+pnpm install --frozen-lockfile
 pnpm build
 pnpm test
-pnpm dev
+pnpm start
 ```

@@ -59,6 +59,21 @@ test('passes cancellation to fetch and safely returns unavailable', async () => 
   } finally { globalThis.fetch = original; }
 });
 
+test('uses the supplied same-origin endpoint with no cache or credentials', async () => {
+  const original = globalThis.fetch;
+  try {
+    let requested: string | undefined;
+    globalThis.fetch = async (url, options) => {
+      requested = String(url);
+      expect(options?.credentials).toBe('omit');
+      expect(options?.cache).toBe('no-store');
+      return new Response('[]');
+    };
+    expect((await fetchSeptaTrains({ endpoint: '/api/transit/septa/trains' })).status).toBe('live');
+    expect(requested).toBe('/api/transit/septa/trains');
+  } finally { globalThis.fetch = original; }
+});
+
 test('a stalled request times out instead of keeping the wallet loading', async () => {
   const original = globalThis.fetch;
   try {

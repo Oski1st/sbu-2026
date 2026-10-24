@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchSeptaTrains, type SeptaResult } from '../../services/transit/septa';
+import { watchSnapshotExpiry } from './snapshotFreshness';
 
 export function TransitStatus({ endpoint }: { endpoint?: string }) {
   const [result, setResult] = useState<SeptaResult | null>(null);
@@ -8,15 +9,21 @@ export function TransitStatus({ endpoint }: { endpoint?: string }) {
   useEffect(() => {
     const controller = new AbortController();
     let mounted = true;
-    let expiry: ReturnType<typeof setTimeout> | undefined;
+    let stopExpiry: (() => void) | undefined;
     setResult(null);
     setStale(false);
     void fetchSeptaTrains({ signal: controller.signal, endpoint }).then(value => {
       if (!mounted) return;
       setResult(value);
-      if (value.status === 'live') expiry = setTimeout(() => setStale(true), 60000);
+      if (value.status === 'live') {
+        stopExpiry = watchSnapshotExpiry(value.fetchedAt, () => setStale(true));
+      }
     });
-    return () => { mounted = false; controller.abort(); clearTimeout(expiry); };
+    return () => {
+      mounted = false;
+      controller.abort();
+      stopExpiry?.();
+    };
   }, [attempt, endpoint]);
 
   return <section className="ol-live" aria-labelledby="ol-live-heading">
