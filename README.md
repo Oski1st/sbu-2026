@@ -53,4 +53,25 @@ Person 2's PR #1 expects `/journey/:tripId`; Person 3's PR #2 expects `/wallet/:
 
 Before merging PR #1, Person 2 needs to add `AMTRAK` to `agencyStyles` and adapt time parsing/display to ISO 8601 timestamps (or reuse `formatTime` from `src/data/tripUtils.ts`). An isolated combined build reproduced the missing-AMTRAK TypeScript error. Their files are unchanged on this branch.
 
-Person 3's wallet is compatible with the four-agency contract. Its optional SEPTA feed remains unavailable in the browser until a fixed-upstream same-origin backend proxy is deployed and passed via `septaEndpoint`. No live service or production proxy is claimed by this frontend. See their `src/services/transit/README.md` after PR #2 merges.
+Person 3's wallet is compatible with the four-agency contract. Its optional SEPTA feed uses the fixed-upstream same-origin backend proxy below. The host router supplies `septaEndpoint`; records are agency-wide observations and do not replace the sample itinerary. See their `src/services/transit/README.md` after PR #2 merges.
+
+## SEPTA same-origin proxy
+
+`GET /api/transit/septa/trains` fetches only `https://api.septa.org/api/TrainView/index.php`. No API key is required. The endpoint accepts no query parameters, does not forward browser cookies or authorization, refuses redirects, caps responses at 1 MiB, and aborts after 4.5 seconds (before the wallet’s six-second timeout). Responses are not cached. Upstream failures/invalid data return 502; timeouts return 504. An empty valid feed stays an empty array. No sample trains are substituted.
+
+The same implementation runs in all supported modes:
+
+```sh
+pnpm dev                  # Vite + proxy at http://127.0.0.1:5173
+pnpm build
+pnpm preview              # Vite preview + proxy
+pnpm start                # Production Node host at http://127.0.0.1:3000
+```
+
+Deploy on a Node-capable host with build command `pnpm install --frozen-lockfile && pnpm build`, start command `pnpm start`, and environment `HOST=0.0.0.0` plus the host-provided `PORT`. The production server serves `dist/`, the API, and SPA deep links from one origin. It uses only Node built-ins; no new runtime package is required. A static-only upload of `dist/` does **not** provide the API; the wallet must retain its unavailable state there. No hosted deployment has been created by this change.
+
+`App.tsx` passes `septaEndpoint="/api/transit/septa/trains"` to `/wallet/:tripId`. This connects automatically when Person 3’s Wallet PR #2 merges; their files are unchanged. Before that merge, the main-branch Wallet remains the labeled integration preview.
+
+Validated the real endpoint through both Vite and the production host: HTTP 200 with an array of 22 observations at test time on October 24, 2026. The isolated combined checkout with PR #2 built successfully and passed 19 tests. Its browser Wallet displayed “Live feed fetched” with retrieval time, agency-wide observations, and the explicit statement that demo times remain simulated. This count is a test observation, not a fixed expected feed size.
+
+Official source: https://api.septa.org/
