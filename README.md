@@ -51,9 +51,9 @@ Keep these page contracts and the `AMTRAK` enum value when merging. No API keys 
 
 Person 2's PR #1 expects `/journey/:tripId`; Person 3's PR #2 expects `/wallet/:tripId`. Both routes are wired. Header navigation preserves the selected trip. Missing selections show a choose-a-route preview, and legacy query links redirect to the canonical path.
 
-Before merging PR #1, Person 2 needs to add `AMTRAK` to `agencyStyles` and adapt time parsing/display to ISO 8601 timestamps (or reuse `formatTime` from `src/data/tripUtils.ts`). An isolated combined build reproduced the missing-AMTRAK TypeScript error. Their files are unchanged on this branch.
+Journey now supports AMTRAK and shared ISO timestamp formatting. The updated Journey and Wallet PRs passed a combined production build and all 33 tests before integration. Both canonical trip routes, Journey delay/reset, Wallet checklist reset and SEPTA retrieval were checked in the browser. The shell keeps navigation visible during lazy page loads and assigns exactly one main landmark per page.
 
-Person 3's wallet is compatible with the four-agency contract. Its optional SEPTA feed uses the fixed-upstream same-origin backend proxy below. The host router supplies `septaEndpoint`; records are agency-wide observations and do not replace the sample itinerary. See their `src/services/transit/README.md` after PR #2 merges.
+Person 3's wallet is compatible with the four-agency contract. Its optional SEPTA feed uses the fixed-upstream same-origin backend proxy below. The host router supplies `septaEndpoint`; records are agency-wide observations and do not replace the sample itinerary. See `src/services/transit/README.md` for source references and adapter behavior.
 
 ## SEPTA same-origin proxy
 
@@ -70,7 +70,7 @@ pnpm start                # Production Node host at http://127.0.0.1:3000
 
 Deploy on a Node-capable host with build command `pnpm install --frozen-lockfile && pnpm build`, start command `pnpm start`, and environment `HOST=0.0.0.0` plus the host-provided `PORT`. The production server serves `dist/`, the API, and SPA deep links from one origin. It uses only Node built-ins; no new runtime package is required. A static-only upload of `dist/` does **not** provide the API; the wallet must retain its unavailable state there. No hosted deployment has been created by this change.
 
-`App.tsx` passes `septaEndpoint="/api/transit/septa/trains"` to `/wallet/:tripId`. This connects automatically when Person 3’s Wallet PR #2 merges; their files are unchanged. Before that merge, the main-branch Wallet remains the labeled integration preview.
+`App.tsx` passes `septaEndpoint="/api/transit/septa/trains"` to `/wallet/:tripId`. The integrated Wallet consumes this endpoint. Person 3’s files are not modified by the host-shell integration.
 
 Validated the real endpoint through both Vite and the production host: HTTP 200 with an array of 22 observations at test time on October 24, 2026. The isolated combined checkout with PR #2 built successfully and passed 19 tests. Its browser Wallet displayed “Live feed fetched” with retrieval time, agency-wide observations, and the explicit statement that demo times remain simulated. This count is a test observation, not a fixed expected feed size.
 
@@ -83,3 +83,9 @@ Search now includes “Compare both options” and per-route comparison checkbox
 Each route also offers a copyable Journey link, with a manual-copy fallback if clipboard access is unavailable. On localhost it is explicitly labeled a preview link with a deployment reminder; links only become remotely shareable once the app is hosted. No agency booking or tracking service receives these links automatically.
 
 QA: check comparison at 320px and desktop widths, choosing from each column, closing with Escape, clearing selections, filtering out Amtrak, and copying/reopening a Journey link. Invalid timestamps and missing fares must display unavailable metrics instead of invented values.
+
+## Shared shell contract
+
+The shell owns global navigation and the focusable `#main-content` container. Page-level Suspense keeps navigation visible while modules load. Search and Journey render their own `main`; Wallet intentionally returns a div and receives its `main` wrapper from the host route. Keep this contract when polishing the pages. Global element resets live in Tailwind's base layer so page utility classes (including white text on dark buttons) take precedence.
+
+Integration was validated against Journey head `ff3488a` and Wallet head `930e1b5`, combined with the comparison and proxy features. No overflow was observed at 320px on the Amtrak Journey/Wallet pages. The original proxy-suite timeout reported on another machine did not reproduce locally; all 33 combined tests passed.

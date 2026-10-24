@@ -16,7 +16,7 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
   const { selectedTrip } = useSelectedTrip();
   const Icon = kind === "journey" ? Route : Wallet;
   return (
-    <div className="integration-page content-wrap">
+    <main className="integration-page content-wrap">
       <Link className="back-link" to="/">
         <ArrowLeft size={16} />
         Back to search
@@ -109,6 +109,6 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
           </Link>
         </div>
       )}
-    </div>
+    </main>
   );
 }

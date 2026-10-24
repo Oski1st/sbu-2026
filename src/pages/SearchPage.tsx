@@ -64,7 +64,7 @@ export default function SearchPage() {
     }, 0);
   }
   return (
-    <>
+    <main className="search-page">
       <section className="hero">
         <div className="hero-copy">
           <span className="eyebrow">
@@ -347,6 +347,6 @@ export default function SearchPage() {
           </div>
         </section>
       </div>
-    </>
+    </main>
   );
 }
