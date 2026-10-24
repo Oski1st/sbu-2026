@@ -1,15 +1,42 @@
 # OneLine QA checklist
 
-Owner: Person 4. Last full run: **October 24, 2026**, against the production server (`pnpm build && pnpm start`) on integrated `main` at **`5efcd3b`** ("Merge reviewed OneLine ticket wallet"), which includes Search, Compare, Journey, Wallet and the SEPTA proxy.
+Owner: Person 4. Each run is against the production server (`pnpm build && pnpm start`) on an exact `main` commit. Findings are marked resolved only after a QA run verifies the fix.
 
-## Summary
+## Run history
+
+| Run | `main` commit | Contents | Build / tests | Browser checks | Proxy outage | Deploy smoke |
+| --- | --- | --- | --- | --- | --- | --- |
+| Final | _pending_ | Person 1's initial-focus and footer fixes | Not run yet | Not run yet | Not run yet | Not run yet |
+| **Interim** (Oct 24) | **`73635ac`** "Merge shared shell integration fixes" (PR #7) | Adds the one-`<main>` shell contract | Pass; 33 / 33 tests | 114 / 119 (see below) | 5 / 5 | 6 / 6 (`HOST=0.0.0.0 PORT=8080`, LAN IP) |
+| Baseline (Oct 24) | `5efcd3b` "Merge reviewed OneLine ticket wallet" | Search, Compare, Journey, Wallet, SEPTA proxy | Pass; 33 / 33 tests | 102 / 105 | 5 / 5 | 6 / 6 (clean checkout, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
+
+The browser suite grew between runs, which is why the totals differ. The interim run adds one-`<main>` checks on every page, duplicate page-navigation checks and a footer-wording check. The footer check was added after the interim run, so it first runs on the final commit.
+
+## Interim run: `73635ac`
+
+Toolchain: Node 22.23.4, pnpm 11.25.0, Chromium 145 through Playwright 1.58. The app code tested was identical to `73635ac`; the QA branch adds only docs and scripts.
+
+| Area | Result |
+| --- | --- |
+| Landmarks | **Pass.** Search, Journey and Wallet for both trips, plus every invalid-ID page, have exactly one `<main>` and none nested. Finding 2 is resolved. |
+| Search → Compare → Journey → Wallet, both trips | Pass, including refreshes, the in-page **View ticket wallet** link, leg counts and the SEPTA panel only on the SEPTA trip |
+| Invalid IDs, each also refreshed | Pass |
+| 320px / 390px layouts, button text | Pass: no overflow, and every button and link is named and unclipped |
+| Keyboard | 7 of 8 pass. **Fail:** the first Tab skips "Skip to content" (finding 3; Person 1 fix pending) |
+| SEPTA states (real success, simulated success / unavailable / empty / stale) | Pass. The sample itinerary times are unchanged in every state. The real feed returned **24 records** at test time. |
+| Duplicate page navigation | **Fail, 4 checks:** Journey ("← Search routes") and Wallet ("Wallet navigation") on both trips (finding 4) |
+| Page or console errors | None |
+
+The rest of this document is the **baseline run on `5efcd3b`**, kept as the reference for what each check covers. Except for the differences listed above, the interim run matched it.
+
+## Baseline summary: `5efcd3b`
 
 | Check | Result |
 | --- | --- |
 | `pnpm install --frozen-lockfile` | Pass (Node 22.23.4, pnpm 11.25.0) |
 | `pnpm build` (tsc + Vite) | Pass |
 | `pnpm test` | Pass: 5 files, 33 tests |
-| Browser checks (`qa/e2e-check.cjs`) | 102 / 105 pass; the 3 failures are open findings 2 and 3 below |
+| Browser checks (`qa/e2e-check.cjs`) | 102 / 105 pass; the 3 failures were findings 2 and 3 |
 | SEPTA proxy outage checks (`qa/septa-proxy-outage.mjs`) | 5 / 5 pass |
 | Deploy smoke test (`qa/smoke.mjs`, clean checkout, `HOST=0.0.0.0 PORT=8080 NODE_ENV=production`, reached over the LAN IP) | 6 / 6 pass |
 
@@ -27,7 +54,7 @@ node qa/smoke.mjs http://127.0.0.1:4173                     # the same checks us
 
 `qa/e2e-check.cjs` needs Playwright, which is **not** a project dependency. Install it outside the repo (`npm i playwright` in a scratch folder, then `NODE_PATH=<folder>/node_modules`) or use `npx -p playwright`. Adding Playwright to `package.json` is Person 1's call.
 
-## Results
+## Baseline results: `5efcd3b`
 
 ### Server and deep links
 
@@ -113,12 +140,14 @@ Proxy-level failure modes (`qa/septa-proxy-outage.mjs`): upstream 500, network f
 
 ## Findings
 
+Status reflects the latest verified run. "Fix pending" means a fix is in progress but not yet verified on `main`.
+
 | # | Owner | Severity | Status | Finding | Reproduce | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Person 2 (Journey) | Medium: demo flow | **Fixed** in `main` | The Journey page had no in-page link to the Wallet. It now has **View ticket wallet →**. | n/a | n/a |
-| 2 | Person 2 (Journey) | Medium: a11y / visual | Open | `JourneyPage` renders `<main>` inside the layout's `<main id="main-content">` (`src/pages/JourneyPage.tsx:35`), and draws a second "← Search routes / OneLine" bar under the site header. | Open `/journey/regional-connection` and run `document.querySelectorAll('main main').length`; it returns `1`. | [screenshot](qa-screenshots/bug-journey-nested-main-duplicate-header.png) |
-| 3 | Person 1 (`App.tsx`) | Low: a11y | Open | `NavigationEffects` also runs on first load and focuses `#main-content`, so the first Tab skips "Skip to content" and the header nav. | Load `/` fresh and press Tab once; focus lands past the skip link. | [screenshot](qa-screenshots/bug-first-tab-skips-skip-link.png) |
-| 4 | Person 3 (Wallet) | Low: visual | Open | The Wallet draws its own "OneLine ↗ / Back to journey search" nav under the site header (`src/pages/WalletPage.tsx:49`). Its `<a href="/">` links reload the whole page instead of using client-side navigation; the selection survives through localStorage. | Open `/wallet/regional-connection` and click "Back to journey search"; DevTools shows a document reload. | [screenshot](qa-screenshots/septa-stale.png) |
-| 5 | Person 1 (`AppLayout`) | Low: copy | Open | The footer says "Sample itineraries · No live arrival data" (`src/components/layout/AppLayout.tsx:62`) while the Wallet shows a live SEPTA snapshot. Suggested wording: "Sample itineraries · Live data limited to labelled SEPTA snapshots". | Open `/wallet/regional-connection` and compare the footer with the SEPTA panel. | [screenshot](qa-screenshots/septa-live-panel.png) |
+| 1 | Person 2 (Journey) | Medium: demo flow | **Resolved**, verified on `5efcd3b` | The Journey page had no in-page link to the Wallet. It now has **View ticket wallet →**. | n/a | n/a |
+| 2 | Person 2 / Person 1 (shell) | Medium: a11y | **Resolved** by PR #7, verified on `73635ac` | `JourneyPage` rendered `<main>` inside the layout's `<main id="main-content">`. The shell now uses a `<div id="main-content">`, and each page has exactly one `<main>`. | Run `document.querySelectorAll('main').length` on any page; it returns `1`. | [baseline screenshot](qa-screenshots/bug-journey-nested-main-duplicate-header.png) |
+| 3 | Person 1 (`App.tsx`) | Low: a11y | Open: fix pending (Person 1) | `NavigationEffects` also runs on first load and focuses `#main-content`, so the first Tab skips "Skip to content" and the header nav. Still present on `73635ac`. | Load `/` fresh and press Tab once; focus lands past the skip link. | [screenshot](qa-screenshots/bug-first-tab-skips-skip-link.png) |
+| 4 | Person 2 (Journey), Person 3 (Wallet) | Low: visual | Open | Duplicate page navigation under the site header. Journey draws "← Search routes / OneLine" (`src/pages/JourneyPage.tsx:48`). Wallet draws "OneLine ↗ / Back to journey search" (`src/pages/WalletPage.tsx:49`), and those `<a href="/">` links reload the whole page instead of using client-side navigation. Separate from finding 2; PR #7 did not change it. | Open `/journey/regional-connection` or `/wallet/regional-connection`: a second nav bar sits under the header. Click the Wallet's "Back to journey search"; DevTools shows a document reload. | [Journey 320px](qa-screenshots/duplicate-nav-journey-320.png), [Wallet 320px](qa-screenshots/duplicate-nav-wallet-320.png) |
+| 5 | Person 1 (`AppLayout`) | Low: copy | Open: fix pending (Person 1) | The footer says "Sample itineraries · No live arrival data" while the Wallet shows a live SEPTA snapshot. Still present on `73635ac`. Suggested wording: "Sample itineraries · Live data limited to labelled SEPTA snapshots". | Open `/wallet/regional-connection` and compare the footer with the SEPTA panel. | [screenshot](qa-screenshots/septa-live-panel.png) |
 
-None of the open findings blocks the demo. Findings 2 and 4 are visible on stage as a doubled navigation bar under the site header.
+None of the open findings blocks the demo.

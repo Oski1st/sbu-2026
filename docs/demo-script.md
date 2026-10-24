@@ -37,5 +37,5 @@ If you have extra time, choose the **Express Connection** (Amtrak + LIRR) instea
 
 - Don't claim live arrivals for NJ TRANSIT, Amtrak or LIRR. Only the SEPTA snapshot is live.
 - Don't present the sample times or fares as real quotes.
-- The Journey and Wallet pages each show a second small nav bar under the site header ([QA findings 2 and 4](qa-checklist.md#findings)). Don't point at it. Use the in-page buttons or the main header tabs.
+- The Journey and Wallet pages each show a second small nav bar under the site header ([QA finding 4](qa-checklist.md#findings)). Don't point at it. Use the in-page buttons or the main header tabs.
 - Don't click the Wallet's own "Back to journey search" link. It does a full page reload. Use the header **Search** tab instead.

@@ -35,6 +35,20 @@ async function unlabelledOrClipped(page, scope = "body") {
   }, scope);
 }
 
+// Shell contract (README "Shared shell contract"): exactly one <main>, never nested.
+const landmarks = (page) =>
+  page.evaluate(() => ({ mains: document.querySelectorAll("main").length, nested: document.querySelectorAll("main main").length }));
+// Page-level navigation drawn under the site header (finding 4).
+const pageNav = (page) =>
+  page.evaluate(() => {
+    const found = [];
+    const content = document.getElementById("main-content");
+    if (!content) return found;
+    for (const nav of content.querySelectorAll("nav")) found.push(nav.getAttribute("aria-label") || "nav");
+    for (const a of content.querySelectorAll("a")) if (/^\W*Search routes$/.test(a.innerText.trim())) found.push(`"${a.innerText.trim()}" link`);
+    return found;
+  });
+
 (async () => {
   // HTTP-level checks
   for (const p of ["/", "/search", "/journey/regional-connection", "/wallet/amtrak-connection", "/journey/bogus"]) {
@@ -78,6 +92,8 @@ async function unlabelledOrClipped(page, scope = "body") {
     const page = await ctx.newPage();
     watch(page);
     await page.goto(base + "/");
+    const sl = await landmarks(page);
+    log(`[${tripId}] Search: exactly one <main>, none nested`, sl.mains === 1 && sl.nested === 0, JSON.stringify(sl));
     log(`[${tripId}] route card on Search`,
       (await page.locator(`.route-card a.select-route[href="/journey/${tripId}"], a.select-route[href="/journey/${tripId}"]`).count()) >= 1);
 
@@ -102,8 +118,10 @@ async function unlabelledOrClipped(page, scope = "body") {
     log(`[${tripId}] Compare dialog closes after choosing`, (await page.locator("dialog[open]").count()) === 0);
     const jText = await page.locator("#main-content").innerText();
     log(`[${tripId}] Journey renders`, /Philadelphia/.test(jText) && /Stony Brook/.test(jText));
-    const nestedMain = await page.locator("main main").count();
-    log(`[${tripId}] Journey: no nested <main>`, nestedMain === 0, `${nestedMain} nested`);
+    const jl = await landmarks(page);
+    log(`[${tripId}] Journey: exactly one <main>, none nested`, jl.mains === 1 && jl.nested === 0, JSON.stringify(jl));
+    const jNav = await pageNav(page);
+    log(`[${tripId}] Journey: no duplicate page navigation`, jNav.length === 0, jNav.join(", "));
     await page.screenshot({ path: `${shots}/${tripId}-journey-desktop.png`, fullPage: true });
     await page.reload();
     await page.locator(`#main-content a[href="/wallet/${tripId}"]`).first().waitFor();
@@ -115,10 +133,16 @@ async function unlabelledOrClipped(page, scope = "body") {
     await cta.first().click();
     await page.waitForURL(`**/wallet/${tripId}`);
     await page.locator(".oneline-wallet h1").waitFor();
+    const wl = await landmarks(page);
+    log(`[${tripId}] Wallet: exactly one <main>, none nested`, wl.mains === 1 && wl.nested === 0, JSON.stringify(wl));
+    const wNav = await pageNav(page);
+    log(`[${tripId}] Wallet: no duplicate page navigation`, wNav.length === 0, wNav.join(", "));
     const legCount = await page.locator(".ol-ticket-list > li").count();
     log(`[${tripId}] Wallet leg count`, legCount === legs, `${legCount} (expected ${legs})`);
     const wText = await page.locator(".oneline-wallet").innerText();
     log(`[${tripId}] Wallet agencies`, agencies.every((a) => wText.includes(a)), agencies.join(", "));
+    const footer = flat(await page.locator("footer").last().innerText());
+    log(`[${tripId}] Footer does not deny live data`, !/No live arrival data/i.test(footer), footer.slice(-80));
     const hasSepta = (await page.locator("#ol-live-heading").count()) > 0;
     log(`[${tripId}] SEPTA panel only when trip has SEPTA`, hasSepta === agencies.includes("SEPTA"));
     if (hasSepta) {
@@ -174,6 +198,8 @@ async function unlabelledOrClipped(page, scope = "body") {
       await page.waitForTimeout(400);
       const t = await page.locator("#main-content").innerText();
       log(`Invalid/missing ID ${p}`, /not found|Choose|choose|off the line/i.test(t), t.split("\n").find(Boolean));
+      const il = await landmarks(page);
+      log(`Invalid/missing ID ${p}: exactly one <main>`, il.mains === 1 && il.nested === 0, JSON.stringify(il));
       await page.reload();
       await page.waitForTimeout(300);
       log(`Invalid/missing ID ${p} survives refresh`, /not found|Choose|choose|off the line/i.test(await page.locator("#main-content").innerText()));

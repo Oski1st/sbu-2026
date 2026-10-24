@@ -2,7 +2,7 @@
 
 OneLine is a static React build plus a small Node server (`server/index.mjs`). The server serves `dist/`, the SPA deep-link fallback, and the same-origin SEPTA proxy (`GET /api/transit/septa/trains`) from one origin. It uses only Node built-ins, so `pnpm start` adds no runtime dependency.
 
-**Status (October 24, 2026):** rehearsed from a clean checkout of `main` at `5efcd3b` (Search, Compare, Journey, Wallet and the SEPTA proxy) with Node 22.23.4, pnpm 11.25.0 and `HOST=0.0.0.0 PORT=8080 NODE_ENV=production`. All 6 checks in `qa/smoke.mjs` passed over the laptop's LAN address, including a live SEPTA response. **No hosted deployment exists yet.** Going live needs a team member to connect the repository to a host account on a free tier. Nobody should start a paid service for the demo.
+**Status (October 24, 2026):** rehearsed from a clean checkout of `main` at `5efcd3b` (Search, Compare, Journey, Wallet and the SEPTA proxy), then re-run on `73635ac` with Node 22.23.4, pnpm 11.25.0 and `HOST=0.0.0.0 PORT=8080 NODE_ENV=production`. All 6 checks in `qa/smoke.mjs` passed over the laptop's LAN address, including a live SEPTA response. **No hosted deployment exists yet.** Going live needs a team member to connect the repository to a host account on a free tier. Nobody should start a paid service for the demo.
 
 ## Requirements
 
@@ -57,9 +57,31 @@ Uploading `dist/` alone to a static host (GitHub Pages, an S3 bucket, a plain Ne
 
 That is an acceptable emergency fallback, but it is not the target deployment.
 
-## Host notes (no accounts created)
+## Free hosting: steps that need a person
 
-Any platform that runs `pnpm start` with Node 22 and injects `PORT` works. Examples include Render web services, Railway, Fly.io and Koyeb. Pick a **free** tier, point it at `main`, and use the build/start commands above. Free tiers often sleep when idle, so open the URL about 2 minutes before the demo to wake it.
+Status: **waiting on a person.** Connecting a host requires someone to sign in with the GitHub account that has access to `Oski1st/sbu-2026` and authorize the host's GitHub app. QA cannot do that from the command line, and the repository has no host config file. A `render.yaml` or similar would be shared configuration, so it's Person 1's call.
+
+The recommended setup is a Render free web service, because it runs a long-lived Node process and injects `PORT`. Railway, Fly.io and Koyeb also work with the same build and start commands, but check that their current free allowance doesn't need billing first.
+
+1. Sign in at <https://dashboard.render.com> with GitHub.
+2. Click **New → Web Service** and connect `Oski1st/sbu-2026`. Approve Render's GitHub app for that repository when asked. This authorization step is the one only the repo owner can do.
+3. Fill in the form:
+
+   | Field | Value |
+   | --- | --- |
+   | Branch | `main` |
+   | Language / runtime | Node |
+   | Build command | `corepack enable && pnpm install --frozen-lockfile && pnpm build` |
+   | Start command | `pnpm start` |
+   | Instance type | **Free** |
+   | Environment variables | `HOST=0.0.0.0` and `NODE_VERSION=22`. Leave `PORT` unset; Render injects it. |
+   | Health check path | `/` |
+
+4. **Stop if the form asks for a payment method or shows a non-free instance type.** Tell the team instead of continuing. Nobody should start a paid service for the demo.
+5. Click **Create Web Service** and wait for the log line `OneLine listening at http://0.0.0.0:<PORT>`.
+6. Send the `https://<service-name>.onrender.com` URL to Person 4, who runs `node qa/smoke.mjs <url>` and records the result in `docs/qa-checklist.md`.
+
+Free services sleep after a period of no traffic, and the first request then takes about a minute. Open the URL about 2 minutes before the demo.
 
 Teammates on the same network can also use a local fallback:
 
