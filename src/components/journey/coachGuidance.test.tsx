@@ -1,12 +1,12 @@
 import { describe, expect, test } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
-import { demoTrips } from "../../data/demoTrips";
+import { getTripById } from "../../data/tripLookup";
 import { RecoveryRecommendation } from "./RecoveryRecommendation";
 import { TransferAssistant } from "./TransferAssistant";
 
-const flixBusTrip = demoTrips.find((trip) => trip.id === "east-portland--miami--flixbus");
-const mixedTrip = demoTrips.find((trip) => trip.id === "east-boston--stony-brook--greyhound");
-const reverseMixedTrip = demoTrips.find((trip) => trip.id === "east-stony-brook--boston--greyhound");
+const flixBusTrip = getTripById("east-portland--miami--flixbus");
+const mixedTrip = getTripById("east-boston--stony-brook--greyhound");
+const reverseMixedTrip = getTripById("east-stony-brook--boston--greyhound");
 
 describe("coach-aware Journey guidance", () => {
   test("uses operator boarding details for a coach transfer", () => {
@@ -33,6 +33,7 @@ describe("coach-aware Journey guidance", () => {
   });
 
   test("keeps simulated coach recovery advice out of station-platform language", () => {
+    expect(flixBusTrip).toBeDefined();
     const html = renderToStaticMarkup(
       <RecoveryRecommendation missedLeg={flixBusTrip!.legs[0]} finalDestination={flixBusTrip!.destination} />,
     );

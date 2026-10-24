@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { demoTrips } from "./demoTrips";
+import { originalDemoTrips } from "./originalDemoTrips";
+import { buildEastCoastTrips } from "./eastCoast";
+// Explicit exhaustive test fixtures only; production imports never build this array.
+const demoTrips = [...originalDemoTrips, ...buildEastCoastTrips()];
 import { cities, resolveCity } from "./eastCoast";
 import { agencies } from "./agencies";
 import {

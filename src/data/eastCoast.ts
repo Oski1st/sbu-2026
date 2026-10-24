@@ -165,6 +165,13 @@ busCorridor(["richmond", "norfolk"], [120]);
 busCorridor(["raleigh", "charlotte"], [180]);
 busCorridor(["orlando", "tampa"], [110]);
 
+/** Static concept graph export for on-demand routing; no trips computed here. */
+export function getConceptEdges(profile: "AMTRAK" | "GREYHOUND" | "FLIXBUS"): Edge[] {
+  const forward: Edge[] = profile === "AMTRAK" ? rail
+    : [...bus.map(edge => ({ ...edge, agency: profile })), ...rail.filter(edge => edge.agency === "LIRR")];
+  return forward.flatMap(edge => [{ ...edge }, { ...edge, from: edge.to, to: edge.from }]);
+}
+
 /** Dijkstra on an illustrative city graph; it makes no claim about actual service availability. */
 function pathBetween(
   edges: Edge[],

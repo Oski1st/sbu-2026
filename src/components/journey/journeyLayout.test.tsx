@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { demoTrips } from "../../data/demoTrips";
+import { getTripById } from "../../data/tripLookup";
 import { formatDuration } from "../../data/tripUtils";
 import JourneyPage from "../../pages/JourneyPage";
 import { SegmentCard } from "./SegmentCard";
@@ -18,7 +18,9 @@ function journeyMarkup(tripId: string) {
 
 describe("Journey layout for expanded concept routes", () => {
   test("formats a multi-day total with the shared duration formatter", () => {
-    const trip = demoTrips.find((candidate) => candidate.id === "east-portland--miami--amtrak")!;
+    const trip = getTripById("east-portland--miami--amtrak");
+    expect(trip).toBeDefined();
+    if (!trip) throw new Error("Expected Portland–Miami concept fixture");
     const html = journeyMarkup(trip.id);
 
     expect(html).toContain(`${formatDuration(trip.durationMinutes)} total`);
@@ -26,7 +28,9 @@ describe("Journey layout for expanded concept routes", () => {
   });
 
   test("stacks station names and ISO timestamps before the small breakpoint", () => {
-    const trip = demoTrips.find((candidate) => candidate.id === "east-portland--miami--amtrak")!;
+    const trip = getTripById("east-portland--miami--amtrak");
+    expect(trip).toBeDefined();
+    if (!trip) throw new Error("Expected Portland–Miami concept fixture");
     const washingtonLeg = trip.legs.find((leg) => leg.from === "Washington, DC")!;
     const html = renderToStaticMarkup(
       <SegmentCard leg={washingtonLeg} index={0} isExpanded={false} isDelayed={false} isCurrent={false} onToggle={() => {}} />,
