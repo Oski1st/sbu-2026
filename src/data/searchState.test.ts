@@ -14,6 +14,8 @@ describe("search URL state", () => {
     const state = {
       origin: "New York",
       destination: "Washington, DC",
+      departureDate: "2026-11-03",
+      departureTime: "17:45",
       mode: "bus",
       operator: "FLIXBUS",
       order: "fastest",
@@ -22,6 +24,8 @@ describe("search URL state", () => {
     const params = writeSearchState(state);
     expect(params.get("from")).toBe("New York");
     expect(params.get("to")).toBe("Washington, DC");
+    expect(params.get("date")).toBe("2026-11-03");
+    expect(params.get("time")).toBe("17:45");
     expect(readSearchState(new URLSearchParams(params.toString()))).toEqual(
       state,
     );
@@ -41,6 +45,14 @@ describe("search URL state", () => {
     expect(
       readSearchState(new URLSearchParams({ from: "x".repeat(101) })).origin,
     ).toHaveLength(100);
+  });
+  it("keeps only safely formatted planning preferences in share links", () => {
+    expect(
+      readSearchState(new URLSearchParams({ date: "not-a-date", time: "27:99" })),
+    ).toMatchObject({
+      departureDate: defaultSearch.departureDate,
+      departureTime: defaultSearch.departureTime,
+    });
   });
   it("resets supported search keys while preserving unrelated parameters", () => {
     const params = writeSearchState(

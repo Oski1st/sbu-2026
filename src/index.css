@@ -381,6 +381,9 @@
   color: #7b8577;
   width: 100%;
 }
+.location-field .location-autocomplete {
+  flex: 1;
+}
 .location-field input {
   border: none;
   background: transparent;
@@ -434,6 +437,41 @@
   font-size: 12px;
   font-weight: 550;
   white-space: nowrap;
+}
+.date-time-controls {
+  display: flex;
+  gap: 8px;
+}
+.date-time-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #7b8577;
+  font-size: 7px;
+  font-weight: 650;
+  letter-spacing: 0.8px;
+}
+.date-time-controls input {
+  min-height: 30px;
+  border: 1px solid #dfe5d9;
+  border-radius: 7px;
+  background: #fbfcf8;
+  color: #35483a;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 6px;
+}
+.date-time-controls input:focus-visible {
+  outline: 2px solid #97b47e;
+  outline-offset: 2px;
+}
+.date-field small {
+  display: block;
+  max-width: 185px;
+  color: #7b8577;
+  font-size: 8px;
+  line-height: 1.35;
 }
 .search-button {
   display: inline-flex;
