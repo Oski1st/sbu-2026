@@ -108,7 +108,7 @@ export function LocationAutocomplete({
   };
 
   return (
-    <div className="relative min-w-0">
+    <div className="location-autocomplete relative min-w-0">
       <label htmlFor={inputId} className="block text-xs font-bold tracking-[0.12em] text-slate-700">
         {label}
       </label>

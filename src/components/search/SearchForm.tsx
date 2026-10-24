@@ -6,19 +6,31 @@ import {
   MapPin,
   Circle,
 } from "lucide-react";
-import { cities } from "../../data/eastCoast";
+import { LocationAutocomplete } from "./LocationAutocomplete";
+
 interface Props {
   initialOrigin?: string;
   initialDestination?: string;
-  onSearch: (origin: string, destination: string) => void;
+  /** Planning preferences are persisted for sharing, but never rewrite sample itinerary times. */
+  initialDepartureDate?: string;
+  initialDepartureTime?: string;
+  onSearch: (
+    origin: string,
+    destination: string,
+    preferences: { departureDate: string; departureTime: string },
+  ) => void;
 }
 export function SearchForm({
   onSearch,
   initialOrigin = "Philadelphia",
   initialDestination = "Stony Brook",
+  initialDepartureDate = "2026-10-24",
+  initialDepartureTime = "08:00",
 }: Props) {
   const [origin, setOrigin] = useState(initialOrigin);
   const [destination, setDestination] = useState(initialDestination);
+  const [departureDate, setDepartureDate] = useState(initialDepartureDate);
+  const [departureTime, setDepartureTime] = useState(initialDepartureTime);
   return (
     <section className="search-section" aria-label="Plan your journey">
       <div className="search-heading">
@@ -31,26 +43,21 @@ export function SearchForm({
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          onSearch(origin, destination);
+          onSearch(origin, destination, { departureDate, departureTime });
         }}
         className="search-form"
       >
         <div className="location-field">
           <Circle size={17} />
-          <label htmlFor="origin">
-            FROM
-            <input
-              id="origin"
-              name="origin"
-              value={origin}
-              onChange={(event) => setOrigin(event.target.value)}
-              list="station-options"
-              required
-              maxLength={100}
-              autoComplete="off"
-              placeholder="Departure city"
-            />
-          </label>
+          <LocationAutocomplete
+            id="origin"
+            name="origin"
+            label="From"
+            value={origin}
+            onChange={setOrigin}
+            required
+            placeholder="Departure city"
+          />
         </div>
         <button
           type="button"
@@ -65,44 +72,54 @@ export function SearchForm({
         </button>
         <div className="location-field destination-field">
           <MapPin size={19} />
-          <label htmlFor="destination">
-            TO
-            <input
-              id="destination"
-              name="destination"
-              value={destination}
-              onChange={(event) => setDestination(event.target.value)}
-              list="station-options"
-              required
-              maxLength={100}
-              autoComplete="off"
-              placeholder="Where to?"
-            />
-          </label>
+          <LocationAutocomplete
+            id="destination"
+            name="destination"
+            label="To"
+            value={destination}
+            onChange={setDestination}
+            required
+            placeholder="Where to?"
+          />
         </div>
         <div className="date-field">
           <CalendarDays size={19} />
           <div>
-            <span>DEMO DEPARTURE</span>
-            <strong>Sat, Oct 24, 2026</strong>
+            <span>PLANNING PREFERENCE</span>
+            <div className="date-time-controls">
+              <label>
+                Date
+                <input
+                  name="departure-date"
+                  type="date"
+                  value={departureDate}
+                  onChange={(event) => setDepartureDate(event.target.value)}
+                  required
+                />
+              </label>
+              <label>
+                Time
+                <input
+                  name="departure-time"
+                  type="time"
+                  value={departureTime}
+                  onChange={(event) => setDepartureTime(event.target.value)}
+                  required
+                />
+              </label>
+            </div>
+            <small>Saved in this share link. Sample itinerary times do not change.</small>
           </div>
         </div>
         <button className="search-button" type="submit">
           Find my way <ArrowRight size={18} />
         </button>
-        <datalist id="station-options">
-          {cities.map((city) => (
-            <option key={city.id} value={city.name}>
-              {city.state}
-            </option>
-          ))}
-        </datalist>
       </form>
       <div className="search-footnote">
         <span>
           Try our demo: Philadelphia <ArrowRight size={12} /> Stony Brook
         </span>
-        <span>Sample plans · Confirm services with operators.</span>
+        <span>Sample plans · Date/time are planning preferences, not live schedules.</span>
       </div>
     </section>
   );

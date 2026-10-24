@@ -82,10 +82,16 @@ export default function SearchPage() {
         : [...ids, id].slice(-2),
     );
   }
-  function search(origin: string, destination: string, resetFilters = false) {
+  function search(
+    origin: string,
+    destination: string,
+    preferences: Pick<SearchState, "departureDate" | "departureTime">,
+    resetFilters = false,
+  ) {
     updateCriteria({
       origin: origin.trim(),
       destination: destination.trim(),
+      ...preferences,
       ...(resetFilters
         ? { mode: "all", operator: "all", includeAmtrak: true }
         : {}),
@@ -191,6 +197,8 @@ export default function SearchPage() {
           key={`${formVersion}|${query.origin}|${query.destination}`}
           initialOrigin={query.origin}
           initialDestination={query.destination}
+          initialDepartureDate={criteria.departureDate}
+          initialDepartureTime={criteria.departureTime}
           onSearch={search}
         />
         <section className="coast-explorer" aria-labelledby="explore-title">
@@ -213,7 +221,15 @@ export default function SearchPage() {
                 key={corridor.origin}
                 className="corridor-pick"
                 onClick={() => {
-                  search(corridor.origin, corridor.destination, true);
+                  search(
+                    corridor.origin,
+                    corridor.destination,
+                    {
+                      departureDate: criteria.departureDate,
+                      departureTime: criteria.departureTime,
+                    },
+                    true,
+                  );
                 }}
               >
                 <span>{corridor.region}</span>
