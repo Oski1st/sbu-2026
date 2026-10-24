@@ -1,0 +1,4 @@
+@import "tailwindcss";
+:root { font-family: Arial, sans-serif; color: #193b34; background: #f7f8f2; }
+body { margin: 0; }
+main, nav { padding: 2rem; }
