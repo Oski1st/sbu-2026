@@ -59,15 +59,6 @@ export default function JourneyPage() {
           .one-line-journey-enter { animation: one-line-journey-enter 450ms cubic-bezier(.2,.8,.2,1) both; }
         }
       `}</style>
-      <div className="border-b border-slate-200 bg-white/85 backdrop-blur">
-        <div className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4 sm:px-6">
-          <Link to="/" className="inline-flex min-h-10 items-center gap-2 rounded-lg px-1 text-sm font-bold text-slate-700 transition hover:text-slate-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950">
-            <span aria-hidden="true">←</span> Search routes
-          </Link>
-          <span className="text-sm font-extrabold tracking-tight text-slate-950">OneLine</span>
-        </div>
-      </div>
-
       <div className="mx-auto max-w-3xl px-5 pt-8 sm:px-6 sm:pt-12">
         <header className="one-line-journey-enter">
           <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Your journey</p>
