@@ -1,4 +1,6 @@
-// OneLine combined-state QA run. Usage: node qa.cjs <baseURL> <shotDir>
+// OneLine end-to-end QA run against a running server (pnpm build && pnpm start).
+// Usage: node qa/e2e-check.cjs <baseURL> <shotDir>
+// Needs Playwright, which is not a project dependency (see docs/qa-checklist.md).
 const { chromium } = require("playwright");
 const base = process.argv[2] ?? "http://127.0.0.1:4173";
 const shots = process.argv[3] ?? ".";
@@ -7,6 +9,31 @@ const log = (name, ok, detail = "") => {
   results.push({ name, ok, detail });
   console.log(`${ok ? "PASS" : "FAIL"} ${name}${detail ? " — " + detail : ""}`);
 };
+const settled = (page) =>
+  page.waitForFunction(
+    () => !document.querySelector(".ol-live")?.textContent?.includes("Checking the official SEPTA feed"),
+    null,
+    { timeout: 10000 },
+  );
+const flat = (s) => s.replace(/\s+/g, " ").trim();
+
+// Buttons and links in the given scope with no accessible name, or whose text is clipped.
+async function unlabelledOrClipped(page, scope = "body") {
+  return page.evaluate((scope) => {
+    const bad = [];
+    for (const el of document.querySelectorAll(`${scope} button, ${scope} a[href], ${scope} [role=button]`)) {
+      const r = el.getBoundingClientRect();
+      if (!r.width || !r.height || getComputedStyle(el).visibility === "hidden") continue;
+      if (el.closest(".sr-only, .ol-sr-only")) continue;
+      const name = (el.getAttribute("aria-label") || el.innerText || el.getAttribute("title") || "").trim();
+      if (!name) bad.push(`unnamed <${el.tagName.toLowerCase()}> ${el.outerHTML.slice(0, 80)}`);
+      else if (el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflow !== "visible")
+        bad.push(`clipped "${name.slice(0, 40)}"`);
+      else if (r.right > window.innerWidth + 1) bad.push(`off-screen "${name.slice(0, 40)}"`);
+    }
+    return bad;
+  }, scope);
+}
 
 (async () => {
   // HTTP-level checks
@@ -35,9 +62,14 @@ const log = (name, ok, detail = "") => {
   const errors = [];
   const watch = (page) => {
     page.on("pageerror", (e) => errors.push(`${page.url()} pageerror ${e.message}`));
-    page.on("console", (m) => m.type() === "error" && errors.push(`${page.url()} console ${m.text()}`));
+    page.on("console", (m) => {
+      // Simulated SEPTA failures log an expected "Failed to load resource" for the proxy URL.
+      if (m.type() !== "error" || m.location()?.url?.includes("/api/transit/septa/")) return;
+      errors.push(`${page.url()} console ${m.text()}`);
+    });
   };
 
+  // Search → Compare → Journey → Wallet, once per trip, choosing the route from the Compare dialog.
   for (const [tripId, legs, agencies] of [
     ["regional-connection", 4, ["SEPTA", "NJ TRANSIT", "LIRR"]],
     ["amtrak-connection", 3, ["Amtrak", "LIRR"]],
@@ -46,23 +78,41 @@ const log = (name, ok, detail = "") => {
     const page = await ctx.newPage();
     watch(page);
     await page.goto(base + "/");
-    const card = page.locator(`a.select-route[href="/journey/${tripId}"]`);
-    log(`[${tripId}] route card on Search`, (await card.count()) === 1);
-    await card.click();
+    log(`[${tripId}] route card on Search`,
+      (await page.locator(`.route-card a.select-route[href="/journey/${tripId}"], a.select-route[href="/journey/${tripId}"]`).count()) >= 1);
+
+    const checks = page.locator(".compare-route-check input[type=checkbox]");
+    const nChecks = await checks.count();
+    for (let i = 0; i < nChecks; i++) await checks.nth(i).check();
+    const tray = page.locator(".compare-tray");
+    log(`[${tripId}] Compare tray shows 2 of 2`, /2 of 2 routes selected/.test(await tray.innerText()));
+    await page.locator(".compare-tray-action").click();
+    const dialog = page.locator("dialog.comparison-dialog[open]");
+    await dialog.waitFor();
+    const dText = flat(await dialog.innerText());
+    log(`[${tripId}] Compare dialog labels sample data`, /sample data/i.test(dText), dText.slice(0, 110));
+    log(`[${tripId}] Compare dialog buttons named`, (await unlabelledOrClipped(page, "dialog.comparison-dialog")).length === 0,
+      (await unlabelledOrClipped(page, "dialog.comparison-dialog")).join("; "));
+    if (tripId === "regional-connection")
+      await page.screenshot({ path: `${shots}/compare-dialog-desktop.png` });
+    await dialog.locator(`a.select-route[href="/journey/${tripId}"]`).click();
     await page.waitForURL(`**/journey/${tripId}`);
-    await page.locator("h1").first().waitFor();
+    // React keeps Search on screen while the lazy Journey chunk loads, so wait for Journey-only content.
+    await page.locator(`#main-content a[href="/wallet/${tripId}"]`).first().waitFor();
+    log(`[${tripId}] Compare dialog closes after choosing`, (await page.locator("dialog[open]").count()) === 0);
     const jText = await page.locator("#main-content").innerText();
     log(`[${tripId}] Journey renders`, /Philadelphia/.test(jText) && /Stony Brook/.test(jText));
-    log(`[${tripId}] Journey has in-page Wallet CTA`,
-      (await page.locator(`#main-content a[href="/wallet/${tripId}"]`).count()) > 0);
     const nestedMain = await page.locator("main main").count();
     log(`[${tripId}] Journey: no nested <main>`, nestedMain === 0, `${nestedMain} nested`);
     await page.screenshot({ path: `${shots}/${tripId}-journey-desktop.png`, fullPage: true });
     await page.reload();
-    await page.locator("h1").first().waitFor();
+    await page.locator(`#main-content a[href="/wallet/${tripId}"]`).first().waitFor();
     log(`[${tripId}] Journey survives refresh`, /Stony Brook/.test(await page.locator("#main-content").innerText()));
 
-    await page.getByRole("link", { name: "Wallet" }).first().click();
+    const cta = page.locator(`#main-content a[href="/wallet/${tripId}"]`);
+    log(`[${tripId}] Journey has in-page Wallet link`, (await cta.count()) > 0,
+      (await cta.count()) ? flat(await cta.first().innerText()) : "");
+    await cta.first().click();
     await page.waitForURL(`**/wallet/${tripId}`);
     await page.locator(".oneline-wallet h1").waitFor();
     const legCount = await page.locator(".ol-ticket-list > li").count();
@@ -72,13 +122,9 @@ const log = (name, ok, detail = "") => {
     const hasSepta = (await page.locator("#ol-live-heading").count()) > 0;
     log(`[${tripId}] SEPTA panel only when trip has SEPTA`, hasSepta === agencies.includes("SEPTA"));
     if (hasSepta) {
-      await page.locator(".ol-live").waitFor();
-    await page.waitForFunction(() => !document.querySelector(".ol-live")?.textContent?.includes("Checking the official SEPTA feed"), null, { timeout: 10000 });
-      const live = await page.locator(".ol-live").innerText();
-      log(`[${tripId}] SEPTA panel state`, /Live feed fetched|Live data unavailable/.test(live),
-        live.replace(/\s+/g," ").slice(0,160));
-      log(`[${tripId}] live data labelled as not replacing sample times`,
-        /remain simulated|unavailable/i.test(live));
+      await settled(page);
+      const live = flat(await page.locator(".ol-live").innerText());
+      log(`[${tripId}] real SEPTA panel state`, /Live feed fetched|Live data unavailable/.test(live), live.slice(0, 160));
     }
     await page.screenshot({ path: `${shots}/${tripId}-wallet-desktop.png`, fullPage: true });
     await page.reload();
@@ -87,23 +133,59 @@ const log = (name, ok, detail = "") => {
     await ctx.close();
   }
 
+  // Compare: refresh resets the dialog cleanly; Escape closes it and returns focus.
+  {
+    const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await ctx.newPage();
+    watch(page);
+    await page.goto(base + "/");
+    const checks = page.locator(".compare-route-check input[type=checkbox]");
+    await checks.nth(0).focus();
+    await page.keyboard.press("Space");
+    log("Compare: checkbox toggles with Space", await checks.nth(0).isChecked());
+    log("Compare: tray asks for a second route", /Select one more route/.test(await page.locator(".compare-tray").innerText()));
+    log("Compare: action disabled with 1 route", await page.locator(".compare-tray-action").isDisabled());
+    await checks.nth(1).check();
+    await page.locator(".compare-tray-action").focus();
+    await page.keyboard.press("Enter");
+    await page.locator("dialog.comparison-dialog[open]").waitFor();
+    const inDialog = await page.evaluate(() => !!document.activeElement?.closest("dialog"));
+    log("Compare: focus moves into dialog", inDialog);
+    await page.keyboard.press("Escape");
+    await page.waitForTimeout(200);
+    log("Compare: Escape closes dialog", (await page.locator("dialog[open]").count()) === 0);
+    const back = await page.evaluate(() => document.activeElement?.className ?? "");
+    log("Compare: focus returns to Compare button", /compare-tray-action/.test(back), back);
+    await page.locator(".compare-tray-action").click();
+    await page.reload();
+    await page.waitForTimeout(400);
+    log("Compare: refresh resets dialog and tray without errors",
+      (await page.locator("dialog[open]").count()) === 0 && (await page.locator(".compare-tray").count()) === 0);
+    await ctx.close();
+  }
+
   // Invalid IDs
   {
     const ctx = await browser.newContext();
     const page = await ctx.newPage();
     watch(page);
-    for (const p of ["/journey/bogus", "/wallet/bogus", "/wallet"]) {
+    for (const p of ["/journey/bogus", "/wallet/bogus", "/wallet", "/journey", "/journey/regional-connection%20x", "/nowhere"]) {
       await page.goto(base + p);
       await page.waitForTimeout(400);
       const t = await page.locator("#main-content").innerText();
-      log(`Invalid/missing ID ${p}`, /not found|Choose|choose/i.test(t), t.split("\n").find(Boolean));
+      log(`Invalid/missing ID ${p}`, /not found|Choose|choose|off the line/i.test(t), t.split("\n").find(Boolean));
+      await page.reload();
+      await page.waitForTimeout(300);
+      log(`Invalid/missing ID ${p} survives refresh`, /not found|Choose|choose|off the line/i.test(await page.locator("#main-content").innerText()));
     }
     await page.goto(base + "/journey/bogus");
     await page.screenshot({ path: `${shots}/invalid-journey.png` });
+    await page.goto(base + "/wallet/bogus");
+    await page.screenshot({ path: `${shots}/invalid-wallet.png` });
     await ctx.close();
   }
 
-  // Mobile layouts
+  // Mobile layouts and visible button text
   for (const width of [390, 320]) {
     const ctx = await browser.newContext({ viewport: { width, height: 800 }, isMobile: true, hasTouch: true });
     const page = await ctx.newPage();
@@ -113,9 +195,26 @@ const log = (name, ok, detail = "") => {
       await page.waitForTimeout(700);
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
       log(`Mobile ${width}px ${p} no horizontal overflow`, overflow <= 0, `overflow ${overflow}px`);
+      const badButtons = await unlabelledOrClipped(page);
+      log(`Mobile ${width}px ${p} buttons/links named and unclipped`, badButtons.length === 0, badButtons.slice(0, 4).join("; "));
       const slug = p === "/" ? "search" : p.slice(1).replace("/", "-");
       await page.screenshot({ path: `${shots}/mobile-${width}-${slug}.png`, fullPage: true });
     }
+    // Compare dialog on a phone
+    await page.goto(base + "/");
+    const checks = page.locator(".compare-route-check input[type=checkbox]");
+    for (let i = 0; i < (await checks.count()); i++) await checks.nth(i).check();
+    await page.locator(".compare-tray-action").click();
+    await page.locator("dialog.comparison-dialog[open]").waitFor();
+    await page.waitForTimeout(300);
+    const dlg = await page.evaluate(() => {
+      const d = document.querySelector("dialog[open]").getBoundingClientRect();
+      return { left: d.left, right: d.right, vw: window.innerWidth };
+    });
+    log(`Mobile ${width}px Compare dialog fits viewport`, dlg.left >= 0 && dlg.right <= dlg.vw, JSON.stringify(dlg));
+    const dBad = await unlabelledOrClipped(page, "dialog.comparison-dialog");
+    log(`Mobile ${width}px Compare dialog buttons named and unclipped`, dBad.length === 0, dBad.slice(0, 4).join("; "));
+    await page.screenshot({ path: `${shots}/mobile-${width}-compare.png` });
     await ctx.close();
   }
 
@@ -130,7 +229,7 @@ const log = (name, ok, detail = "") => {
     const first = await page.evaluate(() => document.activeElement?.textContent?.trim());
     log("Keyboard: first Tab is skip link", /Skip to content/.test(first ?? ""), first);
     let reached = false;
-    for (let i = 0; i < 60 && !reached; i++) {
+    for (let i = 0; i < 80 && !reached; i++) {
       await page.keyboard.press("Tab");
       reached = await page.evaluate(() => document.activeElement?.getAttribute("href") === "/journey/regional-connection");
     }
@@ -140,7 +239,6 @@ const log = (name, ok, detail = "") => {
       log("Keyboard: visible focus outline on route CTA", ring !== "none", ring);
       await page.keyboard.press("Enter");
       await page.waitForURL("**/journey/regional-connection");
-      // Journey is lazy-loaded; wait for the page before reading focus.
       await page.locator("#main-content h1").first().waitFor();
       await page.waitForTimeout(500);
       const focused = await page.evaluate(() => document.activeElement?.id);
@@ -158,7 +256,17 @@ const log = (name, ok, detail = "") => {
         }
       }
       log("Keyboard: Journey segment expands with Enter (aria-expanded)", expandable);
-      await page.goto(base + "/wallet/regional-connection");
+      let walletLink = false;
+      for (let i = 0; i < 120 && !walletLink; i++) {
+        await page.keyboard.press("Tab");
+        walletLink = await page.evaluate(() => document.activeElement?.getAttribute("href") === "/wallet/regional-connection"
+          && !!document.activeElement.closest("#main-content"));
+      }
+      log("Keyboard: reach in-page Wallet link by Tab", walletLink);
+      if (walletLink) {
+        await page.keyboard.press("Enter");
+        await page.waitForURL("**/wallet/regional-connection");
+      } else await page.goto(base + "/wallet/regional-connection");
       await page.locator(".ol-ticket-list > li").first().waitFor();
       const cb = page.locator(".ol-ticket-list input[type=checkbox], .ol-ticket-list button").first();
       await cb.focus();
@@ -169,23 +277,65 @@ const log = (name, ok, detail = "") => {
     await ctx.close();
   }
 
-  // SEPTA unavailable states as seen by the browser (proxy responses simulated).
-  for (const [label, handler] of [
-    ["502 upstream failure", (r) => r.fulfill({ status: 502, contentType: "application/json", body: "{\"error\":\"upstream_unavailable\"}" })],
-    ["504 timeout", (r) => r.fulfill({ status: 504, contentType: "application/json", body: "{\"error\":\"upstream_timeout\"}" })],
-    ["network error", (r) => r.abort()],
-    ["empty feed", (r) => r.fulfill({ status: 200, contentType: "application/json", body: "[]" })],
+  // SEPTA states as seen by the browser. Proxy responses are simulated so each state is deterministic.
+  const sampleTrain = JSON.stringify([{ trainno: "9999", line: "QA Test Line", dest: "QA Terminal", nextstop: "QA Stop", late: 3 }]);
+  const walletTimes = async (page) =>
+    page.locator(".ol-ticket-list").innerText().then((t) => (t.match(/\d{1,2}:\d{2}\s?[AP]M/g) ?? []).join(","));
+  let baselineTimes = null;
+  for (const [label, handler, expected] of [
+    ["502 upstream failure", (r) => r.fulfill({ status: 502, contentType: "application/json", body: "{\"error\":\"septa_unavailable\"}" }), /Live data unavailable/],
+    ["504 timeout", (r) => r.fulfill({ status: 504, contentType: "application/json", body: "{\"error\":\"septa_timeout\"}" }), /Live data unavailable/],
+    ["network error", (r) => r.abort(), /Live data unavailable/],
+    ["malformed rows", (r) => r.fulfill({ status: 200, contentType: "application/json", body: "[{\"trainno\":1}]" }), /Live data unavailable/],
+    ["empty feed", (r) => r.fulfill({ status: 200, contentType: "application/json", body: "[]" }), /no active trains/],
+    ["success", (r) => r.fulfill({ status: 200, contentType: "application/json", body: sampleTrain }), /Live feed fetched.*QA Test Line · Train 9999/],
   ]) {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     const page = await ctx.newPage();
+    watch(page);
     await page.route("**/api/transit/septa/trains", handler);
     await page.goto(base + "/wallet/regional-connection");
     await page.locator(".ol-live").waitFor();
-    await page.waitForFunction(() => !document.querySelector(".ol-live")?.textContent?.includes("Checking the official SEPTA feed"), null, { timeout: 10000 });
-    const live = (await page.locator(".ol-live").innerText()).replace(/\s+/g, " ");
-    const expected = label === "empty feed" ? /no active trains/ : /Live data unavailable/;
-    log(`SEPTA browser state: ${label}`, expected.test(live) && !/Train \d/.test(live), live.slice(0, 120));
+    await settled(page);
+    const live = flat(await page.locator(".ol-live").innerText());
+    const showsTrains = /Train \d/.test(live);
+    log(`SEPTA browser state: ${label}`, expected.test(live) && (label === "success" || !showsTrains), live.slice(0, 140));
+    const times = await walletTimes(page);
+    if (baselineTimes === null) baselineTimes = times;
+    log(`SEPTA ${label}: sample itinerary times unchanged`, times === baselineTimes && times.length > 0, times);
+    if (label === "success")
+      log("SEPTA success: labelled agency-wide, not matched to journey", /not matched to your journey.*remain simulated/.test(live));
     await page.screenshot({ path: `${shots}/septa-${label.replace(/\W+/g, "-")}.png`, fullPage: true });
+    await ctx.close();
+  }
+
+  // Stale: a live snapshot expires after 60 s, including when the tab regains focus.
+  {
+    const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await ctx.newPage();
+    watch(page);
+    await page.clock.install();
+    await page.route("**/api/transit/septa/trains", (r) =>
+      r.fulfill({ status: 200, contentType: "application/json", body: sampleTrain }));
+    await page.goto(base + "/wallet/regional-connection");
+    await page.locator(".ol-live").waitFor();
+    await page.clock.runFor(1000);
+    await settled(page);
+    log("SEPTA stale: fresh snapshot lists trains", /Live feed fetched/.test(await page.locator(".ol-live").innerText()));
+    await page.clock.runFor(61000);
+    await page.waitForTimeout(100);
+    const stale = flat(await page.locator(".ol-live").innerText());
+    log("SEPTA stale: expires after 60 s and hides trains",
+      /Snapshot expired · refresh to check/.test(stale) && !/Train 9999/.test(stale), stale.slice(0, 140));
+    await page.screenshot({ path: `${shots}/septa-stale.png`, fullPage: true });
+    await page.getByRole("button", { name: "Refresh" }).click();
+    let restored = "";
+    for (let i = 0; i < 20 && !/Live feed fetched.*Train 9999/.test(restored); i++) {
+      await page.clock.runFor(250);
+      await page.waitForTimeout(100);
+      restored = flat(await page.locator(".ol-live").innerText());
+    }
+    log("SEPTA stale: Refresh restores a fresh snapshot", /Live feed fetched.*Train 9999/.test(restored), restored.slice(0, 100));
     await ctx.close();
   }
 
