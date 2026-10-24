@@ -75,6 +75,8 @@ Every evidence field the audit needs maps to a field in Person 3's exported cont
 
 ## C. Performance: measurement protocol (P4-12)
 
+First run (P4-16, PR #25 `c0ff3e4` vs readiness `49742e7`): see [qa-routing-results.md](qa-routing-results.md).
+
 **Why:** the expansion currently **enumerates every city pair × 3 profiles at module load** (`demoTrips.push(...buildEastCoastTrips())`, with an array-sort shortest-path routine per pair). Person 1 has told Person 3 not to scale that approach. Person 3 owns a separate routing PR (indexes built once, per-query planning, binary-heap Dijkstra with early exit where benchmarks justify it, a bounded versioned cache, and a central `getTripById` lookup). QA measures **baseline versus optimized** on the same protocol. **Budgets are agreed with Persons 2 and 3 after the baseline is measured. No speed-up numbers are assumed in advance**, and no equivalence to proprietary Google or Apple routing is claimed. RAPTOR, road contraction hierarchies and similar are context only; our data is static sample concepts, not timetables or a road network.
 
 ### Environment (recorded for every run)
