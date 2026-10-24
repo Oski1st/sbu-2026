@@ -1,7 +1,9 @@
 import { NavLink, Link, Outlet } from "react-router-dom";
 import { ArrowUpRight, MoveRight, Search, Route, Wallet } from "lucide-react";
+import { useSelectedTrip } from "./TripContext";
 import { Brand } from "./Brand";
 export function AppLayout() {
+  const { selectedTrip } = useSelectedTrip();
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
@@ -16,11 +18,13 @@ export function AppLayout() {
             <Search size={15} />
             Search
           </NavLink>
-          <NavLink to="/journey">
+          <NavLink
+            to={selectedTrip ? `/journey/${selectedTrip.id}` : "/journey"}
+          >
             <Route size={15} />
             Journey
           </NavLink>
-          <NavLink to="/wallet">
+          <NavLink to={selectedTrip ? `/wallet/${selectedTrip.id}` : "/wallet"}>
             <Wallet size={15} />
             Wallet
           </NavLink>

@@ -109,7 +109,7 @@ export function RouteCard({ trip, index }: { trip: Trip; index: number }) {
         </button>
         <Link
           className="select-route"
-          to={`/journey?trip=${trip.id}`}
+          to={`/journey/${trip.id}`}
           state={{ tripId: trip.id, trip }}
           onClick={() => selectTrip(trip)}
         >

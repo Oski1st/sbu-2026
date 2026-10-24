@@ -94,7 +94,7 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
           {kind === "journey" && (
             <Link
               className="search-button handoff-cta"
-              to={`/wallet?trip=${selectedTrip.id}`}
+              to={`/wallet/${selectedTrip.id}`}
             >
               View ticket options <ArrowRight size={17} />
             </Link>

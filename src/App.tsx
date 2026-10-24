@@ -1,10 +1,10 @@
 import { lazy, Suspense } from "react";
 import type { ComponentType } from "react";
-import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Link, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import SearchPage from "./pages/SearchPage";
 import { AppLayout } from "./components/layout/AppLayout";
-import { TripProvider } from "./components/layout/TripContext";
+import { TripProvider, useSelectedTrip } from "./components/layout/TripContext";
 import { IntegrationPage } from "./components/layout/IntegrationPage";
 // Teammate-owned pages are optional until their PRs merge. No files are created in their paths.
 // Both default exports and named JourneyPage/WalletPage exports are accepted.
@@ -28,6 +28,14 @@ function page(kind: "journey" | "wallet") {
 }
 const Journey = page("journey"),
   Wallet = page("wallet");
+function SelectionEntry({ kind }: { kind: "journey" | "wallet" }) {
+  const { selectedTrip } = useSelectedTrip();
+  return selectedTrip ? (
+    <Navigate to={`/${kind}/${selectedTrip.id}`} replace />
+  ) : (
+    <IntegrationPage kind={kind} />
+  );
+}
 function NavigationEffects() {
   const location = useLocation();
   useEffect(() => {
@@ -52,9 +60,10 @@ export default function App() {
           <Route element={<AppLayout />}>
             <Route index element={<SearchPage />} />
             <Route path="search" element={<SearchPage />} />
-            <Route path="journey" element={<Journey />} />
+            <Route path="journey" element={<SelectionEntry kind="journey" />} />
             <Route path="journey/:tripId" element={<Journey />} />
-            <Route path="wallet" element={<Wallet />} />
+            <Route path="wallet" element={<SelectionEntry kind="wallet" />} />
+            <Route path="wallet/:tripId" element={<Wallet />} />
             <Route
               path="*"
               element={
