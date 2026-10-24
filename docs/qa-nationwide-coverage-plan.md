@@ -11,7 +11,7 @@ Every **served place** (any city or town explicitly listed by one of the **exist
 Two independent sets, per Person 1 (P4-12) and Person 3's contract:
 
 1. **Searchable served places** (`verifiedNationalCities`): every place with verified operator-directory evidence, **regardless of population**. Search eligibility is never filtered by population.
-2. **Major-city audit benchmark** (`majorCityCandidates`): U.S. Census Bureau incorporated places with population **≥ 100,000**. Person 3 reports **Census Vintage 2025** (July 1, 2025 estimates, released May 2026): 343 raw SUMLEV162 rows ≥ 100,000, which is **342** strictly incorporated places plus the Census "Urban Honolulu" CDP exception (kept as excluded-with-reason), plus 3 smaller legacy hubs. This set measures completeness. It is not a Search filter.
+2. **Major-city audit benchmark** (`majorCityCandidates`): U.S. Census Bureau incorporated places with population **≥ 100,000**. Person 3 reports **Census Vintage 2025** (July 1, 2025 estimates, released May 2026): 343 raw SUMLEV162 rows ≥ 100,000, which is **342** strictly incorporated places plus the Census "Urban Honolulu" CDP exception (kept as excluded-with-reason), plus 3 smaller legacy hubs. Those counts are context. QA checks that the cited files and rules reproduce whatever list they produce (A1). This set measures completeness. It is not a Search filter.
 
 **Scope (Person 1, P4-10 answer):** the base major-city audit is the **50 states + DC**. **Puerto Rico and other territories** are a **separate, explicitly scoped supplementary audit**, never mixed into the incorporated-place counts, and never declared unserved without evidence.
 
@@ -23,7 +23,7 @@ Two independent sets, per Person 1 (P4-12) and Person 3's contract:
 
 | # | Check | Pass criterion | SHA | Result |
 | --- | --- | --- | --- | --- |
-| A1 | Reproducible candidate list | A script or documented step turns the recorded Census file (Vintage 2025, SUMLEV162) into `majorCityCandidates`. Re-running it gives an identical list. The reported counts (343 raw, 342 strict, the Urban Honolulu exception, 3 hubs) are reproduced exactly, and the vintage, URL, date and file hash are in the repo. | | |
+| A1 | Reproducible candidate list | A script or documented step turns the **cited** Census file(s) and written selection rules (for example Vintage 2025, SUMLEV162, ≥ 100,000, with the stated handling of CDP exceptions and hubs) into `majorCityCandidates`. Re-running it from the recorded file URL, vintage, date and hash gives an identical list. Pass is judged on **reproducing the sourced method**, not on matching any previously reported count. If the source or rules change, the new count is accepted as long as it reproduces. Person 3's earlier report (343 raw / 342 strict + Urban Honolulu + 3 hubs) is a reference point, not a hardcoded expectation. | | |
 | A2 | **Full reconciliation** | Every candidate place is in exactly one bucket: **covered**, **excluded** (with reason) or **unresolved** (with owner). Set equality is checked by script: no candidate missing, no extra un-sourced city. Counts per bucket are reported. | | |
 | A3 | Evidence per covered city | At least one `(operator, official URL, retrieval date, station or stop name)` row per covered city. URLs are on the operator's own domain (`septa.org`, `njtransit.com`, `mta.info`, `amtrak.com`, `greyhound.com`, `flixbus.com`). No aggregators or third-party timetable sites. | | |
 | A4 | Source freshness | Every evidence row has a date. A documented staleness threshold (for example more than 90 days) is flagged for re-check. | | |
@@ -96,6 +96,20 @@ Commit SHA; dataset size (searchable places, major candidates, graph nodes and e
 | C9 | Offline and no external requests | No runtime calls to geocoders, tiles, Census or operator sites. Local `pnpm start` works offline. | | |
 
 **Synthetic data:** any synthetic or stress graph (for example N = 1,000 random nodes) is reported **separately** and labelled synthetic, never mixed into real-catalogue results or presented as real coverage.
+
+### Instrumentation hook (accepted by Person 1, October 24)
+
+Person 3's proposed **`getRoutingDiagnostics()`** read-only snapshot covers the hooks QA needs. It's to be implemented in the separate routing PR; no benchmark SHA is assigned yet.
+
+| Snapshot field (proposed) | Used by | How |
+| --- | --- | --- |
+| startup route computations, startup trip creations | **C1** | Read right after first load in a fresh context. Pass: bounded and independent of city-pair count (not N² × profiles). Compare baseline and optimized. |
+| queries (count) | C1, C5 | Confirms work happens per query, not at load. Stays in step with the number of searches issued. |
+| cache max, cache entries | **F1** | Issue more distinct queries than `max`; `entries` must never exceed `max` |
+| dataset / cache version | **F3** | Snapshot the version. After a simulated version change, earlier entries must not be served. |
+| test-only reset / clear | C1, F1, F3 | Used only in test builds to isolate runs. QA also checks that **no production reset endpoint** exists (no `/api` route, no global on `window` in the production bundle). |
+
+**Confirmed: this supports C1, F1 and F3.** Constraints carried into QA: the snapshot contains no precise coordinates and no per-rider query log (it's checked alongside F5).
 
 **Agreement step:** after the first baseline run, I post the table here and in hub #2, and Persons 2 and 3 confirm budgets for C2, C3, C5 and C6 before the optimized run is judged.
 
