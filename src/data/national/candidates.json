@@ -1,0 +1,6582 @@
+[
+  {
+    "id": "birmingham-al",
+    "name": "Birmingham",
+    "state": "AL",
+    "censusGeoid": "0107000",
+    "censusName": "Birmingham city",
+    "geography": "incorporated-place",
+    "latitude": 33.53,
+    "longitude": -86.8,
+    "aliases": [
+      "Birmingham",
+      "Birmingham, AL",
+      "Birmingham city"
+    ],
+    "population": 195893,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "huntsville-al",
+    "name": "Huntsville",
+    "state": "AL",
+    "censusGeoid": "0137000",
+    "censusName": "Huntsville city",
+    "geography": "incorporated-place",
+    "latitude": 34.7,
+    "longitude": -86.68,
+    "aliases": [
+      "Huntsville",
+      "Huntsville, AL",
+      "Huntsville city"
+    ],
+    "population": 233627,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "mobile-al",
+    "name": "Mobile",
+    "state": "AL",
+    "censusGeoid": "0150000",
+    "censusName": "Mobile city",
+    "geography": "incorporated-place",
+    "latitude": 30.67,
+    "longitude": -88.11,
+    "aliases": [
+      "Mobile",
+      "Mobile, AL",
+      "Mobile city"
+    ],
+    "population": 200824,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "montgomery-al",
+    "name": "Montgomery",
+    "state": "AL",
+    "censusGeoid": "0151000",
+    "censusName": "Montgomery city",
+    "geography": "incorporated-place",
+    "latitude": 32.35,
+    "longitude": -86.27,
+    "aliases": [
+      "Montgomery",
+      "Montgomery, AL",
+      "Montgomery city"
+    ],
+    "population": 195300,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "tuscaloosa-al",
+    "name": "Tuscaloosa",
+    "state": "AL",
+    "censusGeoid": "0177256",
+    "censusName": "Tuscaloosa city",
+    "geography": "incorporated-place",
+    "latitude": 33.23,
+    "longitude": -87.53,
+    "aliases": [
+      "Tuscaloosa",
+      "Tuscaloosa, AL",
+      "Tuscaloosa city"
+    ],
+    "population": 114316,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "anchorage-ak",
+    "name": "Anchorage",
+    "state": "AK",
+    "censusGeoid": "0203000",
+    "censusName": "Anchorage municipality",
+    "geography": "incorporated-place",
+    "latitude": 61.17,
+    "longitude": -149.28,
+    "aliases": [
+      "Anchorage",
+      "Anchorage, AK",
+      "Anchorage municipality"
+    ],
+    "population": 287155,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "avondale-az",
+    "name": "Avondale",
+    "state": "AZ",
+    "censusGeoid": "0404720",
+    "censusName": "Avondale city",
+    "geography": "incorporated-place",
+    "latitude": 33.31,
+    "longitude": -112.33,
+    "aliases": [
+      "Avondale",
+      "Avondale, AZ",
+      "Avondale city"
+    ],
+    "population": 100983,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "buckeye-az",
+    "name": "Buckeye",
+    "state": "AZ",
+    "censusGeoid": "0407940",
+    "censusName": "Buckeye city",
+    "geography": "incorporated-place",
+    "latitude": 33.43,
+    "longitude": -112.64,
+    "aliases": [
+      "Buckeye",
+      "Buckeye, AZ",
+      "Buckeye city"
+    ],
+    "population": 125445,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "chandler-az",
+    "name": "Chandler",
+    "state": "AZ",
+    "censusGeoid": "0412000",
+    "censusName": "Chandler city",
+    "geography": "incorporated-place",
+    "latitude": 33.28,
+    "longitude": -111.85,
+    "aliases": [
+      "Chandler",
+      "Chandler, AZ",
+      "Chandler city"
+    ],
+    "population": 278748,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "gilbert-az",
+    "name": "Gilbert",
+    "state": "AZ",
+    "censusGeoid": "0427400",
+    "censusName": "Gilbert town",
+    "geography": "incorporated-place",
+    "latitude": 33.31,
+    "longitude": -111.74,
+    "aliases": [
+      "Gilbert",
+      "Gilbert, AZ",
+      "Gilbert town"
+    ],
+    "population": 287285,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "glendale-az",
+    "name": "Glendale",
+    "state": "AZ",
+    "censusGeoid": "0427820",
+    "censusName": "Glendale city",
+    "geography": "incorporated-place",
+    "latitude": 33.53,
+    "longitude": -112.19,
+    "aliases": [
+      "Glendale",
+      "Glendale, AZ",
+      "Glendale city"
+    ],
+    "population": 260572,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "goodyear-az",
+    "name": "Goodyear",
+    "state": "AZ",
+    "censusGeoid": "0428380",
+    "censusName": "Goodyear city",
+    "geography": "incorporated-place",
+    "latitude": 33.25,
+    "longitude": -112.37,
+    "aliases": [
+      "Goodyear",
+      "Goodyear, AZ",
+      "Goodyear city"
+    ],
+    "population": 125359,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "mesa-az",
+    "name": "Mesa",
+    "state": "AZ",
+    "censusGeoid": "0446000",
+    "censusName": "Mesa city",
+    "geography": "incorporated-place",
+    "latitude": 33.4,
+    "longitude": -111.72,
+    "aliases": [
+      "Mesa",
+      "Mesa, AZ",
+      "Mesa city"
+    ],
+    "population": 513656,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "peoria-az",
+    "name": "Peoria",
+    "state": "AZ",
+    "censusGeoid": "0454050",
+    "censusName": "Peoria city",
+    "geography": "incorporated-place",
+    "latitude": 33.79,
+    "longitude": -112.31,
+    "aliases": [
+      "Peoria",
+      "Peoria, AZ",
+      "Peoria city"
+    ],
+    "population": 200881,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "phoenix-az",
+    "name": "Phoenix",
+    "state": "AZ",
+    "censusGeoid": "0455000",
+    "censusName": "Phoenix city",
+    "geography": "incorporated-place",
+    "latitude": 33.57,
+    "longitude": -112.09,
+    "aliases": [
+      "Phoenix",
+      "Phoenix, AZ",
+      "Phoenix city"
+    ],
+    "population": 1665481,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "scottsdale-az",
+    "name": "Scottsdale",
+    "state": "AZ",
+    "censusGeoid": "0465000",
+    "censusName": "Scottsdale city",
+    "geography": "incorporated-place",
+    "latitude": 33.68,
+    "longitude": -111.86,
+    "aliases": [
+      "Scottsdale",
+      "Scottsdale, AZ",
+      "Scottsdale city"
+    ],
+    "population": 243006,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "surprise-az",
+    "name": "Surprise",
+    "state": "AZ",
+    "censusGeoid": "0471510",
+    "censusName": "Surprise city",
+    "geography": "incorporated-place",
+    "latitude": 33.67,
+    "longitude": -112.45,
+    "aliases": [
+      "Surprise",
+      "Surprise, AZ",
+      "Surprise city"
+    ],
+    "population": 175304,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "tempe-az",
+    "name": "Tempe",
+    "state": "AZ",
+    "censusGeoid": "0473000",
+    "censusName": "Tempe city",
+    "geography": "incorporated-place",
+    "latitude": 33.39,
+    "longitude": -111.93,
+    "aliases": [
+      "Tempe",
+      "Tempe, AZ",
+      "Tempe city"
+    ],
+    "population": 190571,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "tucson-az",
+    "name": "Tucson",
+    "state": "AZ",
+    "censusGeoid": "0477000",
+    "censusName": "Tucson city",
+    "geography": "incorporated-place",
+    "latitude": 32.15,
+    "longitude": -110.87,
+    "aliases": [
+      "Tucson",
+      "Tucson, AZ",
+      "Tucson city"
+    ],
+    "population": 548371,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "yuma-az",
+    "name": "Yuma",
+    "state": "AZ",
+    "censusGeoid": "0485540",
+    "censusName": "Yuma city",
+    "geography": "incorporated-place",
+    "latitude": 32.52,
+    "longitude": -114.52,
+    "aliases": [
+      "Yuma",
+      "Yuma, AZ",
+      "Yuma city"
+    ],
+    "population": 105227,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fayetteville-ar",
+    "name": "Fayetteville",
+    "state": "AR",
+    "censusGeoid": "0523290",
+    "censusName": "Fayetteville city",
+    "geography": "incorporated-place",
+    "latitude": 36.07,
+    "longitude": -94.17,
+    "aliases": [
+      "Fayetteville",
+      "Fayetteville, AR",
+      "Fayetteville city"
+    ],
+    "population": 106623,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "little-rock-ar",
+    "name": "Little Rock",
+    "state": "AR",
+    "censusGeoid": "0541000",
+    "censusName": "Little Rock city",
+    "geography": "incorporated-place",
+    "latitude": 34.73,
+    "longitude": -92.36,
+    "aliases": [
+      "Little Rock",
+      "Little Rock, AR",
+      "Little Rock city"
+    ],
+    "population": 206427,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "anaheim-ca",
+    "name": "Anaheim",
+    "state": "CA",
+    "censusGeoid": "0602000",
+    "censusName": "Anaheim city",
+    "geography": "incorporated-place",
+    "latitude": 33.86,
+    "longitude": -117.76,
+    "aliases": [
+      "Anaheim",
+      "Anaheim, CA",
+      "Anaheim city"
+    ],
+    "population": 341008,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "antioch-ca",
+    "name": "Antioch",
+    "state": "CA",
+    "censusGeoid": "0602252",
+    "censusName": "Antioch city",
+    "geography": "incorporated-place",
+    "latitude": 37.98,
+    "longitude": -121.8,
+    "aliases": [
+      "Antioch",
+      "Antioch, CA",
+      "Antioch city"
+    ],
+    "population": 118958,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "bakersfield-ca",
+    "name": "Bakersfield",
+    "state": "CA",
+    "censusGeoid": "0603526",
+    "censusName": "Bakersfield city",
+    "geography": "incorporated-place",
+    "latitude": 35.35,
+    "longitude": -119.04,
+    "aliases": [
+      "Bakersfield",
+      "Bakersfield, CA",
+      "Bakersfield city"
+    ],
+    "population": 422165,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "berkeley-ca",
+    "name": "Berkeley",
+    "state": "CA",
+    "censusGeoid": "0606000",
+    "censusName": "Berkeley city",
+    "geography": "incorporated-place",
+    "latitude": 37.87,
+    "longitude": -122.3,
+    "aliases": [
+      "Berkeley",
+      "Berkeley, CA",
+      "Berkeley city"
+    ],
+    "population": 121911,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "burbank-ca",
+    "name": "Burbank",
+    "state": "CA",
+    "censusGeoid": "0608954",
+    "censusName": "Burbank city",
+    "geography": "incorporated-place",
+    "latitude": 34.19,
+    "longitude": -118.33,
+    "aliases": [
+      "Burbank",
+      "Burbank, CA",
+      "Burbank city"
+    ],
+    "population": 102988,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "carlsbad-ca",
+    "name": "Carlsbad",
+    "state": "CA",
+    "censusGeoid": "0611194",
+    "censusName": "Carlsbad city",
+    "geography": "incorporated-place",
+    "latitude": 33.13,
+    "longitude": -117.28,
+    "aliases": [
+      "Carlsbad",
+      "Carlsbad, CA",
+      "Carlsbad city"
+    ],
+    "population": 112260,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "chico-ca",
+    "name": "Chico",
+    "state": "CA",
+    "censusGeoid": "0613014",
+    "censusName": "Chico city",
+    "geography": "incorporated-place",
+    "latitude": 39.76,
+    "longitude": -121.82,
+    "aliases": [
+      "Chico",
+      "Chico, CA",
+      "Chico city"
+    ],
+    "population": 105081,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "chula-vista-ca",
+    "name": "Chula Vista",
+    "state": "CA",
+    "censusGeoid": "0613392",
+    "censusName": "Chula Vista city",
+    "geography": "incorporated-place",
+    "latitude": 32.63,
+    "longitude": -117.02,
+    "aliases": [
+      "Chula Vista",
+      "Chula Vista, CA",
+      "Chula Vista city"
+    ],
+    "population": 275533,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "clovis-ca",
+    "name": "Clovis",
+    "state": "CA",
+    "censusGeoid": "0614218",
+    "censusName": "Clovis city",
+    "geography": "incorporated-place",
+    "latitude": 36.83,
+    "longitude": -119.68,
+    "aliases": [
+      "Clovis",
+      "Clovis, CA",
+      "Clovis city"
+    ],
+    "population": 129347,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "concord-ca",
+    "name": "Concord",
+    "state": "CA",
+    "censusGeoid": "0616000",
+    "censusName": "Concord city",
+    "geography": "incorporated-place",
+    "latitude": 37.97,
+    "longitude": -122.0,
+    "aliases": [
+      "Concord",
+      "Concord, CA",
+      "Concord city"
+    ],
+    "population": 123261,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "corona-ca",
+    "name": "Corona",
+    "state": "CA",
+    "censusGeoid": "0616350",
+    "censusName": "Corona city",
+    "geography": "incorporated-place",
+    "latitude": 33.86,
+    "longitude": -117.57,
+    "aliases": [
+      "Corona",
+      "Corona, CA",
+      "Corona city"
+    ],
+    "population": 161734,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "costa-mesa-ca",
+    "name": "Costa Mesa",
+    "state": "CA",
+    "censusGeoid": "0616532",
+    "censusName": "Costa Mesa city",
+    "geography": "incorporated-place",
+    "latitude": 33.67,
+    "longitude": -117.91,
+    "aliases": [
+      "Costa Mesa",
+      "Costa Mesa, CA",
+      "Costa Mesa city"
+    ],
+    "population": 108881,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "daly-city-ca",
+    "name": "Daly City",
+    "state": "CA",
+    "censusGeoid": "0617918",
+    "censusName": "Daly City city",
+    "geography": "incorporated-place",
+    "latitude": 37.7,
+    "longitude": -122.46,
+    "aliases": [
+      "Daly City",
+      "Daly City, CA",
+      "Daly City city"
+    ],
+    "population": 101261,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "downey-ca",
+    "name": "Downey",
+    "state": "CA",
+    "censusGeoid": "0619766",
+    "censusName": "Downey city",
+    "geography": "incorporated-place",
+    "latitude": 33.94,
+    "longitude": -118.13,
+    "aliases": [
+      "Downey",
+      "Downey, CA",
+      "Downey city"
+    ],
+    "population": 108468,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "el-cajon-ca",
+    "name": "El Cajon",
+    "state": "CA",
+    "censusGeoid": "0621712",
+    "censusName": "El Cajon city",
+    "geography": "incorporated-place",
+    "latitude": 32.8,
+    "longitude": -116.96,
+    "aliases": [
+      "El Cajon",
+      "El Cajon, CA",
+      "El Cajon city"
+    ],
+    "population": 101755,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "elk-grove-ca",
+    "name": "Elk Grove",
+    "state": "CA",
+    "censusGeoid": "0622020",
+    "censusName": "Elk Grove city",
+    "geography": "incorporated-place",
+    "latitude": 38.41,
+    "longitude": -121.38,
+    "aliases": [
+      "Elk Grove",
+      "Elk Grove, CA",
+      "Elk Grove city"
+    ],
+    "population": 185007,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "el-monte-ca",
+    "name": "El Monte",
+    "state": "CA",
+    "censusGeoid": "0622230",
+    "censusName": "El Monte city",
+    "geography": "incorporated-place",
+    "latitude": 34.07,
+    "longitude": -118.03,
+    "aliases": [
+      "El Monte",
+      "El Monte, CA",
+      "El Monte city"
+    ],
+    "population": 105075,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "escondido-ca",
+    "name": "Escondido",
+    "state": "CA",
+    "censusGeoid": "0622804",
+    "censusName": "Escondido city",
+    "geography": "incorporated-place",
+    "latitude": 33.13,
+    "longitude": -117.07,
+    "aliases": [
+      "Escondido",
+      "Escondido, CA",
+      "Escondido city"
+    ],
+    "population": 146030,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fairfield-ca",
+    "name": "Fairfield",
+    "state": "CA",
+    "censusGeoid": "0623182",
+    "censusName": "Fairfield city",
+    "geography": "incorporated-place",
+    "latitude": 38.26,
+    "longitude": -122.03,
+    "aliases": [
+      "Fairfield",
+      "Fairfield, CA",
+      "Fairfield city"
+    ],
+    "population": 122489,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fontana-ca",
+    "name": "Fontana",
+    "state": "CA",
+    "censusGeoid": "0624680",
+    "censusName": "Fontana city",
+    "geography": "incorporated-place",
+    "latitude": 34.11,
+    "longitude": -117.46,
+    "aliases": [
+      "Fontana",
+      "Fontana, CA",
+      "Fontana city"
+    ],
+    "population": 221223,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fremont-ca",
+    "name": "Fremont",
+    "state": "CA",
+    "censusGeoid": "0626000",
+    "censusName": "Fremont city",
+    "geography": "incorporated-place",
+    "latitude": 37.49,
+    "longitude": -121.94,
+    "aliases": [
+      "Fremont",
+      "Fremont, CA",
+      "Fremont city"
+    ],
+    "population": 226442,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fresno-ca",
+    "name": "Fresno",
+    "state": "CA",
+    "censusGeoid": "0627000",
+    "censusName": "Fresno city",
+    "geography": "incorporated-place",
+    "latitude": 36.78,
+    "longitude": -119.79,
+    "aliases": [
+      "Fresno",
+      "Fresno, CA",
+      "Fresno city"
+    ],
+    "population": 555549,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fullerton-ca",
+    "name": "Fullerton",
+    "state": "CA",
+    "censusGeoid": "0628000",
+    "censusName": "Fullerton city",
+    "geography": "incorporated-place",
+    "latitude": 33.89,
+    "longitude": -117.93,
+    "aliases": [
+      "Fullerton",
+      "Fullerton, CA",
+      "Fullerton city"
+    ],
+    "population": 138675,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "garden-grove-ca",
+    "name": "Garden Grove",
+    "state": "CA",
+    "censusGeoid": "0629000",
+    "censusName": "Garden Grove city",
+    "geography": "incorporated-place",
+    "latitude": 33.78,
+    "longitude": -117.96,
+    "aliases": [
+      "Garden Grove",
+      "Garden Grove, CA",
+      "Garden Grove city"
+    ],
+    "population": 170455,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "glendale-ca",
+    "name": "Glendale",
+    "state": "CA",
+    "censusGeoid": "0630000",
+    "censusName": "Glendale city",
+    "geography": "incorporated-place",
+    "latitude": 34.18,
+    "longitude": -118.25,
+    "aliases": [
+      "Glendale",
+      "Glendale, CA",
+      "Glendale city"
+    ],
+    "population": 187160,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "hayward-ca",
+    "name": "Hayward",
+    "state": "CA",
+    "censusGeoid": "0633000",
+    "censusName": "Hayward city",
+    "geography": "incorporated-place",
+    "latitude": 37.63,
+    "longitude": -122.1,
+    "aliases": [
+      "Hayward",
+      "Hayward, CA",
+      "Hayward city"
+    ],
+    "population": 157113,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "hesperia-ca",
+    "name": "Hesperia",
+    "state": "CA",
+    "censusGeoid": "0633434",
+    "censusName": "Hesperia city",
+    "geography": "incorporated-place",
+    "latitude": 34.4,
+    "longitude": -117.32,
+    "aliases": [
+      "Hesperia",
+      "Hesperia, CA",
+      "Hesperia city"
+    ],
+    "population": 102605,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "huntington-beach-ca",
+    "name": "Huntington Beach",
+    "state": "CA",
+    "censusGeoid": "0636000",
+    "censusName": "Huntington Beach city",
+    "geography": "incorporated-place",
+    "latitude": 33.7,
+    "longitude": -118.0,
+    "aliases": [
+      "Huntington Beach",
+      "Huntington Beach, CA",
+      "Huntington Beach city"
+    ],
+    "population": 191451,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "inglewood-ca",
+    "name": "Inglewood",
+    "state": "CA",
+    "censusGeoid": "0636546",
+    "censusName": "Inglewood city",
+    "geography": "incorporated-place",
+    "latitude": 33.96,
+    "longitude": -118.34,
+    "aliases": [
+      "Inglewood",
+      "Inglewood, CA",
+      "Inglewood city"
+    ],
+    "population": 101662,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "irvine-ca",
+    "name": "Irvine",
+    "state": "CA",
+    "censusGeoid": "0636770",
+    "censusName": "Irvine city",
+    "geography": "incorporated-place",
+    "latitude": 33.68,
+    "longitude": -117.77,
+    "aliases": [
+      "Irvine",
+      "Irvine, CA",
+      "Irvine city"
+    ],
+    "population": 318764,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "jurupa-valley-ca",
+    "name": "Jurupa Valley",
+    "state": "CA",
+    "censusGeoid": "0637692",
+    "censusName": "Jurupa Valley city",
+    "geography": "incorporated-place",
+    "latitude": 34.0,
+    "longitude": -117.47,
+    "aliases": [
+      "Jurupa Valley",
+      "Jurupa Valley, CA",
+      "Jurupa Valley city"
+    ],
+    "population": 107311,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lancaster-ca",
+    "name": "Lancaster",
+    "state": "CA",
+    "censusGeoid": "0640130",
+    "censusName": "Lancaster city",
+    "geography": "incorporated-place",
+    "latitude": 34.69,
+    "longitude": -118.18,
+    "aliases": [
+      "Lancaster",
+      "Lancaster, CA",
+      "Lancaster city"
+    ],
+    "population": 170084,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "long-beach-ca",
+    "name": "Long Beach",
+    "state": "CA",
+    "censusGeoid": "0643000",
+    "censusName": "Long Beach city",
+    "geography": "incorporated-place",
+    "latitude": 33.78,
+    "longitude": -118.17,
+    "aliases": [
+      "Long Beach",
+      "Long Beach, CA",
+      "Long Beach city"
+    ],
+    "population": 450469,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "los-angeles-ca",
+    "name": "Los Angeles",
+    "state": "CA",
+    "censusGeoid": "0644000",
+    "censusName": "Los Angeles city",
+    "geography": "incorporated-place",
+    "latitude": 34.02,
+    "longitude": -118.41,
+    "aliases": [
+      "Los Angeles",
+      "Los Angeles, CA",
+      "Los Angeles city"
+    ],
+    "population": 3869089,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "menifee-ca",
+    "name": "Menifee",
+    "state": "CA",
+    "censusGeoid": "0646842",
+    "censusName": "Menifee city",
+    "geography": "incorporated-place",
+    "latitude": 33.69,
+    "longitude": -117.18,
+    "aliases": [
+      "Menifee",
+      "Menifee, CA",
+      "Menifee city"
+    ],
+    "population": 118592,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "modesto-ca",
+    "name": "Modesto",
+    "state": "CA",
+    "censusGeoid": "0648354",
+    "censusName": "Modesto city",
+    "geography": "incorporated-place",
+    "latitude": 37.64,
+    "longitude": -121.0,
+    "aliases": [
+      "Modesto",
+      "Modesto, CA",
+      "Modesto city"
+    ],
+    "population": 219652,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "moreno-valley-ca",
+    "name": "Moreno Valley",
+    "state": "CA",
+    "censusGeoid": "0649270",
+    "censusName": "Moreno Valley city",
+    "geography": "incorporated-place",
+    "latitude": 33.92,
+    "longitude": -117.21,
+    "aliases": [
+      "Moreno Valley",
+      "Moreno Valley, CA",
+      "Moreno Valley city"
+    ],
+    "population": 214263,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "murrieta-ca",
+    "name": "Murrieta",
+    "state": "CA",
+    "censusGeoid": "0650076",
+    "censusName": "Murrieta city",
+    "geography": "incorporated-place",
+    "latitude": 33.57,
+    "longitude": -117.19,
+    "aliases": [
+      "Murrieta",
+      "Murrieta, CA",
+      "Murrieta city"
+    ],
+    "population": 114124,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "oakland-ca",
+    "name": "Oakland",
+    "state": "CA",
+    "censusGeoid": "0653000",
+    "censusName": "Oakland city",
+    "geography": "incorporated-place",
+    "latitude": 37.77,
+    "longitude": -122.23,
+    "aliases": [
+      "Oakland",
+      "Oakland, CA",
+      "Oakland city"
+    ],
+    "population": 440838,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "oceanside-ca",
+    "name": "Oceanside",
+    "state": "CA",
+    "censusGeoid": "0653322",
+    "censusName": "Oceanside city",
+    "geography": "incorporated-place",
+    "latitude": 33.22,
+    "longitude": -117.31,
+    "aliases": [
+      "Oceanside",
+      "Oceanside, CA",
+      "Oceanside city"
+    ],
+    "population": 170483,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "ontario-ca",
+    "name": "Ontario",
+    "state": "CA",
+    "censusGeoid": "0653896",
+    "censusName": "Ontario city",
+    "geography": "incorporated-place",
+    "latitude": 34.04,
+    "longitude": -117.61,
+    "aliases": [
+      "Ontario",
+      "Ontario, CA",
+      "Ontario city"
+    ],
+    "population": 187013,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "orange-ca",
+    "name": "Orange",
+    "state": "CA",
+    "censusGeoid": "0653980",
+    "censusName": "Orange city",
+    "geography": "incorporated-place",
+    "latitude": 33.79,
+    "longitude": -117.86,
+    "aliases": [
+      "Orange",
+      "Orange, CA",
+      "Orange city"
+    ],
+    "population": 138365,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "oxnard-ca",
+    "name": "Oxnard",
+    "state": "CA",
+    "censusGeoid": "0654652",
+    "censusName": "Oxnard city",
+    "geography": "incorporated-place",
+    "latitude": 34.2,
+    "longitude": -119.21,
+    "aliases": [
+      "Oxnard",
+      "Oxnard, CA",
+      "Oxnard city"
+    ],
+    "population": 199651,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "palmdale-ca",
+    "name": "Palmdale",
+    "state": "CA",
+    "censusGeoid": "0655156",
+    "censusName": "Palmdale city",
+    "geography": "incorporated-place",
+    "latitude": 34.59,
+    "longitude": -118.11,
+    "aliases": [
+      "Palmdale",
+      "Palmdale, CA",
+      "Palmdale city"
+    ],
+    "population": 161845,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "pasadena-ca",
+    "name": "Pasadena",
+    "state": "CA",
+    "censusGeoid": "0656000",
+    "censusName": "Pasadena city",
+    "geography": "incorporated-place",
+    "latitude": 34.16,
+    "longitude": -118.14,
+    "aliases": [
+      "Pasadena",
+      "Pasadena, CA",
+      "Pasadena city"
+    ],
+    "population": 135804,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "pomona-ca",
+    "name": "Pomona",
+    "state": "CA",
+    "censusGeoid": "0658072",
+    "censusName": "Pomona city",
+    "geography": "incorporated-place",
+    "latitude": 34.06,
+    "longitude": -117.76,
+    "aliases": [
+      "Pomona",
+      "Pomona, CA",
+      "Pomona city"
+    ],
+    "population": 147807,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "rancho-cucamonga-ca",
+    "name": "Rancho Cucamonga",
+    "state": "CA",
+    "censusGeoid": "0659451",
+    "censusName": "Rancho Cucamonga city",
+    "geography": "incorporated-place",
+    "latitude": 34.13,
+    "longitude": -117.57,
+    "aliases": [
+      "Rancho Cucamonga",
+      "Rancho Cucamonga, CA",
+      "Rancho Cucamonga city"
+    ],
+    "population": 177856,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "rialto-ca",
+    "name": "Rialto",
+    "state": "CA",
+    "censusGeoid": "0660466",
+    "censusName": "Rialto city",
+    "geography": "incorporated-place",
+    "latitude": 34.12,
+    "longitude": -117.39,
+    "aliases": [
+      "Rialto",
+      "Rialto, CA",
+      "Rialto city"
+    ],
+    "population": 106554,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "richmond-ca",
+    "name": "Richmond",
+    "state": "CA",
+    "censusGeoid": "0660620",
+    "censusName": "Richmond city",
+    "geography": "incorporated-place",
+    "latitude": 37.95,
+    "longitude": -122.36,
+    "aliases": [
+      "Richmond",
+      "Richmond, CA",
+      "Richmond city"
+    ],
+    "population": 114861,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "riverside-ca",
+    "name": "Riverside",
+    "state": "CA",
+    "censusGeoid": "0662000",
+    "censusName": "Riverside city",
+    "geography": "incorporated-place",
+    "latitude": 33.94,
+    "longitude": -117.39,
+    "aliases": [
+      "Riverside",
+      "Riverside, CA",
+      "Riverside city"
+    ],
+    "population": 323057,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "roseville-ca",
+    "name": "Roseville",
+    "state": "CA",
+    "censusGeoid": "0662938",
+    "censusName": "Roseville city",
+    "geography": "incorporated-place",
+    "latitude": 38.77,
+    "longitude": -121.32,
+    "aliases": [
+      "Roseville",
+      "Roseville, CA",
+      "Roseville city"
+    ],
+    "population": 167302,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "sacramento-ca",
+    "name": "Sacramento",
+    "state": "CA",
+    "censusGeoid": "0664000",
+    "censusName": "Sacramento city",
+    "geography": "incorporated-place",
+    "latitude": 38.57,
+    "longitude": -121.47,
+    "aliases": [
+      "Sacramento",
+      "Sacramento, CA",
+      "Sacramento city"
+    ],
+    "population": 536449,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "salinas-ca",
+    "name": "Salinas",
+    "state": "CA",
+    "censusGeoid": "0664224",
+    "censusName": "Salinas city",
+    "geography": "incorporated-place",
+    "latitude": 36.69,
+    "longitude": -121.63,
+    "aliases": [
+      "Salinas",
+      "Salinas, CA",
+      "Salinas city"
+    ],
+    "population": 159134,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "san-bernardino-ca",
+    "name": "San Bernardino",
+    "state": "CA",
+    "censusGeoid": "0665000",
+    "censusName": "San Bernardino city",
+    "geography": "incorporated-place",
+    "latitude": 34.14,
+    "longitude": -117.29,
+    "aliases": [
+      "San Bernardino",
+      "San Bernardino, CA",
+      "San Bernardino city"
+    ],
+    "population": 222044,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "san-buenaventura-ventura-ca",
+    "name": "San Buenaventura (Ventura)",
+    "state": "CA",
+    "censusGeoid": "0665042",
+    "censusName": "San Buenaventura (Ventura) city",
+    "geography": "incorporated-place",
+    "latitude": 34.27,
+    "longitude": -119.25,
+    "aliases": [
+      "San Buenaventura (Ventura)",
+      "San Buenaventura (Ventura), CA",
+      "San Buenaventura (Ventura) city"
+    ],
+    "population": 109914,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "san-diego-ca",
+    "name": "San Diego",
+    "state": "CA",
+    "censusGeoid": "0666000",
+    "censusName": "San Diego city",
+    "geography": "incorporated-place",
+    "latitude": 32.83,
+    "longitude": -117.12,
+    "aliases": [
+      "San Diego",
+      "San Diego, CA",
+      "San Diego city"
+    ],
+    "population": 1406106,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "san-francisco-ca",
+    "name": "San Francisco",
+    "state": "CA",
+    "censusGeoid": "0667000",
+    "censusName": "San Francisco city",
+    "geography": "incorporated-place",
+    "latitude": 37.73,
+    "longitude": -123.03,
+    "aliases": [
+      "San Francisco",
+      "San Francisco, CA",
+      "San Francisco city"
+    ],
+    "population": 826079,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "san-jose-ca",
+    "name": "San Jose",
+    "state": "CA",
+    "censusGeoid": "0668000",
+    "censusName": "San Jose city",
+    "geography": "incorporated-place",
+    "latitude": 37.3,
+    "longitude": -121.81,
+    "aliases": [
+      "San Jose",
+      "San Jose, CA",
+      "San Jose city"
+    ],
+    "population": 989814,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "san-mateo-ca",
+    "name": "San Mateo",
+    "state": "CA",
+    "censusGeoid": "0668252",
+    "censusName": "San Mateo city",
+    "geography": "incorporated-place",
+    "latitude": 37.56,
+    "longitude": -122.31,
+    "aliases": [
+      "San Mateo",
+      "San Mateo, CA",
+      "San Mateo city"
+    ],
+    "population": 103337,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "santa-ana-ca",
+    "name": "Santa Ana",
+    "state": "CA",
+    "censusGeoid": "0669000",
+    "censusName": "Santa Ana city",
+    "geography": "incorporated-place",
+    "latitude": 33.74,
+    "longitude": -117.88,
+    "aliases": [
+      "Santa Ana",
+      "Santa Ana, CA",
+      "Santa Ana city"
+    ],
+    "population": 315586,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "santa-clara-ca",
+    "name": "Santa Clara",
+    "state": "CA",
+    "censusGeoid": "0669084",
+    "censusName": "Santa Clara city",
+    "geography": "incorporated-place",
+    "latitude": 37.36,
+    "longitude": -121.97,
+    "aliases": [
+      "Santa Clara",
+      "Santa Clara, CA",
+      "Santa Clara city"
+    ],
+    "population": 133446,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "santa-clarita-ca",
+    "name": "Santa Clarita",
+    "state": "CA",
+    "censusGeoid": "0669088",
+    "censusName": "Santa Clarita city",
+    "geography": "incorporated-place",
+    "latitude": 34.42,
+    "longitude": -118.5,
+    "aliases": [
+      "Santa Clarita",
+      "Santa Clarita, CA",
+      "Santa Clarita city"
+    ],
+    "population": 228430,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "santa-maria-ca",
+    "name": "Santa Maria",
+    "state": "CA",
+    "censusGeoid": "0669196",
+    "censusName": "Santa Maria city",
+    "geography": "incorporated-place",
+    "latitude": 34.93,
+    "longitude": -120.44,
+    "aliases": [
+      "Santa Maria",
+      "Santa Maria, CA",
+      "Santa Maria city"
+    ],
+    "population": 111390,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "santa-rosa-ca",
+    "name": "Santa Rosa",
+    "state": "CA",
+    "censusGeoid": "0670098",
+    "censusName": "Santa Rosa city",
+    "geography": "incorporated-place",
+    "latitude": 38.45,
+    "longitude": -122.71,
+    "aliases": [
+      "Santa Rosa",
+      "Santa Rosa, CA",
+      "Santa Rosa city"
+    ],
+    "population": 179437,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "simi-valley-ca",
+    "name": "Simi Valley",
+    "state": "CA",
+    "censusGeoid": "0672016",
+    "censusName": "Simi Valley city",
+    "geography": "incorporated-place",
+    "latitude": 34.27,
+    "longitude": -118.75,
+    "aliases": [
+      "Simi Valley",
+      "Simi Valley, CA",
+      "Simi Valley city"
+    ],
+    "population": 124861,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "stockton-ca",
+    "name": "Stockton",
+    "state": "CA",
+    "censusGeoid": "0675000",
+    "censusName": "Stockton city",
+    "geography": "incorporated-place",
+    "latitude": 37.98,
+    "longitude": -121.31,
+    "aliases": [
+      "Stockton",
+      "Stockton, CA",
+      "Stockton city"
+    ],
+    "population": 324597,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "sunnyvale-ca",
+    "name": "Sunnyvale",
+    "state": "CA",
+    "censusGeoid": "0677000",
+    "censusName": "Sunnyvale city",
+    "geography": "incorporated-place",
+    "latitude": 37.39,
+    "longitude": -122.03,
+    "aliases": [
+      "Sunnyvale",
+      "Sunnyvale, CA",
+      "Sunnyvale city"
+    ],
+    "population": 156577,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "temecula-ca",
+    "name": "Temecula",
+    "state": "CA",
+    "censusGeoid": "0678120",
+    "censusName": "Temecula city",
+    "geography": "incorporated-place",
+    "latitude": 33.49,
+    "longitude": -117.13,
+    "aliases": [
+      "Temecula",
+      "Temecula, CA",
+      "Temecula city"
+    ],
+    "population": 114865,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "thousand-oaks-ca",
+    "name": "Thousand Oaks",
+    "state": "CA",
+    "censusGeoid": "0678582",
+    "censusName": "Thousand Oaks city",
+    "geography": "incorporated-place",
+    "latitude": 34.19,
+    "longitude": -118.87,
+    "aliases": [
+      "Thousand Oaks",
+      "Thousand Oaks, CA",
+      "Thousand Oaks city"
+    ],
+    "population": 122230,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "torrance-ca",
+    "name": "Torrance",
+    "state": "CA",
+    "censusGeoid": "0680000",
+    "censusName": "Torrance city",
+    "geography": "incorporated-place",
+    "latitude": 33.83,
+    "longitude": -118.36,
+    "aliases": [
+      "Torrance",
+      "Torrance, CA",
+      "Torrance city"
+    ],
+    "population": 138391,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "tracy-ca",
+    "name": "Tracy",
+    "state": "CA",
+    "censusGeoid": "0680238",
+    "censusName": "Tracy city",
+    "geography": "incorporated-place",
+    "latitude": 37.73,
+    "longitude": -121.45,
+    "aliases": [
+      "Tracy",
+      "Tracy, CA",
+      "Tracy city"
+    ],
+    "population": 101901,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "vacaville-ca",
+    "name": "Vacaville",
+    "state": "CA",
+    "censusGeoid": "0681554",
+    "censusName": "Vacaville city",
+    "geography": "incorporated-place",
+    "latitude": 38.36,
+    "longitude": -121.97,
+    "aliases": [
+      "Vacaville",
+      "Vacaville, CA",
+      "Vacaville city"
+    ],
+    "population": 103850,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "vallejo-ca",
+    "name": "Vallejo",
+    "state": "CA",
+    "censusGeoid": "0681666",
+    "censusName": "Vallejo city",
+    "geography": "incorporated-place",
+    "latitude": 38.11,
+    "longitude": -122.26,
+    "aliases": [
+      "Vallejo",
+      "Vallejo, CA",
+      "Vallejo city"
+    ],
+    "population": 123287,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "victorville-ca",
+    "name": "Victorville",
+    "state": "CA",
+    "censusGeoid": "0682590",
+    "censusName": "Victorville city",
+    "geography": "incorporated-place",
+    "latitude": 34.53,
+    "longitude": -117.35,
+    "aliases": [
+      "Victorville",
+      "Victorville, CA",
+      "Victorville city"
+    ],
+    "population": 141395,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "visalia-ca",
+    "name": "Visalia",
+    "state": "CA",
+    "censusGeoid": "0682954",
+    "censusName": "Visalia city",
+    "geography": "incorporated-place",
+    "latitude": 36.33,
+    "longitude": -119.33,
+    "aliases": [
+      "Visalia",
+      "Visalia, CA",
+      "Visalia city"
+    ],
+    "population": 146541,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "west-covina-ca",
+    "name": "West Covina",
+    "state": "CA",
+    "censusGeoid": "0684200",
+    "censusName": "West Covina city",
+    "geography": "incorporated-place",
+    "latitude": 34.06,
+    "longitude": -117.91,
+    "aliases": [
+      "West Covina",
+      "West Covina, CA",
+      "West Covina city"
+    ],
+    "population": 105301,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "arvada-co",
+    "name": "Arvada",
+    "state": "CO",
+    "censusGeoid": "0803455",
+    "censusName": "Arvada city",
+    "geography": "incorporated-place",
+    "latitude": 39.83,
+    "longitude": -105.15,
+    "aliases": [
+      "Arvada",
+      "Arvada, CO",
+      "Arvada city"
+    ],
+    "population": 122901,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "aurora-co",
+    "name": "Aurora",
+    "state": "CO",
+    "censusGeoid": "0804000",
+    "censusName": "Aurora city",
+    "geography": "incorporated-place",
+    "latitude": 39.71,
+    "longitude": -104.72,
+    "aliases": [
+      "Aurora",
+      "Aurora, CO",
+      "Aurora city"
+    ],
+    "population": 410053,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "boulder-co",
+    "name": "Boulder",
+    "state": "CO",
+    "censusGeoid": "0807850",
+    "censusName": "Boulder city",
+    "geography": "incorporated-place",
+    "latitude": 40.02,
+    "longitude": -105.25,
+    "aliases": [
+      "Boulder",
+      "Boulder, CO",
+      "Boulder city"
+    ],
+    "population": 105689,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "centennial-co",
+    "name": "Centennial",
+    "state": "CO",
+    "censusGeoid": "0812815",
+    "censusName": "Centennial city",
+    "geography": "incorporated-place",
+    "latitude": 39.59,
+    "longitude": -104.86,
+    "aliases": [
+      "Centennial",
+      "Centennial, CO",
+      "Centennial city"
+    ],
+    "population": 108658,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "colorado-springs-co",
+    "name": "Colorado Springs",
+    "state": "CO",
+    "censusGeoid": "0816000",
+    "censusName": "Colorado Springs city",
+    "geography": "incorporated-place",
+    "latitude": 38.87,
+    "longitude": -104.76,
+    "aliases": [
+      "Colorado Springs",
+      "Colorado Springs, CO",
+      "Colorado Springs city"
+    ],
+    "population": 494743,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "denver-co",
+    "name": "Denver",
+    "state": "CO",
+    "censusGeoid": "0820000",
+    "censusName": "Denver city",
+    "geography": "incorporated-place",
+    "latitude": 39.76,
+    "longitude": -104.88,
+    "aliases": [
+      "Denver",
+      "Denver, CO",
+      "Denver city"
+    ],
+    "population": 740613,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fort-collins-co",
+    "name": "Fort Collins",
+    "state": "CO",
+    "censusGeoid": "0827425",
+    "censusName": "Fort Collins city",
+    "geography": "incorporated-place",
+    "latitude": 40.55,
+    "longitude": -105.06,
+    "aliases": [
+      "Fort Collins",
+      "Fort Collins, CO",
+      "Fort Collins city"
+    ],
+    "population": 171500,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "greeley-co",
+    "name": "Greeley",
+    "state": "CO",
+    "censusGeoid": "0832155",
+    "censusName": "Greeley city",
+    "geography": "incorporated-place",
+    "latitude": 40.41,
+    "longitude": -104.77,
+    "aliases": [
+      "Greeley",
+      "Greeley, CO",
+      "Greeley city"
+    ],
+    "population": 115073,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lakewood-co",
+    "name": "Lakewood",
+    "state": "CO",
+    "censusGeoid": "0843000",
+    "censusName": "Lakewood city",
+    "geography": "incorporated-place",
+    "latitude": 39.7,
+    "longitude": -105.12,
+    "aliases": [
+      "Lakewood",
+      "Lakewood, CO",
+      "Lakewood city"
+    ],
+    "population": 156927,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "longmont-co",
+    "name": "Longmont",
+    "state": "CO",
+    "censusGeoid": "0845970",
+    "censusName": "Longmont city",
+    "geography": "incorporated-place",
+    "latitude": 40.17,
+    "longitude": -105.1,
+    "aliases": [
+      "Longmont",
+      "Longmont, CO",
+      "Longmont city"
+    ],
+    "population": 100109,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "pueblo-co",
+    "name": "Pueblo",
+    "state": "CO",
+    "censusGeoid": "0862000",
+    "censusName": "Pueblo city",
+    "geography": "incorporated-place",
+    "latitude": 38.27,
+    "longitude": -104.61,
+    "aliases": [
+      "Pueblo",
+      "Pueblo, CO",
+      "Pueblo city"
+    ],
+    "population": 110404,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "thornton-co",
+    "name": "Thornton",
+    "state": "CO",
+    "censusGeoid": "0877290",
+    "censusName": "Thornton city",
+    "geography": "incorporated-place",
+    "latitude": 39.92,
+    "longitude": -104.94,
+    "aliases": [
+      "Thornton",
+      "Thornton, CO",
+      "Thornton city"
+    ],
+    "population": 147766,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "westminster-co",
+    "name": "Westminster",
+    "state": "CO",
+    "censusGeoid": "0883835",
+    "censusName": "Westminster city",
+    "geography": "incorporated-place",
+    "latitude": 39.88,
+    "longitude": -105.06,
+    "aliases": [
+      "Westminster",
+      "Westminster, CO",
+      "Westminster city"
+    ],
+    "population": 116182,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "bridgeport-ct",
+    "name": "Bridgeport",
+    "state": "CT",
+    "censusGeoid": "0908000",
+    "censusName": "Bridgeport city",
+    "geography": "incorporated-place",
+    "latitude": 41.19,
+    "longitude": -73.2,
+    "aliases": [
+      "Bridgeport",
+      "Bridgeport, CT",
+      "Bridgeport city"
+    ],
+    "population": 152273,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "hartford",
+    "name": "Hartford",
+    "state": "CT",
+    "censusGeoid": "0937000",
+    "censusName": "Hartford city",
+    "geography": "incorporated-place",
+    "latitude": 41.77,
+    "longitude": -72.68,
+    "aliases": [
+      "Hartford",
+      "Hartford, CT",
+      "Hartford city"
+    ],
+    "population": 121981,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "new-haven",
+    "name": "New Haven",
+    "state": "CT",
+    "censusGeoid": "0952000",
+    "censusName": "New Haven city",
+    "geography": "incorporated-place",
+    "latitude": 41.31,
+    "longitude": -72.92,
+    "aliases": [
+      "New Haven",
+      "New Haven, CT",
+      "New Haven city"
+    ],
+    "population": 138774,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "stamford-ct",
+    "name": "Stamford",
+    "state": "CT",
+    "censusGeoid": "0973000",
+    "censusName": "Stamford city",
+    "geography": "incorporated-place",
+    "latitude": 41.08,
+    "longitude": -73.55,
+    "aliases": [
+      "Stamford",
+      "Stamford, CT",
+      "Stamford city"
+    ],
+    "population": 139535,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "waterbury-ct",
+    "name": "Waterbury",
+    "state": "CT",
+    "censusGeoid": "0980000",
+    "censusName": "Waterbury city",
+    "geography": "incorporated-place",
+    "latitude": 41.56,
+    "longitude": -73.04,
+    "aliases": [
+      "Waterbury",
+      "Waterbury, CT",
+      "Waterbury city"
+    ],
+    "population": 115771,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "washington",
+    "name": "Washington, DC",
+    "state": "DC",
+    "censusGeoid": "1150000",
+    "censusName": "Washington city",
+    "geography": "incorporated-place",
+    "latitude": 38.9,
+    "longitude": -77.02,
+    "aliases": [
+      "Washington",
+      "Washington, DC",
+      "Washington city",
+      "DC",
+      "Washington D.C."
+    ],
+    "population": 693645,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "boca-raton-fl",
+    "name": "Boca Raton",
+    "state": "FL",
+    "censusGeoid": "1207300",
+    "censusName": "Boca Raton city",
+    "geography": "incorporated-place",
+    "latitude": 26.37,
+    "longitude": -80.1,
+    "aliases": [
+      "Boca Raton",
+      "Boca Raton, FL",
+      "Boca Raton city"
+    ],
+    "population": 101582,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "cape-coral-fl",
+    "name": "Cape Coral",
+    "state": "FL",
+    "censusGeoid": "1210275",
+    "censusName": "Cape Coral city",
+    "geography": "incorporated-place",
+    "latitude": 26.64,
+    "longitude": -82.0,
+    "aliases": [
+      "Cape Coral",
+      "Cape Coral, FL",
+      "Cape Coral city"
+    ],
+    "population": 236264,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "clearwater-fl",
+    "name": "Clearwater",
+    "state": "FL",
+    "censusGeoid": "1212875",
+    "censusName": "Clearwater city",
+    "geography": "incorporated-place",
+    "latitude": 27.98,
+    "longitude": -82.77,
+    "aliases": [
+      "Clearwater",
+      "Clearwater, FL",
+      "Clearwater city"
+    ],
+    "population": 114364,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "coral-springs-fl",
+    "name": "Coral Springs",
+    "state": "FL",
+    "censusGeoid": "1214400",
+    "censusName": "Coral Springs city",
+    "geography": "incorporated-place",
+    "latitude": 26.27,
+    "longitude": -80.26,
+    "aliases": [
+      "Coral Springs",
+      "Coral Springs, FL",
+      "Coral Springs city"
+    ],
+    "population": 138783,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "davie-fl",
+    "name": "Davie",
+    "state": "FL",
+    "censusGeoid": "1216475",
+    "censusName": "Davie town",
+    "geography": "incorporated-place",
+    "latitude": 26.08,
+    "longitude": -80.28,
+    "aliases": [
+      "Davie",
+      "Davie, FL",
+      "Davie town"
+    ],
+    "population": 110851,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "deltona-fl",
+    "name": "Deltona",
+    "state": "FL",
+    "censusGeoid": "1217200",
+    "censusName": "Deltona city",
+    "geography": "incorporated-place",
+    "latitude": 28.91,
+    "longitude": -81.21,
+    "aliases": [
+      "Deltona",
+      "Deltona, FL",
+      "Deltona city"
+    ],
+    "population": 100267,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fort-lauderdale",
+    "name": "Fort Lauderdale",
+    "state": "FL",
+    "censusGeoid": "1224000",
+    "censusName": "Fort Lauderdale city",
+    "geography": "incorporated-place",
+    "latitude": 26.14,
+    "longitude": -80.15,
+    "aliases": [
+      "Fort Lauderdale",
+      "Fort Lauderdale, FL",
+      "Fort Lauderdale city"
+    ],
+    "population": 188677,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "fort-myers-fl",
+    "name": "Fort Myers",
+    "state": "FL",
+    "censusGeoid": "1224125",
+    "censusName": "Fort Myers city",
+    "geography": "incorporated-place",
+    "latitude": 26.62,
+    "longitude": -81.83,
+    "aliases": [
+      "Fort Myers",
+      "Fort Myers, FL",
+      "Fort Myers city"
+    ],
+    "population": 101581,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "gainesville-fl",
+    "name": "Gainesville",
+    "state": "FL",
+    "censusGeoid": "1225175",
+    "censusName": "Gainesville city",
+    "geography": "incorporated-place",
+    "latitude": 29.68,
+    "longitude": -82.35,
+    "aliases": [
+      "Gainesville",
+      "Gainesville, FL",
+      "Gainesville city"
+    ],
+    "population": 148671,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "hialeah-fl",
+    "name": "Hialeah",
+    "state": "FL",
+    "censusGeoid": "1230000",
+    "censusName": "Hialeah city",
+    "geography": "incorporated-place",
+    "latitude": 25.87,
+    "longitude": -80.3,
+    "aliases": [
+      "Hialeah",
+      "Hialeah, FL",
+      "Hialeah city"
+    ],
+    "population": 230968,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "hollywood-fl",
+    "name": "Hollywood",
+    "state": "FL",
+    "censusGeoid": "1232000",
+    "censusName": "Hollywood city",
+    "geography": "incorporated-place",
+    "latitude": 26.03,
+    "longitude": -80.16,
+    "aliases": [
+      "Hollywood",
+      "Hollywood, FL",
+      "Hollywood city"
+    ],
+    "population": 157019,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "jacksonville",
+    "name": "Jacksonville",
+    "state": "FL",
+    "censusGeoid": "1235000",
+    "censusName": "Jacksonville city",
+    "geography": "incorporated-place",
+    "latitude": 30.34,
+    "longitude": -81.66,
+    "aliases": [
+      "Jacksonville",
+      "Jacksonville, FL",
+      "Jacksonville city"
+    ],
+    "population": 1017689,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "lakeland-fl",
+    "name": "Lakeland",
+    "state": "FL",
+    "censusGeoid": "1238250",
+    "censusName": "Lakeland city",
+    "geography": "incorporated-place",
+    "latitude": 28.06,
+    "longitude": -81.95,
+    "aliases": [
+      "Lakeland",
+      "Lakeland, FL",
+      "Lakeland city"
+    ],
+    "population": 125520,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "miami",
+    "name": "Miami",
+    "state": "FL",
+    "censusGeoid": "1245000",
+    "censusName": "Miami city",
+    "geography": "incorporated-place",
+    "latitude": 25.78,
+    "longitude": -80.21,
+    "aliases": [
+      "Miami",
+      "Miami, FL",
+      "Miami city"
+    ],
+    "population": 489812,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "miami-gardens-fl",
+    "name": "Miami Gardens",
+    "state": "FL",
+    "censusGeoid": "1245060",
+    "censusName": "Miami Gardens city",
+    "geography": "incorporated-place",
+    "latitude": 25.95,
+    "longitude": -80.24,
+    "aliases": [
+      "Miami Gardens",
+      "Miami Gardens, FL",
+      "Miami Gardens city"
+    ],
+    "population": 113579,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "miramar-fl",
+    "name": "Miramar",
+    "state": "FL",
+    "censusGeoid": "1245975",
+    "censusName": "Miramar city",
+    "geography": "incorporated-place",
+    "latitude": 25.97,
+    "longitude": -80.34,
+    "aliases": [
+      "Miramar",
+      "Miramar, FL",
+      "Miramar city"
+    ],
+    "population": 142570,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "orlando",
+    "name": "Orlando",
+    "state": "FL",
+    "censusGeoid": "1253000",
+    "censusName": "Orlando city",
+    "geography": "incorporated-place",
+    "latitude": 28.47,
+    "longitude": -81.32,
+    "aliases": [
+      "Orlando",
+      "Orlando, FL",
+      "Orlando city"
+    ],
+    "population": 333888,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "palm-bay-fl",
+    "name": "Palm Bay",
+    "state": "FL",
+    "censusGeoid": "1254000",
+    "censusName": "Palm Bay city",
+    "geography": "incorporated-place",
+    "latitude": 27.95,
+    "longitude": -80.66,
+    "aliases": [
+      "Palm Bay",
+      "Palm Bay, FL",
+      "Palm Bay city"
+    ],
+    "population": 148092,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "palm-coast-fl",
+    "name": "Palm Coast",
+    "state": "FL",
+    "censusGeoid": "1254200",
+    "censusName": "Palm Coast city",
+    "geography": "incorporated-place",
+    "latitude": 29.54,
+    "longitude": -81.24,
+    "aliases": [
+      "Palm Coast",
+      "Palm Coast, FL",
+      "Palm Coast city"
+    ],
+    "population": 109886,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "pembroke-pines-fl",
+    "name": "Pembroke Pines",
+    "state": "FL",
+    "censusGeoid": "1255775",
+    "censusName": "Pembroke Pines city",
+    "geography": "incorporated-place",
+    "latitude": 26.01,
+    "longitude": -80.34,
+    "aliases": [
+      "Pembroke Pines",
+      "Pembroke Pines, FL",
+      "Pembroke Pines city"
+    ],
+    "population": 176714,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "pompano-beach-fl",
+    "name": "Pompano Beach",
+    "state": "FL",
+    "censusGeoid": "1258050",
+    "censusName": "Pompano Beach city",
+    "geography": "incorporated-place",
+    "latitude": 26.24,
+    "longitude": -80.13,
+    "aliases": [
+      "Pompano Beach",
+      "Pompano Beach, FL",
+      "Pompano Beach city"
+    ],
+    "population": 117211,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "port-st-lucie-fl",
+    "name": "Port St. Lucie",
+    "state": "FL",
+    "censusGeoid": "1258715",
+    "censusName": "Port St. Lucie city",
+    "geography": "incorporated-place",
+    "latitude": 27.28,
+    "longitude": -80.39,
+    "aliases": [
+      "Port St. Lucie",
+      "Port St. Lucie, FL",
+      "Port St. Lucie city"
+    ],
+    "population": 268062,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "st-petersburg-fl",
+    "name": "St. Petersburg",
+    "state": "FL",
+    "censusGeoid": "1263000",
+    "censusName": "St. Petersburg city",
+    "geography": "incorporated-place",
+    "latitude": 27.76,
+    "longitude": -82.64,
+    "aliases": [
+      "St. Petersburg",
+      "St. Petersburg, FL",
+      "St. Petersburg city"
+    ],
+    "population": 264033,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "tallahassee-fl",
+    "name": "Tallahassee",
+    "state": "FL",
+    "censusGeoid": "1270600",
+    "censusName": "Tallahassee city",
+    "geography": "incorporated-place",
+    "latitude": 30.45,
+    "longitude": -84.25,
+    "aliases": [
+      "Tallahassee",
+      "Tallahassee, FL",
+      "Tallahassee city"
+    ],
+    "population": 204902,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "tampa",
+    "name": "Tampa",
+    "state": "FL",
+    "censusGeoid": "1271000",
+    "censusName": "Tampa city",
+    "geography": "incorporated-place",
+    "latitude": 27.97,
+    "longitude": -82.48,
+    "aliases": [
+      "Tampa",
+      "Tampa, FL",
+      "Tampa city"
+    ],
+    "population": 413554,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "west-palm-beach-fl",
+    "name": "West Palm Beach",
+    "state": "FL",
+    "censusGeoid": "1276600",
+    "censusName": "West Palm Beach city",
+    "geography": "incorporated-place",
+    "latitude": 26.75,
+    "longitude": -80.13,
+    "aliases": [
+      "West Palm Beach",
+      "West Palm Beach, FL",
+      "West Palm Beach city"
+    ],
+    "population": 127189,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "athens-ga",
+    "name": "Athens",
+    "state": "GA",
+    "censusGeoid": "1303440",
+    "censusName": "Athens-Clarke County unified government (balance)",
+    "geography": "consolidated-balance",
+    "latitude": 33.95,
+    "longitude": -83.37,
+    "aliases": [
+      "Athens",
+      "Athens, GA",
+      "Athens-Clarke County unified government (balance)"
+    ],
+    "population": 128612,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "atlanta-ga",
+    "name": "Atlanta",
+    "state": "GA",
+    "censusGeoid": "1304000",
+    "censusName": "Atlanta city",
+    "geography": "incorporated-place",
+    "latitude": 33.76,
+    "longitude": -84.42,
+    "aliases": [
+      "Atlanta",
+      "Atlanta, GA",
+      "Atlanta city"
+    ],
+    "population": 529110,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "augusta-ga",
+    "name": "Augusta",
+    "state": "GA",
+    "censusGeoid": "1304204",
+    "censusName": "Augusta-Richmond County consolidated government (balance)",
+    "geography": "consolidated-balance",
+    "latitude": 33.37,
+    "longitude": -82.07,
+    "aliases": [
+      "Augusta",
+      "Augusta, GA",
+      "Augusta-Richmond County consolidated government (balance)"
+    ],
+    "population": 201999,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "columbus-ga",
+    "name": "Columbus",
+    "state": "GA",
+    "censusGeoid": "1319000",
+    "censusName": "Columbus city",
+    "geography": "incorporated-place",
+    "latitude": 32.51,
+    "longitude": -84.87,
+    "aliases": [
+      "Columbus",
+      "Columbus, GA",
+      "Columbus city"
+    ],
+    "population": 202171,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "macon-bibb-county-ga",
+    "name": "Macon-Bibb County",
+    "state": "GA",
+    "censusGeoid": "1349008",
+    "censusName": "Macon-Bibb County",
+    "geography": "incorporated-place",
+    "latitude": 32.81,
+    "longitude": -83.69,
+    "aliases": [
+      "Macon-Bibb County",
+      "Macon-Bibb County, GA"
+    ],
+    "population": 157556,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "sandy-springs-ga",
+    "name": "Sandy Springs",
+    "state": "GA",
+    "censusGeoid": "1368516",
+    "censusName": "Sandy Springs city",
+    "geography": "incorporated-place",
+    "latitude": 33.93,
+    "longitude": -84.37,
+    "aliases": [
+      "Sandy Springs",
+      "Sandy Springs, GA",
+      "Sandy Springs city"
+    ],
+    "population": 105013,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "savannah",
+    "name": "Savannah",
+    "state": "GA",
+    "censusGeoid": "1369000",
+    "censusName": "Savannah city",
+    "geography": "incorporated-place",
+    "latitude": 32.01,
+    "longitude": -81.19,
+    "aliases": [
+      "Savannah",
+      "Savannah, GA",
+      "Savannah city"
+    ],
+    "population": 149440,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "south-fulton-ga",
+    "name": "South Fulton",
+    "state": "GA",
+    "censusGeoid": "1372122",
+    "censusName": "South Fulton city",
+    "geography": "incorporated-place",
+    "latitude": 33.64,
+    "longitude": -84.58,
+    "aliases": [
+      "South Fulton",
+      "South Fulton, GA",
+      "South Fulton city"
+    ],
+    "population": 112820,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "urban-honolulu-hi",
+    "name": "Urban Honolulu",
+    "state": "HI",
+    "censusGeoid": "1571550",
+    "censusName": "Urban Honolulu CDP",
+    "geography": "census-designated-place",
+    "latitude": 21.32,
+    "longitude": -157.85,
+    "aliases": [
+      "Urban Honolulu",
+      "Urban Honolulu, HI",
+      "Urban Honolulu CDP"
+    ],
+    "population": 341868,
+    "populationVintage": 2025,
+    "inclusionReason": "excluded-non-incorporated",
+    "legacyId": false
+  },
+  {
+    "id": "boise-city-id",
+    "name": "Boise City",
+    "state": "ID",
+    "censusGeoid": "1608830",
+    "censusName": "Boise City city",
+    "geography": "incorporated-place",
+    "latitude": 43.6,
+    "longitude": -116.23,
+    "aliases": [
+      "Boise City",
+      "Boise City, ID",
+      "Boise City city"
+    ],
+    "population": 238429,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "meridian-id",
+    "name": "Meridian",
+    "state": "ID",
+    "censusGeoid": "1652120",
+    "censusName": "Meridian city",
+    "geography": "incorporated-place",
+    "latitude": 43.61,
+    "longitude": -116.4,
+    "aliases": [
+      "Meridian",
+      "Meridian, ID",
+      "Meridian city"
+    ],
+    "population": 142988,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "nampa-id",
+    "name": "Nampa",
+    "state": "ID",
+    "censusGeoid": "1656260",
+    "censusName": "Nampa city",
+    "geography": "incorporated-place",
+    "latitude": 43.59,
+    "longitude": -116.56,
+    "aliases": [
+      "Nampa",
+      "Nampa, ID",
+      "Nampa city"
+    ],
+    "population": 120384,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "aurora-il",
+    "name": "Aurora",
+    "state": "IL",
+    "censusGeoid": "1703012",
+    "censusName": "Aurora city",
+    "geography": "incorporated-place",
+    "latitude": 41.76,
+    "longitude": -88.29,
+    "aliases": [
+      "Aurora",
+      "Aurora, IL",
+      "Aurora city"
+    ],
+    "population": 181505,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "chicago-il",
+    "name": "Chicago",
+    "state": "IL",
+    "censusGeoid": "1714000",
+    "censusName": "Chicago city",
+    "geography": "incorporated-place",
+    "latitude": 41.84,
+    "longitude": -87.68,
+    "aliases": [
+      "Chicago",
+      "Chicago, IL",
+      "Chicago city"
+    ],
+    "population": 2731585,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "elgin-il",
+    "name": "Elgin",
+    "state": "IL",
+    "censusGeoid": "1723074",
+    "censusName": "Elgin city",
+    "geography": "incorporated-place",
+    "latitude": 42.04,
+    "longitude": -88.33,
+    "aliases": [
+      "Elgin",
+      "Elgin, IL",
+      "Elgin city"
+    ],
+    "population": 115476,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "joliet-il",
+    "name": "Joliet",
+    "state": "IL",
+    "censusGeoid": "1738570",
+    "censusName": "Joliet city",
+    "geography": "incorporated-place",
+    "latitude": 41.52,
+    "longitude": -88.15,
+    "aliases": [
+      "Joliet",
+      "Joliet, IL",
+      "Joliet city"
+    ],
+    "population": 152241,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "naperville-il",
+    "name": "Naperville",
+    "state": "IL",
+    "censusGeoid": "1751622",
+    "censusName": "Naperville city",
+    "geography": "incorporated-place",
+    "latitude": 41.75,
+    "longitude": -88.16,
+    "aliases": [
+      "Naperville",
+      "Naperville, IL",
+      "Naperville city"
+    ],
+    "population": 153114,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "peoria-il",
+    "name": "Peoria",
+    "state": "IL",
+    "censusGeoid": "1759000",
+    "censusName": "Peoria city",
+    "geography": "incorporated-place",
+    "latitude": 40.75,
+    "longitude": -89.62,
+    "aliases": [
+      "Peoria",
+      "Peoria, IL",
+      "Peoria city"
+    ],
+    "population": 110920,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "rockford-il",
+    "name": "Rockford",
+    "state": "IL",
+    "censusGeoid": "1765000",
+    "censusName": "Rockford city",
+    "geography": "incorporated-place",
+    "latitude": 42.26,
+    "longitude": -89.06,
+    "aliases": [
+      "Rockford",
+      "Rockford, IL",
+      "Rockford city"
+    ],
+    "population": 147384,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "springfield-il",
+    "name": "Springfield",
+    "state": "IL",
+    "censusGeoid": "1772000",
+    "censusName": "Springfield city",
+    "geography": "incorporated-place",
+    "latitude": 39.79,
+    "longitude": -89.64,
+    "aliases": [
+      "Springfield",
+      "Springfield, IL",
+      "Springfield city"
+    ],
+    "population": 112989,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "carmel-in",
+    "name": "Carmel",
+    "state": "IN",
+    "censusGeoid": "1810342",
+    "censusName": "Carmel city",
+    "geography": "incorporated-place",
+    "latitude": 39.97,
+    "longitude": -86.15,
+    "aliases": [
+      "Carmel",
+      "Carmel, IN",
+      "Carmel city"
+    ],
+    "population": 105634,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "evansville-in",
+    "name": "Evansville",
+    "state": "IN",
+    "censusGeoid": "1822000",
+    "censusName": "Evansville city",
+    "geography": "incorporated-place",
+    "latitude": 37.99,
+    "longitude": -87.53,
+    "aliases": [
+      "Evansville",
+      "Evansville, IN",
+      "Evansville city"
+    ],
+    "population": 116176,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fishers-in",
+    "name": "Fishers",
+    "state": "IN",
+    "censusGeoid": "1823278",
+    "censusName": "Fishers city",
+    "geography": "incorporated-place",
+    "latitude": 39.96,
+    "longitude": -85.97,
+    "aliases": [
+      "Fishers",
+      "Fishers, IN",
+      "Fishers city"
+    ],
+    "population": 104812,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fort-wayne-in",
+    "name": "Fort Wayne",
+    "state": "IN",
+    "censusGeoid": "1825000",
+    "censusName": "Fort Wayne city",
+    "geography": "incorporated-place",
+    "latitude": 41.09,
+    "longitude": -85.14,
+    "aliases": [
+      "Fort Wayne",
+      "Fort Wayne, IN",
+      "Fort Wayne city"
+    ],
+    "population": 275203,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "indianapolis-in",
+    "name": "Indianapolis",
+    "state": "IN",
+    "censusGeoid": "1836003",
+    "censusName": "Indianapolis city (balance)",
+    "geography": "consolidated-balance",
+    "latitude": 39.78,
+    "longitude": -86.15,
+    "aliases": [
+      "Indianapolis",
+      "Indianapolis, IN",
+      "Indianapolis city (balance)"
+    ],
+    "population": 901116,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "south-bend-in",
+    "name": "South Bend",
+    "state": "IN",
+    "censusGeoid": "1871000",
+    "censusName": "South Bend city",
+    "geography": "incorporated-place",
+    "latitude": 41.68,
+    "longitude": -86.27,
+    "aliases": [
+      "South Bend",
+      "South Bend, IN",
+      "South Bend city"
+    ],
+    "population": 103201,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "cedar-rapids-ia",
+    "name": "Cedar Rapids",
+    "state": "IA",
+    "censusGeoid": "1912000",
+    "censusName": "Cedar Rapids city",
+    "geography": "incorporated-place",
+    "latitude": 41.96,
+    "longitude": -91.68,
+    "aliases": [
+      "Cedar Rapids",
+      "Cedar Rapids, IA",
+      "Cedar Rapids city"
+    ],
+    "population": 137935,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "davenport-ia",
+    "name": "Davenport",
+    "state": "IA",
+    "censusGeoid": "1919000",
+    "censusName": "Davenport city",
+    "geography": "incorporated-place",
+    "latitude": 41.56,
+    "longitude": -90.6,
+    "aliases": [
+      "Davenport",
+      "Davenport, IA",
+      "Davenport city"
+    ],
+    "population": 100358,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "des-moines-ia",
+    "name": "Des Moines",
+    "state": "IA",
+    "censusGeoid": "1921000",
+    "censusName": "Des Moines city",
+    "geography": "incorporated-place",
+    "latitude": 41.57,
+    "longitude": -93.61,
+    "aliases": [
+      "Des Moines",
+      "Des Moines, IA",
+      "Des Moines city"
+    ],
+    "population": 212086,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "kansas-city-ks",
+    "name": "Kansas City",
+    "state": "KS",
+    "censusGeoid": "2036000",
+    "censusName": "Kansas City city",
+    "geography": "incorporated-place",
+    "latitude": 39.12,
+    "longitude": -94.74,
+    "aliases": [
+      "Kansas City",
+      "Kansas City, KS",
+      "Kansas City city"
+    ],
+    "population": 157805,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "olathe-ks",
+    "name": "Olathe",
+    "state": "KS",
+    "censusGeoid": "2052575",
+    "censusName": "Olathe city",
+    "geography": "incorporated-place",
+    "latitude": 38.88,
+    "longitude": -94.82,
+    "aliases": [
+      "Olathe",
+      "Olathe, KS",
+      "Olathe city"
+    ],
+    "population": 150025,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "overland-park-ks",
+    "name": "Overland Park",
+    "state": "KS",
+    "censusGeoid": "2053775",
+    "censusName": "Overland Park city",
+    "geography": "incorporated-place",
+    "latitude": 38.89,
+    "longitude": -94.69,
+    "aliases": [
+      "Overland Park",
+      "Overland Park, KS",
+      "Overland Park city"
+    ],
+    "population": 203677,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "topeka-ks",
+    "name": "Topeka",
+    "state": "KS",
+    "censusGeoid": "2071000",
+    "censusName": "Topeka city",
+    "geography": "incorporated-place",
+    "latitude": 39.03,
+    "longitude": -95.7,
+    "aliases": [
+      "Topeka",
+      "Topeka, KS",
+      "Topeka city"
+    ],
+    "population": 125795,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "wichita-ks",
+    "name": "Wichita",
+    "state": "KS",
+    "censusGeoid": "2079000",
+    "censusName": "Wichita city",
+    "geography": "incorporated-place",
+    "latitude": 37.69,
+    "longitude": -97.35,
+    "aliases": [
+      "Wichita",
+      "Wichita, KS",
+      "Wichita city"
+    ],
+    "population": 400987,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lexington-fayette-urban-county-ky",
+    "name": "Lexington-Fayette urban county",
+    "state": "KY",
+    "censusGeoid": "2146027",
+    "censusName": "Lexington-Fayette urban county",
+    "geography": "incorporated-place",
+    "latitude": 38.04,
+    "longitude": -84.46,
+    "aliases": [
+      "Lexington-Fayette urban county",
+      "Lexington-Fayette urban county, KY"
+    ],
+    "population": 329751,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "louisville-ky",
+    "name": "Louisville",
+    "state": "KY",
+    "censusGeoid": "2148006",
+    "censusName": "Louisville/Jefferson County metro government (balance)",
+    "geography": "consolidated-balance",
+    "latitude": 38.17,
+    "longitude": -85.65,
+    "aliases": [
+      "Louisville",
+      "Louisville, KY",
+      "Louisville/Jefferson County metro government (balance)"
+    ],
+    "population": 641962,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "baton-rouge-la",
+    "name": "Baton Rouge",
+    "state": "LA",
+    "censusGeoid": "2205000",
+    "censusName": "Baton Rouge city",
+    "geography": "incorporated-place",
+    "latitude": 30.44,
+    "longitude": -91.13,
+    "aliases": [
+      "Baton Rouge",
+      "Baton Rouge, LA",
+      "Baton Rouge city"
+    ],
+    "population": 222795,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lafayette-la",
+    "name": "Lafayette",
+    "state": "LA",
+    "censusGeoid": "2240735",
+    "censusName": "Lafayette city",
+    "geography": "incorporated-place",
+    "latitude": 30.21,
+    "longitude": -92.03,
+    "aliases": [
+      "Lafayette",
+      "Lafayette, LA",
+      "Lafayette city"
+    ],
+    "population": 123311,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "new-orleans-la",
+    "name": "New Orleans",
+    "state": "LA",
+    "censusGeoid": "2255000",
+    "censusName": "New Orleans city",
+    "geography": "incorporated-place",
+    "latitude": 30.05,
+    "longitude": -89.93,
+    "aliases": [
+      "New Orleans",
+      "New Orleans, LA",
+      "New Orleans city"
+    ],
+    "population": 362154,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "shreveport-la",
+    "name": "Shreveport",
+    "state": "LA",
+    "censusGeoid": "2270000",
+    "censusName": "Shreveport city",
+    "geography": "incorporated-place",
+    "latitude": 32.47,
+    "longitude": -93.79,
+    "aliases": [
+      "Shreveport",
+      "Shreveport, LA",
+      "Shreveport city"
+    ],
+    "population": 175902,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "portland",
+    "name": "Portland",
+    "state": "ME",
+    "censusGeoid": "2360545",
+    "censusName": "Portland city",
+    "geography": "incorporated-place",
+    "latitude": 43.63,
+    "longitude": -70.19,
+    "aliases": [
+      "Portland",
+      "Portland, ME",
+      "Portland city",
+      "Portland Maine",
+      "Portland ME"
+    ],
+    "population": 69911,
+    "populationVintage": 2025,
+    "inclusionReason": "regional-hub",
+    "legacyId": true
+  },
+  {
+    "id": "baltimore",
+    "name": "Baltimore",
+    "state": "MD",
+    "censusGeoid": "2404000",
+    "censusName": "Baltimore city",
+    "geography": "incorporated-place",
+    "latitude": 39.3,
+    "longitude": -76.61,
+    "aliases": [
+      "Baltimore",
+      "Baltimore, MD",
+      "Baltimore city"
+    ],
+    "population": 569997,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "boston",
+    "name": "Boston",
+    "state": "MA",
+    "censusGeoid": "2507000",
+    "censusName": "Boston city",
+    "geography": "incorporated-place",
+    "latitude": 42.34,
+    "longitude": -71.02,
+    "aliases": [
+      "Boston",
+      "Boston, MA",
+      "Boston city"
+    ],
+    "population": 672973,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "brockton-ma",
+    "name": "Brockton",
+    "state": "MA",
+    "censusGeoid": "2509000",
+    "censusName": "Brockton city",
+    "geography": "incorporated-place",
+    "latitude": 42.08,
+    "longitude": -71.02,
+    "aliases": [
+      "Brockton",
+      "Brockton, MA",
+      "Brockton city"
+    ],
+    "population": 106134,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "cambridge-ma",
+    "name": "Cambridge",
+    "state": "MA",
+    "censusGeoid": "2511000",
+    "censusName": "Cambridge city",
+    "geography": "incorporated-place",
+    "latitude": 42.38,
+    "longitude": -71.12,
+    "aliases": [
+      "Cambridge",
+      "Cambridge, MA",
+      "Cambridge city"
+    ],
+    "population": 122588,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lowell-ma",
+    "name": "Lowell",
+    "state": "MA",
+    "censusGeoid": "2537000",
+    "censusName": "Lowell city",
+    "geography": "incorporated-place",
+    "latitude": 42.64,
+    "longitude": -71.32,
+    "aliases": [
+      "Lowell",
+      "Lowell, MA",
+      "Lowell city"
+    ],
+    "population": 119971,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lynn-ma",
+    "name": "Lynn",
+    "state": "MA",
+    "censusGeoid": "2537490",
+    "censusName": "Lynn city",
+    "geography": "incorporated-place",
+    "latitude": 42.47,
+    "longitude": -70.96,
+    "aliases": [
+      "Lynn",
+      "Lynn, MA",
+      "Lynn city"
+    ],
+    "population": 104236,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "new-bedford-ma",
+    "name": "New Bedford",
+    "state": "MA",
+    "censusGeoid": "2545000",
+    "censusName": "New Bedford city",
+    "geography": "incorporated-place",
+    "latitude": 41.66,
+    "longitude": -70.94,
+    "aliases": [
+      "New Bedford",
+      "New Bedford, MA",
+      "New Bedford city"
+    ],
+    "population": 101834,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "quincy-ma",
+    "name": "Quincy",
+    "state": "MA",
+    "censusGeoid": "2555745",
+    "censusName": "Quincy city",
+    "geography": "incorporated-place",
+    "latitude": 42.26,
+    "longitude": -71.01,
+    "aliases": [
+      "Quincy",
+      "Quincy, MA",
+      "Quincy city"
+    ],
+    "population": 103173,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "springfield-ma",
+    "name": "Springfield",
+    "state": "MA",
+    "censusGeoid": "2567000",
+    "censusName": "Springfield city",
+    "geography": "incorporated-place",
+    "latitude": 42.12,
+    "longitude": -72.54,
+    "aliases": [
+      "Springfield",
+      "Springfield, MA",
+      "Springfield city"
+    ],
+    "population": 154702,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "worcester-ma",
+    "name": "Worcester",
+    "state": "MA",
+    "censusGeoid": "2582000",
+    "censusName": "Worcester city",
+    "geography": "incorporated-place",
+    "latitude": 42.27,
+    "longitude": -71.81,
+    "aliases": [
+      "Worcester",
+      "Worcester, MA",
+      "Worcester city"
+    ],
+    "population": 213862,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "ann-arbor-mi",
+    "name": "Ann Arbor",
+    "state": "MI",
+    "censusGeoid": "2603000",
+    "censusName": "Ann Arbor city",
+    "geography": "incorporated-place",
+    "latitude": 42.28,
+    "longitude": -83.73,
+    "aliases": [
+      "Ann Arbor",
+      "Ann Arbor, MI",
+      "Ann Arbor city"
+    ],
+    "population": 122233,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "dearborn-mi",
+    "name": "Dearborn",
+    "state": "MI",
+    "censusGeoid": "2621000",
+    "censusName": "Dearborn city",
+    "geography": "incorporated-place",
+    "latitude": 42.31,
+    "longitude": -83.21,
+    "aliases": [
+      "Dearborn",
+      "Dearborn, MI",
+      "Dearborn city"
+    ],
+    "population": 105611,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "detroit-mi",
+    "name": "Detroit",
+    "state": "MI",
+    "censusGeoid": "2622000",
+    "censusName": "Detroit city",
+    "geography": "incorporated-place",
+    "latitude": 42.38,
+    "longitude": -83.1,
+    "aliases": [
+      "Detroit",
+      "Detroit, MI",
+      "Detroit city"
+    ],
+    "population": 649095,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "grand-rapids-mi",
+    "name": "Grand Rapids",
+    "state": "MI",
+    "censusGeoid": "2634000",
+    "censusName": "Grand Rapids city",
+    "geography": "incorporated-place",
+    "latitude": 42.96,
+    "longitude": -85.66,
+    "aliases": [
+      "Grand Rapids",
+      "Grand Rapids, MI",
+      "Grand Rapids city"
+    ],
+    "population": 201183,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lansing-mi",
+    "name": "Lansing",
+    "state": "MI",
+    "censusGeoid": "2646000",
+    "censusName": "Lansing city",
+    "geography": "incorporated-place",
+    "latitude": 42.71,
+    "longitude": -84.56,
+    "aliases": [
+      "Lansing",
+      "Lansing, MI",
+      "Lansing city"
+    ],
+    "population": 113884,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "sterling-heights-mi",
+    "name": "Sterling Heights",
+    "state": "MI",
+    "censusGeoid": "2676460",
+    "censusName": "Sterling Heights city",
+    "geography": "incorporated-place",
+    "latitude": 42.58,
+    "longitude": -83.03,
+    "aliases": [
+      "Sterling Heights",
+      "Sterling Heights, MI",
+      "Sterling Heights city"
+    ],
+    "population": 133931,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "warren-mi",
+    "name": "Warren",
+    "state": "MI",
+    "censusGeoid": "2684000",
+    "censusName": "Warren city",
+    "geography": "incorporated-place",
+    "latitude": 42.49,
+    "longitude": -83.03,
+    "aliases": [
+      "Warren",
+      "Warren, MI",
+      "Warren city"
+    ],
+    "population": 137138,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "minneapolis-mn",
+    "name": "Minneapolis",
+    "state": "MN",
+    "censusGeoid": "2743000",
+    "censusName": "Minneapolis city",
+    "geography": "incorporated-place",
+    "latitude": 44.96,
+    "longitude": -93.27,
+    "aliases": [
+      "Minneapolis",
+      "Minneapolis, MN",
+      "Minneapolis city"
+    ],
+    "population": 430324,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "rochester-mn",
+    "name": "Rochester",
+    "state": "MN",
+    "censusGeoid": "2754880",
+    "censusName": "Rochester city",
+    "geography": "incorporated-place",
+    "latitude": 44.01,
+    "longitude": -92.48,
+    "aliases": [
+      "Rochester",
+      "Rochester, MN",
+      "Rochester city"
+    ],
+    "population": 124292,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "st-paul-mn",
+    "name": "St. Paul",
+    "state": "MN",
+    "censusGeoid": "2758000",
+    "censusName": "St. Paul city",
+    "geography": "incorporated-place",
+    "latitude": 44.95,
+    "longitude": -93.1,
+    "aliases": [
+      "St. Paul",
+      "St. Paul, MN",
+      "St. Paul city"
+    ],
+    "population": 306684,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "jackson-ms",
+    "name": "Jackson",
+    "state": "MS",
+    "censusGeoid": "2836000",
+    "censusName": "Jackson city",
+    "geography": "incorporated-place",
+    "latitude": 32.32,
+    "longitude": -90.21,
+    "aliases": [
+      "Jackson",
+      "Jackson, MS",
+      "Jackson city"
+    ],
+    "population": 141196,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "columbia-mo",
+    "name": "Columbia",
+    "state": "MO",
+    "censusGeoid": "2915670",
+    "censusName": "Columbia city",
+    "geography": "incorporated-place",
+    "latitude": 38.95,
+    "longitude": -92.33,
+    "aliases": [
+      "Columbia",
+      "Columbia, MO",
+      "Columbia city"
+    ],
+    "population": 130851,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "independence-mo",
+    "name": "Independence",
+    "state": "MO",
+    "censusGeoid": "2935000",
+    "censusName": "Independence city",
+    "geography": "incorporated-place",
+    "latitude": 39.09,
+    "longitude": -94.35,
+    "aliases": [
+      "Independence",
+      "Independence, MO",
+      "Independence city"
+    ],
+    "population": 121675,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "kansas-city-mo",
+    "name": "Kansas City",
+    "state": "MO",
+    "censusGeoid": "2938000",
+    "censusName": "Kansas City city",
+    "geography": "incorporated-place",
+    "latitude": 39.13,
+    "longitude": -94.55,
+    "aliases": [
+      "Kansas City",
+      "Kansas City, MO",
+      "Kansas City city"
+    ],
+    "population": 521220,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lee-s-summit-mo",
+    "name": "Lee's Summit",
+    "state": "MO",
+    "censusGeoid": "2941348",
+    "censusName": "Lee's Summit city",
+    "geography": "incorporated-place",
+    "latitude": 38.92,
+    "longitude": -94.38,
+    "aliases": [
+      "Lee's Summit",
+      "Lee's Summit, MO",
+      "Lee's Summit city"
+    ],
+    "population": 107514,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "st-louis-mo",
+    "name": "St. Louis",
+    "state": "MO",
+    "censusGeoid": "2965000",
+    "censusName": "St. Louis city",
+    "geography": "incorporated-place",
+    "latitude": 38.64,
+    "longitude": -90.24,
+    "aliases": [
+      "St. Louis",
+      "St. Louis, MO",
+      "St. Louis city"
+    ],
+    "population": 278144,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "springfield-mo",
+    "name": "Springfield",
+    "state": "MO",
+    "censusGeoid": "2970000",
+    "censusName": "Springfield city",
+    "geography": "incorporated-place",
+    "latitude": 37.19,
+    "longitude": -93.29,
+    "aliases": [
+      "Springfield",
+      "Springfield, MO",
+      "Springfield city"
+    ],
+    "population": 169847,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "billings-mt",
+    "name": "Billings",
+    "state": "MT",
+    "censusGeoid": "3006550",
+    "censusName": "Billings city",
+    "geography": "incorporated-place",
+    "latitude": 45.79,
+    "longitude": -108.55,
+    "aliases": [
+      "Billings",
+      "Billings, MT",
+      "Billings city"
+    ],
+    "population": 121239,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lincoln-ne",
+    "name": "Lincoln",
+    "state": "NE",
+    "censusGeoid": "3128000",
+    "censusName": "Lincoln city",
+    "geography": "incorporated-place",
+    "latitude": 40.81,
+    "longitude": -96.67,
+    "aliases": [
+      "Lincoln",
+      "Lincoln, NE",
+      "Lincoln city"
+    ],
+    "population": 301522,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "omaha-ne",
+    "name": "Omaha",
+    "state": "NE",
+    "censusGeoid": "3137000",
+    "censusName": "Omaha city",
+    "geography": "incorporated-place",
+    "latitude": 41.26,
+    "longitude": -96.05,
+    "aliases": [
+      "Omaha",
+      "Omaha, NE",
+      "Omaha city"
+    ],
+    "population": 488797,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "henderson-nv",
+    "name": "Henderson",
+    "state": "NV",
+    "censusGeoid": "3231900",
+    "censusName": "Henderson city",
+    "geography": "incorporated-place",
+    "latitude": 36.01,
+    "longitude": -115.03,
+    "aliases": [
+      "Henderson",
+      "Henderson, NV",
+      "Henderson city"
+    ],
+    "population": 353289,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "las-vegas-nv",
+    "name": "Las Vegas",
+    "state": "NV",
+    "censusGeoid": "3240000",
+    "censusName": "Las Vegas city",
+    "geography": "incorporated-place",
+    "latitude": 36.23,
+    "longitude": -115.26,
+    "aliases": [
+      "Las Vegas",
+      "Las Vegas, NV",
+      "Las Vegas city"
+    ],
+    "population": 679817,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "north-las-vegas-nv",
+    "name": "North Las Vegas",
+    "state": "NV",
+    "censusGeoid": "3251800",
+    "censusName": "North Las Vegas city",
+    "geography": "incorporated-place",
+    "latitude": 36.29,
+    "longitude": -115.09,
+    "aliases": [
+      "North Las Vegas",
+      "North Las Vegas, NV",
+      "North Las Vegas city"
+    ],
+    "population": 296653,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "reno-nv",
+    "name": "Reno",
+    "state": "NV",
+    "censusGeoid": "3260600",
+    "censusName": "Reno city",
+    "geography": "incorporated-place",
+    "latitude": 39.55,
+    "longitude": -119.85,
+    "aliases": [
+      "Reno",
+      "Reno, NV",
+      "Reno city"
+    ],
+    "population": 283621,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "sparks-nv",
+    "name": "Sparks",
+    "state": "NV",
+    "censusGeoid": "3268400",
+    "censusName": "Sparks city",
+    "geography": "incorporated-place",
+    "latitude": 39.57,
+    "longitude": -119.72,
+    "aliases": [
+      "Sparks",
+      "Sparks, NV",
+      "Sparks city"
+    ],
+    "population": 111902,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "manchester-nh",
+    "name": "Manchester",
+    "state": "NH",
+    "censusGeoid": "3345140",
+    "censusName": "Manchester city",
+    "geography": "incorporated-place",
+    "latitude": 42.98,
+    "longitude": -71.44,
+    "aliases": [
+      "Manchester",
+      "Manchester, NH",
+      "Manchester city"
+    ],
+    "population": 116818,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "elizabeth-nj",
+    "name": "Elizabeth",
+    "state": "NJ",
+    "censusGeoid": "3421000",
+    "censusName": "Elizabeth city",
+    "geography": "incorporated-place",
+    "latitude": 40.67,
+    "longitude": -74.19,
+    "aliases": [
+      "Elizabeth",
+      "Elizabeth, NJ",
+      "Elizabeth city"
+    ],
+    "population": 141675,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "jersey-city-nj",
+    "name": "Jersey City",
+    "state": "NJ",
+    "censusGeoid": "3436000",
+    "censusName": "Jersey City city",
+    "geography": "incorporated-place",
+    "latitude": 40.71,
+    "longitude": -74.06,
+    "aliases": [
+      "Jersey City",
+      "Jersey City, NJ",
+      "Jersey City city"
+    ],
+    "population": 302013,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "newark-nj",
+    "name": "Newark",
+    "state": "NJ",
+    "censusGeoid": "3451000",
+    "censusName": "Newark city",
+    "geography": "incorporated-place",
+    "latitude": 40.72,
+    "longitude": -74.17,
+    "aliases": [
+      "Newark",
+      "Newark, NJ",
+      "Newark city"
+    ],
+    "population": 323808,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "paterson-nj",
+    "name": "Paterson",
+    "state": "NJ",
+    "censusGeoid": "3457000",
+    "censusName": "Paterson city",
+    "geography": "incorporated-place",
+    "latitude": 40.91,
+    "longitude": -74.16,
+    "aliases": [
+      "Paterson",
+      "Paterson, NJ",
+      "Paterson city"
+    ],
+    "population": 161793,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "trenton",
+    "name": "Trenton",
+    "state": "NJ",
+    "censusGeoid": "3474000",
+    "censusName": "Trenton city",
+    "geography": "incorporated-place",
+    "latitude": 40.22,
+    "longitude": -74.76,
+    "aliases": [
+      "Trenton",
+      "Trenton, NJ",
+      "Trenton city"
+    ],
+    "population": 91506,
+    "populationVintage": 2025,
+    "inclusionReason": "regional-hub",
+    "legacyId": true
+  },
+  {
+    "id": "albuquerque-nm",
+    "name": "Albuquerque",
+    "state": "NM",
+    "censusGeoid": "3502000",
+    "censusName": "Albuquerque city",
+    "geography": "incorporated-place",
+    "latitude": 35.1,
+    "longitude": -106.65,
+    "aliases": [
+      "Albuquerque",
+      "Albuquerque, NM",
+      "Albuquerque city"
+    ],
+    "population": 556588,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "las-cruces-nm",
+    "name": "Las Cruces",
+    "state": "NM",
+    "censusGeoid": "3539380",
+    "censusName": "Las Cruces city",
+    "geography": "incorporated-place",
+    "latitude": 32.33,
+    "longitude": -106.79,
+    "aliases": [
+      "Las Cruces",
+      "Las Cruces, NM",
+      "Las Cruces city"
+    ],
+    "population": 116978,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "rio-rancho-nm",
+    "name": "Rio Rancho",
+    "state": "NM",
+    "censusGeoid": "3563460",
+    "censusName": "Rio Rancho city",
+    "geography": "incorporated-place",
+    "latitude": 35.29,
+    "longitude": -106.7,
+    "aliases": [
+      "Rio Rancho",
+      "Rio Rancho, NM",
+      "Rio Rancho city"
+    ],
+    "population": 114419,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "albany",
+    "name": "Albany",
+    "state": "NY",
+    "censusGeoid": "3601000",
+    "censusName": "Albany city",
+    "geography": "incorporated-place",
+    "latitude": 42.67,
+    "longitude": -73.8,
+    "aliases": [
+      "Albany",
+      "Albany, NY",
+      "Albany city"
+    ],
+    "population": 101698,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "buffalo-ny",
+    "name": "Buffalo",
+    "state": "NY",
+    "censusGeoid": "3611000",
+    "censusName": "Buffalo city",
+    "geography": "incorporated-place",
+    "latitude": 42.89,
+    "longitude": -78.86,
+    "aliases": [
+      "Buffalo",
+      "Buffalo, NY",
+      "Buffalo city"
+    ],
+    "population": 274613,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "new-york",
+    "name": "New York",
+    "state": "NY",
+    "censusGeoid": "3651000",
+    "censusName": "New York city",
+    "geography": "incorporated-place",
+    "latitude": 40.66,
+    "longitude": -73.94,
+    "aliases": [
+      "New York",
+      "New York, NY",
+      "New York city",
+      "NYC",
+      "New York City"
+    ],
+    "population": 8584629,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "rochester-ny",
+    "name": "Rochester",
+    "state": "NY",
+    "censusGeoid": "3663000",
+    "censusName": "Rochester city",
+    "geography": "incorporated-place",
+    "latitude": 43.17,
+    "longitude": -77.62,
+    "aliases": [
+      "Rochester",
+      "Rochester, NY",
+      "Rochester city"
+    ],
+    "population": 206108,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "stony-brook",
+    "name": "Stony Brook",
+    "state": "NY",
+    "censusGeoid": "3671608",
+    "censusName": "Stony Brook CDP",
+    "geography": "census-designated-place",
+    "latitude": 40.91,
+    "longitude": -73.13,
+    "aliases": [
+      "Stony Brook",
+      "Stony Brook, NY",
+      "Stony Brook CDP",
+      "Long Island"
+    ],
+    "population": null,
+    "populationVintage": null,
+    "inclusionReason": "regional-hub",
+    "legacyId": true
+  },
+  {
+    "id": "syracuse-ny",
+    "name": "Syracuse",
+    "state": "NY",
+    "censusGeoid": "3673000",
+    "censusName": "Syracuse city",
+    "geography": "incorporated-place",
+    "latitude": 43.04,
+    "longitude": -76.14,
+    "aliases": [
+      "Syracuse",
+      "Syracuse, NY",
+      "Syracuse city"
+    ],
+    "population": 144896,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "yonkers-ny",
+    "name": "Yonkers",
+    "state": "NY",
+    "censusGeoid": "3684000",
+    "censusName": "Yonkers city",
+    "geography": "incorporated-place",
+    "latitude": 40.95,
+    "longitude": -73.87,
+    "aliases": [
+      "Yonkers",
+      "Yonkers, NY",
+      "Yonkers city"
+    ],
+    "population": 212603,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "cary-nc",
+    "name": "Cary",
+    "state": "NC",
+    "censusGeoid": "3710740",
+    "censusName": "Cary town",
+    "geography": "incorporated-place",
+    "latitude": 35.78,
+    "longitude": -78.82,
+    "aliases": [
+      "Cary",
+      "Cary, NC",
+      "Cary town"
+    ],
+    "population": 183582,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "charlotte",
+    "name": "Charlotte",
+    "state": "NC",
+    "censusGeoid": "3712000",
+    "censusName": "Charlotte city",
+    "geography": "incorporated-place",
+    "latitude": 35.21,
+    "longitude": -80.83,
+    "aliases": [
+      "Charlotte",
+      "Charlotte, NC",
+      "Charlotte city"
+    ],
+    "population": 964784,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "concord-nc",
+    "name": "Concord",
+    "state": "NC",
+    "censusGeoid": "3714100",
+    "censusName": "Concord city",
+    "geography": "incorporated-place",
+    "latitude": 35.39,
+    "longitude": -80.64,
+    "aliases": [
+      "Concord",
+      "Concord, NC",
+      "Concord city"
+    ],
+    "population": 114598,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "durham-nc",
+    "name": "Durham",
+    "state": "NC",
+    "censusGeoid": "3719000",
+    "censusName": "Durham city",
+    "geography": "incorporated-place",
+    "latitude": 35.98,
+    "longitude": -78.9,
+    "aliases": [
+      "Durham",
+      "Durham, NC",
+      "Durham city"
+    ],
+    "population": 305561,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fayetteville",
+    "name": "Fayetteville",
+    "state": "NC",
+    "censusGeoid": "3722920",
+    "censusName": "Fayetteville city",
+    "geography": "incorporated-place",
+    "latitude": 35.08,
+    "longitude": -78.97,
+    "aliases": [
+      "Fayetteville",
+      "Fayetteville, NC",
+      "Fayetteville city"
+    ],
+    "population": 209120,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "greensboro-nc",
+    "name": "Greensboro",
+    "state": "NC",
+    "censusGeoid": "3728000",
+    "censusName": "Greensboro city",
+    "geography": "incorporated-place",
+    "latitude": 36.09,
+    "longitude": -79.82,
+    "aliases": [
+      "Greensboro",
+      "Greensboro, NC",
+      "Greensboro city"
+    ],
+    "population": 308667,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "high-point-nc",
+    "name": "High Point",
+    "state": "NC",
+    "censusGeoid": "3731400",
+    "censusName": "High Point city",
+    "geography": "incorporated-place",
+    "latitude": 35.99,
+    "longitude": -79.99,
+    "aliases": [
+      "High Point",
+      "High Point, NC",
+      "High Point city"
+    ],
+    "population": 120571,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "raleigh",
+    "name": "Raleigh",
+    "state": "NC",
+    "censusGeoid": "3755000",
+    "censusName": "Raleigh city",
+    "geography": "incorporated-place",
+    "latitude": 35.83,
+    "longitude": -78.64,
+    "aliases": [
+      "Raleigh",
+      "Raleigh, NC",
+      "Raleigh city"
+    ],
+    "population": 506306,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "wilmington-nc",
+    "name": "Wilmington",
+    "state": "NC",
+    "censusGeoid": "3774440",
+    "censusName": "Wilmington city",
+    "geography": "incorporated-place",
+    "latitude": 34.21,
+    "longitude": -77.89,
+    "aliases": [
+      "Wilmington",
+      "Wilmington, NC",
+      "Wilmington city"
+    ],
+    "population": 126809,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "winston-salem-nc",
+    "name": "Winston-Salem",
+    "state": "NC",
+    "censusGeoid": "3775000",
+    "censusName": "Winston-Salem city",
+    "geography": "incorporated-place",
+    "latitude": 36.1,
+    "longitude": -80.26,
+    "aliases": [
+      "Winston-Salem",
+      "Winston-Salem, NC",
+      "Winston-Salem city"
+    ],
+    "population": 257271,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fargo-nd",
+    "name": "Fargo",
+    "state": "ND",
+    "censusGeoid": "3825700",
+    "censusName": "Fargo city",
+    "geography": "incorporated-place",
+    "latitude": 46.86,
+    "longitude": -96.83,
+    "aliases": [
+      "Fargo",
+      "Fargo, ND",
+      "Fargo city"
+    ],
+    "population": 136275,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "akron-oh",
+    "name": "Akron",
+    "state": "OH",
+    "censusGeoid": "3901000",
+    "censusName": "Akron city",
+    "geography": "incorporated-place",
+    "latitude": 41.08,
+    "longitude": -81.52,
+    "aliases": [
+      "Akron",
+      "Akron, OH",
+      "Akron city"
+    ],
+    "population": 189691,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "cincinnati-oh",
+    "name": "Cincinnati",
+    "state": "OH",
+    "censusGeoid": "3915000",
+    "censusName": "Cincinnati city",
+    "geography": "incorporated-place",
+    "latitude": 39.14,
+    "longitude": -84.51,
+    "aliases": [
+      "Cincinnati",
+      "Cincinnati, OH",
+      "Cincinnati city"
+    ],
+    "population": 314367,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "cleveland-oh",
+    "name": "Cleveland",
+    "state": "OH",
+    "censusGeoid": "3916000",
+    "censusName": "Cleveland city",
+    "geography": "incorporated-place",
+    "latitude": 41.48,
+    "longitude": -81.68,
+    "aliases": [
+      "Cleveland",
+      "Cleveland, OH",
+      "Cleveland city"
+    ],
+    "population": 363608,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "columbus-oh",
+    "name": "Columbus",
+    "state": "OH",
+    "censusGeoid": "3918000",
+    "censusName": "Columbus city",
+    "geography": "incorporated-place",
+    "latitude": 39.99,
+    "longitude": -82.99,
+    "aliases": [
+      "Columbus",
+      "Columbus, OH",
+      "Columbus city"
+    ],
+    "population": 938396,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "dayton-oh",
+    "name": "Dayton",
+    "state": "OH",
+    "censusGeoid": "3921000",
+    "censusName": "Dayton city",
+    "geography": "incorporated-place",
+    "latitude": 39.78,
+    "longitude": -84.2,
+    "aliases": [
+      "Dayton",
+      "Dayton, OH",
+      "Dayton city"
+    ],
+    "population": 136688,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "toledo-oh",
+    "name": "Toledo",
+    "state": "OH",
+    "censusGeoid": "3977000",
+    "censusName": "Toledo city",
+    "geography": "incorporated-place",
+    "latitude": 41.66,
+    "longitude": -83.58,
+    "aliases": [
+      "Toledo",
+      "Toledo, OH",
+      "Toledo city"
+    ],
+    "population": 263423,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "broken-arrow-ok",
+    "name": "Broken Arrow",
+    "state": "OK",
+    "censusGeoid": "4009050",
+    "censusName": "Broken Arrow city",
+    "geography": "incorporated-place",
+    "latitude": 36.04,
+    "longitude": -95.78,
+    "aliases": [
+      "Broken Arrow",
+      "Broken Arrow, OK",
+      "Broken Arrow city"
+    ],
+    "population": 124991,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "edmond-ok",
+    "name": "Edmond",
+    "state": "OK",
+    "censusGeoid": "4023200",
+    "censusName": "Edmond city",
+    "geography": "incorporated-place",
+    "latitude": 35.67,
+    "longitude": -97.41,
+    "aliases": [
+      "Edmond",
+      "Edmond, OK",
+      "Edmond city"
+    ],
+    "population": 100479,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "norman-ok",
+    "name": "Norman",
+    "state": "OK",
+    "censusGeoid": "4052500",
+    "censusName": "Norman city",
+    "geography": "incorporated-place",
+    "latitude": 35.24,
+    "longitude": -97.35,
+    "aliases": [
+      "Norman",
+      "Norman, OK",
+      "Norman city"
+    ],
+    "population": 130943,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "oklahoma-city-ok",
+    "name": "Oklahoma City",
+    "state": "OK",
+    "censusGeoid": "4055000",
+    "censusName": "Oklahoma City city",
+    "geography": "incorporated-place",
+    "latitude": 35.47,
+    "longitude": -97.51,
+    "aliases": [
+      "Oklahoma City",
+      "Oklahoma City, OK",
+      "Oklahoma City city"
+    ],
+    "population": 719849,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "tulsa-ok",
+    "name": "Tulsa",
+    "state": "OK",
+    "censusGeoid": "4075000",
+    "censusName": "Tulsa city",
+    "geography": "incorporated-place",
+    "latitude": 36.13,
+    "longitude": -95.9,
+    "aliases": [
+      "Tulsa",
+      "Tulsa, OK",
+      "Tulsa city"
+    ],
+    "population": 416209,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "bend-or",
+    "name": "Bend",
+    "state": "OR",
+    "censusGeoid": "4105800",
+    "censusName": "Bend city",
+    "geography": "incorporated-place",
+    "latitude": 44.06,
+    "longitude": -121.31,
+    "aliases": [
+      "Bend",
+      "Bend, OR",
+      "Bend city"
+    ],
+    "population": 107342,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "eugene-or",
+    "name": "Eugene",
+    "state": "OR",
+    "censusGeoid": "4123850",
+    "censusName": "Eugene city",
+    "geography": "incorporated-place",
+    "latitude": 44.06,
+    "longitude": -123.12,
+    "aliases": [
+      "Eugene",
+      "Eugene, OR",
+      "Eugene city"
+    ],
+    "population": 178618,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "gresham-or",
+    "name": "Gresham",
+    "state": "OR",
+    "censusGeoid": "4131250",
+    "censusName": "Gresham city",
+    "geography": "incorporated-place",
+    "latitude": 45.5,
+    "longitude": -122.44,
+    "aliases": [
+      "Gresham",
+      "Gresham, OR",
+      "Gresham city"
+    ],
+    "population": 111513,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "hillsboro-or",
+    "name": "Hillsboro",
+    "state": "OR",
+    "censusGeoid": "4134100",
+    "censusName": "Hillsboro city",
+    "geography": "incorporated-place",
+    "latitude": 45.53,
+    "longitude": -122.94,
+    "aliases": [
+      "Hillsboro",
+      "Hillsboro, OR",
+      "Hillsboro city"
+    ],
+    "population": 111126,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "portland-or",
+    "name": "Portland",
+    "state": "OR",
+    "censusGeoid": "4159000",
+    "censusName": "Portland city",
+    "geography": "incorporated-place",
+    "latitude": 45.54,
+    "longitude": -122.65,
+    "aliases": [
+      "Portland",
+      "Portland, OR",
+      "Portland city"
+    ],
+    "population": 635109,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "salem-or",
+    "name": "Salem",
+    "state": "OR",
+    "censusGeoid": "4164900",
+    "censusName": "Salem city",
+    "geography": "incorporated-place",
+    "latitude": 44.92,
+    "longitude": -123.02,
+    "aliases": [
+      "Salem",
+      "Salem, OR",
+      "Salem city"
+    ],
+    "population": 181779,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "allentown-pa",
+    "name": "Allentown",
+    "state": "PA",
+    "censusGeoid": "4202000",
+    "censusName": "Allentown city",
+    "geography": "incorporated-place",
+    "latitude": 40.59,
+    "longitude": -75.48,
+    "aliases": [
+      "Allentown",
+      "Allentown, PA",
+      "Allentown city"
+    ],
+    "population": 126044,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "philadelphia",
+    "name": "Philadelphia",
+    "state": "PA",
+    "censusGeoid": "4260000",
+    "censusName": "Philadelphia city",
+    "geography": "incorporated-place",
+    "latitude": 40.01,
+    "longitude": -75.13,
+    "aliases": [
+      "Philadelphia",
+      "Philadelphia, PA",
+      "Philadelphia city",
+      "Philly"
+    ],
+    "population": 1574281,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "pittsburgh-pa",
+    "name": "Pittsburgh",
+    "state": "PA",
+    "censusGeoid": "4261000",
+    "censusName": "Pittsburgh city",
+    "geography": "incorporated-place",
+    "latitude": 40.44,
+    "longitude": -79.98,
+    "aliases": [
+      "Pittsburgh",
+      "Pittsburgh, PA",
+      "Pittsburgh city"
+    ],
+    "population": 307632,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "providence",
+    "name": "Providence",
+    "state": "RI",
+    "censusGeoid": "4459000",
+    "censusName": "Providence city",
+    "geography": "incorporated-place",
+    "latitude": 41.82,
+    "longitude": -71.42,
+    "aliases": [
+      "Providence",
+      "Providence, RI",
+      "Providence city"
+    ],
+    "population": 195310,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "charleston",
+    "name": "Charleston",
+    "state": "SC",
+    "censusGeoid": "4513330",
+    "censusName": "Charleston city",
+    "geography": "incorporated-place",
+    "latitude": 32.83,
+    "longitude": -79.97,
+    "aliases": [
+      "Charleston",
+      "Charleston, SC",
+      "Charleston city"
+    ],
+    "population": 159423,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "columbia-sc",
+    "name": "Columbia",
+    "state": "SC",
+    "censusGeoid": "4516000",
+    "censusName": "Columbia city",
+    "geography": "incorporated-place",
+    "latitude": 34.04,
+    "longitude": -80.91,
+    "aliases": [
+      "Columbia",
+      "Columbia, SC",
+      "Columbia city"
+    ],
+    "population": 147035,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "north-charleston-sc",
+    "name": "North Charleston",
+    "state": "SC",
+    "censusGeoid": "4550875",
+    "censusName": "North Charleston city",
+    "geography": "incorporated-place",
+    "latitude": 32.92,
+    "longitude": -80.06,
+    "aliases": [
+      "North Charleston",
+      "North Charleston, SC",
+      "North Charleston city"
+    ],
+    "population": 129245,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "sioux-falls-sd",
+    "name": "Sioux Falls",
+    "state": "SD",
+    "censusGeoid": "4659020",
+    "censusName": "Sioux Falls city",
+    "geography": "incorporated-place",
+    "latitude": 43.54,
+    "longitude": -96.73,
+    "aliases": [
+      "Sioux Falls",
+      "Sioux Falls, SD",
+      "Sioux Falls city"
+    ],
+    "population": 213748,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "chattanooga-tn",
+    "name": "Chattanooga",
+    "state": "TN",
+    "censusGeoid": "4714000",
+    "censusName": "Chattanooga city",
+    "geography": "incorporated-place",
+    "latitude": 35.07,
+    "longitude": -85.25,
+    "aliases": [
+      "Chattanooga",
+      "Chattanooga, TN",
+      "Chattanooga city"
+    ],
+    "population": 194144,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "clarksville-tn",
+    "name": "Clarksville",
+    "state": "TN",
+    "censusGeoid": "4715160",
+    "censusName": "Clarksville city",
+    "geography": "incorporated-place",
+    "latitude": 36.57,
+    "longitude": -87.35,
+    "aliases": [
+      "Clarksville",
+      "Clarksville, TN",
+      "Clarksville city"
+    ],
+    "population": 188829,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "knoxville-tn",
+    "name": "Knoxville",
+    "state": "TN",
+    "censusGeoid": "4740000",
+    "censusName": "Knoxville city",
+    "geography": "incorporated-place",
+    "latitude": 35.97,
+    "longitude": -83.95,
+    "aliases": [
+      "Knoxville",
+      "Knoxville, TN",
+      "Knoxville city"
+    ],
+    "population": 202021,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "memphis-tn",
+    "name": "Memphis",
+    "state": "TN",
+    "censusGeoid": "4748000",
+    "censusName": "Memphis city",
+    "geography": "incorporated-place",
+    "latitude": 35.11,
+    "longitude": -89.97,
+    "aliases": [
+      "Memphis",
+      "Memphis, TN",
+      "Memphis city"
+    ],
+    "population": 609647,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "murfreesboro-tn",
+    "name": "Murfreesboro",
+    "state": "TN",
+    "censusGeoid": "4751560",
+    "censusName": "Murfreesboro city",
+    "geography": "incorporated-place",
+    "latitude": 35.85,
+    "longitude": -86.42,
+    "aliases": [
+      "Murfreesboro",
+      "Murfreesboro, TN",
+      "Murfreesboro city"
+    ],
+    "population": 171178,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "nashville-tn",
+    "name": "Nashville",
+    "state": "TN",
+    "censusGeoid": "4752006",
+    "censusName": "Nashville-Davidson metropolitan government (balance)",
+    "geography": "consolidated-balance",
+    "latitude": 36.17,
+    "longitude": -86.79,
+    "aliases": [
+      "Nashville",
+      "Nashville, TN",
+      "Nashville-Davidson metropolitan government (balance)"
+    ],
+    "population": 721074,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "abilene-tx",
+    "name": "Abilene",
+    "state": "TX",
+    "censusGeoid": "4801000",
+    "censusName": "Abilene city",
+    "geography": "incorporated-place",
+    "latitude": 32.45,
+    "longitude": -99.74,
+    "aliases": [
+      "Abilene",
+      "Abilene, TX",
+      "Abilene city"
+    ],
+    "population": 131588,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "allen-tx",
+    "name": "Allen",
+    "state": "TX",
+    "censusGeoid": "4801924",
+    "censusName": "Allen city",
+    "geography": "incorporated-place",
+    "latitude": 33.11,
+    "longitude": -96.67,
+    "aliases": [
+      "Allen",
+      "Allen, TX",
+      "Allen city"
+    ],
+    "population": 113447,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "amarillo-tx",
+    "name": "Amarillo",
+    "state": "TX",
+    "censusGeoid": "4803000",
+    "censusName": "Amarillo city",
+    "geography": "incorporated-place",
+    "latitude": 35.2,
+    "longitude": -101.83,
+    "aliases": [
+      "Amarillo",
+      "Amarillo, TX",
+      "Amarillo city"
+    ],
+    "population": 205130,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "arlington-tx",
+    "name": "Arlington",
+    "state": "TX",
+    "censusGeoid": "4804000",
+    "censusName": "Arlington city",
+    "geography": "incorporated-place",
+    "latitude": 32.7,
+    "longitude": -97.12,
+    "aliases": [
+      "Arlington",
+      "Arlington, TX",
+      "Arlington city"
+    ],
+    "population": 402134,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "austin-tx",
+    "name": "Austin",
+    "state": "TX",
+    "censusGeoid": "4805000",
+    "censusName": "Austin city",
+    "geography": "incorporated-place",
+    "latitude": 30.3,
+    "longitude": -97.75,
+    "aliases": [
+      "Austin",
+      "Austin, TX",
+      "Austin city"
+    ],
+    "population": 1002632,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "beaumont-tx",
+    "name": "Beaumont",
+    "state": "TX",
+    "censusGeoid": "4807000",
+    "censusName": "Beaumont city",
+    "geography": "incorporated-place",
+    "latitude": 30.08,
+    "longitude": -94.15,
+    "aliases": [
+      "Beaumont",
+      "Beaumont, TX",
+      "Beaumont city"
+    ],
+    "population": 112967,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "brownsville-tx",
+    "name": "Brownsville",
+    "state": "TX",
+    "censusGeoid": "4810768",
+    "censusName": "Brownsville city",
+    "geography": "incorporated-place",
+    "latitude": 25.99,
+    "longitude": -97.48,
+    "aliases": [
+      "Brownsville",
+      "Brownsville, TX",
+      "Brownsville city"
+    ],
+    "population": 192957,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "carrollton-tx",
+    "name": "Carrollton",
+    "state": "TX",
+    "censusGeoid": "4813024",
+    "censusName": "Carrollton city",
+    "geography": "incorporated-place",
+    "latitude": 32.99,
+    "longitude": -96.9,
+    "aliases": [
+      "Carrollton",
+      "Carrollton, TX",
+      "Carrollton city"
+    ],
+    "population": 134562,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "college-station-tx",
+    "name": "College Station",
+    "state": "TX",
+    "censusGeoid": "4815976",
+    "censusName": "College Station city",
+    "geography": "incorporated-place",
+    "latitude": 30.59,
+    "longitude": -96.3,
+    "aliases": [
+      "College Station",
+      "College Station, TX",
+      "College Station city"
+    ],
+    "population": 127472,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "conroe-tx",
+    "name": "Conroe",
+    "state": "TX",
+    "censusGeoid": "4816432",
+    "censusName": "Conroe city",
+    "geography": "incorporated-place",
+    "latitude": 30.33,
+    "longitude": -95.48,
+    "aliases": [
+      "Conroe",
+      "Conroe, TX",
+      "Conroe city"
+    ],
+    "population": 119564,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "corpus-christi-tx",
+    "name": "Corpus Christi",
+    "state": "TX",
+    "censusGeoid": "4817000",
+    "censusName": "Corpus Christi city",
+    "geography": "incorporated-place",
+    "latitude": 27.75,
+    "longitude": -97.17,
+    "aliases": [
+      "Corpus Christi",
+      "Corpus Christi, TX",
+      "Corpus Christi city"
+    ],
+    "population": 317247,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "dallas-tx",
+    "name": "Dallas",
+    "state": "TX",
+    "censusGeoid": "4819000",
+    "censusName": "Dallas city",
+    "geography": "incorporated-place",
+    "latitude": 32.79,
+    "longitude": -96.77,
+    "aliases": [
+      "Dallas",
+      "Dallas, TX",
+      "Dallas city"
+    ],
+    "population": 1329491,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "denton-tx",
+    "name": "Denton",
+    "state": "TX",
+    "censusGeoid": "4819972",
+    "censusName": "Denton city",
+    "geography": "incorporated-place",
+    "latitude": 33.22,
+    "longitude": -97.14,
+    "aliases": [
+      "Denton",
+      "Denton, TX",
+      "Denton city"
+    ],
+    "population": 169431,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "edinburg-tx",
+    "name": "Edinburg",
+    "state": "TX",
+    "censusGeoid": "4822660",
+    "censusName": "Edinburg city",
+    "geography": "incorporated-place",
+    "latitude": 26.32,
+    "longitude": -98.15,
+    "aliases": [
+      "Edinburg",
+      "Edinburg, TX",
+      "Edinburg city"
+    ],
+    "population": 110700,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "el-paso-tx",
+    "name": "El Paso",
+    "state": "TX",
+    "censusGeoid": "4824000",
+    "censusName": "El Paso city",
+    "geography": "incorporated-place",
+    "latitude": 31.85,
+    "longitude": -106.43,
+    "aliases": [
+      "El Paso",
+      "El Paso, TX",
+      "El Paso city"
+    ],
+    "population": 683012,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "fort-worth-tx",
+    "name": "Fort Worth",
+    "state": "TX",
+    "censusGeoid": "4827000",
+    "censusName": "Fort Worth city",
+    "geography": "incorporated-place",
+    "latitude": 32.78,
+    "longitude": -97.35,
+    "aliases": [
+      "Fort Worth",
+      "Fort Worth, TX",
+      "Fort Worth city"
+    ],
+    "population": 1028117,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "frisco-tx",
+    "name": "Frisco",
+    "state": "TX",
+    "censusGeoid": "4827684",
+    "censusName": "Frisco city",
+    "geography": "incorporated-place",
+    "latitude": 33.16,
+    "longitude": -96.82,
+    "aliases": [
+      "Frisco",
+      "Frisco, TX",
+      "Frisco city"
+    ],
+    "population": 236955,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "garland-tx",
+    "name": "Garland",
+    "state": "TX",
+    "censusGeoid": "4829000",
+    "censusName": "Garland city",
+    "geography": "incorporated-place",
+    "latitude": 32.91,
+    "longitude": -96.63,
+    "aliases": [
+      "Garland",
+      "Garland, TX",
+      "Garland city"
+    ],
+    "population": 249625,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "georgetown-tx",
+    "name": "Georgetown",
+    "state": "TX",
+    "censusGeoid": "4829336",
+    "censusName": "Georgetown city",
+    "geography": "incorporated-place",
+    "latitude": 30.67,
+    "longitude": -97.7,
+    "aliases": [
+      "Georgetown",
+      "Georgetown, TX",
+      "Georgetown city"
+    ],
+    "population": 106907,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "grand-prairie-tx",
+    "name": "Grand Prairie",
+    "state": "TX",
+    "censusGeoid": "4830464",
+    "censusName": "Grand Prairie city",
+    "geography": "incorporated-place",
+    "latitude": 32.68,
+    "longitude": -97.02,
+    "aliases": [
+      "Grand Prairie",
+      "Grand Prairie, TX",
+      "Grand Prairie city"
+    ],
+    "population": 209434,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "houston-tx",
+    "name": "Houston",
+    "state": "TX",
+    "censusGeoid": "4835000",
+    "censusName": "Houston city",
+    "geography": "incorporated-place",
+    "latitude": 29.79,
+    "longitude": -95.39,
+    "aliases": [
+      "Houston",
+      "Houston, TX",
+      "Houston city"
+    ],
+    "population": 2397315,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "irving-tx",
+    "name": "Irving",
+    "state": "TX",
+    "censusGeoid": "4837000",
+    "censusName": "Irving city",
+    "geography": "incorporated-place",
+    "latitude": 32.86,
+    "longitude": -96.97,
+    "aliases": [
+      "Irving",
+      "Irving, TX",
+      "Irving city"
+    ],
+    "population": 257076,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "killeen-tx",
+    "name": "Killeen",
+    "state": "TX",
+    "censusGeoid": "4839148",
+    "censusName": "Killeen city",
+    "geography": "incorporated-place",
+    "latitude": 31.08,
+    "longitude": -97.73,
+    "aliases": [
+      "Killeen",
+      "Killeen, TX",
+      "Killeen city"
+    ],
+    "population": 161883,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "laredo-tx",
+    "name": "Laredo",
+    "state": "TX",
+    "censusGeoid": "4841464",
+    "censusName": "Laredo city",
+    "geography": "incorporated-place",
+    "latitude": 27.56,
+    "longitude": -99.49,
+    "aliases": [
+      "Laredo",
+      "Laredo, TX",
+      "Laredo city"
+    ],
+    "population": 269515,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "league-city-tx",
+    "name": "League City",
+    "state": "TX",
+    "censusGeoid": "4841980",
+    "censusName": "League City city",
+    "geography": "incorporated-place",
+    "latitude": 29.49,
+    "longitude": -95.11,
+    "aliases": [
+      "League City",
+      "League City, TX",
+      "League City city"
+    ],
+    "population": 119905,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lewisville-tx",
+    "name": "Lewisville",
+    "state": "TX",
+    "censusGeoid": "4842508",
+    "censusName": "Lewisville city",
+    "geography": "incorporated-place",
+    "latitude": 33.05,
+    "longitude": -96.97,
+    "aliases": [
+      "Lewisville",
+      "Lewisville, TX",
+      "Lewisville city"
+    ],
+    "population": 139006,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "lubbock-tx",
+    "name": "Lubbock",
+    "state": "TX",
+    "censusGeoid": "4845000",
+    "censusName": "Lubbock city",
+    "geography": "incorporated-place",
+    "latitude": 33.56,
+    "longitude": -101.89,
+    "aliases": [
+      "Lubbock",
+      "Lubbock, TX",
+      "Lubbock city"
+    ],
+    "population": 273071,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "mcallen-tx",
+    "name": "McAllen",
+    "state": "TX",
+    "censusGeoid": "4845384",
+    "censusName": "McAllen city",
+    "geography": "incorporated-place",
+    "latitude": 26.22,
+    "longitude": -98.25,
+    "aliases": [
+      "McAllen",
+      "McAllen, TX",
+      "McAllen city"
+    ],
+    "population": 150640,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "mckinney-tx",
+    "name": "McKinney",
+    "state": "TX",
+    "censusGeoid": "4845744",
+    "censusName": "McKinney city",
+    "geography": "incorporated-place",
+    "latitude": 33.2,
+    "longitude": -96.66,
+    "aliases": [
+      "McKinney",
+      "McKinney, TX",
+      "McKinney city"
+    ],
+    "population": 236001,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "mesquite-tx",
+    "name": "Mesquite",
+    "state": "TX",
+    "censusGeoid": "4847892",
+    "censusName": "Mesquite city",
+    "geography": "incorporated-place",
+    "latitude": 32.76,
+    "longitude": -96.58,
+    "aliases": [
+      "Mesquite",
+      "Mesquite, TX",
+      "Mesquite city"
+    ],
+    "population": 150693,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "midland-tx",
+    "name": "Midland",
+    "state": "TX",
+    "censusGeoid": "4848072",
+    "censusName": "Midland city",
+    "geography": "incorporated-place",
+    "latitude": 32.02,
+    "longitude": -102.11,
+    "aliases": [
+      "Midland",
+      "Midland, TX",
+      "Midland city"
+    ],
+    "population": 147615,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "new-braunfels-tx",
+    "name": "New Braunfels",
+    "state": "TX",
+    "censusGeoid": "4850820",
+    "censusName": "New Braunfels city",
+    "geography": "incorporated-place",
+    "latitude": 29.7,
+    "longitude": -98.12,
+    "aliases": [
+      "New Braunfels",
+      "New Braunfels, TX",
+      "New Braunfels city"
+    ],
+    "population": 122492,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "odessa-tx",
+    "name": "Odessa",
+    "state": "TX",
+    "censusGeoid": "4853388",
+    "censusName": "Odessa city",
+    "geography": "incorporated-place",
+    "latitude": 31.88,
+    "longitude": -102.35,
+    "aliases": [
+      "Odessa",
+      "Odessa, TX",
+      "Odessa city"
+    ],
+    "population": 122707,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "pasadena-tx",
+    "name": "Pasadena",
+    "state": "TX",
+    "censusGeoid": "4856000",
+    "censusName": "Pasadena city",
+    "geography": "incorporated-place",
+    "latitude": 29.65,
+    "longitude": -95.15,
+    "aliases": [
+      "Pasadena",
+      "Pasadena, TX",
+      "Pasadena city"
+    ],
+    "population": 148539,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "pearland-tx",
+    "name": "Pearland",
+    "state": "TX",
+    "censusGeoid": "4856348",
+    "censusName": "Pearland city",
+    "geography": "incorporated-place",
+    "latitude": 29.56,
+    "longitude": -95.32,
+    "aliases": [
+      "Pearland",
+      "Pearland, TX",
+      "Pearland city"
+    ],
+    "population": 129930,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "plano-tx",
+    "name": "Plano",
+    "state": "TX",
+    "censusGeoid": "4858016",
+    "censusName": "Plano city",
+    "geography": "incorporated-place",
+    "latitude": 33.05,
+    "longitude": -96.75,
+    "aliases": [
+      "Plano",
+      "Plano, TX",
+      "Plano city"
+    ],
+    "population": 293028,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "richardson-tx",
+    "name": "Richardson",
+    "state": "TX",
+    "censusGeoid": "4861796",
+    "censusName": "Richardson city",
+    "geography": "incorporated-place",
+    "latitude": 32.97,
+    "longitude": -96.71,
+    "aliases": [
+      "Richardson",
+      "Richardson, TX",
+      "Richardson city"
+    ],
+    "population": 118542,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "round-rock-tx",
+    "name": "Round Rock",
+    "state": "TX",
+    "censusGeoid": "4863500",
+    "censusName": "Round Rock city",
+    "geography": "incorporated-place",
+    "latitude": 30.53,
+    "longitude": -97.66,
+    "aliases": [
+      "Round Rock",
+      "Round Rock, TX",
+      "Round Rock city"
+    ],
+    "population": 141282,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "san-angelo-tx",
+    "name": "San Angelo",
+    "state": "TX",
+    "censusGeoid": "4864472",
+    "censusName": "San Angelo city",
+    "geography": "incorporated-place",
+    "latitude": 31.44,
+    "longitude": -100.45,
+    "aliases": [
+      "San Angelo",
+      "San Angelo, TX",
+      "San Angelo city"
+    ],
+    "population": 100640,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "san-antonio-tx",
+    "name": "San Antonio",
+    "state": "TX",
+    "censusGeoid": "4865000",
+    "censusName": "San Antonio city",
+    "geography": "incorporated-place",
+    "latitude": 29.46,
+    "longitude": -98.52,
+    "aliases": [
+      "San Antonio",
+      "San Antonio, TX",
+      "San Antonio city"
+    ],
+    "population": 1548422,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "sugar-land-tx",
+    "name": "Sugar Land",
+    "state": "TX",
+    "censusGeoid": "4870808",
+    "censusName": "Sugar Land city",
+    "geography": "incorporated-place",
+    "latitude": 29.59,
+    "longitude": -95.63,
+    "aliases": [
+      "Sugar Land",
+      "Sugar Land, TX",
+      "Sugar Land city"
+    ],
+    "population": 107726,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "tyler-tx",
+    "name": "Tyler",
+    "state": "TX",
+    "censusGeoid": "4874144",
+    "censusName": "Tyler city",
+    "geography": "incorporated-place",
+    "latitude": 32.32,
+    "longitude": -95.31,
+    "aliases": [
+      "Tyler",
+      "Tyler, TX",
+      "Tyler city"
+    ],
+    "population": 113723,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "waco-tx",
+    "name": "Waco",
+    "state": "TX",
+    "censusGeoid": "4876000",
+    "censusName": "Waco city",
+    "geography": "incorporated-place",
+    "latitude": 31.56,
+    "longitude": -97.19,
+    "aliases": [
+      "Waco",
+      "Waco, TX",
+      "Waco city"
+    ],
+    "population": 147788,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "wichita-falls-tx",
+    "name": "Wichita Falls",
+    "state": "TX",
+    "censusGeoid": "4879000",
+    "censusName": "Wichita Falls city",
+    "geography": "incorporated-place",
+    "latitude": 33.91,
+    "longitude": -98.53,
+    "aliases": [
+      "Wichita Falls",
+      "Wichita Falls, TX",
+      "Wichita Falls city"
+    ],
+    "population": 101951,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "provo-ut",
+    "name": "Provo",
+    "state": "UT",
+    "censusGeoid": "4962470",
+    "censusName": "Provo city",
+    "geography": "incorporated-place",
+    "latitude": 40.25,
+    "longitude": -111.65,
+    "aliases": [
+      "Provo",
+      "Provo, UT",
+      "Provo city"
+    ],
+    "population": 114527,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "st-george-ut",
+    "name": "St. George",
+    "state": "UT",
+    "censusGeoid": "4965330",
+    "censusName": "St. George city",
+    "geography": "incorporated-place",
+    "latitude": 37.08,
+    "longitude": -113.58,
+    "aliases": [
+      "St. George",
+      "St. George, UT",
+      "St. George city"
+    ],
+    "population": 108713,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "salt-lake-city-ut",
+    "name": "Salt Lake City",
+    "state": "UT",
+    "censusGeoid": "4967000",
+    "censusName": "Salt Lake City city",
+    "geography": "incorporated-place",
+    "latitude": 40.78,
+    "longitude": -111.93,
+    "aliases": [
+      "Salt Lake City",
+      "Salt Lake City, UT",
+      "Salt Lake City city"
+    ],
+    "population": 218428,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "west-jordan-ut",
+    "name": "West Jordan",
+    "state": "UT",
+    "censusGeoid": "4982950",
+    "censusName": "West Jordan city",
+    "geography": "incorporated-place",
+    "latitude": 40.6,
+    "longitude": -112.0,
+    "aliases": [
+      "West Jordan",
+      "West Jordan, UT",
+      "West Jordan city"
+    ],
+    "population": 116812,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "west-valley-city-ut",
+    "name": "West Valley City",
+    "state": "UT",
+    "censusGeoid": "4983470",
+    "censusName": "West Valley City city",
+    "geography": "incorporated-place",
+    "latitude": 40.69,
+    "longitude": -112.01,
+    "aliases": [
+      "West Valley City",
+      "West Valley City, UT",
+      "West Valley City city"
+    ],
+    "population": 137491,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "alexandria-va",
+    "name": "Alexandria",
+    "state": "VA",
+    "censusGeoid": "5101000",
+    "censusName": "Alexandria city",
+    "geography": "incorporated-place",
+    "latitude": 38.82,
+    "longitude": -77.08,
+    "aliases": [
+      "Alexandria",
+      "Alexandria, VA",
+      "Alexandria city"
+    ],
+    "population": 160662,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "chesapeake-va",
+    "name": "Chesapeake",
+    "state": "VA",
+    "censusGeoid": "5116000",
+    "censusName": "Chesapeake city",
+    "geography": "incorporated-place",
+    "latitude": 36.68,
+    "longitude": -76.3,
+    "aliases": [
+      "Chesapeake",
+      "Chesapeake, VA",
+      "Chesapeake city"
+    ],
+    "population": 255332,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "hampton-va",
+    "name": "Hampton",
+    "state": "VA",
+    "censusGeoid": "5135000",
+    "censusName": "Hampton city",
+    "geography": "incorporated-place",
+    "latitude": 37.05,
+    "longitude": -76.3,
+    "aliases": [
+      "Hampton",
+      "Hampton, VA",
+      "Hampton city"
+    ],
+    "population": 137315,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "newport-news-va",
+    "name": "Newport News",
+    "state": "VA",
+    "censusGeoid": "5156000",
+    "censusName": "Newport News city",
+    "geography": "incorporated-place",
+    "latitude": 37.08,
+    "longitude": -76.52,
+    "aliases": [
+      "Newport News",
+      "Newport News, VA",
+      "Newport News city"
+    ],
+    "population": 183230,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "norfolk",
+    "name": "Norfolk",
+    "state": "VA",
+    "censusGeoid": "5157000",
+    "censusName": "Norfolk city",
+    "geography": "incorporated-place",
+    "latitude": 36.92,
+    "longitude": -76.24,
+    "aliases": [
+      "Norfolk",
+      "Norfolk, VA",
+      "Norfolk city"
+    ],
+    "population": 231013,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "richmond",
+    "name": "Richmond",
+    "state": "VA",
+    "censusGeoid": "5167000",
+    "censusName": "Richmond city",
+    "geography": "incorporated-place",
+    "latitude": 37.53,
+    "longitude": -77.48,
+    "aliases": [
+      "Richmond",
+      "Richmond, VA",
+      "Richmond city"
+    ],
+    "population": 237257,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": true
+  },
+  {
+    "id": "suffolk-va",
+    "name": "Suffolk",
+    "state": "VA",
+    "censusGeoid": "5176432",
+    "censusName": "Suffolk city",
+    "geography": "incorporated-place",
+    "latitude": 36.7,
+    "longitude": -76.63,
+    "aliases": [
+      "Suffolk",
+      "Suffolk, VA",
+      "Suffolk city"
+    ],
+    "population": 104699,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "virginia-beach-va",
+    "name": "Virginia Beach",
+    "state": "VA",
+    "censusGeoid": "5182000",
+    "censusName": "Virginia Beach city",
+    "geography": "incorporated-place",
+    "latitude": 36.78,
+    "longitude": -76.03,
+    "aliases": [
+      "Virginia Beach",
+      "Virginia Beach, VA",
+      "Virginia Beach city"
+    ],
+    "population": 453737,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "bellevue-wa",
+    "name": "Bellevue",
+    "state": "WA",
+    "censusGeoid": "5305210",
+    "censusName": "Bellevue city",
+    "geography": "incorporated-place",
+    "latitude": 47.6,
+    "longitude": -122.16,
+    "aliases": [
+      "Bellevue",
+      "Bellevue, WA",
+      "Bellevue city"
+    ],
+    "population": 154193,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "everett-wa",
+    "name": "Everett",
+    "state": "WA",
+    "censusGeoid": "5322640",
+    "censusName": "Everett city",
+    "geography": "incorporated-place",
+    "latitude": 47.97,
+    "longitude": -122.19,
+    "aliases": [
+      "Everett",
+      "Everett, WA",
+      "Everett city"
+    ],
+    "population": 113567,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "kent-wa",
+    "name": "Kent",
+    "state": "WA",
+    "censusGeoid": "5335415",
+    "censusName": "Kent city",
+    "geography": "incorporated-place",
+    "latitude": 47.39,
+    "longitude": -122.21,
+    "aliases": [
+      "Kent",
+      "Kent, WA",
+      "Kent city"
+    ],
+    "population": 134871,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "renton-wa",
+    "name": "Renton",
+    "state": "WA",
+    "censusGeoid": "5357745",
+    "censusName": "Renton city",
+    "geography": "incorporated-place",
+    "latitude": 47.48,
+    "longitude": -122.19,
+    "aliases": [
+      "Renton",
+      "Renton, WA",
+      "Renton city"
+    ],
+    "population": 104975,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "seattle-wa",
+    "name": "Seattle",
+    "state": "WA",
+    "censusGeoid": "5363000",
+    "censusName": "Seattle city",
+    "geography": "incorporated-place",
+    "latitude": 47.62,
+    "longitude": -122.35,
+    "aliases": [
+      "Seattle",
+      "Seattle, WA",
+      "Seattle city"
+    ],
+    "population": 784777,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "spokane-wa",
+    "name": "Spokane",
+    "state": "WA",
+    "censusGeoid": "5367000",
+    "censusName": "Spokane city",
+    "geography": "incorporated-place",
+    "latitude": 47.67,
+    "longitude": -117.43,
+    "aliases": [
+      "Spokane",
+      "Spokane, WA",
+      "Spokane city"
+    ],
+    "population": 230783,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "spokane-valley-wa",
+    "name": "Spokane Valley",
+    "state": "WA",
+    "censusGeoid": "5367167",
+    "censusName": "Spokane Valley city",
+    "geography": "incorporated-place",
+    "latitude": 47.66,
+    "longitude": -117.23,
+    "aliases": [
+      "Spokane Valley",
+      "Spokane Valley, WA",
+      "Spokane Valley city"
+    ],
+    "population": 108405,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "tacoma-wa",
+    "name": "Tacoma",
+    "state": "WA",
+    "censusGeoid": "5370000",
+    "censusName": "Tacoma city",
+    "geography": "incorporated-place",
+    "latitude": 47.25,
+    "longitude": -122.46,
+    "aliases": [
+      "Tacoma",
+      "Tacoma, WA",
+      "Tacoma city"
+    ],
+    "population": 229816,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "vancouver-wa",
+    "name": "Vancouver",
+    "state": "WA",
+    "censusGeoid": "5374060",
+    "censusName": "Vancouver city",
+    "geography": "incorporated-place",
+    "latitude": 45.64,
+    "longitude": -122.6,
+    "aliases": [
+      "Vancouver",
+      "Vancouver, WA",
+      "Vancouver city"
+    ],
+    "population": 199698,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "green-bay-wi",
+    "name": "Green Bay",
+    "state": "WI",
+    "censusGeoid": "5531000",
+    "censusName": "Green Bay city",
+    "geography": "incorporated-place",
+    "latitude": 44.52,
+    "longitude": -87.99,
+    "aliases": [
+      "Green Bay",
+      "Green Bay, WI",
+      "Green Bay city"
+    ],
+    "population": 106675,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "madison-wi",
+    "name": "Madison",
+    "state": "WI",
+    "censusGeoid": "5548000",
+    "censusName": "Madison city",
+    "geography": "incorporated-place",
+    "latitude": 43.09,
+    "longitude": -89.43,
+    "aliases": [
+      "Madison",
+      "Madison, WI",
+      "Madison city"
+    ],
+    "population": 286233,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  },
+  {
+    "id": "milwaukee-wi",
+    "name": "Milwaukee",
+    "state": "WI",
+    "censusGeoid": "5553000",
+    "censusName": "Milwaukee city",
+    "geography": "incorporated-place",
+    "latitude": 43.06,
+    "longitude": -87.97,
+    "aliases": [
+      "Milwaukee",
+      "Milwaukee, WI",
+      "Milwaukee city"
+    ],
+    "population": 562407,
+    "populationVintage": 2025,
+    "inclusionReason": "population-100000",
+    "legacyId": false
+  }
+]
