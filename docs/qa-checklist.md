@@ -6,12 +6,22 @@ Owner: Person 4. Each run is against the production server (`pnpm build && pnpm 
 
 | Run | `main` commit | Contents | Build / tests | Browser checks | Proxy outage | Deploy smoke |
 | --- | --- | --- | --- | --- | --- | --- |
-| Post-#8/#9 | _pending merge_ | Persons 2/3 duplicate-navigation fixes | Not run on `main` yet | Not run on `main` yet (pre-merge preview: 121 / 121) | Not run yet | Not run yet |
+| **Current** (Oct 24) | **`ea6c065`** "Merge reviewed guided Journey demo and navigation cleanup" | PRs #8 (Wallet) and #9 (Journey) merged: duplicate navigation removed, SEPTA panel reworded, guided Journey demo | Pass; **45 / 45** tests | **121 / 121** | 5 / 5 | 6 / 6 (clean checkout, `render.yaml` build command, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
 | **Person 1 fixes** (Oct 24) | **`93c0408`** "Merge keyboard focus, data labels and reproducible QA" | Person 1's initial-focus and footer fixes; Playwright 1.64.1 devDependency; `render.yaml` | Pass; 33 / 33 tests | **117 / 121** (see below) | 5 / 5 | 6 / 6 (clean checkout, `render.yaml` build command, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
 | **Interim** (Oct 24) | **`73635ac`** "Merge shared shell integration fixes" (PR #7) | Adds the one-`<main>` shell contract | Pass; 33 / 33 tests | 114 / 119 (see below) | 5 / 5 | 6 / 6 (`HOST=0.0.0.0 PORT=8080`, LAN IP) |
 | Baseline (Oct 24) | `5efcd3b` "Merge reviewed OneLine ticket wallet" | Search, Compare, Journey, Wallet, SEPTA proxy | Pass; 33 / 33 tests | 102 / 105 | 5 / 5 | 6 / 6 (clean checkout, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
 
 The browser suite grew between runs, which is why the totals differ. The interim run adds one-`<main>` checks on every page, duplicate page-navigation checks and a footer-wording check. The footer check was added after the interim run, so it first runs on the final commit.
+
+## Current run: `ea6c065`
+
+Toolchain: Node 22.23.4, pnpm 11.25.0, Playwright 1.64.1. The app code tested is identical to `ea6c065`; the QA branch adds only docs and scripts. Commands: `pnpm install --frozen-lockfile`, `pnpm build`, `pnpm test`, `pnpm start`, `pnpm test:e2e`, `pnpm test:proxy`, `node qa/demo-rehearsal.cjs` (online and `--offline`). The deploy smoke test (`pnpm test:smoke`) ran against a clean checkout of `ea6c065` built with the `render.yaml` build command.
+
+- **All 121 browser checks pass.** That includes both trip flows (Search → Compare → Journey → Wallet), one `<main>` per page, **no duplicate page navigation**, the first Tab reaching "Skip to content", focus after route changes, 320px / 390px layouts with named and unclipped buttons, invalid IDs with refresh, and the footer wording.
+- **SEPTA states** (new PR #8 wording): the real feed returned **23 records** at test time. Simulated success, unavailable (502 / 504 / network / malformed), empty and stale (expires at 60 s; **Refresh feed** restores it) all pass. Sample itinerary times are unchanged in every state.
+- **Demo rehearsal:** 8 / 8 steps online (panel live) and 8 / 8 with SEPTA blocked (panel unavailable).
+- No page or console errors. `pnpm test:e2e` exits with code 0.
+- **Finding 4 is resolved**, verified on `ea6c065`. Every QA finding is now resolved.
 
 ## Pre-merge preview: open PRs #8 and #9 (not a `main` result)
 
@@ -172,10 +182,10 @@ Status reflects the latest verified run. "Fix pending" means a fix is in progres
 | 1 | Person 2 (Journey) | Medium: demo flow | **Resolved**, verified on `5efcd3b` | The Journey page had no in-page link to the Wallet. It now has **View ticket wallet →**. | n/a | n/a |
 | 2 | Person 2 / Person 1 (shell) | Medium: a11y | **Resolved** by PR #7, verified on `73635ac` | `JourneyPage` rendered `<main>` inside the layout's `<main id="main-content">`. The shell now uses a `<div id="main-content">`, and each page has exactly one `<main>`. | Run `document.querySelectorAll('main').length` on any page; it returns `1`. | [baseline screenshot](qa-screenshots/bug-journey-nested-main-duplicate-header.png) |
 | 3 | Person 1 (`App.tsx`) | Low: a11y | **Resolved**, verified on `93c0408` | `NavigationEffects` also runs on first load and focuses `#main-content`, so the first Tab skips "Skip to content" and the header nav. Was present through `73635ac`. | Load `/` fresh and press Tab once; focus lands past the skip link. | [screenshot](qa-screenshots/bug-first-tab-skips-skip-link.png) |
-| 4 | Person 2 (Journey), Person 3 (Wallet) | Low: visual | Open: still failing on `93c0408` | Duplicate page navigation under the site header. Journey draws "← Search routes / OneLine" (`src/pages/JourneyPage.tsx:48`). Wallet draws "OneLine ↗ / Back to journey search" (`src/pages/WalletPage.tsx:49`), and those `<a href="/">` links reload the whole page instead of using client-side navigation. Separate from finding 2; PR #7 did not change it. | Open `/journey/regional-connection` or `/wallet/regional-connection`: a second nav bar sits under the header. Click the Wallet's "Back to journey search"; DevTools shows a document reload. | [Journey 320px](qa-screenshots/duplicate-nav-journey-320.png), [Wallet 320px](qa-screenshots/duplicate-nav-wallet-320.png) |
+| 4 | Person 2 (Journey), Person 3 (Wallet) | Low: visual | **Resolved** by PRs #9 and #8, verified on `ea6c065` | Duplicate page navigation under the site header. Journey draws "← Search routes / OneLine" (`src/pages/JourneyPage.tsx:48`). Wallet draws "OneLine ↗ / Back to journey search" (`src/pages/WalletPage.tsx:49`), and those `<a href="/">` links reload the whole page instead of using client-side navigation. Separate from finding 2; PR #7 did not change it. | Open `/journey/regional-connection` or `/wallet/regional-connection`: a second nav bar sits under the header. Click the Wallet's "Back to journey search"; DevTools shows a document reload. | [Journey 320px](qa-screenshots/duplicate-nav-journey-320.png), [Wallet 320px](qa-screenshots/duplicate-nav-wallet-320.png) |
 | 5 | Person 1 (`AppLayout`) | Low: copy | **Resolved**, verified on `93c0408` | The footer says "Sample itineraries · No live arrival data" while the Wallet shows a live SEPTA snapshot. Was present through `73635ac`. Suggested wording: "Sample itineraries · Live data limited to labelled SEPTA snapshots". | Open `/wallet/regional-connection` and compare the footer with the SEPTA panel. | [screenshot](qa-screenshots/septa-live-panel.png) |
 
-None of the open findings blocks the demo.
+No findings are open as of `ea6c065`.
 
 
 ## Person 1 integration candidate, October 24 (reported by Person 1)
