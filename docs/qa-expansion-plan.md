@@ -6,10 +6,38 @@ All results here are **PR-branch results, not `main` results.** Earlier `main` r
 
 | Run | Exact commit | Contents | Result |
 | --- | --- | --- | --- |
-| **P4-13 (current)** | **`af5fa8f27904694aaf5de8b4edcfdd68b3d1856d`** on `fix/mobile-map-labels` (PR #19) | `961f568` + X6 follow-up (legend moved below the map, Miami mobile label raised) | **All pass.** Regression and expansion pass; targeted map checks **69 / 69**. X5 and X6 resolved. |
+| **P4-14 (current, final integration)** | **`49742e76a289f2cf5d396cc66ead01d0ab56c62f`** on `feat/demo-readiness` (PR #21) | `main` `db454c0` + combined `21d77dd` + map fix `af5fa8f` + Person 1's canonical route-ID fix, tests, README and `typecheck` script | **All pass.** Map 69 / 69; canonical-ID checks 52 / 52; full regression passes. |
+| P4-13 | `af5fa8f27904694aaf5de8b4edcfdd68b3d1856d` on `fix/mobile-map-labels` (PR #19) | `961f568` + X6 follow-up (legend moved below the map, Miami mobile label raised) | **All pass.** Regression and expansion pass; targeted map checks **69 / 69**. X5 and X6 resolved. |
 | P4-11 | `961f568dd039d67e04c45b7c3ea4d4e7268eed6c` on `fix/mobile-map-labels` (PR #19) | `21d77dd` + PR #19's CorridorMap / `index.css` mobile label fix | Regression and expansion fully pass. P4-11 targeted map checks **65 / 69**: X5 label sizes are fixed; the 4 failures are new finding X6. |
 | P4-09 | `21d77dd618538284d77ee48db7fc34821a04bd99` on `feat/east-coast` | PR #13 @ `d3aab9e` (expansion, X2 Search persistence, map label fix), map follow-up @ `17e3682`, PR #15 @ `2db3fed` (X1 / X3, coach guidance) | Regression and expansion fully pass. P4-09 targeted checks **55 / 57**: the 2 failures are X5 (map labels too small on phones). |
 | First expansion run | `9be946d3376dc61064ad0645909e1f15f43534ad` | PR #13 head on base `main` `6df372e` | Expansion 121 / 122 (X1). Kept below as history. |
+
+## P4-14 run: `49742e7` (final integration)
+
+Assigned in hub issue #2 as **P4-14**. Run on October 24, 2026 from a clean checkout of `49742e76a289f2cf5d396cc66ead01d0ab56c62f`. Ancestry verified: it contains `db454c0`, `21d77dd` and `af5fa8f`. App change since `af5fa8f`: `TripContext.tsx` now resolves `tripId ?? ?trip=`, so the path wins (plus a new `TripContext.test.tsx`). Also changed: `package.json` (`typecheck` script), README and docs.
+
+| Check | Command | Result on `49742e7` |
+| --- | --- | --- |
+| Install, build, typecheck | `pnpm install --frozen-lockfile && pnpm build && pnpm typecheck` | Pass |
+| Unit tests | `pnpm test` | **68 / 68** (11 files) |
+| Regression browser suite | `node qa/e2e-check.cjs <url>` | **121 / 121** |
+| Proxy outage / deploy smoke | `node qa/septa-proxy-outage.mjs` / `node qa/smoke.mjs` (LAN IP) | 5 / 5 / 6 / 6 |
+| Demo rehearsal | online / `--offline` | 8 / 8 / 8 / 8 |
+| Expansion suite | `node qa/expansion-check.cjs <url>` | **122 / 122** |
+| Map (X5 / X6) | `node qa/p4-09-check.cjs <url>` (legend-wrapper lookup from P4-13) | **69 / 69** |
+| **Canonical route IDs** | `node qa/p4-14-check.cjs <url>` (new) | **52 / 52** |
+
+**X5 / X6 verdict:** still resolved on the integrated tree (320px labels 13.1px, legend 11px outside the masked box, 10 / 10 markers named, no Miami collision).
+
+**Canonical route-ID cases (browser, on load and after refresh):**
+
+- **Conflicting path and query:** `/journey/regional-connection?trip=amtrak-connection` and `/wallet/…` show **regional** content (Wallet 4 legs with the SEPTA panel; Journey 4 segments). Header Journey / Wallet links stay `/…/regional-connection`, and **View ticket wallet** opens the regional Wallet. The same holds for `amtrak-connection?trip=regional-connection` and for an expansion ID (`east-boston--new-york--greyhound?trip=regional-connection`). ([Journey](qa-screenshots/expansion/p4-14-journey-canonical-wins.png))
+- **Legacy entry still works:** `/journey?trip=…` and `/wallet?trip=…` land on `/…/<id>` with that trip's content and header links.
+- **Invalid canonical ID never substitutes:** `/journey/bogus?trip=amtrak-connection`, `/wallet/bogus?trip=…` and `/…/east-boston--atlantis--greyhound?trip=…` show "not found". No Amtrak legs appear, and no header or in-page link points to `amtrak-connection`. ([Wallet](qa-screenshots/expansion/p4-14-wallet-invalid-no-substitution.png))
+- **Stored selection:** choosing Amtrak on Search, then opening `/journey/regional-connection`, shows regional. `/wallet` with no ID then follows the stored Amtrak selection.
+- **Control:** on `af5fa8f` (before the fix) the same script fails **20 of 52**. Header links follow the query, and the Wallet substitutes the query trip for invalid IDs. So the checks detect the defect the fix addresses.
+
+Script corrections made during this run (no assertions removed): the Amtrak content check matched "Amtrak" case-sensitively while the Journey badge reads "AMTRAK"; Journey content is now identified by segment count plus a case-insensitive operator match. The stored-selection case now chooses the route on Search, because direct Journey URLs don't store a selection by design.
 
 ## P4-13 run: `af5fa8f`
 
