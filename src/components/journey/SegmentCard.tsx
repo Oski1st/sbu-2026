@@ -43,18 +43,18 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
             {duration && <span className="text-xs font-medium text-slate-500">{duration}</span>}
           </div>
 
-          <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto] gap-x-3">
+          <div className="mt-4 grid grid-cols-1 gap-y-1 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-x-3 sm:gap-y-0">
             <div className="min-w-0">
               <p className="text-lg font-semibold leading-tight text-slate-950">{leg.from}</p>
               <p className="mt-1 text-sm text-slate-500">Depart</p>
             </div>
-            <time dateTime={leg.departure} className="text-right text-base font-bold tabular-nums text-slate-900">{displaySegmentTime(leg.departure)}</time>
+            <time dateTime={leg.departure} className="text-left text-base font-bold tabular-nums text-slate-900 sm:text-right">{displaySegmentTime(leg.departure)}</time>
 
-            <div className="mt-5 min-w-0">
+            <div className="mt-4 min-w-0 sm:mt-5">
               <p className="text-lg font-semibold leading-tight text-slate-950">{leg.to}</p>
               <p className="mt-1 text-sm text-slate-500">Arrive{isDelayed ? " (simulated)" : ""}</p>
             </div>
-            <time className={`mt-5 text-right text-base font-bold tabular-nums ${isDelayed ? "text-amber-800" : "text-slate-900"}`}>
+            <time className={`text-left text-base font-bold tabular-nums sm:mt-5 sm:text-right ${isDelayed ? "text-amber-800" : "text-slate-900"}`}>
               {isDelayed ? (
                 <span className="flex flex-col items-end">
                   <span className="text-xs font-medium text-slate-400 line-through">{displaySegmentTime(leg.arrival)}</span>
