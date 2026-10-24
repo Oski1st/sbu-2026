@@ -134,8 +134,8 @@ export default function JourneyPage() {
         </section>
 
         <aside className="mt-8 rounded-3xl border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-600 sm:p-6">
-          <p className="font-bold text-slate-950">A note on platforms</p>
-          <p className="mt-1">Platform assignments can change and are not included here. Always follow live station signage, announcements, and official agency updates.</p>
+          <p className="font-bold text-slate-950">A note on boarding locations</p>
+          <p className="mt-1">Platform, gate, and curbside boarding locations can change and are not included here. Always follow station or terminal signage, announcements, and official operator updates.</p>
         </aside>
       </div>
     </main>
