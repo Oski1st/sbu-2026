@@ -8,6 +8,7 @@ export const formatTime = (iso: string) =>
     minute: "2-digit",
   }).format(new Date(iso));
 export const sampleTotal = (trip: Trip) =>
+  trip.legs.length > 0 &&
   trip.legs.every((leg) => leg.fare?.status === "sample")
     ? trip.legs.reduce((total, leg) => total + (leg.fare?.amount ?? 0), 0)
     : null;
@@ -39,4 +40,45 @@ export function sortTrips(trips: Trip[], order: string): Trip[] {
         ? a.durationMinutes - b.durationMinutes
         : 0,
   );
+}
+
+/** Derived only from itinerary timestamps; never a live connection guarantee. */
+export function tripMetrics(trip: Trip) {
+  if (!trip.legs.length) return null;
+  const rides = trip.legs.map(
+    (leg) => (+new Date(leg.arrival) - +new Date(leg.departure)) / 60000,
+  );
+  const waits = trip.legs
+    .slice(1)
+    .map(
+      (leg, index) =>
+        (+new Date(leg.departure) - +new Date(trip.legs[index].arrival)) /
+        60000,
+    );
+  if (
+    [...rides, ...waits].some((value) => !Number.isFinite(value) || value < 0)
+  )
+    return null;
+  return {
+    rideMinutes: rides.reduce((sum, value) => sum + value, 0),
+    transferMinutes: waits.reduce((sum, value) => sum + value, 0),
+    shortestTransferMinutes: waits.length ? Math.min(...waits) : null,
+  };
+}
+
+export function compareTrips(first: Trip, second: Trip) {
+  const [faster, slower] =
+    first.durationMinutes <= second.durationMinutes
+      ? [first, second]
+      : [second, first];
+  const fastFare = sampleTotal(faster),
+    slowFare = sampleTotal(slower);
+  return {
+    faster,
+    slower,
+    minutesSaved: slower.durationMinutes - faster.durationMinutes,
+    fareDifference:
+      fastFare === null || slowFare === null ? null : fastFare - slowFare,
+    transfersSaved: transferCount(slower) - transferCount(faster),
+  };
 }

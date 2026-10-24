@@ -1851,3 +1851,425 @@ svg {
     font-size: 16px;
   }
 }
+/* Route decisions: every trade-off stays visible and clearly marked as sample. */
+.compare-shortcut {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 13px 16px;
+  border: 1px dashed #cbd9b9;
+  border-radius: 8px;
+  color: #47633a;
+  background: #eff4e7;
+  font-size: 11px;
+  text-align: left;
+}
+.compare-shortcut > svg:last-child {
+  margin-left: auto;
+}
+.compare-shortcut:hover {
+  background: #e6efd8;
+}
+.route-card-utility {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 0 24px;
+  border-top: 1px solid #edf0e7;
+}
+.compare-route-check {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  min-height: 44px;
+  font-size: 10px;
+  color: #66795c;
+  cursor: pointer;
+}
+.compare-route-check input {
+  accent-color: #345b3c;
+  height: 14px;
+  width: 14px;
+}
+.share-trip {
+  position: relative;
+}
+.share-trip-button {
+  background: transparent;
+  color: #66795c;
+  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 0 8px 8px;
+}
+.share-trip-button:hover {
+  color: #234d36;
+}
+.share-feedback {
+  position: absolute;
+  top: calc(100% - 2px);
+  right: 0;
+  width: min(290px, calc(100vw - 68px));
+  padding: 15px;
+  border: 1px solid #d4e0c6;
+  border-radius: 9px;
+  box-shadow: 0 8px 28px #173f3520;
+  background: #f2f7e8;
+  font-size: 11px;
+  line-height: 1.8;
+  z-index: 5;
+  color: #49633e;
+}
+.share-feedback label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 9px;
+}
+.share-feedback input {
+  padding: 8px;
+  min-width: 0;
+  width: 100%;
+  background: white;
+  border: 1px solid #d3dfc5;
+  border-radius: 4px;
+  font-size: 11px;
+}
+.trip-time-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding-bottom: 15px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #e2e9d9;
+  color: #718360;
+  font-size: 10px;
+}
+.trip-time-breakdown strong {
+  color: #3d603b;
+  font-weight: 650;
+}
+.compare-tray {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  width: min(740px, calc(100% - 32px));
+  z-index: 30;
+  padding: 15px 18px;
+  border: 1px solid #c9d8b5;
+  background: #203f31f5;
+  backdrop-filter: blur(12px);
+  border-radius: 13px;
+  box-shadow: 0 10px 35px #173f3530;
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  color: #e9f4d6;
+}
+.compare-tray > div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.compare-tray strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+}
+.compare-tray small {
+  display: block;
+  font-size: 10px;
+  color: #bed0a8;
+  margin-top: 4px;
+}
+.compare-tray-action {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  background: #d9eca6;
+  color: #254b32;
+  padding: 13px 15px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 650;
+}
+.compare-tray-action:disabled {
+  background: #51674a;
+  color: #b9c7ae;
+  cursor: default;
+}
+.compare-tray-action:not(:disabled):hover {
+  background: #e8f6c1;
+}
+.compare-tray-clear {
+  display: grid;
+  place-items: center;
+  background: none;
+  color: #ccdcba;
+  width: 36px;
+  height: 44px;
+}
+.app-shell:has(.compare-tray) {
+  padding-bottom: 110px;
+}
+.comparison-dialog {
+  margin: auto;
+  padding: 27px 30px 23px;
+  border: 1px solid #dce5d0;
+  background: #fffef9;
+  border-radius: 18px;
+  width: min(760px, calc(100vw - 32px));
+  max-height: calc(100svh - 40px);
+  color: #284735;
+  box-shadow: 0 28px 90px #173f3540;
+  overscroll-behavior: contain;
+}
+.comparison-dialog::backdrop {
+  background: #173f3566;
+  backdrop-filter: blur(4px);
+}
+.comparison-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+.comparison-close {
+  background: #eef2e4;
+  color: #526a44;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+.comparison-close:hover {
+  background: #dee9ca;
+}
+.comparison-dialog h2 {
+  font-size: 30px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  font-weight: 550;
+}
+.comparison-dialog > p {
+  color: #7a8871;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 10px;
+}
+.comparison-insight {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin: 22px 0;
+  padding: 16px;
+  border: 1px solid #d6e5c2;
+  background: #edf5df;
+  border-radius: 9px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #54713b;
+}
+.comparison-insight svg {
+  margin-top: 3px;
+}
+.comparison-insight strong {
+  font-weight: 650;
+  color: #36562d;
+}
+.comparison-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+.comparison-table th,
+.comparison-table td {
+  padding: 13px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #e3e9d9;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.comparison-table th:first-child {
+  width: 30%;
+}
+.comparison-table thead th {
+  font-weight: 600;
+}
+.comparison-table tbody th {
+  color: #7e8c72;
+  font-weight: 450;
+  font-size: 11px;
+}
+.comparison-table td {
+  color: #456039;
+}
+.comparison-table td:nth-child(2),
+.comparison-table thead th:nth-child(2) {
+  background: #f2f6e9;
+}
+.comparison-table td:nth-child(3),
+.comparison-table thead th:nth-child(3) {
+  background: #f6f8f0;
+}
+.comparison-table thead th:nth-child(2) {
+  border-top-left-radius: 8px;
+}
+.comparison-table thead th:last-child {
+  border-top-right-radius: 8px;
+}
+.comparison-table small {
+  display: block;
+  color: #839176;
+  font-size: 9px;
+  margin-top: 5px;
+  font-weight: 400;
+}
+.comparison-route-name {
+  text-transform: capitalize;
+}
+.comparison-table td strong {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+.comparison-table .comparison-action-row td,
+.comparison-table .comparison-action-row th {
+  border-bottom: none;
+}
+.comparison-action-row .select-route {
+  width: fit-content;
+  font-size: 10px;
+  background: #244e38;
+  color: white;
+  gap: 10px;
+}
+.comparison-dialog .comparison-caution {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 10px;
+  margin-top: 19px;
+}
+.comparison-caution svg {
+  margin-top: 3px;
+}
+@media (max-width: 760px) {
+  .route-card-utility {
+    padding: 0 17px;
+    gap: 8px;
+  }
+  .share-trip-button,
+  .compare-route-check {
+    font-size: 10px;
+  }
+  .compare-tray {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 13px 16px;
+    bottom: 12px;
+  }
+  .compare-tray > div {
+    min-width: 180px;
+  }
+  .compare-tray-action {
+    order: 3;
+    width: 100%;
+    min-height: 42px;
+  }
+  .compare-tray-clear {
+    width: 26px;
+  }
+  .app-shell:has(.compare-tray) {
+    padding-bottom: 155px;
+  }
+  .comparison-dialog {
+    padding: 17px 14px;
+    width: calc(100vw - 20px);
+    border-radius: 12px;
+    max-height: calc(100svh - 24px);
+  }
+  .comparison-dialog h2 {
+    font-size: 26px;
+  }
+  .comparison-dialog > p {
+    font-size: 11px;
+  }
+  .comparison-header .eyebrow {
+    font-size: 7px;
+    gap: 5px;
+    letter-spacing: 1px;
+  }
+  .comparison-close {
+    width: 36px;
+    height: 36px;
+  }
+  .comparison-insight {
+    padding: 13px 11px;
+    font-size: 11px;
+    margin: 17px 0;
+    gap: 8px;
+  }
+  .comparison-table th,
+  .comparison-table td {
+    padding: 11px 7px;
+    font-size: 10px;
+  }
+  .comparison-table th:first-child {
+    width: 28%;
+  }
+  .comparison-table tbody th {
+    font-size: 9px;
+  }
+  .comparison-table td strong {
+    font-size: 16px;
+  }
+  .comparison-table small {
+    font-size: 8px;
+  }
+  .comparison-action-row .select-route {
+    font-size: 9px;
+    padding: 10px 7px;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+}
+.share-feedback > span {
+  display: block;
+  padding-right: 16px;
+}
+.share-dismiss {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 24px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: #5c7950;
+}
+.comparison-header {
+  position: sticky;
+  top: -27px;
+  background: #fffef9;
+  z-index: 2;
+}
+@media (max-width: 760px) {
+  .comparison-header {
+    top: -17px;
+  }
+}

@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { demoTrips } from "./demoTrips";
-import { findTrips, sampleTotal, sortTrips, transferCount } from "./tripUtils";
+import {
+  findTrips,
+  sampleTotal,
+  sortTrips,
+  transferCount,
+  tripMetrics,
+  compareTrips,
+} from "./tripUtils";
 describe("demo route planning", () => {
   it("matches the demo corridor case-insensitively and trims whitespace", () => {
     expect(
@@ -50,5 +57,65 @@ describe("demo route planning", () => {
     expect(
       new Set(demoTrips.flatMap((trip) => trip.legs.map((leg) => leg.agency))),
     ).toEqual(new Set(["SEPTA", "NJ_TRANSIT", "LIRR", "AMTRAK"]));
+  });
+});
+
+describe("route comparison", () => {
+  it("separates time on trains from connection intervals", () => {
+    const regional = tripMetrics(demoTrips[0])!;
+    const express = tripMetrics(demoTrips[1])!;
+    expect(regional).toEqual({
+      rideMinutes: 265,
+      transferMinutes: 50,
+      shortestTransferMinutes: 15,
+    });
+    expect(express).toEqual({
+      rideMinutes: 205,
+      transferMinutes: 45,
+      shortestTransferMinutes: 20,
+    });
+    for (const trip of demoTrips) {
+      const metrics = tripMetrics(trip)!;
+      expect(metrics.rideMinutes + metrics.transferMinutes).toBe(
+        trip.durationMinutes,
+      );
+    }
+  });
+  it("compares both input orders consistently without assuming unknown fares", () => {
+    for (const pair of [
+      [demoTrips[0], demoTrips[1]],
+      [demoTrips[1], demoTrips[0]],
+    ]) {
+      const result = compareTrips(pair[0], pair[1]);
+      expect(result.faster.id).toBe("amtrak-connection");
+      expect(result.minutesSaved).toBe(65);
+      expect(result.fareDifference).toBe(15);
+      expect(result.transfersSaved).toBe(1);
+    }
+    const unknownFare = {
+      ...demoTrips[1],
+      legs: demoTrips[1].legs.map((leg) => ({ ...leg, fare: undefined })),
+    };
+    expect(compareTrips(demoTrips[0], unknownFare).fareDifference).toBeNull();
+  });
+  it("does not present connection metrics for invalid or overlapping timestamps", () => {
+    expect(tripMetrics({ ...demoTrips[0], legs: [] })).toBeNull();
+    expect(sampleTotal({ ...demoTrips[0], legs: [] })).toBeNull();
+    const invalid = {
+      ...demoTrips[0],
+      legs: demoTrips[0].legs.map((leg, index) =>
+        index ? leg : { ...leg, arrival: "not-a-date" },
+      ),
+    };
+    expect(tripMetrics(invalid)).toBeNull();
+    const overlap = {
+      ...demoTrips[0],
+      legs: demoTrips[0].legs.map((leg, index) =>
+        index === 1
+          ? { ...leg, departure: demoTrips[0].legs[0].departure }
+          : leg,
+      ),
+    };
+    expect(tripMetrics(overlap)).toBeNull();
   });
 });

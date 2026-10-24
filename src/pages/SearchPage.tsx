@@ -11,12 +11,15 @@ import {
   ShieldCheck,
   Sparkles,
   TrainFront,
+  GitCompareArrows,
+  X,
 } from "lucide-react";
 import { demoTrips } from "../data/demoTrips";
 import { findTrips, sortTrips } from "../data/tripUtils";
 import { CorridorMap } from "../components/search/CorridorMap";
 import { SearchForm } from "../components/search/SearchForm";
 import { RouteCard } from "../components/search/RouteCard";
+import { RouteComparison } from "../components/search/RouteComparison";
 export default function SearchPage() {
   const [query, setQuery] = useState({
     origin: "Philadelphia",
@@ -27,6 +30,8 @@ export default function SearchPage() {
   const [searched, setSearched] = useState(false);
   const [formVersion, setFormVersion] = useState(0);
   const resultsRef = useRef<HTMLElement>(null);
+  const [compareIds, setCompareIds] = useState<string[]>([]);
+  const [compareOpen, setCompareOpen] = useState(false);
   const matches = findTrips(demoTrips, query.origin, query.destination);
   const trips = sortTrips(
     matches.filter(
@@ -35,9 +40,19 @@ export default function SearchPage() {
     ),
     order,
   );
+  const comparedTrips = trips.filter((trip) => compareIds.includes(trip.id));
+  function toggleCompare(id: string) {
+    setCompareIds((ids) =>
+      ids.includes(id)
+        ? ids.filter((value) => value !== id)
+        : [...ids, id].slice(-2),
+    );
+  }
   function search(origin: string, destination: string) {
     setQuery({ origin: origin.trim(), destination: destination.trim() });
     setSearched(true);
+    setCompareIds([]);
+    setCompareOpen(false);
     window.setTimeout(() => {
       resultsRef.current?.scrollIntoView({
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -89,6 +104,47 @@ export default function SearchPage() {
         </div>
         <CorridorMap />
       </section>
+      <RouteComparison
+        trips={comparedTrips}
+        open={compareOpen}
+        onClose={() => setCompareOpen(false)}
+      />
+      {comparedTrips.length > 0 && (
+        <div
+          className="compare-tray"
+          role="region"
+          aria-label="Selected routes for comparison"
+        >
+          <div>
+            <GitCompareArrows size={20} />
+            <span>
+              <strong>{comparedTrips.length} of 2 routes selected</strong>
+              <small>
+                {comparedTrips.length < 2
+                  ? "Select one more route to compare."
+                  : "A clearer view of your options."}
+              </small>
+            </span>
+          </div>
+          <button
+            className="compare-tray-action"
+            disabled={comparedTrips.length !== 2}
+            onClick={() => setCompareOpen(true)}
+          >
+            Compare routes <ArrowRight size={15} />
+          </button>
+          <button
+            className="compare-tray-clear"
+            onClick={() => {
+              setCompareIds([]);
+              setCompareOpen(false);
+            }}
+            aria-label="Clear comparison"
+          >
+            <X size={18} />
+          </button>
+        </div>
+      )}
       <div className="content-wrap">
         <SearchForm key={formVersion} onSearch={search} />
         <section className="network-strip" aria-label="Transit networks">
@@ -162,9 +218,27 @@ export default function SearchPage() {
                   Include Amtrak
                 </label>
               </div>
+              {trips.length > 1 && (
+                <button
+                  className="compare-shortcut"
+                  onClick={() => {
+                    setCompareIds(trips.slice(0, 2).map((trip) => trip.id));
+                    setCompareOpen(true);
+                  }}
+                >
+                  <GitCompareArrows size={15} />
+                  Compare both options <ArrowRight size={14} />
+                </button>
+              )}
               {trips.length > 0 ? (
                 trips.map((trip, index) => (
-                  <RouteCard key={trip.id} trip={trip} index={index} />
+                  <RouteCard
+                    key={trip.id}
+                    trip={trip}
+                    index={index}
+                    comparing={compareIds.includes(trip.id)}
+                    onCompare={() => toggleCompare(trip.id)}
+                  />
                 ))
               ) : (
                 <div className="empty-state">

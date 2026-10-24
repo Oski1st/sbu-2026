@@ -75,3 +75,11 @@ Deploy on a Node-capable host with build command `pnpm install --frozen-lockfile
 Validated the real endpoint through both Vite and the production host: HTTP 200 with an array of 22 observations at test time on October 24, 2026. The isolated combined checkout with PR #2 built successfully and passed 19 tests. Its browser Wallet displayed “Live feed fetched” with retrieval time, agency-wide observations, and the explicit statement that demo times remain simulated. This count is a test observation, not a fixed expected feed size.
 
 Official source: https://api.septa.org/
+
+## Compare and share routes
+
+Search now includes “Compare both options” and per-route comparison checkboxes. The comparison dialog explains sample fare, total travel time, train changes, time on trains, time between trains and the shortest transfer interval. These intervals are derived from the itinerary, not live connection guarantees. Choosing either column opens its canonical Journey URL. The native modal supports Escape, focus containment and focus restoration.
+
+Each route also offers a copyable Journey link, with a manual-copy fallback if clipboard access is unavailable. On localhost it is explicitly labeled a preview link with a deployment reminder; links only become remotely shareable once the app is hosted. No agency booking or tracking service receives these links automatically.
+
+QA: check comparison at 320px and desktop widths, choosing from each column, closing with Escape, clearing selections, filtering out Amtrak, and copying/reopening a Journey link. Invalid timestamps and missing fares must display unavailable metrics instead of invented values.
