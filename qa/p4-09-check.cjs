@@ -204,11 +204,13 @@ const qs = (page) => Object.fromEntries(new URL(page.url()).searchParams);
           markers[t.textContent.trim()] = { cx: +c.getAttribute("cx"), cy: +c.getAttribute("cy") };
         }
       }
-      const caption = m.querySelector(".map-scale"), legend = m.querySelector(".map-city-legend");
+      // The legend may sit inside the map box (961f568) or below it in a wrapper (af5fa8f); look in both.
+      const caption = m.querySelector(".map-scale"), legend = m.querySelector(".map-city-legend") ?? m.parentElement?.querySelector(".map-city-legend");
       // Is the legend inside the bottom fade of a mask-image (e.g. linear-gradient to bottom … black 91%, transparent)?
       let fade = null;
       if (legend && visible(legend)) {
-        for (let e = legend.parentElement; e; e = e.parentElement) {
+        // Check the legend against the map's own mask (it may be a sibling, not an ancestor) and any masked ancestor.
+        for (let e of [m, ...(function* () { for (let a = legend.parentElement; a; a = a.parentElement) yield a; })()]) {
           const mask = getComputedStyle(e).maskImage || getComputedStyle(e).webkitMaskImage || "none";
           // Computed values drop the default "to bottom" direction, so a direction-less linear-gradient is vertical too.
           const vertical = /linear-gradient\(\s*(to bottom|180deg)/.test(mask) || /linear-gradient\(\s*(rgb|#|transparent|black|white)/.test(mask);
@@ -216,7 +218,11 @@ const qs = (page) => Object.fromEntries(new URL(page.url()).searchParams);
             const stops = [...mask.matchAll(/(\d+(?:\.\d+)?)%/g)].map((x) => +x[1]);
             const solidEnd = stops.length ? Math.max(...stops) / 100 : 1;
             const r = e.getBoundingClientRect(), lr = legend.getBoundingClientRect();
-            fade = { solidEndPx: Math.round(r.top + solidEnd * r.height), legendBottom: Math.round(lr.bottom) };
+            const overlapsBox = lr.top < r.bottom && lr.bottom > r.top && lr.left < r.right && lr.right > r.left;
+            // Only text that lies inside the masked box can be faded; text fully below it is unaffected.
+            fade = overlapsBox
+              ? { solidEndPx: Math.round(r.top + solidEnd * r.height), legendBottom: Math.round(lr.bottom) }
+              : { solidEndPx: Math.round(r.bottom), legendBottom: Math.round(Math.min(lr.bottom, r.bottom)), outside: true };
             break;
           }
         }
@@ -254,7 +260,7 @@ const qs = (page) => Object.fromEntries(new URL(page.url()).searchParams);
       const hits = cities.filter((c) => Math.min(c.r, L.r) - Math.max(c.l, L.l) > 4 && Math.min(c.b, L.b) - Math.max(c.t, L.t) > 4).map((c) => c.name);
       log("MAP", `${width}px: legend doesn't collide with city labels`, hits.length === 0, hits.join(", "));
       log("MAP", `${width}px: legend (with the 'unverified' disclosure) isn't in a mask fade`, !info.fade || info.fade.legendBottom <= info.fade.solidEndPx,
-        info.fade ? `legend bottom ${info.fade.legendBottom}px vs fade starts ${info.fade.solidEndPx}px` : "no mask");
+        info.fade ? (info.fade.outside ? "legend is outside the masked map box" : `legend bottom ${info.fade.legendBottom}px vs fade starts ${info.fade.solidEndPx}px`) : "no mask");
     }
     log("MAP", `${width}px: no horizontal page overflow`, (await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)) <= 0);
     const unverified = /unverified/i.test(info.caption + " " + info.legend);
