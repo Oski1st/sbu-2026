@@ -52,7 +52,7 @@ node qa/septa-proxy-outage.mjs                              # proxy failure mode
 node qa/smoke.mjs http://127.0.0.1:4173                     # the same checks used after a deploy
 ```
 
-`qa/e2e-check.cjs` needs Playwright, which is **not** a project dependency. Install it outside the repo (`npm i playwright` in a scratch folder, then `NODE_PATH=<folder>/node_modules`) or use `npx -p playwright`. Adding Playwright to `package.json` is Person 1's call.
+Playwright is a locked devDependency. Run `pnpm exec playwright install chromium` once after installing dependencies.
 
 ## Baseline results: `5efcd3b`
 
@@ -151,3 +151,15 @@ Status reflects the latest verified run. "Fix pending" means a fix is in progres
 | 5 | Person 1 (`AppLayout`) | Low: copy | Open: fix pending (Person 1) | The footer says "Sample itineraries · No live arrival data" while the Wallet shows a live SEPTA snapshot. Still present on `73635ac`. Suggested wording: "Sample itineraries · Live data limited to labelled SEPTA snapshots". | Open `/wallet/regional-connection` and compare the footer with the SEPTA panel. | [screenshot](qa-screenshots/septa-live-panel.png) |
 
 None of the open findings blocks the demo.
+
+
+## Person 1 integration candidate, October 24
+
+Validated main `73635ac` plus QA scripts at `f9abf68` and Person 1's initial-focus/footer fixes. This is a local candidate run, not a claim that a hosted deployment exists.
+
+- Frozen install, production build and all 33 unit tests passed (Node 24.22.1, pnpm 11.25.0, Playwright 1.64.1).
+- Browser checks: **117/121 passed**. First Tab reaches Skip to content; route changes focus main; both footer checks pass. The four failures are duplicate Journey/Wallet page navigation on both trips (finding 4), assigned to Persons 2 and 3. The runner exits nonzero when checks fail.
+- Proxy outage checks: **5/5 passed**. Production server smoke: **6/6 passed** on `HOST=0.0.0.0 PORT=4173` via loopback. This smoke run is local, not hosted.
+- Findings 3 and 5 pass in this candidate; finding 4 remains open. Preserve the earlier baseline results above.
+
+Playwright is now a locked development dependency. After `pnpm install --frozen-lockfile`, run `pnpm exec playwright install chromium` once to install the browser. Run `pnpm test:e2e http://127.0.0.1:4173` or `node qa/e2e-check.cjs http://127.0.0.1:4173`. Screenshots default to ignored `qa-results/screenshots/`.

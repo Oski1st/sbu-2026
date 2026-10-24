@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import type { ComponentType } from "react";
 import { Navigate, Link, Route, Routes, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import SearchPage from "./pages/SearchPage";
 import { AppLayout } from "./components/layout/AppLayout";
 import { TripProvider, useSelectedTrip } from "./components/layout/TripContext";
@@ -44,10 +44,14 @@ function SelectionEntry({ kind }: { kind: "journey" | "wallet" }) {
 }
 function NavigationEffects() {
   const location = useLocation();
+  const previousPath = useRef(location.pathname);
   useEffect(() => {
-    window.scrollTo({ top: 0 });
     document.title = `OneLine · ${location.pathname.startsWith("/journey") ? "Your journey" : location.pathname.startsWith("/wallet") ? "Your wallet" : "A better way there"}`;
-    document.getElementById("main-content")?.focus({ preventScroll: true });
+    if (previousPath.current !== location.pathname) {
+      previousPath.current = location.pathname;
+      window.scrollTo({ top: 0 });
+      document.getElementById("main-content")?.focus({ preventScroll: true });
+    }
   }, [location.pathname]);
   return null;
 }

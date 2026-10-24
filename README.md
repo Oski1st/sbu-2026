@@ -89,3 +89,11 @@ QA: check comparison at 320px and desktop widths, choosing from each column, clo
 The shell owns global navigation and the focusable `#main-content` container. Page-level Suspense keeps navigation visible while modules load. Search and Journey render their own `main`; Wallet intentionally returns a div and receives its `main` wrapper from the host route. Keep this contract when polishing the pages. Global element resets live in Tailwind's base layer so page utility classes (including white text on dark buttons) take precedence.
 
 Integration was validated against Journey head `ff3488a` and Wallet head `930e1b5`, combined with the comparison and proxy features. No overflow was observed at 320px on the Amtrak Journey/Wallet pages. The original proxy-suite timeout reported on another machine did not reproduce locally; all 33 combined tests passed.
+
+## Team QA and deployment handoff
+
+- [QA checklist and findings](docs/qa-checklist.md)
+- [Node deployment guide](docs/deployment.md)
+- [Two-minute demo script](docs/demo-script.md)
+
+Install the locked dev dependencies with `pnpm install --frozen-lockfile`, then install the browser once with `pnpm exec playwright install chromium`. Against a running production server, use `pnpm test:e2e http://127.0.0.1:4173 qa-results/screenshots`. The runner creates its screenshot directory and exits nonzero when a check fails. `pnpm test:proxy` exercises upstream failures; `pnpm test:smoke <url>` validates a local or deployed origin. Browser QA is an explicit step and is not added to the fast Vitest command.
