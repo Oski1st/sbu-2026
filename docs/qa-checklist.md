@@ -6,13 +6,23 @@ Owner: Person 4. Each run is against the production server (`pnpm build && pnpm 
 
 | Run | `main` commit | Contents | Build / tests | Browser checks | Proxy outage | Deploy smoke |
 | --- | --- | --- | --- | --- | --- | --- |
-| **Final** (Oct 24) | **`93c0408`** "Merge keyboard focus, data labels and reproducible QA" | Person 1's initial-focus and footer fixes; Playwright 1.64.1 devDependency; `render.yaml` | Pass; 33 / 33 tests | **117 / 121** (see below) | 5 / 5 | 6 / 6 (clean checkout, `render.yaml` build command, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
+| Post-#8/#9 | _pending merge_ | Persons 2/3 duplicate-navigation fixes | Not run on `main` yet | Not run on `main` yet (pre-merge preview: 121 / 121) | Not run yet | Not run yet |
+| **Person 1 fixes** (Oct 24) | **`93c0408`** "Merge keyboard focus, data labels and reproducible QA" | Person 1's initial-focus and footer fixes; Playwright 1.64.1 devDependency; `render.yaml` | Pass; 33 / 33 tests | **117 / 121** (see below) | 5 / 5 | 6 / 6 (clean checkout, `render.yaml` build command, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
 | **Interim** (Oct 24) | **`73635ac`** "Merge shared shell integration fixes" (PR #7) | Adds the one-`<main>` shell contract | Pass; 33 / 33 tests | 114 / 119 (see below) | 5 / 5 | 6 / 6 (`HOST=0.0.0.0 PORT=8080`, LAN IP) |
 | Baseline (Oct 24) | `5efcd3b` "Merge reviewed OneLine ticket wallet" | Search, Compare, Journey, Wallet, SEPTA proxy | Pass; 33 / 33 tests | 102 / 105 | 5 / 5 | 6 / 6 (clean checkout, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
 
 The browser suite grew between runs, which is why the totals differ. The interim run adds one-`<main>` checks on every page, duplicate page-navigation checks and a footer-wording check. The footer check was added after the interim run, so it first runs on the final commit.
 
-## Final run: `93c0408`
+## Pre-merge preview: open PRs #8 and #9 (not a `main` result)
+
+To catch problems before merge, PR #8 (Wallet, head `404c72f`) and PR #9 (Journey, head `2867ec2`) were merged locally onto `93c0408` in a scratch checkout. Nothing was pushed. **Finding 4 stays open until this is re-run on the merged `main` commit.**
+
+- `pnpm install --frozen-lockfile`, `pnpm build`: pass. `pnpm test`: 6 files, **45 / 45**
+- `pnpm test:e2e`: **121 / 121**. Both duplicate-navigation checks pass on both trips, as do landmarks, keyboard, 320px / 390px and the SEPTA states.
+- `pnpm test:proxy`: 5 / 5. Demo rehearsal, online and offline: 8 / 8 each
+- PR #8 rewords the SEPTA panel ("SEPTA observations retrieved / unavailable", "Refresh feed", a new loading message). The first run read the panel before it settled and failed 9 SEPTA checks. These were **script false failures, not app bugs**: each state still behaved correctly. `qa/e2e-check.cjs` now accepts the old and new wording, and the re-run against `93c0408` alone is unchanged at 117 / 121.
+
+## Person 1 fixes run: `93c0408`
 
 Toolchain: Node 22.23.4, pnpm 11.25.0, Playwright 1.64.1 (locked devDependency) with its Chromium. Commands: `pnpm install --frozen-lockfile`, `pnpm build`, `pnpm test`, `pnpm exec playwright install chromium`, `pnpm test:e2e`, `pnpm test:proxy`, `pnpm test:smoke`. The deploy smoke test used a clean checkout of `93c0408` built with the `render.yaml` build command (`--prod=false`, `NODE_ENV=production`). This is a local run; no hosted URL exists yet.
 
