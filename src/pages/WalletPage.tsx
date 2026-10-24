@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import type { Trip } from '../types/transit';
-import { demoTrips } from '../data/demoTrips';
+import { getTripById } from '../data/tripLookup';
 import { TicketCard } from '../components/wallet/TicketCard';
 import { TransitStatus } from '../components/wallet/TransitStatus';
 import { lirrThroughTicketNote } from '../components/wallet/ticketCoverage';
@@ -45,7 +45,7 @@ function TripWallet({ trip, septaEndpoint }: { trip: Trip; septaEndpoint?: strin
 export default function WalletPage({ tripId, septaEndpoint }: WalletPageProps) {
   const { tripId: routeTripId } = useParams<{ tripId: string }>();
   const id = tripId ?? routeTripId ?? tripIdFromLocation();
-  const trip = demoTrips.find((item: Trip) => item.id === id);
+  const trip = getTripById(id);
   return <div className="oneline-wallet">
     {trip ? <TripWallet key={trip.id} trip={trip} septaEndpoint={septaEndpoint} /> : <section className="ol-empty"><span className="ol-eyebrow">TRIP WALLET</span><h1>{id ? 'Journey not found' : 'Choose your journey first'}</h1><p>Open a wallet from the journey search results. No tickets or itinerary have been created.</p><Link className="ol-button" to="/">Find a journey</Link></section>}
   </div>;
