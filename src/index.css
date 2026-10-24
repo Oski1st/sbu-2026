@@ -318,6 +318,10 @@
   color: #758c7b;
   font-size: 8px;
 }
+.map-city-label--mobile,
+.map-city-legend {
+  display: none;
+}
 .content-wrap {
   max-width: 1188px;
   margin: auto;
@@ -1473,8 +1477,25 @@
     font-size: 7px;
   }
   .map-scale {
-    bottom: 10px;
-    font-size: 7px;
+    display: none;
+  }
+  .map-city-label--desktop {
+    display: none;
+  }
+  .map-city-label--mobile {
+    display: block;
+  }
+  .map-city-legend {
+    display: block;
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 1px;
+    margin: 0;
+    color: #405e50;
+    font-size: 11px;
+    line-height: 1.35;
+    text-align: center;
   }
   .search-section {
     padding: 20px 18px 14px;
