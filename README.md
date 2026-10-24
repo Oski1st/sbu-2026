@@ -97,3 +97,21 @@ Integration was validated against Journey head `ff3488a` and Wallet head `930e1b
 - [Two-minute demo script](docs/demo-script.md)
 
 Install the locked dev dependencies with `pnpm install --frozen-lockfile`, then install the browser once with `pnpm exec playwright install chromium`. Against a running production server, use `pnpm test:e2e http://127.0.0.1:4173 qa-results/screenshots`. The runner creates its screenshot directory and exits nonzero when a check fails. `pnpm test:proxy` exercises upstream failures; `pnpm test:smoke <url>` validates a local or deployed origin. Browser QA is an explicit step and is not added to the fast Vitest command.
+
+
+## East Coast expansion (sample planning catalogue)
+
+Search now explores 24 cities from Portland, Maine to Miami, Florida, with inland branches and Long Island. City aliases such as NYC, Philly and DC are accepted. Four featured corridors, rail/bus/mixed filters and operator filters make it easier to explore. The original Philadelphia → Stony Brook IDs and itinerary times remain unchanged.
+
+`Agency` adds `GREYHOUND` and `FLIXBUS`; the central agency registry includes rail/bus mode, and `Leg.mode` is optional for backward compatibility. `Trip.planningNote` identifies the new concept journeys. `src/data/eastCoast.ts` builds deterministic sample trips with stable IDs; they are exported through `demoTrips` so canonical Journey/Wallet links survive reloads.
+
+**These are city-level concept journeys, not verified routes or bookable itineraries.** The illustrative graph does not validate service dates, actual operator coverage, directness, intermediate vehicle changes, terminal locations or cross-city station transfers. Sample durations and connection intervals are synthetic, not minimum-transfer guidance. New routes intentionally have no quoted fares. Greyhound/FlixBus integration currently means operator identity, mode-aware planning and official booking-site handoff; it does not provide live bus inventory, arrivals, pricing or ticket issuance. The labelled SEPTA snapshot remains the only live data.
+
+Official network/booking references, checked October 24, 2026:
+- https://www.greyhound.com/bus-routes
+- https://www.flixbus.com/bus-routes
+- https://www.amtrak.com/regions/northeast
+
+Journey and Wallet exhaustive operator registries must include both bus operators before this shared contract merges. Keep all operator purchase links on HTTPS operator-owned domains. Show full calendar dates for overnight concepts; do not truncate duration to a 24-hour clock. Coordinate compatibility edits with Persons 2/3 through the expansion PR and https://github.com/Oski1st/oneline-team-hub/issues/3.
+
+Expansion validation: production build and 53 unit tests pass; existing browser suite 121/121, proxy outage checks 5/5, local production smoke 6/6. Browser checks through the CUA preview verified Boston→New York bus filtering and FlixBus Journey→Wallet, Portland→Miami next-day arrival labels at 320px, and Boston→Stony Brook Greyhound+LIRR guided progression and Wallet at 390px. Those pages had one main landmark and no horizontal overflow. These results are local, not hosted-deployment results.

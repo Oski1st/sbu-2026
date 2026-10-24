@@ -6,6 +6,7 @@ import {
   ChevronDown,
   Clock3,
   TrainFront,
+  Bus,
   ArrowUpRight,
 } from "lucide-react";
 import type { Trip } from "../../types";
@@ -14,6 +15,7 @@ import {
   formatDuration,
   formatMoney,
   formatTime,
+  formatJourneyTime,
   sampleTotal,
   transferCount,
   tripMetrics,
@@ -46,9 +48,11 @@ export function RouteCard({
       <div className="route-card-top">
         <span className={`route-kicker ${index === 0 ? "recommended" : ""}`}>
           <span className="little-dot" />
-          {trip.legs.some((leg) => leg.agency === "AMTRAK")
-            ? "FEWER TRANSFERS"
-            : "LOWER SAMPLE FARE"}
+          {trip.planningNote
+            ? "EXPLORE THIS CORRIDOR"
+            : trip.legs.some((leg) => leg.agency === "AMTRAK")
+              ? "FEWER TRANSFERS"
+              : "LOWER SAMPLE FARE"}
         </span>
         <span className="sample-label">SAMPLE ITINERARY</span>
       </div>
@@ -66,19 +70,21 @@ export function RouteCard({
               <small> USD</small>
             </strong>
           )}
-          <span>illustrative total</span>
+          <span>
+            {price === null ? "with the operator" : "illustrative total"}
+          </span>
         </div>
       </div>
       <div className="route-summary">
         <div className="route-time">
           <strong>{formatTime(first.departure)}</strong>
-          <span>Philadelphia</span>
+          <span>{trip.origin}</span>
         </div>
         <div className="duration-line">
           <span>
             {formatDuration(trip.durationMinutes)}
             <i> · </i>
-            {transferCount(trip)} transfers
+            {trip.planningNote ? "Connections unverified" : `${transferCount(trip)} transfers`}
           </span>
           <div>
             <i />
@@ -87,8 +93,8 @@ export function RouteCard({
           </div>
         </div>
         <div className="route-time arrival">
-          <strong>{formatTime(last.arrival)}</strong>
-          <span>Stony Brook</span>
+          <strong>{formatJourneyTime(last.arrival, first.departure)}</strong>
+          <span>{trip.destination}</span>
         </div>
       </div>
       <div
@@ -104,12 +110,21 @@ export function RouteCard({
                 { "--agency-color": agencies[agency].color } as CSSProperties
               }
             >
-              <TrainFront size={13} />
+              {agencies[agency].mode === "bus" ? (
+                <Bus size={13} />
+              ) : (
+                <TrainFront size={13} />
+              )}
               {agencies[agency].shortName}
             </span>
           </span>
         ))}
       </div>
+      {trip.planningNote && (
+        <p className="concept-note">
+          Concept route · Actual services, terminals and transfers unverified.
+        </p>
+      )}
       <div className="route-card-utility">
         <label className="compare-route-check">
           <input
@@ -146,16 +161,16 @@ export function RouteCard({
           {metrics && (
             <div className="trip-time-breakdown">
               <span>
-                <strong>{formatDuration(metrics.rideMinutes)}</strong> on trains
+                <strong>{formatDuration(metrics.rideMinutes)}</strong> on board
               </span>
               <span>
-                <strong>{metrics.transferMinutes} min</strong> between trains
+                <strong>{metrics.transferMinutes} min</strong> connecting
               </span>
             </div>
           )}
           <p className="details-note">
             <Clock3 size={14} />
-            All times shown in Eastern Time · Oct 24, 2026 · Sample only
+            All times shown in Eastern Time · Sample departure Oct 24, 2026
           </p>
           {trip.legs.map((leg, i) => (
             <div key={leg.id} className="leg-detail">
@@ -171,7 +186,8 @@ export function RouteCard({
                   {leg.from} <ArrowRight size={11} /> {leg.to}
                 </p>
                 <small>
-                  {formatTime(leg.departure)} – {formatTime(leg.arrival)} ·{" "}
+                  {formatJourneyTime(leg.departure, first.departure)} –{" "}
+                  {formatJourneyTime(leg.arrival, first.departure)} ·{" "}
                   {leg.fare
                     ? leg.fare.amount === 0
                       ? "Included in preceding sample LIRR fare"
@@ -190,7 +206,8 @@ export function RouteCard({
             </div>
           ))}
           <p className="fare-disclaimer">
-            Sample fares are for the demo only. Final prices, train changes and
+            {trip.planningNote}
+            Sample fares are for the demo only. Final prices, connections and
             availability must be confirmed with each agency. Tickets are
             purchased separately.
           </p>

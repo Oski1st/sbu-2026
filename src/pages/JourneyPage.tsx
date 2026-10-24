@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { demoTrips } from "../data/demoTrips";
+import { formatDuration } from "../data/tripUtils";
 import type { Trip } from "../types/transit";
 import { DelaySimulation } from "../components/journey/DelaySimulation";
 import { JourneyDemoControls } from "../components/journey/JourneyDemoControls";
@@ -64,10 +65,11 @@ export default function JourneyPage() {
           <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Your journey</p>
           <h1 className="mt-2 text-3xl font-bold tracking-[-0.04em] text-slate-950 sm:text-4xl">{trip.origin} <span className="text-slate-400" aria-hidden="true">→</span> {trip.destination}</h1>
           <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-slate-600">
-            <span className="rounded-full bg-slate-100 px-3 py-1.5 font-bold text-slate-800">{trip.durationMinutes} min total</span>
-            <span className="rounded-full bg-slate-100 px-3 py-1.5 font-bold text-slate-800">{trip.legs.length} {trip.legs.length === 1 ? "train" : "trains"}</span>
+            <span className="rounded-full bg-slate-100 px-3 py-1.5 font-bold text-slate-800">{formatDuration(trip.durationMinutes)} total</span>
+            <span className="rounded-full bg-slate-100 px-3 py-1.5 font-bold text-slate-800">{trip.legs.length} {trip.legs.length === 1 ? "segment" : "segments"}</span>
             {agencies.map((agency) => <span key={agency} className={`rounded-full px-3 py-1.5 text-xs font-extrabold ${agencyStyles[agency].badge}`}>{agencyStyles[agency].label}</span>)}
           </div>
+          {trip.planningNote && <p className="mt-5 rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-amber-950"><strong>Sample route concept. </strong>{trip.planningNote}</p>}
           <Link
             to={`/wallet/${trip.id}`}
             className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-bold text-white transition hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
@@ -133,8 +135,8 @@ export default function JourneyPage() {
         </section>
 
         <aside className="mt-8 rounded-3xl border border-slate-200 bg-white p-5 text-sm leading-6 text-slate-600 sm:p-6">
-          <p className="font-bold text-slate-950">A note on platforms</p>
-          <p className="mt-1">Platform assignments can change and are not included here. Always follow live station signage, announcements, and official agency updates.</p>
+          <p className="font-bold text-slate-950">A note on boarding locations</p>
+          <p className="mt-1">Platform, gate, and curbside boarding locations can change and are not included here. Always follow station or terminal signage, announcements, and official operator updates.</p>
         </aside>
       </div>
     </main>

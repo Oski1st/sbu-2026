@@ -1,135 +1,61 @@
-import { ArrowUpRight, TrainFront } from "lucide-react";
+import regions from "../../data/eastCoastMap.json";
+
+// Boundary source (public domain): Natural Earth 1:50m admin-1 states.
+// https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_50m_admin_1_states_provinces.geojson
+// Simplified at 0.035 degrees, Mercator-projected; geography is bundled offline.
+// Approximate city centres, projected with the same Mercator scale as the
+// Natural Earth boundaries. Label offsets do not move the geographic markers.
+const stops = [
+  [408.3, 102.7, "Portland", 449, 82],
+  [398.5, 124.2, "Boston", 449, 115],
+  [362.7, 150.9, "New York", 415, 173],
+  [348.7, 163, "Philadelphia", 367, 204],
+  [325.9, 179.5, "Washington, DC", 262, 211],
+  [306.5, 227.2, "Raleigh", 238, 246],
+  [290.8, 271.4, "Charleston", 207, 289],
+  [273.2, 331.2, "Orlando", 209, 345],
+  [287.6, 369.1, "Miami", 324, 381],
+] as const;
+const conceptPath = stops.map(([x, y], i) => `${i ? "L" : "M"}${x} ${y}`).join(" ");
+
 export function CorridorMap() {
   return (
-    <div
-      className="corridor-map"
-      aria-label="Illustrative rail corridor connecting Philadelphia, Trenton, New York, Huntington and Stony Brook. Not geographically to scale."
-      role="img"
-    >
+    <div className="corridor-map east-map" role="img" aria-label="Geographic map of the eastern United States, with state boundaries and city markers from Portland, Maine to Miami, Florida and Stony Brook on Long Island. Dashed city connections are illustrative concepts, not verified services or actual rail and road alignments.">
       <svg viewBox="0 0 640 430" className="map-art" aria-hidden="true">
         <defs>
-          <pattern
-            id="map-grid"
-            width="25"
-            height="25"
-            patternUnits="userSpaceOnUse"
-          >
-            <circle cx="1" cy="1" r=".8" fill="#cad5c4" />
+          <pattern id="east-grid" width="24" height="24" patternUnits="userSpaceOnUse">
+            <circle cx="1" cy="1" r=".8" fill="#cbd9c9" />
           </pattern>
+          <clipPath id="east-map-clip"><rect x="25" y="30" width="590" height="365" rx="12" /></clipPath>
         </defs>
-        <rect width="640" height="430" fill="url(#map-grid)" />
-        <path
-          d="M245-20C260 55 332 80 321 154S269 255 333 296 389 371 408 460H670V-20Z"
-          fill="#dce8e4"
-        />
-        <path
-          d="M396 149C436 132 502 109 650 92L664 172C558 165 480 182 423 196Z"
-          fill="#f0f2e6"
-          stroke="#cdd8c8"
-        />
-        <g fill="none" stroke="#cfd9c9" strokeWidth="1">
-          <path d="M-5 112C124 110 179 65 245 34" />
-          <path d="M-5 127C124 125 184 79 250 48" />
-          <path d="M-5 142C124 140 189 93 255 62" />
-          <path d="M50 430C110 327 215 347 254 243" />
-          <path d="M71 430C131 327 236 347 275 243" />
-          <path d="M92 430C152 327 257 347 296 243" />
-        </g>
-        <g
-          fontFamily="Arial,sans-serif"
-          fontSize="11"
-          fill="#87988a"
-          letterSpacing="2"
-        >
-          <text x="104" y="72">
-            PENNSYLVANIA
-          </text>
-          <text x="220" y="345">
-            NEW JERSEY
-          </text>
-          <text x="479" y="205" transform="rotate(-8 479 205)">
-            LONG ISLAND
-          </text>
-        </g>
-        <path
-          className="map-track-shadow"
-          d="M107 320L215 231Q227 220 241 220H327Q342 220 349 205L376 150H518"
-        />
-        <path
-          d="M107 320L215 231Q227 220 241 220"
-          fill="none"
-          stroke="#497dc5"
-          strokeWidth="7"
-          strokeLinecap="round"
-        />
-        <path
-          d="M241 220H327Q342 220 349 205L376 150"
-          fill="none"
-          stroke="#d8834b"
-          strokeWidth="7"
-          strokeLinecap="round"
-        />
-        <path
-          d="M376 150H518"
-          fill="none"
-          stroke="#5c7dc8"
-          strokeWidth="7"
-          strokeLinecap="round"
-        />
-        <path
-          d="M107 320Q155 170 376 150"
-          fill="none"
-          stroke="#2e7969"
-          strokeWidth="2"
-          strokeDasharray="5 7"
-        />
-        <g fill="#f7f8f0" stroke="#244d3e" strokeWidth="3">
-          <circle cx="107" cy="320" r="8" />
-          <circle cx="241" cy="220" r="6" />
-          <circle cx="376" cy="150" r="8" />
-          <circle cx="466" cy="150" r="5" />
-          <circle cx="518" cy="150" r="8" />
-        </g>
-        <g fontFamily="Arial,sans-serif" fill="#244d3e">
-          <text x="61" y="351" fontSize="16" fontWeight="700">
-            Philadelphia
-          </text>
-          <text x="219" y="247" fontSize="12">
-            Trenton
-          </text>
-          <text x="340" y="124" fontSize="14" fontWeight="700">
-            New York
-          </text>
-          <text x="439" y="177" fontSize="10">
-            Huntington
-          </text>
-          <text x="489" y="123" fontSize="15" fontWeight="700">
-            Stony Brook
-          </text>
-          <text
-            x="144"
-            y="204"
-            fontSize="10"
-            transform="rotate(-32 144 204)"
-            fill="#2e7969"
-          >
-            Amtrak connection
-          </text>
+        <g clipPath="url(#east-map-clip)">
+          <rect width="640" height="430" fill="#e2ece7" />
+          {regions.map((region) => <path key={region.name} d={region.path} fill="#f2f4e9" stroke="#c5d2c0" strokeWidth=".8" fillRule="evenodd" />)}
+          <rect width="640" height="430" fill="url(#east-grid)" opacity=".45" />
+          <text x="452" y="290" fill="#78958a" fontSize="10" letterSpacing="3" transform="rotate(-57 452 290)">ATLANTIC OCEAN</text>
+          <path d={conceptPath} fill="none" stroke="#fffef7" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d={conceptPath} fill="none" stroke="#2e7969" strokeWidth="2.5" strokeDasharray="4 4" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M362.7 150.9L373.2 147.5" fill="none" stroke="#5372c1" strokeWidth="3" />
+          {stops.map(([x, y, name, lx, ly]) => (
+            <g key={name}>
+              <path d={`M${x} ${y}L${lx - 5} ${ly - 4}`} fill="none" stroke="#82978c" strokeWidth=".8" />
+              <circle cx={x} cy={y} r="3.8" fill="#fafbf2" stroke="#244d3e" strokeWidth="2" />
+              <text x={lx} y={ly} fontSize="11" fontWeight="700" fill="#244d3e" stroke="#f5f7ed" strokeWidth="3" paintOrder="stroke">{name}</text>
+            </g>
+          ))}
+          <path d="M373.2 147.5L460 145" stroke="#82978c" strokeWidth=".8" />
+          <circle cx="373.2" cy="147.5" r="3.2" fill="#f7f8f0" stroke="#5372c1" strokeWidth="2" />
+          <text x="467" y="149" fontSize="11" fill="#244d3e" fontWeight="700">Stony Brook</text>
+          <g transform="translate(72 78)" fill="#526e5d" fontSize="10">
+            <text fontSize="11" fontWeight="700" letterSpacing="2">EASTERN UNITED STATES</text>
+            <path d="M0 20H24" stroke="#2e7969" strokeWidth="2.5" strokeDasharray="4 4" />
+            <text x="31" y="24">Concept connections</text>
+          </g>
+          <g transform="translate(566 65)" fill="#526e5d" textAnchor="middle"><text fontSize="10" y="-8">N</text><path d="M0 0L-4 12H4Z" /></g>
         </g>
       </svg>
-      <div className="map-stamp">
-        <span className="stamp-icon">
-          <TrainFront size={18} />
-        </span>
-        <div>
-          Four networks.<strong>One way forward.</strong>
-        </div>
-        <ArrowUpRight size={19} />
-      </div>
-      <span className="map-caption">
-        THE NORTHEAST, CONNECTED <span>↗</span>
-      </span>
-      <span className="map-scale">Illustrative network map</span>
+      <span className="map-caption">MAINE TO FLORIDA <span>↗</span></span>
+      <span className="map-scale">Natural Earth geography · Connections unverified</span>
     </div>
   );
 }

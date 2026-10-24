@@ -11,6 +11,8 @@ type TransferAssistantProps = {
 export function TransferAssistant({ arrivingLeg, nextLeg, isAffected, isCurrent }: TransferAssistantProps) {
   const transferTime = differenceInMinutes(arrivingLeg.arrival, nextLeg.departure);
   const nextAgency = agencyStyles[nextLeg.agency];
+  const nextIsCoach = nextLeg.mode === "bus";
+  const arrivingByCoach = arrivingLeg.mode === "bus";
 
   return (
     <section className={`relative ml-6 my-3 overflow-hidden rounded-2xl border p-4 transition duration-300 motion-reduce:transition-none sm:ml-8 ${isCurrent ? "border-emerald-400 bg-emerald-50 ring-4 ring-emerald-100" : isAffected ? "border-amber-300 bg-amber-50" : "border-slate-200 bg-slate-50"}`} aria-label={`${isCurrent ? "Current manual demo step: " : ""}Transfer at ${arrivingLeg.to}`}>
@@ -27,7 +29,7 @@ export function TransferAssistant({ arrivingLeg, nextLeg, isAffected, isCurrent 
           </div>
           {isAffected ? (
             <p className="mt-2 text-sm leading-6 text-amber-950">
-              Your planned connection is affected by a <strong>simulated</strong> delay. Check station boards or the agency app for the next available service before leaving your arriving train.
+              Your planned connection is affected by a <strong>simulated</strong> delay. Check {arrivingByCoach ? "official operator details or terminal information" : "station boards or the agency app"} for the next available service before leaving your arriving service.
             </p>
           ) : (
             <p className="mt-2 text-sm leading-6 text-slate-600">
@@ -36,7 +38,7 @@ export function TransferAssistant({ arrivingLeg, nextLeg, isAffected, isCurrent 
           )}
           <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-600">
             <span className={`rounded-full px-2.5 py-1 ${nextAgency.badge}`}>{nextAgency.label} next</span>
-            <span className="rounded-full bg-white px-2.5 py-1">Platform: check live station boards</span>
+            <span className="rounded-full bg-white px-2.5 py-1">{nextIsCoach ? "Boarding location: check official operator details" : "Platform: check live station boards"}</span>
           </div>
         </div>
       </div>

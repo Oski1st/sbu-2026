@@ -1,1 +1,1 @@
-export type { Agency, Fare, Leg, Trip } from "./transit";
+export type { Agency, TransportMode, Fare, Leg, Trip } from "./transit";

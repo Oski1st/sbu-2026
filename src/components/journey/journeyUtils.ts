@@ -26,6 +26,8 @@ export const agencyStyles: Record<Agency, { label: string; dot: string; badge: s
     badge: "bg-[#fcebec] text-[#ab1118]",
     ring: "ring-[#d71920]/20",
   },
+  GREYHOUND: { label: "Greyhound", dot: "bg-[#28558a]", badge: "bg-[#eaf1fa] text-[#28558a]", ring: "ring-[#28558a]/20" },
+  FLIXBUS: { label: "FlixBus", dot: "bg-[#4b7416]", badge: "bg-[#eef5df] text-[#4b7416]", ring: "ring-[#4b7416]/20" },
 };
 
 /** Normalizes either a local clock label or the shared ISO 8601 trip timestamp. */
@@ -51,6 +53,10 @@ export function timeToMinutes(time: string): number | null {
 }
 
 export function differenceInMinutes(start: string, end: string): number | null {
+  if (start.includes("T") && end.includes("T")) {
+    const elapsed = (Date.parse(end) - Date.parse(start)) / 60000;
+    return Number.isFinite(elapsed) && elapsed >= 0 ? elapsed : null;
+  }
   const startMinutes = timeToMinutes(start);
   const endMinutes = timeToMinutes(end);
   if (startMinutes === null || endMinutes === null) return null;
@@ -66,6 +72,7 @@ export function legDuration(leg: Leg): string | null {
 }
 
 export function addMinutes(time: string, minutesToAdd: number): string {
+  if (time.includes("T") && Number.isFinite(Date.parse(time))) return new Date(Date.parse(time) + minutesToAdd * 60000).toISOString();
   const minutes = timeToMinutes(time);
   if (minutes === null) return time;
 
@@ -77,4 +84,10 @@ export function addMinutes(time: string, minutesToAdd: number): string {
   const period = total >= 12 * 60 ? "PM" : "AM";
   const hour = (Math.floor(total / 60) % 12) || 12;
   return `${hour}:${String(total % 60).padStart(2, "0")} ${period}`;
+}
+
+/** Calendar dates matter for overnight and multi-day sample journeys. */
+export function displaySegmentTime(time: string): string {
+  if (!time.includes("T") || !Number.isFinite(Date.parse(time))) return displayTime(time);
+  return `${displayTime(time)} · ${new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", month: "short", day: "numeric" }).format(new Date(time))}`;
 }

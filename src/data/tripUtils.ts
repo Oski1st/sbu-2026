@@ -1,3 +1,4 @@
+import { resolveCity } from "./eastCoast";
 import type { Trip } from "../types";
 export const formatDuration = (minutes: number) =>
   `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
@@ -25,7 +26,7 @@ export function findTrips(
   destination: string,
 ): Trip[] {
   const normalize = (value: string) =>
-    value.trim().toLowerCase().replace(/\s+/g, " ");
+    resolveCity(value)?.id ?? value.trim().toLowerCase().replace(/\s+/g, " ");
   return trips.filter(
     (trip) =>
       normalize(trip.origin) === normalize(origin) &&
@@ -81,4 +82,18 @@ export function compareTrips(first: Trip, second: Trip) {
       fastFare === null || slowFare === null ? null : fastFare - slowFare,
     transfersSaved: transferCount(slower) - transferCount(faster),
   };
+}
+
+/** Show calendar-day changes in Eastern Time rather than silently wrapping the clock. */
+export function formatJourneyTime(iso: string, departure: string) {
+  const day = (value: string) =>
+    new Intl.DateTimeFormat("en-CA", {
+      timeZone: "America/New_York",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(new Date(value));
+  return day(iso) === day(departure)
+    ? formatTime(iso)
+    : `${formatTime(iso)} · ${new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", month: "short", day: "numeric" }).format(new Date(iso))}`;
 }
