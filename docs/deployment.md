@@ -59,7 +59,9 @@ That is an acceptable emergency fallback, but it is not the target deployment.
 
 ## Free hosting: steps that need a person
 
-Status: **waiting on a person.** Connecting a host requires someone to sign in with the GitHub account that has access to `Oski1st/sbu-2026` and authorize the host's GitHub app. QA cannot do that from the command line, and the repository has no host config file. A `render.yaml` or similar would be shared configuration, so it's Person 1's call.
+The checked-in Blueprint uses `plan: free` and Node 22. It explicitly installs devDependencies for the build. You can import it with **New → Blueprint**, or use the manual Web Service steps below. Review the plan before creation.
+
+Status: **waiting on a person.** Connecting a host requires someone to sign in with the GitHub account that has access to `Oski1st/sbu-2026` and authorize the host's GitHub app. The repository now includes `render.yaml`, reviewed by Person 1, with a free Node service and the build/start/environment settings below. A repo owner still needs to connect the private repository and create the service. No service has been created by adding this file.
 
 The recommended setup is a Render free web service, because it runs a long-lived Node process and injects `PORT`. Railway, Fly.io and Koyeb also work with the same build and start commands, but check that their current free allowance doesn't need billing first.
 
@@ -101,3 +103,4 @@ This checks the home page and both deep-link routes, the unknown-route fallback,
 ## Rollback
 
 Redeploy the previous green commit from `main`; the platform's "redeploy previous" works too. There is no database or stored state to migrate. Trip selection lives in each visitor's `localStorage`.
+

@@ -1,9 +1,10 @@
 // OneLine end-to-end QA run against a running server (pnpm build && pnpm start).
 // Usage: node qa/e2e-check.cjs <baseURL> <shotDir>
-// Needs Playwright, which is not a project dependency (see docs/qa-checklist.md).
+// Install Chromium once with pnpm exec playwright install chromium.
 const { chromium } = require("playwright");
 const base = process.argv[2] ?? "http://127.0.0.1:4173";
-const shots = process.argv[3] ?? ".";
+const shots = process.argv[3] ?? "qa-results/screenshots";
+require("node:fs").mkdirSync(shots, { recursive: true });
 const results = [];
 const log = (name, ok, detail = "") => {
   results.push({ name, ok, detail });
@@ -369,4 +370,6 @@ const pageNav = (page) =>
   log("No page errors / console errors", errors.length === 0, errors.slice(0, 5).join(" ; "));
   const failed = results.filter((r) => !r.ok).length;
   console.log(`\n${results.length - failed}/${results.length} checks passed`);
+  process.exitCode = failed ? 1 : 0;
 })().catch((e) => { console.error(e); process.exit(1); });
+

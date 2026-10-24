@@ -68,7 +68,7 @@ export function AppLayout() {
         <div className="footer-line">
           <MoveRight size={19} />
           <span>One journey. Many connections.</span>
-          <small>Sample itineraries · No live arrival data</small>
+          <small>Sample itineraries · Live data limited to labelled SEPTA snapshots</small>
         </div>
       </footer>
     </div>
