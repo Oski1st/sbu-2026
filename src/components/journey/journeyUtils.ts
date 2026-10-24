@@ -1,4 +1,5 @@
 import type { Agency, Leg } from "../../types/transit";
+import { formatTime } from "../../data/tripUtils";
 
 export const agencyStyles: Record<Agency, { label: string; dot: string; badge: string; ring: string }> = {
   SEPTA: {
@@ -19,11 +20,22 @@ export const agencyStyles: Record<Agency, { label: string; dot: string; badge: s
     badge: "bg-[#edf3fb] text-[#1d4d81]",
     ring: "ring-[#2663a4]/20",
   },
+  AMTRAK: {
+    label: "AMTRAK",
+    dot: "bg-[#d71920]",
+    badge: "bg-[#fcebec] text-[#ab1118]",
+    ring: "ring-[#d71920]/20",
+  },
 };
 
-/** Handles the concise clock strings used in the shared demo data. */
+/** Normalizes either a local clock label or the shared ISO 8601 trip timestamp. */
+export function displayTime(time: string): string {
+  return Number.isNaN(Date.parse(time)) ? time : formatTime(time);
+}
+
 export function timeToMinutes(time: string): number | null {
-  const match = time.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)?$/i);
+  const normalizedTime = displayTime(time);
+  const match = normalizedTime.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)?$/i);
   if (!match) return null;
 
   let hours = Number(match[1]);
@@ -58,7 +70,8 @@ export function addMinutes(time: string, minutesToAdd: number): string {
   if (minutes === null) return time;
 
   const total = (minutes + minutesToAdd + 24 * 60) % (24 * 60);
-  const hasPeriod = /\b(?:AM|PM)\b/i.test(time);
+  const normalizedTime = displayTime(time);
+  const hasPeriod = /\b(?:AM|PM)\b/i.test(normalizedTime);
   if (!hasPeriod) return `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
 
   const period = total >= 12 * 60 ? "PM" : "AM";

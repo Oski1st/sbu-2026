@@ -1,5 +1,5 @@
 import type { Leg } from "../../types/transit";
-import { addMinutes, agencyStyles, legDuration } from "./journeyUtils";
+import { addMinutes, agencyStyles, displayTime, legDuration } from "./journeyUtils";
 
 type SegmentCardProps = {
   leg: Leg;
@@ -41,7 +41,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, onToggle }: Seg
               <p className="text-lg font-semibold leading-tight text-slate-950">{leg.from}</p>
               <p className="mt-1 text-sm text-slate-500">Depart</p>
             </div>
-            <time className="text-right text-base font-bold tabular-nums text-slate-900">{leg.departure}</time>
+            <time dateTime={leg.departure} className="text-right text-base font-bold tabular-nums text-slate-900">{displayTime(leg.departure)}</time>
 
             <div className="mt-5 min-w-0">
               <p className="text-lg font-semibold leading-tight text-slate-950">{leg.to}</p>
@@ -50,10 +50,10 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, onToggle }: Seg
             <time className={`mt-5 text-right text-base font-bold tabular-nums ${isDelayed ? "text-amber-800" : "text-slate-900"}`}>
               {isDelayed ? (
                 <span className="flex flex-col items-end">
-                  <span className="text-xs font-medium text-slate-400 line-through">{leg.arrival}</span>
+                  <span className="text-xs font-medium text-slate-400 line-through">{displayTime(leg.arrival)}</span>
                   <span>{addMinutes(leg.arrival, 12)}</span>
                 </span>
-              ) : leg.arrival}
+              ) : displayTime(leg.arrival)}
             </time>
           </div>
 

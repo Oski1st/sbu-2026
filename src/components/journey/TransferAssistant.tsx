@@ -1,5 +1,5 @@
 import type { Leg } from "../../types/transit";
-import { agencyStyles, differenceInMinutes } from "./journeyUtils";
+import { agencyStyles, differenceInMinutes, displayTime } from "./journeyUtils";
 
 type TransferAssistantProps = {
   arrivingLeg: Leg;
@@ -29,7 +29,7 @@ export function TransferAssistant({ arrivingLeg, nextLeg, isAffected }: Transfer
             </p>
           ) : (
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Next: <strong className="text-slate-800">{nextLeg.line}</strong> toward {nextLeg.to} at <strong className="text-slate-800">{nextLeg.departure}</strong>.
+              Next: <strong className="text-slate-800">{nextLeg.line}</strong> toward {nextLeg.to} at <strong className="text-slate-800">{displayTime(nextLeg.departure)}</strong>.
             </p>
           )}
           <div className="mt-3 flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-600">
