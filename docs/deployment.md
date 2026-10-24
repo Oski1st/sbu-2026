@@ -2,7 +2,7 @@
 
 OneLine is a static React build plus a small Node server (`server/index.mjs`). The server serves `dist/`, the SPA deep-link fallback, and the same-origin SEPTA proxy (`GET /api/transit/septa/trains`) from one origin. It uses only Node built-ins, so `pnpm start` adds no runtime dependency.
 
-**Status (October 24, 2026):** rehearsed from a clean checkout of `main` at `5efcd3b` (Search, Compare, Journey, Wallet and the SEPTA proxy), then re-run on `73635ac` and on `93c0408` (clean checkout using the `render.yaml` build command) with Node 22.23.4, pnpm 11.25.0 and `HOST=0.0.0.0 PORT=8080 NODE_ENV=production`. All 6 checks in `qa/smoke.mjs` passed over the laptop's LAN address, including a live SEPTA response. **No hosted deployment exists yet.** Going live needs a team member to connect the repository to a host account on a free tier. Nobody should start a paid service for the demo.
+**Status (October 24, 2026): live at <https://oneline-sbu-2026.onrender.com>**, a Render Free web service in Virginia (Node 22, `HOST=0.0.0.0`, Render-provided `PORT=10000`), deployed from `main` `6df372e`. Hosted QA: `qa/smoke.mjs` 6 / 6, browser suite 120 / 121 (one Cloudflare edge response to a malformed URL; see `docs/qa-checklist.md`), demo rehearsal 8 / 8 online and offline. The earlier local rehearsals from clean checkouts of `5efcd3b`, `73635ac`, `93c0408` and `ea6c065` also passed. No paid service or upgrade is used.
 
 ## Requirements
 
@@ -61,7 +61,9 @@ That is an acceptable emergency fallback, but it is not the target deployment.
 
 The checked-in Blueprint uses `plan: free` and Node 22. It explicitly installs devDependencies for the build. You can import it with **New → Blueprint**, or use the manual Web Service steps below. Review the plan before creation.
 
-Status: **waiting on a person.** Connecting a host requires someone to sign in with the GitHub account that has access to `Oski1st/sbu-2026` and authorize the host's GitHub app. The repository now includes `render.yaml`, reviewed by Person 1, with a free Node service and the build/start/environment settings below. A repo owner still needs to connect the private repository and create the service. No service has been created by adding this file.
+Status: **done on October 24, 2026.** The service is live at <https://oneline-sbu-2026.onrender.com>. The steps below are kept for reference.
+
+Original status: waiting on a person. Connecting a host requires someone to sign in with the GitHub account that has access to `Oski1st/sbu-2026` and authorize the host's GitHub app. The repository now includes `render.yaml`, reviewed by Person 1, with a free Node service and the build/start/environment settings below. A repo owner still needs to connect the private repository and create the service. No service has been created by adding this file.
 
 The recommended setup is a Render free web service, because it runs a long-lived Node process and injects `PORT`. Railway, Fly.io and Koyeb also work with the same build and start commands, but check that their current free allowance doesn't need billing first.
 

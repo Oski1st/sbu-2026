@@ -6,12 +6,28 @@ Owner: Person 4. Each run is against the production server (`pnpm build && pnpm 
 
 | Run | `main` commit | Contents | Build / tests | Browser checks | Proxy outage | Deploy smoke |
 | --- | --- | --- | --- | --- | --- | --- |
+| **Production** (Oct 24) | **`6df372e`** deployed to https://oneline-sbu-2026.onrender.com (app code identical to `ea6c065`) | Render Free web service, Virginia, Node 22, `HOST=0.0.0.0`, `PORT=10000` | n/a (Render build succeeded) | **120 / 121** (see below) | n/a: needs local fake upstream | **6 / 6** against the hosted URL |
 | **Current** (Oct 24) | **`ea6c065`** "Merge reviewed guided Journey demo and navigation cleanup" | PRs #8 (Wallet) and #9 (Journey) merged: duplicate navigation removed, SEPTA panel reworded, guided Journey demo | Pass; **45 / 45** tests | **121 / 121** | 5 / 5 | 6 / 6 (clean checkout, `render.yaml` build command, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
 | **Person 1 fixes** (Oct 24) | **`93c0408`** "Merge keyboard focus, data labels and reproducible QA" | Person 1's initial-focus and footer fixes; Playwright 1.64.1 devDependency; `render.yaml` | Pass; 33 / 33 tests | **117 / 121** (see below) | 5 / 5 | 6 / 6 (clean checkout, `render.yaml` build command, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
 | **Interim** (Oct 24) | **`73635ac`** "Merge shared shell integration fixes" (PR #7) | Adds the one-`<main>` shell contract | Pass; 33 / 33 tests | 114 / 119 (see below) | 5 / 5 | 6 / 6 (`HOST=0.0.0.0 PORT=8080`, LAN IP) |
 | Baseline (Oct 24) | `5efcd3b` "Merge reviewed OneLine ticket wallet" | Search, Compare, Journey, Wallet, SEPTA proxy | Pass; 33 / 33 tests | 102 / 105 | 5 / 5 | 6 / 6 (clean checkout, `HOST=0.0.0.0 PORT=8080`, LAN IP) |
 
 The browser suite grew between runs, which is why the totals differ. The interim run adds one-`<main>` checks on every page, duplicate page-navigation checks and a footer-wording check. The footer check was added after the interim run, so it first runs on the final commit.
+
+## Production run: https://oneline-sbu-2026.onrender.com
+
+The deployed commit is `6df372e`, as reported by Render (Deploy succeeded / Live). I verified the build: the hosted `index.html` references `assets/index-j4_4uBJG.js` and `assets/index-DdmW2BIM.css`, identical to a local `pnpm build` of the same app code. This is the original integrated demo, **not** the unmerged East Coast expansion. The service was already awake (about 0.1 s responses). Free instances sleep when idle, so open the URL about 2 minutes before the demo.
+
+| Check | Result |
+| --- | --- |
+| `node qa/smoke.mjs https://oneline-sbu-2026.onrender.com` | **6 / 6**: home, Journey and Wallet deep links, unknown route, missing asset 404, SEPTA proxy 200 |
+| `node qa/e2e-check.cjs https://oneline-sbu-2026.onrender.com` | **120 / 121.** Every browser check passes: Search → Compare → Journey → Wallet for both trips, refreshes, invalid IDs, keyboard, 320px / 390px, one `<main>`, no duplicate navigation, and the SEPTA success / unavailable / empty / stale states (simulated in the browser). The real SEPTA feed returned **21 records** at test time; sample times are unchanged. The 1 failure is P1 below. |
+| `node qa/demo-rehearsal.cjs <url>`, online / `--offline` | 8 / 8, panel live / 8 / 8, panel unavailable |
+| Official ticket links, `/wallet/regional-connection` and `/wallet/amtrak-connection` | All 7 are `https` on operator domains (`septa.org`, `njtransit.com`, `mta.info`, `amtrak.com`), open in a new tab with `noopener`, and survive a Wallet refresh. Scripted fetches of the operator sites get bot-protection responses (403 / connection reset), so reachability was not asserted. |
+
+**P1 (low, hosting edge, not an app bug):** `GET /journey/%E0%A4%A` (truncated percent-encoding) returns a Cloudflare **520** in production, where the local server returns 400 `invalid_path`. Other malformed paths behave: `/journey/%E0` reaches the Node server and gets 400 `invalid_path`, and `%ZZ` gets Cloudflare's own 400. The service stays healthy afterwards (`/` returns 200). This is Render's edge proxy handling a garbage URL. No action is needed for the demo.
+
+Screenshot: [production Wallet with live SEPTA panel](qa-screenshots/production-wallet-regional.png).
 
 ## Current run: `ea6c065`
 
