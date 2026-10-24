@@ -27,7 +27,7 @@ export function TransferAssistant({ arrivingLeg, nextLeg, isAffected, isCurrent 
           </div>
           {isAffected ? (
             <p className="mt-2 text-sm leading-6 text-amber-950">
-              Your planned connection is affected by a <strong>simulated</strong> delay. Check station boards or the agency app for the next available service before leaving your arriving train.
+              Your planned connection is affected by a <strong>simulated</strong> delay. Check station boards or the agency app for the next available service before leaving your arriving service.
             </p>
           ) : (
             <p className="mt-2 text-sm leading-6 text-slate-600">

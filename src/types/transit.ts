@@ -1,5 +1,12 @@
 /** Shared contract. Times are ISO 8601 with an explicit UTC offset. */
-export type Agency = "SEPTA" | "NJ_TRANSIT" | "LIRR" | "AMTRAK";
+export type Agency =
+  | "SEPTA"
+  | "NJ_TRANSIT"
+  | "LIRR"
+  | "AMTRAK"
+  | "GREYHOUND"
+  | "FLIXBUS";
+export type TransportMode = "rail" | "bus";
 export interface Fare {
   amount: number;
   currency: "USD";
@@ -8,6 +15,7 @@ export interface Fare {
 export interface Leg {
   id: string;
   agency: Agency;
+  mode?: TransportMode;
   line: string;
   from: string;
   to: string;
@@ -27,4 +35,5 @@ export interface Trip {
   dataStatus?: "sample" | "live";
   label?: string;
   description?: string;
+  planningNote?: string;
 }

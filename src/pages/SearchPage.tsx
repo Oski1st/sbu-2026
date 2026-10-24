@@ -11,9 +11,12 @@ import {
   ShieldCheck,
   Sparkles,
   TrainFront,
+  Bus,
   GitCompareArrows,
   X,
 } from "lucide-react";
+import { cities, featuredCorridors, resolveCity } from "../data/eastCoast";
+import { agencies } from "../data/agencies";
 import { demoTrips } from "../data/demoTrips";
 import { findTrips, sortTrips } from "../data/tripUtils";
 import { CorridorMap } from "../components/search/CorridorMap";
@@ -27,6 +30,8 @@ export default function SearchPage() {
   });
   const [order, setOrder] = useState("recommended");
   const [includeAmtrak, setIncludeAmtrak] = useState(true);
+  const [mode, setMode] = useState("all");
+  const [operator, setOperator] = useState("all");
   const [searched, setSearched] = useState(false);
   const [formVersion, setFormVersion] = useState(0);
   const resultsRef = useRef<HTMLElement>(null);
@@ -36,7 +41,16 @@ export default function SearchPage() {
   const trips = sortTrips(
     matches.filter(
       (trip) =>
-        includeAmtrak || trip.legs.every((leg) => leg.agency !== "AMTRAK"),
+        (includeAmtrak || trip.legs.every((leg) => leg.agency !== "AMTRAK")) &&
+        (mode === "all" ||
+          (mode === "rail"
+            ? trip.legs.every((leg) => agencies[leg.agency].mode === "rail")
+            : mode === "bus"
+              ? trip.legs.every((leg) => agencies[leg.agency].mode === "bus")
+              : new Set(trip.legs.map((leg) => agencies[leg.agency].mode))
+                  .size > 1)) &&
+        (operator === "all" ||
+          trip.legs.some((leg) => leg.agency === operator)),
     ),
     order,
   );
@@ -87,18 +101,19 @@ export default function SearchPage() {
             </span>
           </h1>
           <p>
-            From your first platform to your last stop.
+            From your first departure to your last stop.
             <br className="desktop-break" /> A simpler way to travel across the
-            Northeast.
+            East Coast.
           </p>
           <div className="hero-meta">
             <span>
-              <Route size={16} />4 networks, connected
+              <Route size={16} />
+              {cities.length} cities, one bigger idea
             </span>
             <i />
             <span>
               <Leaf size={16} />
-              More rail. Less hassle.
+              Trains + coaches. More possibility.
             </span>
           </div>
         </div>
@@ -146,12 +161,70 @@ export default function SearchPage() {
         </div>
       )}
       <div className="content-wrap">
-        <SearchForm key={formVersion} onSearch={search} />
+        <SearchForm
+          key={formVersion}
+          initialOrigin={query.origin}
+          initialDestination={query.destination}
+          onSearch={search}
+        />
+        <section className="coast-explorer" aria-labelledby="explore-title">
+          <div className="explore-heading">
+            <div>
+              <span className="eyebrow">A BIGGER PICTURE</span>
+              <h2 id="explore-title">A whole coast of possibilities.</h2>
+              <p>
+                {cities.length} cities, Maine to Florida. Explore sample rail
+                and coach corridors.
+              </p>
+            </div>
+            <span className="coverage-tag">
+              SAMPLE NETWORK · NOT LIVE ROUTING
+            </span>
+          </div>
+          <div className="corridor-grid">
+            {featuredCorridors.map((corridor) => (
+              <button
+                key={corridor.origin}
+                className="corridor-pick"
+                onClick={() => {
+                  setMode("all");
+                  setOperator("all");
+                  setIncludeAmtrak(true);
+                  setFormVersion((v) => v + 1);
+                  search(corridor.origin, corridor.destination);
+                }}
+              >
+                <span>{corridor.region}</span>
+                <strong>
+                  {corridor.origin} <ArrowRight size={16} />{" "}
+                  {corridor.destination}
+                </strong>
+                <small>
+                  {corridor.label} <ArrowUpRight size={14} />
+                </small>
+              </button>
+            ))}
+          </div>
+          <details className="coverage-details">
+            <summary>
+              See all {cities.length} cities and coverage limits
+            </summary>
+            <p>
+              {cities.map((city) => `${city.name} (${city.state})`).join(" · ")}
+            </p>
+            <p>
+              City-level concepts only. Operator coverage, actual terminals,
+              station transfers, service dates, schedules and fares must be
+              confirmed. This catalogue is not complete East Coast transit
+              coverage.
+            </p>
+          </details>
+        </section>
         <section className="network-strip" aria-label="Transit networks">
           <span>
-            GOOD COMPANY.
+            REAL OPERATORS.
             <br />
-            <strong>GREAT CONNECTIONS.</strong>
+            <strong>SAMPLE CONNECTIONS.</strong>
           </span>
           <div className="network-wordmark septa">
             <TrainFront size={22} />
@@ -168,6 +241,12 @@ export default function SearchPage() {
             <span>MTA</span>Long Island
             <br />
             Rail Road
+          </div>
+          <div className="network-wordmark">
+            <Bus size={22} /> Greyhound
+          </div>
+          <div className="network-wordmark flixbus">
+            <Bus size={22} /> FlixBus
           </div>
         </section>
         <section
@@ -204,6 +283,49 @@ export default function SearchPage() {
           </div>
           <div className="results-grid">
             <div className="route-list">
+              <div
+                className="transport-filters"
+                aria-label="Filter transportation"
+              >
+                <div role="group" aria-label="Travel mode">
+                  {[
+                    ["all", "All transport"],
+                    ["rail", "Rail only"],
+                    ["bus", "Bus only"],
+                    ["mixed", "Rail + bus"],
+                  ].map(([value, label]) => (
+                    <button
+                      key={value}
+                      aria-pressed={mode === value}
+                      onClick={() => {
+                        setMode(value);
+                        setCompareIds([]);
+                        setCompareOpen(false);
+                      }}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+                <label>
+                  OPERATOR{" "}
+                  <select
+                    value={operator}
+                    onChange={(event) => {
+                      setOperator(event.target.value);
+                      setCompareIds([]);
+                      setCompareOpen(false);
+                    }}
+                  >
+                    <option value="all">All operators</option>
+                    {Object.entries(agencies).map(([id, agency]) => (
+                      <option key={id} value={id}>
+                        {agency.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
               <div className="results-toolbar">
                 <span>
                   <span className="little-dot" />
@@ -213,7 +335,11 @@ export default function SearchPage() {
                   <input
                     type="checkbox"
                     checked={includeAmtrak}
-                    onChange={(event) => setIncludeAmtrak(event.target.checked)}
+                    onChange={(event) => {
+                      setIncludeAmtrak(event.target.checked);
+                      setCompareIds([]);
+                      setCompareOpen(false);
+                    }}
                   />
                   Include Amtrak
                 </label>
@@ -227,7 +353,7 @@ export default function SearchPage() {
                   }}
                 >
                   <GitCompareArrows size={15} />
-                  Compare both options <ArrowRight size={14} />
+                  Compare two options <ArrowRight size={14} />
                 </button>
               )}
               {trips.length > 0 ? (
@@ -243,10 +369,15 @@ export default function SearchPage() {
               ) : (
                 <div className="empty-state">
                   <Compass size={34} />
-                  <h3>We’re starting with one great connection.</h3>
+                  <h3>No sample journeys match this search.</h3>
                   <p>
-                    This demo covers Philadelphia → Stony Brook. More
-                    destinations are on our horizon.
+                    {!resolveCity(query.origin) ||
+                    !resolveCity(query.destination)
+                      ? "Choose cities from our East Coast catalogue, or check actual services directly with the operators."
+                      : resolveCity(query.origin)?.id ===
+                          resolveCity(query.destination)?.id
+                        ? "Choose two different cities to plan a journey."
+                        : "Try another mode or operator. No matching sample is not evidence that real service is unavailable."}
                   </p>
                   <button
                     onClick={() => {
@@ -255,6 +386,8 @@ export default function SearchPage() {
                         destination: "Stony Brook",
                       });
                       setIncludeAmtrak(true);
+                      setMode("all");
+                      setOperator("all");
                       setSearched(false);
                       setFormVersion((version) => version + 1);
                     }}
@@ -268,7 +401,8 @@ export default function SearchPage() {
                 <span>
                   Designed for clarity, not guesswork. All displayed times and
                   fares are illustrative. Confirm your trip with the agencies
-                  before traveling.
+                  before traveling. Bus and expanded rail routes are city-level
+                  concepts, not verified services.
                 </span>
               </p>
             </div>
@@ -284,7 +418,7 @@ export default function SearchPage() {
                   Finally together.
                 </h3>
                 <p>
-                  Four networks shouldn’t mean four different plans. See the
+                  More operators shouldn’t mean more scattered plans. See the
                   connections, compare your options, and know what comes next.
                 </p>
                 <ul>

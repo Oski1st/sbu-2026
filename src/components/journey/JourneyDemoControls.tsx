@@ -20,7 +20,7 @@ function stepDescription(step: JourneyStep | null, legs: Leg[]): string {
   if (!leg) return "Manual walkthrough ready.";
   return step.kind === "leg"
     ? `Current step: ${leg.line} from ${leg.from} to ${leg.to}.`
-    : `Current step: transfer at ${leg.to} for the next train.`;
+    : `Current step: transfer at ${leg.to} for the next service.`;
 }
 
 export function JourneyDemoControls({ destination, legs, state, step, stepCount, onStart, onNext, onPrevious, onReset }: JourneyDemoControlsProps) {

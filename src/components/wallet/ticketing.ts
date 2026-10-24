@@ -21,6 +21,8 @@ export const ticketing: Record<Agency, { name: string; url: string; label: strin
     label: 'Amtrak booking & app',
     help: 'Book with Amtrak directly and confirm your selected train, travel date, and reservation conditions.',
   },
+  GREYHOUND: { name: 'Greyhound', url: 'https://www.greyhound.com/', label: 'Greyhound booking & tickets', help: 'Choose actual cities, terminals and travel dates with Greyhound. Sample plans do not confirm direct service, connections, availability or a ticket.' },
+  FLIXBUS: { name: 'FlixBus', url: 'https://www.flixbus.com/', label: 'FlixBus booking & tickets', help: 'Choose actual cities, terminals and travel dates with FlixBus. Sample plans do not confirm direct service, connections, availability or a ticket.' },
 };
 
 /** Accept only HTTPS agency-owned destinations; never follow arbitrary trip-data links. */
@@ -28,7 +30,7 @@ export function officialPurchaseUrl(agency: Agency, candidate: string): string {
   const fallback = ticketing[agency]?.url;
   if (!fallback) return '';
   const domains: Record<Agency, string[]> = {
-    SEPTA: ['septa.org', 'septakey.org'], NJ_TRANSIT: ['njtransit.com'], LIRR: ['mta.info'], AMTRAK: ['amtrak.com'],
+    SEPTA: ['septa.org', 'septakey.org'], NJ_TRANSIT: ['njtransit.com'], LIRR: ['mta.info'], AMTRAK: ['amtrak.com'], GREYHOUND: ['greyhound.com'], FLIXBUS: ['flixbus.com'],
   };
   try {
     const url = new URL(candidate);

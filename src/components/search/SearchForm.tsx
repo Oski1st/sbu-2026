@@ -6,12 +6,19 @@ import {
   MapPin,
   Circle,
 } from "lucide-react";
+import { cities } from "../../data/eastCoast";
 interface Props {
+  initialOrigin?: string;
+  initialDestination?: string;
   onSearch: (origin: string, destination: string) => void;
 }
-export function SearchForm({ onSearch }: Props) {
-  const [origin, setOrigin] = useState("Philadelphia");
-  const [destination, setDestination] = useState("Stony Brook");
+export function SearchForm({
+  onSearch,
+  initialOrigin = "Philadelphia",
+  initialDestination = "Stony Brook",
+}: Props) {
+  const [origin, setOrigin] = useState(initialOrigin);
+  const [destination, setDestination] = useState(initialDestination);
   return (
     <section className="search-section" aria-label="Plan your journey">
       <div className="search-heading">
@@ -19,7 +26,7 @@ export function SearchForm({ onSearch }: Props) {
           <i />
           LET’S GET YOU THERE
         </span>
-        <small>One-way · Rail journeys</small>
+        <small>One-way · Rail + intercity bus</small>
       </div>
       <form
         onSubmit={(event) => {
@@ -84,17 +91,18 @@ export function SearchForm({ onSearch }: Props) {
           Find my way <ArrowRight size={18} />
         </button>
         <datalist id="station-options">
-          <option value="Philadelphia" />
-          <option value="Stony Brook" />
-          <option value="New York" />
-          <option value="Trenton" />
+          {cities.map((city) => (
+            <option key={city.id} value={city.name}>
+              {city.state}
+            </option>
+          ))}
         </datalist>
       </form>
       <div className="search-footnote">
         <span>
           Try our demo: Philadelphia <ArrowRight size={12} /> Stony Brook
         </span>
-        <span>Sample schedules & fares. No live arrivals.</span>
+        <span>Sample plans · Confirm services with operators.</span>
       </div>
     </section>
   );

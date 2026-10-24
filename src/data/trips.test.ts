@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { demoTrips } from "./demoTrips";
+import { demoTrips as allDemoTrips } from "./demoTrips";
+const demoTrips = allDemoTrips.filter((trip) =>
+  ["regional-connection", "amtrak-connection"].includes(trip.id),
+);
 import {
   findTrips,
   sampleTotal,
@@ -8,7 +11,7 @@ import {
   tripMetrics,
   compareTrips,
 } from "./tripUtils";
-describe("demo route planning", () => {
+describe("original Philadelphia demo route planning", () => {
   it("matches the demo corridor case-insensitively and trims whitespace", () => {
     expect(
       findTrips(demoTrips, "  PHILADELPHIA ", "stony   brook"),

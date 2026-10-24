@@ -1,4 +1,5 @@
 import type { Leg, Trip } from "../types";
+import { buildEastCoastTrips } from "./eastCoast";
 import { agencies } from "./agencies";
 const time = (hhmm: string) => `2026-10-24T${hhmm}:00-04:00`;
 const leg = (
@@ -123,3 +124,6 @@ export const demoTrips: Trip[] = [
     ],
   },
 ];
+
+// Expanded concept journeys remain resolvable by Journey and Wallet after a refresh.
+demoTrips.push(...buildEastCoastTrips());

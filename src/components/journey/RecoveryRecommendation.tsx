@@ -24,7 +24,7 @@ export function RecoveryRecommendation({ missedLeg, finalDestination }: Recovery
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         <div className="rounded-2xl bg-white/75 p-4">
           <p className="text-xs font-bold uppercase tracking-wide text-amber-800">Do now</p>
-          <p className="mt-1 text-sm font-semibold leading-5 text-slate-900">Stay on your arriving train until you can confirm the next departure.</p>
+          <p className="mt-1 text-sm font-semibold leading-5 text-slate-900">Confirm your next departure with the operator before changing services.</p>
         </div>
         <div className="rounded-2xl bg-white/75 p-4">
           <p className="text-xs font-bold uppercase tracking-wide text-amber-800">Find next</p>

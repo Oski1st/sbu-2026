@@ -8,6 +8,7 @@ import {
   formatDuration,
   formatMoney,
   formatTime,
+  formatJourneyTime,
   sampleTotal,
   transferCount,
   tripMetrics,
@@ -146,19 +147,19 @@ export function RouteComparison({ trips, open, onClose }: Props) {
               })}
             </tr>
             <tr>
-              <th scope="row">Train changes</th>
+              <th scope="row">Connections</th>
               {trips.map((trip) => (
-                <td key={trip.id}>{transferCount(trip)} transfers</td>
+                <td key={trip.id}>{trip.planningNote ? "Unverified" : `${transferCount(trip)} transfers`}</td>
               ))}
             </tr>
             <tr>
-              <th scope="row">Time on trains</th>
+              <th scope="row">Time on board</th>
               {trips.map((trip) => (
                 <td key={trip.id}>{minutes(tripMetrics(trip)?.rideMinutes)}</td>
               ))}
             </tr>
             <tr>
-              <th scope="row">Between trains</th>
+              <th scope="row">Between services</th>
               {trips.map((trip) => (
                 <td key={trip.id}>
                   {minutes(tripMetrics(trip)?.transferMinutes)}
@@ -180,6 +181,18 @@ export function RouteComparison({ trips, open, onClose }: Props) {
               {trips.map((trip) => (
                 <td key={trip.id}>
                   {formatTime(trip.legs[0].departure)}
+                  <small>Eastern Time</small>
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th scope="row">Sample arrival</th>
+              {trips.map((trip) => (
+                <td key={trip.id}>
+                  {formatJourneyTime(
+                    trip.legs.at(-1)!.arrival,
+                    trip.legs[0].departure,
+                  )}
                   <small>Eastern Time</small>
                 </td>
               ))}

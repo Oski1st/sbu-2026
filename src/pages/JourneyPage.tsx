@@ -65,9 +65,10 @@ export default function JourneyPage() {
           <h1 className="mt-2 text-3xl font-bold tracking-[-0.04em] text-slate-950 sm:text-4xl">{trip.origin} <span className="text-slate-400" aria-hidden="true">→</span> {trip.destination}</h1>
           <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-slate-600">
             <span className="rounded-full bg-slate-100 px-3 py-1.5 font-bold text-slate-800">{trip.durationMinutes} min total</span>
-            <span className="rounded-full bg-slate-100 px-3 py-1.5 font-bold text-slate-800">{trip.legs.length} {trip.legs.length === 1 ? "train" : "trains"}</span>
+            <span className="rounded-full bg-slate-100 px-3 py-1.5 font-bold text-slate-800">{trip.legs.length} {trip.legs.length === 1 ? "segment" : "segments"}</span>
             {agencies.map((agency) => <span key={agency} className={`rounded-full px-3 py-1.5 text-xs font-extrabold ${agencyStyles[agency].badge}`}>{agencyStyles[agency].label}</span>)}
           </div>
+          {trip.planningNote && <p className="mt-5 rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-amber-950"><strong>Sample route concept. </strong>{trip.planningNote}</p>}
           <Link
             to={`/wallet/${trip.id}`}
             className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-bold text-white transition hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
