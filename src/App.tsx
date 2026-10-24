@@ -8,12 +8,13 @@ import { TripProvider, useSelectedTrip } from "./components/layout/TripContext";
 import { IntegrationPage } from "./components/layout/IntegrationPage";
 // Teammate-owned pages are optional until their PRs merge. No files are created in their paths.
 // Both default exports and named JourneyPage/WalletPage exports are accepted.
+type HostedPageProps = { septaEndpoint?: string };
 const modules = import.meta.glob<{
-  default?: ComponentType;
-  JourneyPage?: ComponentType;
-  WalletPage?: ComponentType;
+  default?: ComponentType<HostedPageProps>;
+  JourneyPage?: ComponentType<HostedPageProps>;
+  WalletPage?: ComponentType<HostedPageProps>;
 }>("./pages/{JourneyPage,WalletPage}.tsx");
-function page(kind: "journey" | "wallet") {
+function page(kind: "journey" | "wallet"): ComponentType<HostedPageProps> {
   const name = kind === "journey" ? "JourneyPage" : "WalletPage";
   const load = modules[`./pages/${name}.tsx`];
   return load
@@ -63,7 +64,10 @@ export default function App() {
             <Route path="journey" element={<SelectionEntry kind="journey" />} />
             <Route path="journey/:tripId" element={<Journey />} />
             <Route path="wallet" element={<SelectionEntry kind="wallet" />} />
-            <Route path="wallet/:tripId" element={<Wallet />} />
+            <Route
+              path="wallet/:tripId"
+              element={<Wallet septaEndpoint="/api/transit/septa/trains" />}
+            />
             <Route
               path="*"
               element={
