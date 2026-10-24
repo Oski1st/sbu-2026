@@ -4,7 +4,7 @@
 
 ## Before the demo (T–10 min)
 
-- [ ] Open the deployed URL, or run `pnpm build && pnpm start` locally. Wake a sleeping free-tier host now.
+- [ ] Open <https://oneline-sbu-2026.onrender.com> about 2 minutes early to wake the free Render instance (or run `pnpm build && pnpm start` locally). Production rehearsal on Oct 24 (`6df372e`): 8 / 8 steps online and offline.
 - [ ] Use a fresh browser profile or private window so there is no old selection in `localStorage`. Zoom 110–125% for the projector.
 - [ ] Open `/wallet/regional-connection` once to check the SEPTA panel. Note whether it says **Live feed fetched** or **Live data unavailable**; both are fine (see fallbacks).
 - [ ] Return to `/`.
@@ -26,8 +26,8 @@ If you have extra time, choose the **Express Connection** (Amtrak + LIRR) instea
 
 | If… | Do / say |
 | --- | --- |
-| The SEPTA panel says **Live data unavailable** (or **SEPTA observations unavailable** after PR #8) | "When SEPTA's feed is down, we say so instead of inventing trains. Your plan stays exactly as it was." That honest fallback is a feature; keep going. |
-| The panel says **Snapshot expired** | You lingered over a minute. Click **Refresh** (**Refresh feed** after PR #8), or say: "Live data goes stale, so we hide it instead of showing old trains." |
+| The SEPTA panel says **Live data unavailable** (**SEPTA observations unavailable** from `ea6c065` on) | "When SEPTA's feed is down, we say so instead of inventing trains. Your plan stays exactly as it was." That honest fallback is a feature; keep going. |
+| The panel says **Snapshot expired** | You lingered over a minute. Click **Refresh** (**Refresh feed** from `ea6c065` on), or say: "Live data goes stale, so we hide it instead of showing old trains." |
 | The panel says **no active trains** | "The feed is up but empty, and we don't pretend that means service stopped." |
 | The Wi-Fi or host is down | Run locally: `pnpm build && pnpm start`, then open `http://127.0.0.1:3000`. The built app loads no external fonts or scripts, so everything except the SEPTA panel works offline, and the panel shows its unavailable state. If even that fails, walk through `docs/qa-screenshots/`. |
 | You land on "Journey not found" | Click **Back to search** and choose the route again. |
@@ -41,6 +41,7 @@ If you have extra time, choose the **Express Connection** (Amtrak + LIRR) instea
 | --- | --- | --- | --- |
 | Oct 24 | `main` `93c0408` | 8 / 8 steps; panel live | 8 / 8 steps; panel unavailable |
 | Oct 24 | `93c0408` + open PRs #8 and #9 (local merge, not pushed) | 8 / 8 steps; panel live | 8 / 8 steps; panel unavailable |
+| Oct 24 | `main` `ea6c065` (PRs #8 and #9 merged) | 8 / 8 steps; panel live | 8 / 8 steps; panel unavailable |
 
 The clicks take about 3 seconds in total, so the two minutes are speaking time. The Compare insight read "The express connection gets you there 65 minutes sooner for $15 more in sample fares", which matches the script's line.
 
@@ -48,5 +49,3 @@ The clicks take about 3 seconds in total, so the two minutes are speaking time. 
 
 - Don't claim live arrivals for NJ TRANSIT, Amtrak or LIRR. Only the SEPTA snapshot is live.
 - Don't present the sample times or fares as real quotes.
-- The Journey and Wallet pages each show a second small nav bar under the site header ([QA finding 4](qa-checklist.md#findings)) until PRs #8 and #9 merge. Don't point at it. Use the in-page buttons or the main header tabs.
-- Don't click the Wallet's own "Back to journey search" link. It does a full page reload. Use the header **Search** tab instead.
