@@ -2,11 +2,48 @@
 
 Owner: Person 4. Feature owner: Person 1 (PR #13, `feat/east-coast`).
 
-**Tested commit: `9be946d`** (`9be946d3376dc61064ad0645909e1f15f43534ad`), the PR #13 head on base `main` `6df372e`. These are **PR results, not `main` results.** Re-run on the merged `main` SHA before relying on them for the demo. Earlier `main` runs are in [qa-checklist.md](qa-checklist.md) and are unchanged.
+All results here are **PR-branch results, not `main` results.** Earlier `main` runs are in [qa-checklist.md](qa-checklist.md). Toolchain for every run: Node 22.23.4, pnpm 11.25.0, Playwright 1.64.1, a clean checkout served by `pnpm start`.
 
-Run on October 24, 2026 with Node 22.23.4, pnpm 11.25.0 and Playwright 1.64.1, against a clean checkout of `9be946d` served by `pnpm start`.
+| Run | Exact commit | Contents | Result |
+| --- | --- | --- | --- |
+| **P4-09 (current)** | **`21d77dd618538284d77ee48db7fc34821a04bd99`** on `feat/east-coast` | PR #13 @ `d3aab9e` (expansion, X2 Search persistence, map label fix), map follow-up @ `17e3682`, PR #15 @ `2db3fed` (X1 / X3, coach guidance) | Regression and expansion fully pass. P4-09 targeted checks **55 / 57**: the 2 failures are X5 (map labels too small on phones). |
+| First expansion run | `9be946d3376dc61064ad0645909e1f15f43534ad` | PR #13 head on base `main` `6df372e` | Expansion 121 / 122 (X1). Kept below as history. |
 
-## Summary
+## P4-09 run: `21d77dd`
+
+Assigned in hub issue #2 as **P4-09**. Run on October 24, 2026.
+
+| Check | Command | Result on `21d77dd` |
+| --- | --- | --- |
+| Install, build | `pnpm install --frozen-lockfile && pnpm build` | Pass |
+| Unit tests | `pnpm test` | **62 / 62** (10 files) |
+| Regression browser suite | `node qa/e2e-check.cjs <url>` | **121 / 121** |
+| Proxy outage | `node qa/septa-proxy-outage.mjs` | 5 / 5 |
+| Deploy smoke | `node qa/smoke.mjs` (`HOST=0.0.0.0`, LAN IP) | 6 / 6, local only |
+| Demo rehearsal | `node qa/demo-rehearsal.cjs <url>`, online / `--offline` | 8 / 8 / 8 / 8 |
+| Expansion suite | `node qa/expansion-check.cjs <url>` | **122 / 122** (X1 check included) |
+| **P4-09 targeted** | `node qa/p4-09-check.cjs <url>` (new) | **55 / 57** (X5) |
+
+The original demo is preserved: `/` still shows exactly `regional-connection` and `amtrak-connection`, with regional times 8:00 / 8:55 / 9:10 / 10:40 / 11:00 / 12:10 as before. Sample, live and ticket wording is unchanged and passes D1–D5 in the expansion suite.
+
+What `qa/p4-09-check.cjs` covers:
+
+| Area | Result |
+| --- | --- |
+| **X2 Search persistence** | Pass (9 / 9). The URL holds `from`, `to`, `mode`, `operator` and `sort`. Refresh keeps results, filter states, sort and form values. Back undoes sort, then the operator; Forward restores both. A shared URL opens the same results in a fresh browser. Malformed values (`mode=evil`, `operator=NOPE`, `sort=zzz`) fall back to defaults. A 500-character city is bounded and shows the unsupported-city state. Plain `/` still shows the original demo. |
+| **X3 duration** | Pass. Portland → Miami shows "33h 30m total" (was "2010 min total"); regional shows "5h 15m"; Boston → Stony Brook shows "8h 35m". |
+| **X1 station / time layout** | Pass at 320px and 390px. At 320px the time now stacks under the city instead of colliding ([crop](qa-screenshots/expansion/p4-09-x1-fixed-320.png)). |
+| **Coach guidance** | Pass. An LIRR → coach transfer says "Boarding location: check official operator details" with no platform-board wording. A coach → LIRR transfer keeps platform guidance for the rail leg. A simulated coach delay points to operator or terminal information and stays labelled simulated. |
+| **Guided flows** | Pass for bus-only (1 leg, 1 step, Next disabled), mixed coach + LIRR (3 steps), reverse (3 steps) and overnight Portland → Miami (5 steps, ending on the leg into Miami). ArrowLeft / ArrowRight move between steps, and Reset returns to the start prompt. |
+| **Reduced motion** | Pass. With `prefers-reduced-motion: reduce`, Search, Journey and Wallet have no running animations or transitions, and the guided demo still works. |
+| **Map** | Geography recognisable (Natural Earth states, East Coast and Florida). Cities run north-up (Portland → Boston → New York → Philadelphia → Washington, DC → Orlando → Miami), Stony Brook sits east of New York, labels stay inside the map without overlapping, and there's no page overflow at 1280 / 390 / 320px. The role="img" label and caption say "Connections unverified … not verified services or actual rail and road alignments". **No external network requests.** **Fail: labels are too small on phones (X5).** ([desktop](qa-screenshots/expansion/p4-09-map-desktop.png), [320px](qa-screenshots/expansion/p4-09-map-320-labels-too-small.png)) |
+| Page or console errors | None |
+
+Test-harness note: the first P4-09 attempt served the app on port 4190, which Node's `fetch` blocks under the WHATWG "bad port" list. That made the regression and smoke scripts fail to connect; it wasn't an app fault. Every result above comes from a re-run on port 4173.
+
+## First expansion run: `9be946d` (history)
+
+### Summary (`9be946d`)
 
 | Check | Command | Result on `9be946d` |
 | --- | --- | --- |
@@ -24,12 +61,15 @@ Coordinator check (hub #2): expanded routes are clearly labelled as concepts, co
 
 | # | Severity | Owner | Status | Finding | Reproduce | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| X1 | Medium: visual, 320px | Journey timeline (`src/components/journey/SegmentCard.tsx`, Person 2's file, edited in PR #13) | Open on `9be946d` | At 320px the city column is a `min-w-0` grid cell only 66–77px wide. "Washington, DC" can't wrap ("Washington," is one word), so it spills 38px into the time column and renders as "Washingto6:35 PM · Oct 24". "Portland" overflows by 4px. At 390px and wider, and for shorter names like "Stony Brook", it's fine. This is new with the expansion: the longer city names and the "· Oct 24" date suffix on times. | Open `/journey/east-portland--miami--amtrak` at 320px width and scroll to the Boston → Washington, DC segment. | [crop](qa-screenshots/expansion/bug-320-washington-dc-overlaps-time.png) |
-| X2 | Low: UX | Search (`src/pages/SearchPage.tsx`, Person 1) | Open | The search query isn't in the URL. After searching Boston → New York, a page refresh returns to the default Philadelphia → Stony Brook demo. Journey and Wallet deep links for expanded trips do survive refresh and sharing. | Search Boston → New York, then press reload. | n/a |
-| X3 | Low: readability | Journey header (Person 2) | Open; the format predates this PR | Total duration is shown in minutes: "2010 min total" for Portland → Miami, while the segment cards show "21h 55m". | Open `/journey/east-portland--miami--amtrak`. | [390px](qa-screenshots/expansion/mobile-390-journey-portland-miami.png) |
-| X4 | n/a | Person 3 verified | **Closed: not a defect** (Person 3, hub #3, October 24) | SEPTA links use `https://wwww.septa.org/…` (four w's). I raised this as a possible typo because it resolves through a different host than `www.septa.org`. Person 3 verified that the four-w URLs are official SEPTA pages ("Ways to Pay – Southeastern Pennsylvania Transportation Authority"), so no replacement is required. | n/a | n/a |
+| X5 | Low–medium: readability, phones | Search map (`src/components/search/CorridorMap.tsx`, Person 1) | **Open on `21d77dd`** | The geographic map is an SVG scaled to its container, so the 11-unit city labels render at **about 5.2px at 320px and 6.4px at 390px**; the caption is 7px. Nothing overlaps or clips, but the labels can't be read on a phone. Desktop is about 10.6px. Possible fixes: larger label font in the viewBox at narrow widths, fewer labels on mobile, or a taller mobile map. | Open `/` at 320px and look at the map labels. `node qa/p4-09-check.cjs` "city labels readable (≥10px rendered)". | [320px](qa-screenshots/expansion/p4-09-map-320-labels-too-small.png) |
+| X1 | Medium: visual, 320px | Journey timeline (`SegmentCard.tsx`, Person 2) | **Resolved** by PR #15, verified on `21d77dd` | At 320px "Washington, DC" spilled 38px into the time column ("Washingto6:35 PM · Oct 24"). The time now stacks below the city. | `/journey/east-portland--miami--amtrak` at 320px | [before](qa-screenshots/expansion/bug-320-washington-dc-overlaps-time.png), [after](qa-screenshots/expansion/p4-09-x1-fixed-320.png) |
+| X2 | Low: UX | Search (`SearchPage.tsx`, Person 1) | **Resolved**, verified on `21d77dd` | The search query wasn't in the URL, so a refresh returned to the default demo. Search state is now in the URL, with refresh, sharing and Back / Forward. | See P4-09 X2 checks | n/a |
+| X3 | Low: readability | Journey header (Person 2) | **Resolved** by PR #15, verified on `21d77dd` | Total duration showed "2010 min total"; it now shows "33h 30m total". | `/journey/east-portland--miami--amtrak` | n/a |
+| X4 | n/a | Person 3 verified | **Closed: not a defect** (Person 3, hub #3, October 24) | SEPTA links use `https://wwww.septa.org/…` (four w's). Person 3 verified these are official SEPTA pages; no replacement is required. | n/a | n/a |
 
-## Scenario results
+The scenario tables below record the first run on `9be946d`. On `21d77dd`, every one of those scenarios passes again (expansion suite 122 / 122).
+
+## Scenario results (`9be946d`)
 
 "Pass" means an automated assertion in `qa/expansion-check.cjs` passed, unless the row is marked *manual*.
 
@@ -96,6 +136,7 @@ Coordinator check (hub #2): expanded routes are clearly labelled as concepts, co
 
 ```sh
 git checkout <sha> && pnpm install --frozen-lockfile && pnpm build && pnpm exec playwright install chromium
-PORT=4173 pnpm start
+PORT=4173 pnpm start   # avoid ports Node fetch blocks, such as 4190
 node qa/expansion-check.cjs http://127.0.0.1:4173 qa-results/expansion
+node qa/p4-09-check.cjs http://127.0.0.1:4173 qa-results/p4-09   # X1/X2/X3, coach, guided flows, motion, map
 ```
