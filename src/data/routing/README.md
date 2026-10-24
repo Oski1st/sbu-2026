@@ -51,11 +51,13 @@ Cold App/data import regression asserts zero routing/trip creation/cache entries
 Expanded IDs reconstruct independently of Search, selection or a populated cache.
 
 Initial candidate run:73/78 passed; five pre-existing Journey fixture lookups still
-used demoTrips.find for east IDs. P2 owns that two-file fixture correction and will
-supply a separate unchanged patch. No assertions are weakened. Candidate build and
-two startup checks pass. Final integrated test totals/patch SHA will be recorded
-in the coordination report after actual full checks; this paragraph preserves the
-initial failure evidence. Do not treat the initial candidate as a green QA target.
+used demoTrips.find for east IDs. P2 supplied that two-file correction at
+`34385786c818c0babbc549a7fcf65daed2882c32`; it was inspected and normally merged
+unchanged, retaining provenance. No assertions are weakened. Candidate locked install, build and final full suite pass **80/80** after that
+patch. Two startup tests cover zero App-import work, cold expanded lookup and golden
+original IDs/durations/times. Initial failure evidence is retained here; the exact
+pushed candidate SHA is recorded in the coordination report. P4 execution still
+requires a coordinator-numbered target; passing unit checks are not a release decision.
 
 No direct Search/Journey/TripContext owner-file edits by P3. P1's canonical-path
 priority and its tests remain preserved. No merge/deployment or production claim.
