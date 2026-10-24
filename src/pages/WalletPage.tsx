@@ -45,8 +45,8 @@ export default function WalletPage({ tripId, septaEndpoint }: WalletPageProps) {
   const { tripId: routeTripId } = useParams<{ tripId: string }>();
   const id = tripId ?? routeTripId ?? tripIdFromLocation();
   const trip = demoTrips.find((item: Trip) => item.id === id);
-  return <main className="oneline-wallet">
+  return <div className="oneline-wallet">
     <nav aria-label="Wallet navigation"><a className="ol-brand" href="/">OneLine<span aria-hidden="true"> ↗</span></a><a href="/">Back to journey search</a></nav>
     {trip ? <TripWallet key={trip.id} trip={trip} septaEndpoint={septaEndpoint} /> : <section className="ol-empty"><span className="ol-eyebrow">TRIP WALLET</span><h1>{id ? 'Journey not found' : 'Choose your journey first'}</h1><p>Open a wallet from the journey search results. No tickets or itinerary have been created.</p><a className="ol-button" href="/">Find a journey</a></section>}
-  </main>;
+  </div>;
 }

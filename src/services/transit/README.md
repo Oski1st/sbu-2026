@@ -2,23 +2,13 @@
 
 ## Integration
 
-This branch intentionally contains no scaffold, shared types, shared data, router,
-or dependency changes. Main contained only documentation when implementation began.
-The shared modules and scaffold are now available on Person 1's `feat/search` branch;
-integrate that foundation before building this wallet in the shared app.
-Person 1 must provide named `Trip`, `Leg`, and `Agency` exports from
-`src/types/transit.ts`, plus a named `demoTrips: Trip[]` export from
-`src/data/demoTrips.ts`, using the agreed schema. No duplicate production definitions
-or invented journeys are included here.
-
-The host app needs React, React Router, and a TSX/CSS-capable build system, all
-provided by Person 1's scaffold. With React Router:
-
-```tsx
-import WalletPage from './pages/WalletPage';
-// Inside your existing Routes:
-<Route path="/wallet/:tripId" element={<WalletPage />} />
-```
+Person 1's foundation is merged into main through PR #3 and has been merged into
+`feat/wallet`. The existing `src/App.tsx` automatically loads WalletPage at
+`/wallet/:tripId`; no route or dependency changes are needed in this branch.
+Named `Trip`, `Leg`, and `Agency` exports come from `src/types/transit.ts`, and
+`demoTrips: Trip[]` comes from `src/data/demoTrips.ts`. No duplicate production
+contracts or invented journeys are included here. The shared layout owns the main
+page landmark; WalletPage renders inside it.
 
 WalletPage reads `tripId` using React Router so navigation between wallet URLs
 updates the rendered trip. A host wrapper can instead pass `tripId` explicitly.
@@ -100,21 +90,27 @@ their route, date, fare product, and eligibility with the agency.
 
 ## Validation
 
-Because main has no package manifest or shared modules, verification initially used
-an isolated external harness with the agreed shared-type contract and explicitly
-labeled test fixtures, not production trips. The final integration check uses
-Person 1's actual `feat/search` scaffold and shared modules in a scratch checkout.
-Route wiring must still be added by Person 1 when the foundation merges.
+Verified against merged main (`e3a67ef`, PR #3) in the actual feature checkout:
+
+- `pnpm install` completed without dependency or lockfile changes.
+- `pnpm build` passed the TypeScript and Vite production build.
+- `pnpm test` passed both suites: 4 shared-trip checks and 5 transit-adapter checks.
+- Browser verification covered `/wallet/regional-connection` (four legs across
+  SEPTA, NJ TRANSIT and LIRR) and `/wallet/amtrak-connection` (three legs across
+  Amtrak and LIRR), official links, and demo-only labels.
+- The regional wallet retains the unavailable fallback without a proxy; the
+  Amtrak journey does not show unrelated SEPTA observations.
 
 `septa.test.ts` uses the host scaffold's Vitest runner and covers response validation,
 HTTP/JSON/network errors, abort, timeout, and empty feeds. External wallet integration
 checks additionally exercise all four agencies, safe links, toggles, missing IDs,
 empty trips, trip changes, and live versus unavailable indicators.
 
-After merging the shared foundation, run:
+From this checkout, run:
 
 ```sh
-pnpm install --frozen-lockfile
+pnpm install
 pnpm build
-pnpm test -- src/services/transit/septa.test.ts
+pnpm test
+pnpm dev
 ```
