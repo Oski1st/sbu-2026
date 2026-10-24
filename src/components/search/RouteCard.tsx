@@ -16,12 +16,25 @@ import {
   formatTime,
   sampleTotal,
   transferCount,
+  tripMetrics,
 } from "../../data/tripUtils";
 import { useSelectedTrip } from "../layout/TripContext";
-export function RouteCard({ trip, index }: { trip: Trip; index: number }) {
+import { ShareTripButton } from "./ShareTripButton";
+export function RouteCard({
+  trip,
+  index,
+  comparing,
+  onCompare,
+}: {
+  trip: Trip;
+  index: number;
+  comparing: boolean;
+  onCompare: () => void;
+}) {
   const [expanded, setExpanded] = useState(false);
   const { selectTrip } = useSelectedTrip();
   const price = sampleTotal(trip);
+  const metrics = tripMetrics(trip);
   const unique = [...new Set(trip.legs.map((leg) => leg.agency))];
   const first = trip.legs[0],
     last = trip.legs.at(-1)!;
@@ -97,6 +110,18 @@ export function RouteCard({ trip, index }: { trip: Trip; index: number }) {
           </span>
         ))}
       </div>
+      <div className="route-card-utility">
+        <label className="compare-route-check">
+          <input
+            type="checkbox"
+            checked={comparing}
+            onChange={onCompare}
+            aria-label={`Compare ${trip.label ?? trip.id}`}
+          />
+          Compare route
+        </label>
+        <ShareTripButton trip={trip} />
+      </div>
       <div className="route-card-bottom">
         <button
           className="detail-toggle"
@@ -118,6 +143,16 @@ export function RouteCard({ trip, index }: { trip: Trip; index: number }) {
       </div>
       {expanded && (
         <div id={`details-${trip.id}`} className="leg-details">
+          {metrics && (
+            <div className="trip-time-breakdown">
+              <span>
+                <strong>{formatDuration(metrics.rideMinutes)}</strong> on trains
+              </span>
+              <span>
+                <strong>{metrics.transferMinutes} min</strong> between trains
+              </span>
+            </div>
+          )}
           <p className="details-note">
             <Clock3 size={14} />
             All times shown in Eastern Time · Oct 24, 2026 · Sample only
