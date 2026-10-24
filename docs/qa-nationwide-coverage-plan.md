@@ -115,6 +115,8 @@ Person 3's proposed **`getRoutingDiagnostics()`** read-only snapshot covers the 
 
 ## E. Full-US map (P4-12)
 
+First run (P4-15, PR #22 at `74c9269`): see [qa-national-map-results.md](qa-national-map-results.md). It's checked by `qa/p4-15-map-check.cjs`, and the map was found vertically mirrored (X7).
+
 | # | Check | Pass criterion | SHA | Result |
 | --- | --- | --- | --- | --- |
 | E1 | Accurate geography | Continental US from a documented source (for example Natural Earth, bundled). Markers sit at each place's representative point within a stated tolerance, and states run north-up. | | |
