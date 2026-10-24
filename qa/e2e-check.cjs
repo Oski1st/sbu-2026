@@ -12,8 +12,11 @@ const log = (name, ok, detail = "") => {
 };
 const settled = (page) =>
   page.waitForFunction(
-    () => !document.querySelector(".ol-live")?.textContent?.includes("Checking the official SEPTA feed"),
-    null,
+    (loading) => {
+      const text = document.querySelector(".ol-live")?.textContent;
+      return !!text && !new RegExp(loading).test(text);
+    },
+    LOADING.source,
     { timeout: 10000 },
   );
 const flat = (s) => s.replace(/\s+/g, " ").trim();
@@ -39,6 +42,11 @@ async function unlabelledOrClipped(page, scope = "body") {
 // Shell contract (README "Shared shell contract"): exactly one <main>, never nested.
 const landmarks = (page) =>
   page.evaluate(() => ({ mains: document.querySelectorAll("main").length, nested: document.querySelectorAll("main main").length }));
+// SEPTA panel copy, old (before PR #8) and new wording, so the suite runs on either.
+const LOADING = /Checking the official SEPTA feed|Refreshing SEPTA observations/;
+const LIVE = /Live feed fetched|SEPTA observations retrieved/;
+const UNAVAILABLE = /Live data unavailable|SEPTA observations unavailable/;
+const STALE = /Snapshot expired/;
 // Page-level navigation drawn under the site header (finding 4).
 const pageNav = (page) =>
   page.evaluate(() => {
@@ -149,7 +157,7 @@ const pageNav = (page) =>
     if (hasSepta) {
       await settled(page);
       const live = flat(await page.locator(".ol-live").innerText());
-      log(`[${tripId}] real SEPTA panel state`, /Live feed fetched|Live data unavailable/.test(live), live.slice(0, 160));
+      log(`[${tripId}] real SEPTA panel state`, (LIVE.test(live) || UNAVAILABLE.test(live)), live.slice(0, 160));
     }
     await page.screenshot({ path: `${shots}/${tripId}-wallet-desktop.png`, fullPage: true });
     await page.reload();
@@ -310,12 +318,12 @@ const pageNav = (page) =>
     page.locator(".ol-ticket-list").innerText().then((t) => (t.match(/\d{1,2}:\d{2}\s?[AP]M/g) ?? []).join(","));
   let baselineTimes = null;
   for (const [label, handler, expected] of [
-    ["502 upstream failure", (r) => r.fulfill({ status: 502, contentType: "application/json", body: "{\"error\":\"septa_unavailable\"}" }), /Live data unavailable/],
-    ["504 timeout", (r) => r.fulfill({ status: 504, contentType: "application/json", body: "{\"error\":\"septa_timeout\"}" }), /Live data unavailable/],
-    ["network error", (r) => r.abort(), /Live data unavailable/],
-    ["malformed rows", (r) => r.fulfill({ status: 200, contentType: "application/json", body: "[{\"trainno\":1}]" }), /Live data unavailable/],
+    ["502 upstream failure", (r) => r.fulfill({ status: 502, contentType: "application/json", body: "{\"error\":\"septa_unavailable\"}" }), UNAVAILABLE],
+    ["504 timeout", (r) => r.fulfill({ status: 504, contentType: "application/json", body: "{\"error\":\"septa_timeout\"}" }), UNAVAILABLE],
+    ["network error", (r) => r.abort(), UNAVAILABLE],
+    ["malformed rows", (r) => r.fulfill({ status: 200, contentType: "application/json", body: "[{\"trainno\":1}]" }), UNAVAILABLE],
     ["empty feed", (r) => r.fulfill({ status: 200, contentType: "application/json", body: "[]" }), /no active trains/],
-    ["success", (r) => r.fulfill({ status: 200, contentType: "application/json", body: sampleTrain }), /Live feed fetched.*QA Test Line · Train 9999/],
+    ["success", (r) => r.fulfill({ status: 200, contentType: "application/json", body: sampleTrain }), new RegExp(`(${LIVE.source}).*QA Test Line · Train 9999`)],
   ]) {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
     const page = await ctx.newPage();
@@ -348,21 +356,21 @@ const pageNav = (page) =>
     await page.locator(".ol-live").waitFor();
     await page.clock.runFor(1000);
     await settled(page);
-    log("SEPTA stale: fresh snapshot lists trains", /Live feed fetched/.test(await page.locator(".ol-live").innerText()));
+    log("SEPTA stale: fresh snapshot lists trains", LIVE.test(await page.locator(".ol-live").innerText()));
     await page.clock.runFor(61000);
     await page.waitForTimeout(100);
     const stale = flat(await page.locator(".ol-live").innerText());
     log("SEPTA stale: expires after 60 s and hides trains",
-      /Snapshot expired · refresh to check/.test(stale) && !/Train 9999/.test(stale), stale.slice(0, 140));
+      STALE.test(stale) && !/Train 9999/.test(stale), stale.slice(0, 140));
     await page.screenshot({ path: `${shots}/septa-stale.png`, fullPage: true });
-    await page.getByRole("button", { name: "Refresh" }).click();
+    await page.getByRole("button", { name: /^Refresh( feed)?$/ }).click();
     let restored = "";
-    for (let i = 0; i < 20 && !/Live feed fetched.*Train 9999/.test(restored); i++) {
+    for (let i = 0; i < 20 && !new RegExp(`(${LIVE.source}).*Train 9999`).test(restored); i++) {
       await page.clock.runFor(250);
       await page.waitForTimeout(100);
       restored = flat(await page.locator(".ol-live").innerText());
     }
-    log("SEPTA stale: Refresh restores a fresh snapshot", /Live feed fetched.*Train 9999/.test(restored), restored.slice(0, 100));
+    log("SEPTA stale: Refresh restores a fresh snapshot", new RegExp(`(${LIVE.source}).*Train 9999`).test(restored), restored.slice(0, 100));
     await ctx.close();
   }
 
