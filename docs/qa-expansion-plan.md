@@ -6,8 +6,38 @@ All results here are **PR-branch results, not `main` results.** Earlier `main` r
 
 | Run | Exact commit | Contents | Result |
 | --- | --- | --- | --- |
-| **P4-09 (current)** | **`21d77dd618538284d77ee48db7fc34821a04bd99`** on `feat/east-coast` | PR #13 @ `d3aab9e` (expansion, X2 Search persistence, map label fix), map follow-up @ `17e3682`, PR #15 @ `2db3fed` (X1 / X3, coach guidance) | Regression and expansion fully pass. P4-09 targeted checks **55 / 57**: the 2 failures are X5 (map labels too small on phones). |
+| **P4-11 (current)** | **`961f568dd039d67e04c45b7c3ea4d4e7268eed6c`** on `fix/mobile-map-labels` (PR #19) | `21d77dd` + PR #19's CorridorMap / `index.css` mobile label fix | Regression and expansion fully pass. P4-11 targeted map checks **65 / 69**: X5 label sizes are fixed; the 4 failures are new finding X6. |
+| P4-09 | `21d77dd618538284d77ee48db7fc34821a04bd99` on `feat/east-coast` | PR #13 @ `d3aab9e` (expansion, X2 Search persistence, map label fix), map follow-up @ `17e3682`, PR #15 @ `2db3fed` (X1 / X3, coach guidance) | Regression and expansion fully pass. P4-09 targeted checks **55 / 57**: the 2 failures are X5 (map labels too small on phones). |
 | First expansion run | `9be946d3376dc61064ad0645909e1f15f43534ad` | PR #13 head on base `main` `6df372e` | Expansion 121 / 122 (X1). Kept below as history. |
+
+## P4-11 run: `961f568`
+
+Assigned in hub issue #2 as **P4-11**. Run on October 24, 2026 from a clean checkout of `961f568dd039d67e04c45b7c3ea4d4e7268eed6c`. The diff from `21d77dd` touches only `src/components/search/CorridorMap.tsx` and `src/index.css`.
+
+| Check | Command | Result on `961f568` |
+| --- | --- | --- |
+| Install, build | `pnpm install --frozen-lockfile && pnpm build` | Pass |
+| Unit tests | `pnpm test` | **62 / 62** (10 files) |
+| Regression browser suite | `node qa/e2e-check.cjs <url>` | **121 / 121** |
+| Proxy outage / deploy smoke | `node qa/septa-proxy-outage.mjs` / `node qa/smoke.mjs` (LAN IP) | 5 / 5 / 6 / 6 |
+| Demo rehearsal | online / `--offline` | 8 / 8 / 8 / 8 |
+| Expansion suite | `node qa/expansion-check.cjs <url>` | **122 / 122** |
+| **Targeted (map)** | `node qa/p4-09-check.cjs <url>` (adjusted, see below) | **65 / 69.** All 4 failures are X6. |
+
+**X5 verdict: label size fixed, but the release is still not clean because of X6.**
+
+- **Fixed (X5):** on phones the desktop labels are hidden, and 6 mobile labels (Boston, New York, Washington, DC, Orlando, Miami, Stony Brook) render at **13.1px at 320px and 16.2px at 390px**, at or above P4-11's 11px. A visible legend at 11px names all 10 markers (10 / 10), and the visible text says connections are "illustrative and unverified".
+- **Unchanged:** marker positions (the coordinates in the diff are untouched). Markers run north-up, Stony Brook's marker is east of New York's, and there are no external network requests or page overflow at 1280 / 390 / 320px.
+- **New failure (X6):** see Findings. The legend sits inside the map's fixed-height, bottom-masked box, so it collides with the Miami label and its "unverified" line fades out ([320px](qa-screenshots/expansion/p4-11-x6-legend-overlaps-miami-and-fades-320.png), [390px](qa-screenshots/expansion/p4-11-x6-legend-overlaps-miami-and-fades-390.png), [whole map 320px](qa-screenshots/expansion/p4-11-map-320.png)).
+
+**Harness adjustments for P4-11** (documented as Person 1 asked; each was validated against the old `21d77dd`, which still fails X5 on the adjusted harness at 61 / 63):
+
+1. Only **rendered** labels count. The map now keeps hidden duplicate labels per breakpoint, and the old code let a hidden duplicate overwrite a visible label by name.
+2. Geography is checked on **marker circles**, not labels, because mobile labels are offset for space (the mobile "Stony Brook" label sits left of "New York" while its marker is east).
+3. Label floor: **11px at phone widths** (P4-11); desktop keeps P4-09's **10px** floor (renders 10.6px, unchanged by #19).
+4. Overlap tolerance: glyph boxes may touch by **up to 4px**. "New York" and "Stony Brook" are stacked with 3px of box padding touching and read clearly as two lines.
+5. Every marker must be named in visible text (its own label or the legend). The "unverified" wording may come from whichever of the caption or legend is visible.
+6. New checks: the legend must not collide with labels, and must not sit inside a `mask-image` fade. Computed styles drop the default `to bottom` direction, so a direction-less gradient is treated as vertical.
 
 ## P4-09 run: `21d77dd`
 
@@ -61,7 +91,8 @@ Coordinator check (hub #2): expanded routes are clearly labelled as concepts, co
 
 | # | Severity | Owner | Status | Finding | Reproduce | Evidence |
 | --- | --- | --- | --- | --- | --- | --- |
-| X5 | Low–medium: readability, phones | Search map (`src/components/search/CorridorMap.tsx`, Person 1) | **Open on `21d77dd`** | The geographic map is an SVG scaled to its container, so the 11-unit city labels render at **about 5.2px at 320px and 6.4px at 390px**; the caption is 7px. Nothing overlaps or clips, but the labels can't be read on a phone. Desktop is about 10.6px. Possible fixes: larger label font in the viewBox at narrow widths, fewer labels on mobile, or a taller mobile map. | Open `/` at 320px and look at the map labels. `node qa/p4-09-check.cjs` "city labels readable (≥10px rendered)". | [320px](qa-screenshots/expansion/p4-09-map-320-labels-too-small.png) |
+| X6 | Medium: readability and disclosure, phones | Search map (`CorridorMap.tsx` / `index.css`, PR #19, Person 2) | **Open on `961f568`** | The new `.map-city-legend` is absolutely positioned at the bottom **inside** `.corridor-map`, which on phones is a fixed 276px tall and has `mask-image: linear-gradient(to bottom, transparent, black 13%, black 91%, transparent)`. Result at both 320px and 390px: (1) the Miami label is drawn on top of the legend's first line ("Boston, New York"); (2) the legend's last line, which carries the "illustrative and unverified" disclosure, sits 24px into the bottom fade and is barely visible. Possible fixes: put the legend outside the masked map box (below it), or reserve space and move Miami's mobile label. | Open `/` at 320px or 390px and look at the bottom of the map. `qa/p4-09-check.cjs`: "legend doesn't collide with city labels" and "legend … isn't in a mask fade". | [320px](qa-screenshots/expansion/p4-11-x6-legend-overlaps-miami-and-fades-320.png), [390px](qa-screenshots/expansion/p4-11-x6-legend-overlaps-miami-and-fades-390.png) |
+| X5 | Low–medium: readability, phones | Search map (`CorridorMap.tsx`) | **Label sizes fixed** by PR #19, verified on `961f568` (13.1px / 16.2px). The fix introduced X6. | Map city labels rendered at about 5.2px at 320px and 6.4px at 390px on `21d77dd`. | `/` at 320px | [before](qa-screenshots/expansion/p4-09-map-320-labels-too-small.png), [after](qa-screenshots/expansion/p4-11-map-320.png) |
 | X1 | Medium: visual, 320px | Journey timeline (`SegmentCard.tsx`, Person 2) | **Resolved** by PR #15, verified on `21d77dd` | At 320px "Washington, DC" spilled 38px into the time column ("Washingto6:35 PM · Oct 24"). The time now stacks below the city. | `/journey/east-portland--miami--amtrak` at 320px | [before](qa-screenshots/expansion/bug-320-washington-dc-overlaps-time.png), [after](qa-screenshots/expansion/p4-09-x1-fixed-320.png) |
 | X2 | Low: UX | Search (`SearchPage.tsx`, Person 1) | **Resolved**, verified on `21d77dd` | The search query wasn't in the URL, so a refresh returned to the default demo. Search state is now in the URL, with refresh, sharing and Back / Forward. | See P4-09 X2 checks | n/a |
 | X3 | Low: readability | Journey header (Person 2) | **Resolved** by PR #15, verified on `21d77dd` | Total duration showed "2010 min total"; it now shows "33h 30m total". | `/journey/east-portland--miami--amtrak` | n/a |

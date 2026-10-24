@@ -176,6 +176,8 @@ const qs = (page) => Object.fromEntries(new URL(page.url()).searchParams);
   }
 
   // Map: geography, labels, honesty, no external requests.
+  // Only rendered (visible) labels count; the map may keep hidden duplicate labels per breakpoint (P4-11).
+  // Geography is checked on marker circles, since mobile labels may be offset from their markers.
   for (const width of [1280, 390, 320]) {
     const page = await newPage({ viewport: { width, height: 900 }, isMobile: width < 500, hasTouch: width < 500 });
     const external = [];
@@ -184,35 +186,79 @@ const qs = (page) => Object.fromEntries(new URL(page.url()).searchParams);
     await page.waitForTimeout(600);
     const map = page.locator(".east-map");
     const info = await map.evaluate((m) => {
-      const labels = {};
-      for (const t of m.querySelectorAll("svg text")) { const b = t.getBoundingClientRect(); labels[t.textContent.trim()] = { x: b.left + b.width / 2, y: b.top + b.height / 2, l: b.left, r: b.right, t: b.top, b: b.bottom }; }
-      const box = m.getBoundingClientRect();
-      return { labels, box: { l: box.left, r: box.right, t: box.top, b: box.bottom }, aria: m.getAttribute("aria-label"), caption: m.querySelector(".map-scale")?.textContent ?? "" };
-    });
-    const L = info.labels;
-    const order = ["Portland", "Boston", "New York", "Philadelphia", "Washington, DC", "Richmond", "Charlotte", "Savannah", "Jacksonville", "Orlando", "Miami"].filter((n) => L[n]);
-    const northUp = order.every((n, i) => i === 0 || L[n].y > L[order[i - 1]].y);
-    log("MAP", `${width}px: cities run north-up (${order.length} labelled)`, order.length >= 6 && northUp, order.map((n) => `${n}@${Math.round(L[n].y)}`).join(" "));
-    log("MAP", `${width}px: Stony Brook is east of New York`, L["Stony Brook"] && L["New York"] && L["Stony Brook"].x > L["New York"].x, L["Stony Brook"] ? `${Math.round(L["Stony Brook"].x)} vs ${Math.round(L["New York"]?.x)}` : "no Stony Brook label");
-    const cityNames = Object.keys(L).filter((n) => !/OCEAN|EASTERN|Concept|^N$/.test(n));
-    const clipped = cityNames.filter((n) => L[n].l < info.box.l - 1 || L[n].r > info.box.r + 1 || L[n].t < info.box.t - 1 || L[n].b > info.box.b + 1);
-    log("MAP", `${width}px: city labels inside the map`, clipped.length === 0, clipped.join(", "));
-    const overlaps = [];
-    for (let i = 0; i < cityNames.length; i++) for (let j = i + 1; j < cityNames.length; j++) {
-      const a = L[cityNames[i]], b = L[cityNames[j]];
-      if (Math.min(a.r, b.r) - Math.max(a.l, b.l) > 1 && Math.min(a.b, b.b) - Math.max(a.t, b.t) > 1) overlaps.push(`${cityNames[i]}×${cityNames[j]}`);
-    }
-    log("MAP", `${width}px: city labels don't overlap`, overlaps.length === 0, overlaps.join(", "));
-    const sizes = await map.evaluate((m) => {
       const svg = m.querySelector("svg");
       const scale = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
-      const city = [...svg.querySelectorAll("text")].find((t) => t.textContent.trim() === "Boston");
-      return { city: parseFloat(city.getAttribute("font-size") ?? city.getAttribute("fontSize") ?? 11) * scale, caption: parseFloat(getComputedStyle(m.querySelector(".map-scale")).fontSize) };
+      const visible = (e) => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(e).display !== "none" && getComputedStyle(e).visibility !== "hidden"; };
+      const box = m.getBoundingClientRect();
+      const labels = [];
+      for (const t of svg.querySelectorAll("text")) {
+        if (!visible(t)) continue;
+        const r = t.getBoundingClientRect();
+        labels.push({ name: t.textContent.trim(), px: parseFloat(t.getAttribute("font-size") || getComputedStyle(t).fontSize) * scale, l: r.left, r: r.right, t: r.top, b: r.bottom, y: r.top + r.height / 2 });
+      }
+      // Marker for each city: the circle immediately before its (desktop) label, visible or not.
+      const markers = {};
+      for (const t of svg.querySelectorAll("text")) {
+        const c = t.previousElementSibling;
+        if (c?.tagName === "circle" && !markers[t.textContent.trim()]) {
+          markers[t.textContent.trim()] = { cx: +c.getAttribute("cx"), cy: +c.getAttribute("cy") };
+        }
+      }
+      const caption = m.querySelector(".map-scale"), legend = m.querySelector(".map-city-legend");
+      // Is the legend inside the bottom fade of a mask-image (e.g. linear-gradient to bottom … black 91%, transparent)?
+      let fade = null;
+      if (legend && visible(legend)) {
+        for (let e = legend.parentElement; e; e = e.parentElement) {
+          const mask = getComputedStyle(e).maskImage || getComputedStyle(e).webkitMaskImage || "none";
+          // Computed values drop the default "to bottom" direction, so a direction-less linear-gradient is vertical too.
+          const vertical = /linear-gradient\(\s*(to bottom|180deg)/.test(mask) || /linear-gradient\(\s*(rgb|#|transparent|black|white)/.test(mask);
+          if (mask !== "none" && vertical) {
+            const stops = [...mask.matchAll(/(\d+(?:\.\d+)?)%/g)].map((x) => +x[1]);
+            const solidEnd = stops.length ? Math.max(...stops) / 100 : 1;
+            const r = e.getBoundingClientRect(), lr = legend.getBoundingClientRect();
+            fade = { solidEndPx: Math.round(r.top + solidEnd * r.height), legendBottom: Math.round(lr.bottom) };
+            break;
+          }
+        }
+      }
+      const vis = (e) => e && visible(e) ? e.textContent.trim() : "";
+      return { labels, markers, box: { l: box.left, r: box.right, t: box.top, b: box.bottom }, aria: m.getAttribute("aria-label") ?? "",
+        caption: vis(caption), legend: vis(legend), legendPx: legend && visible(legend) ? parseFloat(getComputedStyle(legend).fontSize) : null,
+        legendBox: legend && visible(legend) ? (({ left: l, right: r, top: t, bottom: b }) => ({ l, r, t, b }))(legend.getBoundingClientRect()) : null, fade };
     });
-    // 10px is a lenient floor for short map labels; body text guidance is 12px or more.
-    log("MAP", `${width}px: city labels readable (≥10px rendered)`, sizes.city >= 10, `city ${sizes.city.toFixed(1)}px, caption ${sizes.caption.toFixed(1)}px`);
+    const M = info.markers;
+    const order = ["Portland", "Boston", "New York", "Philadelphia", "Washington, DC", "Raleigh", "Charleston", "Orlando", "Miami"].filter((n) => M[n]);
+    log("MAP", `${width}px: markers run north-up (${order.length})`, order.length >= 8 && order.every((n, i) => i === 0 || M[n].cy > M[order[i - 1]].cy), order.map((n) => `${n}@${M[n].cy}`).join(" "));
+    log("MAP", `${width}px: Stony Brook marker east of New York marker`, M["Stony Brook"] && M["New York"] && M["Stony Brook"].cx > M["New York"].cx, M["Stony Brook"] ? `${M["Stony Brook"].cx} vs ${M["New York"]?.cx}` : "no Stony Brook marker");
+    const cities = info.labels.filter((l) => !/OCEAN|EASTERN|Concept|^N$/.test(l.name));
+    log("MAP", `${width}px: visible city labels`, cities.length >= 5, cities.map((l) => l.name).join(", "));
+    // P4-11 sets 11px for phone widths; desktop keeps P4-09's 10px floor (it renders 10.6px).
+    const floor = width < 500 ? 11 : 10;
+    const small = cities.filter((l) => l.px < floor);
+    log("MAP", `${width}px: every visible city label ≥${floor}px rendered`, small.length === 0, `${cities.map((l) => `${l.name} ${l.px.toFixed(1)}px`).join(", ")}`);
+    const clipped = cities.filter((l) => l.l < info.box.l - 1 || l.r > info.box.r + 1 || l.t < info.box.t - 1 || l.b > info.box.b + 1);
+    log("MAP", `${width}px: visible labels inside the map`, clipped.length === 0, clipped.map((l) => l.name).join(", "));
+    const overlaps = [];
+    for (let i = 0; i < cities.length; i++) for (let j = i + 1; j < cities.length; j++) {
+      const a = cities[i], b = cities[j];
+      // Glyph boxes include line padding; stacked labels may touch by a few px without ink overlapping.
+      if (Math.min(a.r, b.r) - Math.max(a.l, b.l) > 4 && Math.min(a.b, b.b) - Math.max(a.t, b.t) > 4) overlaps.push(`${a.name}×${b.name}`);
+    }
+    log("MAP", `${width}px: visible labels don't overlap`, overlaps.length === 0, overlaps.join(", "));
+    // Every marker is named in visible text: either its own visible label or the visible legend.
+    const named = Object.keys(M).filter((n) => cities.some((l) => l.name === n) || info.legend.includes(n));
+    log("MAP", `${width}px: every marker named in visible text (label or legend)`, named.length === Object.keys(M).length, `${named.length}/${Object.keys(M).length}` + (info.legend ? ` · legend ${info.legendPx}px` : ""));
+    if (info.legend) {
+      log("MAP", `${width}px: legend text ≥11px`, info.legendPx >= 11, `${info.legendPx}px`);
+      const L = info.legendBox;
+      const hits = cities.filter((c) => Math.min(c.r, L.r) - Math.max(c.l, L.l) > 4 && Math.min(c.b, L.b) - Math.max(c.t, L.t) > 4).map((c) => c.name);
+      log("MAP", `${width}px: legend doesn't collide with city labels`, hits.length === 0, hits.join(", "));
+      log("MAP", `${width}px: legend (with the 'unverified' disclosure) isn't in a mask fade`, !info.fade || info.fade.legendBottom <= info.fade.solidEndPx,
+        info.fade ? `legend bottom ${info.fade.legendBottom}px vs fade starts ${info.fade.solidEndPx}px` : "no mask");
+    }
     log("MAP", `${width}px: no horizontal page overflow`, (await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)) <= 0);
-    log("MAP", `${width}px: connections labelled unverified concepts`, /not verified services or actual rail and road alignments/.test(info.aria) && /Connections unverified/.test(info.caption) && L["Concept connections"] !== undefined, info.caption);
+    const unverified = /unverified/i.test(info.caption + " " + info.legend);
+    log("MAP", `${width}px: visible text says connections are unverified; aria-label says not verified services`, unverified && /not verified services or actual rail and road alignments/.test(info.aria), (info.caption || info.legend).slice(0, 70));
     log("MAP", `${width}px: no external network requests`, external.length === 0, external.slice(0, 3).join(", "));
     await map.screenshot({ path: `${shots}/map-${width}.png` });
     await page.context().close();
