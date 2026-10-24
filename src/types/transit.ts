@@ -1,9 +1,9 @@
 /** Shared contract. Times are ISO 8601 with an explicit UTC offset. */
-export type Agency = 'SEPTA' | 'NJ_TRANSIT' | 'LIRR' | 'AMTRAK';
+export type Agency = "SEPTA" | "NJ_TRANSIT" | "LIRR" | "AMTRAK";
 export interface Fare {
   amount: number;
-  currency: 'USD';
-  status: 'sample' | 'verified';
+  currency: "USD";
+  status: "sample" | "verified";
 }
 export interface Leg {
   id: string;
@@ -24,7 +24,7 @@ export interface Trip {
   durationMinutes: number;
   legs: Leg[];
   /** Optional for compatibility; every provided demo trip is explicitly sample. */
-  dataStatus?: 'sample' | 'live';
+  dataStatus?: "sample" | "live";
   label?: string;
   description?: string;
 }
