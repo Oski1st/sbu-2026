@@ -72,7 +72,8 @@ const log = (name, ok, detail = "") => {
     const hasSepta = (await page.locator("#ol-live-heading").count()) > 0;
     log(`[${tripId}] SEPTA panel only when trip has SEPTA`, hasSepta === agencies.includes("SEPTA"));
     if (hasSepta) {
-      await page.waitForFunction(() => !document.body.innerText.includes("Checking the official SEPTA feed"), null, { timeout: 10000 });
+      await page.locator(".ol-live").waitFor();
+    await page.waitForFunction(() => !document.querySelector(".ol-live")?.textContent?.includes("Checking the official SEPTA feed"), null, { timeout: 10000 });
       const live = await page.locator(".ol-live").innerText();
       log(`[${tripId}] SEPTA panel state`, /Live feed fetched|Live data unavailable/.test(live),
         live.replace(/\s+/g," ").slice(0,160));
@@ -124,6 +125,7 @@ const log = (name, ok, detail = "") => {
     const page = await ctx.newPage();
     watch(page);
     await page.goto(base + "/");
+    await page.waitForTimeout(800);
     await page.keyboard.press("Tab");
     const first = await page.evaluate(() => document.activeElement?.textContent?.trim());
     log("Keyboard: first Tab is skip link", /Skip to content/.test(first ?? ""), first);
@@ -138,6 +140,9 @@ const log = (name, ok, detail = "") => {
       log("Keyboard: visible focus outline on route CTA", ring !== "none", ring);
       await page.keyboard.press("Enter");
       await page.waitForURL("**/journey/regional-connection");
+      // Journey is lazy-loaded; wait for the page before reading focus.
+      await page.locator("#main-content h1").first().waitFor();
+      await page.waitForTimeout(500);
       const focused = await page.evaluate(() => document.activeElement?.id);
       log("Keyboard: focus moves to main after navigation", focused === "main-content", focused);
       const buttons = page.locator("#main-content button");
@@ -161,6 +166,26 @@ const log = (name, ok, detail = "") => {
       const progress = await page.locator("progress").getAttribute("value");
       log("Keyboard: Wallet checklist toggles with Space", progress === "1", `progress ${progress}`);
     }
+    await ctx.close();
+  }
+
+  // SEPTA unavailable states as seen by the browser (proxy responses simulated).
+  for (const [label, handler] of [
+    ["502 upstream failure", (r) => r.fulfill({ status: 502, contentType: "application/json", body: "{\"error\":\"upstream_unavailable\"}" })],
+    ["504 timeout", (r) => r.fulfill({ status: 504, contentType: "application/json", body: "{\"error\":\"upstream_timeout\"}" })],
+    ["network error", (r) => r.abort()],
+    ["empty feed", (r) => r.fulfill({ status: 200, contentType: "application/json", body: "[]" })],
+  ]) {
+    const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+    const page = await ctx.newPage();
+    await page.route("**/api/transit/septa/trains", handler);
+    await page.goto(base + "/wallet/regional-connection");
+    await page.locator(".ol-live").waitFor();
+    await page.waitForFunction(() => !document.querySelector(".ol-live")?.textContent?.includes("Checking the official SEPTA feed"), null, { timeout: 10000 });
+    const live = (await page.locator(".ol-live").innerText()).replace(/\s+/g, " ");
+    const expected = label === "empty feed" ? /no active trains/ : /Live data unavailable/;
+    log(`SEPTA browser state: ${label}`, expected.test(live) && !/Train \d/.test(live), live.slice(0, 120));
+    await page.screenshot({ path: `${shots}/septa-${label.replace(/\W+/g, "-")}.png`, fullPage: true });
     await ctx.close();
   }
 
