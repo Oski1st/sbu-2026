@@ -1,0 +1,324 @@
+{
+  "base": "http://127.0.0.1:5181",
+  "chrome": "156.0.8078.47",
+  "results": [
+    {
+      "id": "M1-320",
+      "check": "map at 320px: no sideways scroll, nothing clipped",
+      "result": "PASS",
+      "detail": {
+        "vw": 320,
+        "docScrollW": 320,
+        "svg": "292x153",
+        "routes": 8,
+        "stations": 0,
+        "clipped": []
+      }
+    },
+    {
+      "id": "M2-320",
+      "check": "map text contrast >= 4.5:1 at 320px",
+      "result": "PASS",
+      "detail": {
+        "min": 6.09,
+        "smallestFont": "11px",
+        "lowContrast": []
+      }
+    },
+    {
+      "id": "M1-375",
+      "check": "map at 375px: no sideways scroll, nothing clipped",
+      "result": "PASS",
+      "detail": {
+        "vw": 375,
+        "docScrollW": 375,
+        "svg": "347x182",
+        "routes": 8,
+        "stations": 0,
+        "clipped": []
+      }
+    },
+    {
+      "id": "M2-375",
+      "check": "map text contrast >= 4.5:1 at 375px",
+      "result": "PASS",
+      "detail": {
+        "min": 6.09,
+        "smallestFont": "11px",
+        "lowContrast": []
+      }
+    },
+    {
+      "id": "M1-390",
+      "check": "map at 390px: no sideways scroll, nothing clipped",
+      "result": "PASS",
+      "detail": {
+        "vw": 390,
+        "docScrollW": 390,
+        "svg": "362x190",
+        "routes": 8,
+        "stations": 0,
+        "clipped": []
+      }
+    },
+    {
+      "id": "M2-390",
+      "check": "map text contrast >= 4.5:1 at 390px",
+      "result": "PASS",
+      "detail": {
+        "min": 6.09,
+        "smallestFont": "11px",
+        "lowContrast": []
+      }
+    },
+    {
+      "id": "M1-768",
+      "check": "map at 768px: no sideways scroll, nothing clipped",
+      "result": "PASS",
+      "detail": {
+        "vw": 768,
+        "docScrollW": 768,
+        "svg": "350x184",
+        "routes": 8,
+        "stations": 0,
+        "clipped": []
+      }
+    },
+    {
+      "id": "M2-768",
+      "check": "map text contrast >= 4.5:1 at 768px",
+      "result": "PASS",
+      "detail": {
+        "min": 6.09,
+        "smallestFont": "11px",
+        "lowContrast": []
+      }
+    },
+    {
+      "id": "M1-1280",
+      "check": "map at 1280px: no sideways scroll, nothing clipped",
+      "result": "PASS",
+      "detail": {
+        "vw": 1280,
+        "docScrollW": 1280,
+        "svg": "606x318",
+        "routes": 8,
+        "stations": 0,
+        "clipped": []
+      }
+    },
+    {
+      "id": "M2-1280",
+      "check": "map text contrast >= 4.5:1 at 1280px",
+      "result": "PASS",
+      "detail": {
+        "min": 6.09,
+        "smallestFont": "11px",
+        "lowContrast": []
+      }
+    },
+    {
+      "id": "M3",
+      "check": "no external runtime requests on load",
+      "result": "PASS",
+      "detail": {
+        "external": []
+      }
+    },
+    {
+      "id": "M4",
+      "check": "no console errors on load",
+      "result": "PASS",
+      "detail": {
+        "errors": []
+      }
+    },
+    {
+      "id": "Z1",
+      "check": "real 200% browser zoom",
+      "result": "BLOCKED",
+      "detail": {
+        "reason": "browser zoom is not reachable from page automation; emulated 640x400@2x equivalent shown for information only",
+        "emulated": {
+          "vw": 640,
+          "docScrollW": 640
+        }
+      }
+    },
+    {
+      "id": "K1",
+      "check": "details closed: summary is the only map tab stop",
+      "result": "PASS",
+      "detail": {
+        "mapStops": [
+          "SUMMARY:Corridors, cities & coverage gaps"
+        ]
+      }
+    },
+    {
+      "id": "K2",
+      "check": "summary focus visible (outline >= 3:1)",
+      "result": "PASS",
+      "detail": {
+        "ratio": 8.96,
+        "width": "3px"
+      }
+    },
+    {
+      "id": "K3",
+      "check": "Enter opens details; every source link reachable by Tab",
+      "result": "FAIL",
+      "detail": {
+        "open": true,
+        "linkCount": 41,
+        "reached": 42
+      }
+    },
+    {
+      "id": "K4",
+      "check": "focus visible on every link (outline >= 3:1)",
+      "result": "PASS",
+      "detail": {
+        "checked": 42,
+        "minOutline": 8.96,
+        "badOutline": []
+      }
+    },
+    {
+      "id": "K5",
+      "check": "new-tab links announce \"opens in a new tab\"",
+      "result": "FAIL",
+      "detail": {
+        "withoutHint": [
+          "MTA station details · alignment not mapped ↗",
+          "Official source ↗",
+          "Official source ↗",
+          "Official source ↗",
+          "FRA/BTS alignments ↗",
+          "Amtrak station dataset ↗",
+          "Natural Earth boundaries ↗"
+        ]
+      }
+    },
+    {
+      "id": "K6",
+      "check": "links https + rel noreferrer",
+      "result": "FAIL",
+      "detail": {
+        "sample": [
+          null,
+          "https://www.amtrak.com/downeaster-train",
+          "https://www.amtrak.com/northeast-regional-train"
+        ]
+      }
+    },
+    {
+      "id": "K7",
+      "check": "Enter on summary closes details again",
+      "result": "PASS",
+      "detail": {
+        "closedAgain": true
+      }
+    },
+    {
+      "id": "W1",
+      "check": "says partial coverage",
+      "result": "PASS",
+      "detail": {
+        "partial": true,
+        "notTimetable": true,
+        "sampleUnchanged": true,
+        "alaskaHawaiiInMap": false,
+        "alaskaHawaiiOnPage": 0,
+        "insets": 0,
+        "cityCount": 24,
+        "stonyBrookGap": true
+      }
+    },
+    {
+      "id": "W2",
+      "check": "says not a timetable",
+      "result": "PASS",
+      "detail": {}
+    },
+    {
+      "id": "W3",
+      "check": "no Alaska/Hawaii in map or page",
+      "result": "PASS",
+      "detail": {
+        "inMap": false,
+        "onPage": 0,
+        "insets": 0
+      }
+    },
+    {
+      "id": "W4",
+      "check": "lists all 24 cities and the Stony Brook gap",
+      "result": "PASS",
+      "detail": {
+        "cityCount": 24,
+        "stonyBrookGap": true
+      }
+    },
+    {
+      "id": "B1",
+      "check": "keyboard autocomplete",
+      "result": "PASS",
+      "detail": {
+        "picked": "New York"
+      }
+    },
+    {
+      "id": "B2",
+      "check": "typed date -> submit -> Back",
+      "result": "PASS",
+      "detail": {
+        "url": "/?date=2026-12-25&time=17%3A30&from=New+York",
+        "routes": 1,
+        "afterBack": "2026-11-15"
+      }
+    },
+    {
+      "id": "B3",
+      "check": "Journey -> demo -> Wallet -> Back -> Back",
+      "result": "PASS",
+      "detail": {
+        "journey": {
+          "url": "/journey/east-new-york--stony-brook--amtrak",
+          "h1": "New York → Stony Brook"
+        },
+        "demoStatus": "Current step: LIRR connection concept · changes to confirm from New York to Stony Brook.",
+        "wallet": "/wallet/east-new-york--stony-brook--amtrak",
+        "back": {
+          "url": "/?date=2026-12-25&time=17%3A30&from=New+York",
+          "date": "2026-12-25"
+        }
+      }
+    },
+    {
+      "id": "F1",
+      "check": "known: Search field focus indicator (#97b47e, 2.3:1)",
+      "result": "FAIL (known F1)",
+      "detail": {
+        "focusBorder": "rgb(79, 122, 47)"
+      }
+    },
+    {
+      "id": "F2",
+      "check": "known: date year clipped at 375px",
+      "result": "CHECK",
+      "detail": {
+        "dateW": 265,
+        "dir": "row"
+      }
+    },
+    {
+      "id": "B4",
+      "check": "no page errors during basics",
+      "result": "PASS",
+      "detail": {
+        "errors": []
+      }
+    }
+  ]
+}

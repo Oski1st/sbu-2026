@@ -1,0 +1,175 @@
+{
+  "engine": "chrome",
+  "version": "156.0.8078.47",
+  "results": [
+    {
+      "id": "1a",
+      "check": "suggestions + arrows + Enter",
+      "result": "PASS",
+      "detail": {
+        "opts": [
+          "New Haven CT",
+          "New York NY"
+        ],
+        "active": "origin-option-new-york",
+        "picked": "New York",
+        "expandedAfter": "false"
+      }
+    },
+    {
+      "id": "1b",
+      "check": "no-match message + Escape",
+      "result": "PASS",
+      "detail": {
+        "noMatchVisible": true,
+        "expandedAfterEsc": "false",
+        "focus": "origin"
+      }
+    },
+    {
+      "id": "2a",
+      "check": "Tab/Shift+Tab order, no trap",
+      "result": "PASS",
+      "detail": {
+        "forwardFocusEvents": 17,
+        "order": [
+          "main-content",
+          "origin",
+          "Swap origin and destination",
+          "destination",
+          "departure-date",
+          "departure-time",
+          "Find my way",
+          "NEW ENGLANDBoston  New YorkCity ",
+          "MID-ATLANTICNew York  Washington",
+          "THE CAROLINASRaleigh  CharlotteC",
+          "FLORIDAOrlando  MiamiChase the s",
+          "See all 24 cities and coverage l",
+          "sort",
+          "All transport",
+          "Rail only",
+          "Bus only",
+          "Rail + bus",
+          "Bus only",
+          "Rail only",
+          "All transport",
+          "sort"
+        ]
+      }
+    },
+    {
+      "id": "2b",
+      "check": "form-control focus indicator",
+      "result": "SEE-CONTRAST",
+      "detail": [
+        {
+          "el": "origin",
+          "outline": "none",
+          "borderBottom": "1px rgba(0, 0, 0, 0)"
+        },
+        {
+          "el": "destination",
+          "outline": "none",
+          "borderBottom": "1px rgba(0, 0, 0, 0)"
+        },
+        {
+          "el": "departure-date",
+          "outline": "2px rgb(151, 180, 126)",
+          "borderBottom": "1px rgb(223, 229, 217)"
+        },
+        {
+          "el": "departure-time",
+          "outline": "2px rgb(151, 180, 126)",
+          "borderBottom": "1px rgb(223, 229, 217)"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "check": "type date, submit, Back",
+      "result": "PASS",
+      "detail": {
+        "typed": "2026-12-25",
+        "urlAfter": "/?date=2026-12-25&time=17%3A30",
+        "afterBack": "2026-11-15"
+      }
+    },
+    {
+      "id": "4-375",
+      "check": "date/time at 375px",
+      "result": "SEE-SCREENSHOT",
+      "detail": {
+        "width": 129,
+        "dir": "row",
+        "docScrollW": 375
+      }
+    },
+    {
+      "id": "4-390",
+      "check": "date/time at 390px",
+      "result": "SEE-SCREENSHOT",
+      "detail": {
+        "width": 136,
+        "dir": "row",
+        "docScrollW": 390
+      }
+    },
+    {
+      "id": "5",
+      "check": "200% zoom equivalent, no horizontal overflow",
+      "result": "PASS",
+      "detail": {
+        "search": {
+          "vw": 640,
+          "scrollW": 640
+        },
+        "journey": {
+          "vw": 640,
+          "scrollW": 640
+        },
+        "wallet": {
+          "vw": 640,
+          "scrollW": 640
+        }
+      }
+    },
+    {
+      "id": "6",
+      "check": "pointer: click a destination suggestion",
+      "result": "PASS",
+      "detail": {
+        "clicked": "Washington, DC DC",
+        "value": "Washington, DC",
+        "expanded": "false"
+      }
+    },
+    {
+      "id": "7",
+      "check": "type time only, submit, Back/Forward/reload",
+      "result": "PASS",
+      "detail": {
+        "typed": "09:45",
+        "urlAfter": "/?date=2026-11-15&time=09%3A45",
+        "afterBack": "17:30",
+        "afterForward": "09:45",
+        "afterReload": "09:45",
+        "dateAfterReload": "2026-11-15"
+      }
+    },
+    {
+      "id": "8",
+      "check": "Journey -> demo Next -> Wallet -> Back -> Back",
+      "result": "PASS",
+      "detail": {
+        "journey": "/journey/regional-connection",
+        "demoStatus": "Current step: transfer at Trenton Transit Center for the next service.",
+        "wallet": "/wallet/regional-connection",
+        "backToSearch": {
+          "url": "/?date=2026-11-15&time=17%3A30",
+          "date": "2026-11-15",
+          "time": "17:30"
+        }
+      }
+    }
+  ]
+}
