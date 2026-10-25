@@ -17,6 +17,10 @@
 .passenger-rail-map .prm-stations path { fill: none; stroke-linecap: round; }
 .passenger-rail-map .prm-station-halo { stroke: #fff; stroke-width: 10; }
 .passenger-rail-map .prm-station-dot { stroke: #153f32; stroke-width: 6.5; }
+/* LIRR: dashed schematic link plus a hollow marker, so it never reads as drawn Amtrak track. */
+.passenger-rail-map .prm-lirr-link { fill: none; stroke: #1f5f8b; stroke-width: 2; stroke-dasharray: 3 3; stroke-linecap: round; }
+.passenger-rail-map .prm-lirr-ring { stroke: #1f5f8b; stroke-width: 7; }
+.passenger-rail-map .prm-lirr-hole { stroke: #fff; stroke-width: 3; }
 .passenger-rail-map .prm-labels { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; pointer-events: none; }
 .passenger-rail-map .prm-label { position: absolute; font-size: 11px; line-height: 1; font-weight: 700; color: #153f32; white-space: nowrap; text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #fff; }
 .passenger-rail-map .prm-label-right { transform: translate(8px, -50%); }
@@ -33,6 +37,7 @@
 }
 .passenger-rail-map .prm-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; list-style: none; margin: 12px 0 8px; padding: 0 8px; font-size: 11px; line-height: 1.5; }
 .passenger-rail-map .prm-legend li { display: flex; align-items: center; gap: 7px; }
+.passenger-rail-map .prm-lirr-key { width: 22px; height: 0; border-top: 2px dashed #1f5f8b; flex: none; }
 .passenger-rail-map .prm-line-key { width: 22px; height: 3px; border-radius: 2px; background: #895314; flex: none; }
 .passenger-rail-map .prm-dot-key { width: 7px; height: 7px; border-radius: 50%; background: #153f32; flex: none; }
 .passenger-rail-map .prm-note { margin: 8px; font-size: 11px; line-height: 1.6; color: #40594b; }
