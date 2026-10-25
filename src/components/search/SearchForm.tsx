@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FocusEvent } from "react";
 import {
   ArrowRight,
   ArrowDownUp,
@@ -17,6 +17,8 @@ interface Props {
   initialDepartureTime?: string;
   catalogue?: LocationCatalogue;
   timetable?: boolean;
+  onDraftChange?: () => void;
+  onDepartureCommit?: Props["onSearch"];
   onSearch: (
     origin: string,
     destination: string,
@@ -31,11 +33,20 @@ export function SearchForm({
   initialDepartureTime = "08:00",
   catalogue = sampleLocationCatalogue,
   timetable = false,
+  onDraftChange,
+  onDepartureCommit,
 }: Props) {
   const [origin, setOrigin] = useState(initialOrigin);
   const [destination, setDestination] = useState(initialDestination);
   const [departureDate, setDepartureDate] = useState(initialDepartureDate);
   const [departureTime, setDepartureTime] = useState(initialDepartureTime);
+  function commitDeparture(event: FocusEvent<HTMLInputElement>) {
+    if (!timetable || !onDepartureCommit || !event.currentTarget.form?.checkValidity()) return;
+    const next = event.relatedTarget;
+    if (next instanceof HTMLButtonElement && next.type === "submit") return;
+    if (next instanceof Element && next.closest(".date-time-controls")) return;
+    onDepartureCommit(origin, destination, {departureDate, departureTime});
+  }
   return (
     <section className="search-section" aria-label="Plan your journey">
       <div className="search-heading">
@@ -59,7 +70,7 @@ export function SearchForm({
             name="origin"
             label="From"
             value={origin}
-            onChange={setOrigin}
+            onChange={(value) => {setOrigin(value); onDraftChange?.();}}
             required
             placeholder="Departure city"
             catalogue={catalogue}
@@ -73,6 +84,7 @@ export function SearchForm({
           onClick={() => {
             setOrigin(destination);
             setDestination(origin);
+            onDraftChange?.();
           }}
         >
           <ArrowDownUp size={17} />
@@ -84,7 +96,7 @@ export function SearchForm({
             name="destination"
             label="To"
             value={destination}
-            onChange={setDestination}
+            onChange={(value) => {setDestination(value); onDraftChange?.();}}
             required
             placeholder="Where to?"
             catalogue={catalogue}
@@ -102,7 +114,8 @@ export function SearchForm({
                   name="departure-date"
                   type="date"
                   value={departureDate}
-                  onChange={(event) => setDepartureDate(event.target.value)}
+                  onChange={(event) => {setDepartureDate(event.target.value); onDraftChange?.();}}
+                  onBlur={commitDeparture}
                   required
                 />
               </label>
@@ -112,7 +125,8 @@ export function SearchForm({
                   name="departure-time"
                   type="time"
                   value={departureTime}
-                  onChange={(event) => setDepartureTime(event.target.value)}
+                  onChange={(event) => {setDepartureTime(event.target.value); onDraftChange?.();}}
+                  onBlur={commitDeparture}
                   required
                 />
               </label>

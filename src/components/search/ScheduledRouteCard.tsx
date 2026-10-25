@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ArrowRight, ChevronDown, TrainFront, Bus } from "lucide-react";
 import type { ScheduledItinerary } from "../../services/transit/timetables";
 import { stationTime } from "../../services/transit/timetables";
+import { BookingHandoff } from "./BookingHandoff";
 import { formatDuration } from "../../data/tripUtils";
 export function ScheduledRouteCard({
   trip,
@@ -129,9 +130,7 @@ export function ScheduledRouteCard({
                   realtime.
                 </p>
               </div>
-              <a href={leg.purchaseUrl} target="_blank" rel="noreferrer">
-                Official tickets
-              </a>
+              <BookingHandoff leg={leg} />
             </div>
           ))}
           <p className="fare-disclaimer">

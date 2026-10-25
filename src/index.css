@@ -2642,3 +2642,24 @@
 .scheduled-journey {max-width:1000px;padding-top:3rem;padding-bottom:3rem;line-height:1.7;overflow-wrap:anywhere}
 .scheduled-journey h1 {font-size:clamp(2rem,6vw,3.5rem);line-height:1.15;letter-spacing:-.04em;margin:1rem 0}
 @media(max-width:400px){.timetable-page .date-time-controls {display:grid;grid-template-columns:minmax(0,1fr)}.timetable-page .date-time-controls label {width:100%}.scheduled-card .route-summary {gap:.5rem}.scheduled-card .route-time strong {font-size:.85rem}.scheduled-card .route-card-title {align-items:flex-start}.scheduled-card .fare {min-width:0;max-width:7rem}}
+
+/* Keep the explanatory line inside the same card gutters on desktop and mobile. */
+.scheduled-card .timetable-station-note {padding:0 1.5rem;margin:1rem auto;text-align:center;max-width:68rem;box-sizing:border-box}
+
+.booking-handoff {grid-column:2/-1;min-width:0;padding:1rem;background:#f4f7f0;border:1px solid #d3ddcd;border-radius:.5rem;line-height:1.65;color:#284538}
+.booking-handoff p {margin:.5rem 0}
+.booking-handoff a {text-decoration:underline;font-weight:650}
+.booking-fields {display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr));gap:.75rem;margin:1rem 0}
+.booking-field {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.35rem;align-items:center}
+.booking-field label {grid-column:1/-1;font-size:.85rem;font-weight:650}
+.booking-field input {width:100%;min-width:0;background:white;border:1px solid #758a74;padding:.5rem;font:inherit;border-radius:.25rem}
+.booking-handoff button {padding:.5rem .75rem;border:1px solid #758a74;background:white;border-radius:.25rem;font:inherit;cursor:pointer}
+@media(max-width:600px){.booking-handoff {grid-column:1/-1}}
+/* Scheduled details use a full-width second row for the booking handoff. */
+.scheduled-card .leg-detail {display:grid;grid-template-columns:22px minmax(0,1fr)}
+.scheduled-card .leg-detail > div {min-width:0}
+.scheduled-card .leg-number {background:#173f35}
+.scheduled-card .leg-detail > div > p {display:block;font-size:.85rem;color:#526057}
+.scheduled-card .leg-detail small {font-size:.8rem;color:#526057}
+.scheduled-card .booking-handoff p {display:block;font-size:.9rem;line-height:1.65;color:#284538}
+.scheduled-card .booking-handoff strong {font-size:inherit}

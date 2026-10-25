@@ -26,7 +26,8 @@ export default function TimetableSearchPage() {
   const [catalogueError, setCatalogueError] = useState("");
   const [catalogueAttempt, setCatalogueAttempt] = useState(0);
   const [requestAttempt, setRequestAttempt] = useState(0);
-  const [result, setResult] = useState<TimetableResult>();
+  const [response, setResponse] = useState<{key: string; value: TimetableResult}>();
+  const [draftChanged, setDraftChanged] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const resultsRef = useRef<HTMLElement>(null);
@@ -43,6 +44,7 @@ export default function TimetableSearchPage() {
   const searched =
     params.get("search") === "1" || params.has("from") || params.has("to");
   const queryKey = JSON.stringify(query);
+  const result = searched && !draftChanged && response?.key === queryKey ? response.value : undefined;
   useEffect(() => {
     let active = true;
     setCatalogueError("");
@@ -74,16 +76,19 @@ export default function TimetableSearchPage() {
     };
   }, [catalogue]);
   useEffect(() => {
-    if (!searched) return;
+    setDraftChanged(false);
+    setResponse(undefined);
+    setError("");
+    if (!searched) {setLoading(false); return;}
     const c = new AbortController();
     let active = true;
     const timer = setTimeout(() => c.abort(), 15000);
     setLoading(true);
-    setResult(undefined);
+    setResponse(undefined);
     setError("");
     fetchTimetables(JSON.parse(queryKey), c.signal)
       .then((value) => {
-        if (active) setResult(value);
+        if (active) setResponse({key: queryKey, value});
       })
       .catch((cause) => {
         if (active)
@@ -156,6 +161,11 @@ export default function TimetableSearchPage() {
           catalogue={cityIndex}
           timetable
           onSearch={search}
+          onDraftChange={() => setDraftChanged(true)}
+          onDepartureCommit={(from, to, p) => {
+            setDraftChanged(false);
+            patch({from: from.trim(), to: to.trim(), date: p.departureDate, time: p.departureTime});
+          }}
         />
         <p className="catalogue-qualification" role="status">
           {catalogue
@@ -180,12 +190,14 @@ export default function TimetableSearchPage() {
               <span className="eyebrow">PUBLISHED DEPARTURES</span>
               <h2 id="results-title">Your route options.</h2>
               <p role="status" aria-live="polite">
-                {loading
+                {draftChanged
+                  ? "Search details changed. Finish editing date/time to refresh, or press Find my way."
+                  : loading
                   ? "Searching published timetables…"
                   : error ||
                     result?.message ||
                     (result
-                      ? `${result.itineraries.length} scheduled options for ${query.from} → ${query.to}`
+                      ? `${result.itineraries.length} scheduled options for ${query.from} → ${query.to}, departing on or after ${query.date} at ${query.time} (${result.query.timezone})`
                       : "Choose two cities and a travel date to search.")}
               </p>
             </div>
@@ -246,7 +258,7 @@ export default function TimetableSearchPage() {
               Include Amtrak
             </label>
           </div>
-          {error && (
+          {!draftChanged && searched && error && (
             <div className="empty-state">
               <h3>We couldn’t verify this search.</h3>
               <button

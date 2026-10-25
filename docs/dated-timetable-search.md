@@ -174,3 +174,43 @@ legacy browser harnesses need explicit `/demo` entrypoint adaptation and were no
 rerun as though the new root were the old sample. Request-race browser injection,
 full privacy network/storage capture, independent real-feed optimum oracle and
 real-device/screen-reader matrix remain independent QA gaps.
+
+
+### Owner follow-up: alignment, requested time and booking handoff
+
+A separate branch from frozen37 fixes stale UI after returning to `/` or changing
+query fields. Results are tied to the exact URL query; draft edits hide old routes.
+Leaving the date/time control group commits a valid edit and refreshes schedules
+without shifting published times. The submit button still commits the whole form;
+URL history restores the applied date/time. The status names the actual requested
+clock time/timezone. The station-note paragraph is centred within card gutters.
+
+The owner clarified that an honest disclaimer and pasteable booking details are
+acceptable instead of unsupported exact-ticket links. Each scheduled leg now says
+exact purchase links are unavailable. Amtrak's From/To fields receive source station
+codes and Depart Date receives MM/DD/YYYY in the actual boarding station's local
+date, not the original GTFS service day. Individual copy controls, select-on-focus
+read-only values and a copy-unavailable fallback are provided. Train number and
+local departure time identify the result after search. Copy all is for reference;
+it is not advertised as a single-block input Amtrak can parse. We do not preselect,
+reserve, buy or claim availability. LIRR links to TrainTime instructions and notes
+station/zone ticketing and potential through tickets for connecting legs.
+
+Official sources checked2026-10-25: https://www.amtrak.com/home.html (actual form:
+From/To accept BBY/PHL; Depart Date accepts10/26/2026; Find Trains starts a session at
+`/tickets/departure.html`, not a reusable train-specific URL),
+https://www.mta.info/traintime and
+https://www.mta.info/fares-tolls/lirr-metro-north (zone pairs, one-way validity,
+transfers). No ticket purchase or login was performed.
+
+Follow-up checks:211/211 Vitest tests26files and typecheck/build pass. New tests
+cover changed requested times excluding earlier trains, differing dated IDs,
+midnight/>24h service, local boarding date vs GTFS service day, UTC-midnight and
+DST changes, operator-specific handoff/disclaimer. The existing20case/152check
+real-feed matrix and17HTTP host checks pass with the private local artifact.
+Browser:08:00→12:00 refresh changed Boston–Philadelphia first departure08:25→13:42;
+root navigation cleared old results; Back restored12:00. Station-note centre delta
+0px/text-align centre at1280px. Copy From producedBBY; copy date produced10/26/2026,
+pasted into the actual Amtrak date field successfully.320px booking fields have no
+page overflow. Real device/screen-reader and operator inventory remain unverified.
+Frozen37 and all source/data/permission gates stay unchanged; nothing deployed.
