@@ -93,7 +93,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
             }}
             aria-expanded={isExpanded}
             aria-controls={detailId}
-            className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-bold text-slate-700 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+            className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm font-bold text-slate-700 transition hover:bg-slate-100 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4"
           >
             {isExpanded ? "Hide trip details" : "View trip details"}
             <svg className={`h-4 w-4 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -124,7 +124,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
                   href={leg.purchaseUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-white px-3 font-bold text-slate-900 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950"
+                  className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-white px-3 font-bold text-slate-900 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-100 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4"
                 >
                   Get tickets from {styles.label}
                   <span className="sr-only"> for segment {index + 1}, {leg.from} to {leg.to} (opens in a new tab)</span>

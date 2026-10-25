@@ -17,7 +17,7 @@ function JourneyNotFound() {
       <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-slate-500">OneLine</p>
       <h1 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">Journey not found</h1>
       <p className="mt-3 text-slate-600">This itinerary may have changed. Return to search to choose another trip.</p>
-      <Link to="/" className="mx-auto mt-7 inline-flex min-h-11 items-center rounded-xl bg-slate-950 px-5 text-sm font-bold text-white transition hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2">Back to search</Link>
+      <Link to="/" className="mx-auto mt-7 inline-flex min-h-11 items-center rounded-xl bg-slate-950 px-5 text-sm font-bold text-white transition hover:bg-slate-700 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#d7ef95] focus-visible:outline-offset-[-5px]">Back to search</Link>
     </main>
   );
 }
@@ -72,7 +72,7 @@ export default function JourneyPage() {
           {trip.planningNote && <p className="mt-5 rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-amber-950"><strong>Sample route concept. </strong>{trip.planningNote}</p>}
           <Link
             to={`/wallet/${trip.id}`}
-            className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-bold text-white transition hover:bg-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2"
+            className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-xl bg-slate-950 px-4 text-sm font-bold text-white transition hover:bg-slate-700 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#d7ef95] focus-visible:outline-offset-[-5px]"
           >
             View ticket wallet
             <span aria-hidden="true">→</span>

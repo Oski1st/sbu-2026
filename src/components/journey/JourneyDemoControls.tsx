@@ -70,16 +70,16 @@ export function JourneyDemoControls({ destination, legs, state, step, stepCount,
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-        <button type="button" onClick={onStart} className="min-h-11 rounded-xl bg-emerald-700 px-3 text-sm font-extrabold text-white transition hover:bg-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2">
+        <button type="button" onClick={onStart} className="min-h-11 rounded-xl bg-emerald-700 px-3 text-sm font-extrabold text-white transition hover:bg-emerald-800 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#d7ef95] focus-visible:outline-offset-[-5px]">
           Start demo journey
         </button>
-        <button type="button" onClick={onPrevious} disabled={atFirstStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-emerald-950 ring-1 ring-emerald-200 transition hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45">
+        <button type="button" onClick={onPrevious} disabled={atFirstStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-emerald-950 ring-1 ring-emerald-200 transition hover:bg-emerald-100 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-45">
           Previous step
         </button>
-        <button type="button" onClick={onNext} disabled={atLastStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-emerald-950 ring-1 ring-emerald-200 transition hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45">
+        <button type="button" onClick={onNext} disabled={atLastStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-emerald-950 ring-1 ring-emerald-200 transition hover:bg-emerald-100 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-45">
           Next step
         </button>
-        <button type="button" onClick={onReset} className="min-h-11 rounded-xl px-3 text-sm font-extrabold text-emerald-950 transition hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2">
+        <button type="button" onClick={onReset} className="min-h-11 rounded-xl px-3 text-sm font-extrabold text-emerald-950 transition hover:bg-emerald-100 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4">
           Reset
         </button>
       </div>
