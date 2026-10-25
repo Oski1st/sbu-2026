@@ -1,4 +1,4 @@
-/* OneLine UI refresh — Journey timeline steps.
+/* OneLine UI refresh — Journey timeline steps and the delay toast.
    Loaded with the Journey page chunk. */
 
 /* Stepped timeline over the existing segment list: numbered forest markers joined by
@@ -76,4 +76,19 @@
     height: 26px;
     font-size: 12px;
   }
+}
+
+/* Sonner toast (shadcn wrapper): neutral ink surface, paper text (13.9:1). */
+[data-sonner-toast][data-styled="true"].ui-toast {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  padding: 14px 18px;
+  box-shadow: 0 12px 32px -12px #0f2b24aa;
+}
+[data-sonner-toast][data-styled="true"].ui-toast [data-title] {
+  font-weight: 750;
+}
+[data-sonner-toast][data-styled="true"].ui-toast [data-description] {
+  color: #d6e2d3;
+  font-size: 13px;
 }
