@@ -1,0 +1,173 @@
+{
+  "label": "combined-run2",
+  "base": "http://127.0.0.1:4173",
+  "seed": 20261024,
+  "chromium": "156.0.8078.4",
+  "node": "v22.23.4",
+  "when": "2026-10-25T01:54:16.530Z",
+  "bundleOnSearch": {
+    "assets": [
+      {
+        "asset": "/assets/index-Cgcrj_ju.css",
+        "raw": 60356,
+        "gzip": 13372,
+        "brotli": 11773
+      },
+      {
+        "asset": "/assets/index-BL_X6Ku1.js",
+        "raw": 447171,
+        "gzip": 146053,
+        "brotli": 114462
+      }
+    ],
+    "totals": {
+      "raw": 507527,
+      "gzip": 159425,
+      "brotli": 126235
+    }
+  },
+  "coldLoad": {
+    "cpu_x1": {
+      "firstRouteCardMs": {
+        "n": 10,
+        "p50": 69.8,
+        "p95": 70.8,
+        "max": 70.8
+      },
+      "domContentLoadedMs": {
+        "n": 10,
+        "p50": 19,
+        "p95": 19.5,
+        "max": 19.5
+      },
+      "longTaskCount": {
+        "n": 10,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "longestTaskMs": {
+        "n": 10,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "totalBlockingMs": {
+        "n": 10,
+        "p50": 0,
+        "p95": 0,
+        "max": 0
+      },
+      "heapAfterLoadMB": {
+        "n": 10,
+        "p50": 3.67,
+        "p95": 3.67,
+        "max": 3.67
+      }
+    },
+    "cpu_x4": {
+      "firstRouteCardMs": {
+        "n": 10,
+        "p50": 251.2,
+        "p95": 256.7,
+        "max": 256.7
+      },
+      "domContentLoadedMs": {
+        "n": 10,
+        "p50": 58.1,
+        "p95": 61.7,
+        "max": 61.7
+      },
+      "longTaskCount": {
+        "n": 10,
+        "p50": 1,
+        "p95": 1,
+        "max": 1
+      },
+      "longestTaskMs": {
+        "n": 10,
+        "p50": 80,
+        "p95": 80,
+        "max": 80
+      },
+      "totalBlockingMs": {
+        "n": 10,
+        "p50": 30,
+        "p95": 30,
+        "max": 30
+      },
+      "heapAfterLoadMB": {
+        "n": 10,
+        "p50": 3.69,
+        "p95": 3.69,
+        "max": 3.69
+      }
+    }
+  },
+  "searchCases": {
+    "seed": 20261024,
+    "n": 200,
+    "first5": [
+      [
+        "Stony Brook",
+        "Charlotte"
+      ],
+      [
+        "Charleston",
+        "Norfolk"
+      ],
+      [
+        "NYC",
+        "Fayetteville"
+      ],
+      [
+        "Charlotte",
+        "Charlotte"
+      ],
+      [
+        "Orlando",
+        "Charlotte"
+      ]
+    ]
+  },
+  "search": {
+    "pass1_firstTimePairMs": {
+      "n": 200,
+      "p50": 33.4,
+      "p95": 34.2,
+      "max": 35.1
+    },
+    "pass2_repeatMs": {
+      "n": 200,
+      "p50": 33.4,
+      "p95": 34.6,
+      "max": 35.1
+    },
+    "heapAfter400SearchesMB": 5.4,
+    "note": "Click-to-status-update plus two animation frames, in-page timing, CPU x1"
+  },
+  "coldDeepLinkMs": {
+    "ids": [
+      "regional-connection",
+      "amtrak-connection",
+      "east-boston--new-york--greyhound",
+      "east-portland--miami--amtrak",
+      "east-boston--stony-brook--flixbus",
+      "east-miami--portland--greyhound"
+    ],
+    "journey": {
+      "n": 18,
+      "p50": 820,
+      "p95": 823,
+      "max": 823
+    },
+    "wallet": {
+      "n": 18,
+      "p50": 819,
+      "p95": 823,
+      "max": 823
+    },
+    "note": "Wall-clock from goto to content visible, fresh context, CPU x1"
+  },
+  "autocomplete": "not applicable: this target has no app autocomplete (native datalist only)"
+}
