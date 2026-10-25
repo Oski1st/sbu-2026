@@ -2,7 +2,7 @@ import type { Agency, Leg } from "../../types/transit";
 import { resolveCity } from "../../data/eastCoast";
 import { AMTRAK_BOOKING_URL, AMTRAK_HANDOFF_NOTE, amtrakTripText } from "../amtrakHandoff";
 import { flixPurchaseUrl } from "./flix";
-import { commuterPurchaseLink } from "./commuterStub";
+import { commuterPurchaseLink } from "./commuter";
 import { amtrakPurchaseUrl, amtrakStationCode } from "./amtrak";
 import { longDate, purchaseDate, shortDate } from "./dates";
 import { officialHref, officialTicketPage } from "./official";
