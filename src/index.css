@@ -2559,9 +2559,15 @@
 }
 .concept-note {
   margin: 14px 0 0;
+  padding: 0 24px;
   color: #64725f;
   font-size: 11px;
   line-height: 1.7;
+}
+@media (max-width: 760px) {
+  .concept-note {
+    padding: 0 17px;
+  }
 }
 .network-strip {
   flex-wrap: wrap;
