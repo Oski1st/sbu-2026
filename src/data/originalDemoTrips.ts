@@ -88,7 +88,7 @@ export const originalDemoTrips: Trip[] = [
     durationMinutes: 250,
     dataStatus: "sample",
     label: "The express connection",
-    description: "Amtrak to New York, then LIRR. 65 minutes faster, $15 more in sample fares.",
+    description: "Amtrak to New York, then LIRR. 65 minutes less time on board, $15 more in sample fares.",
     legs: [
       leg(
         "express-1",
