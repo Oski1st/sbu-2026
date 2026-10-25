@@ -44,7 +44,7 @@ Merging any of these on its own **would duplicate changes** already inside a can
 | #20 → `main`, #27 → `feat/national-city-catalogue` | `d45b0d3…`, `e607fb940d47ac903570e29a688c0b0995339cd2` | #30 (patch-identical) | Catalogue, P4-19 / 20 / 24 |
 | #31 → #29, #32 → #31, #33 → #32 | `5ff9dc9…`, `3f41b76…`, `4e41542…` | #34 (patch-identical) | Their branches also carry #29's 2 Search commits, which #34 doesn't |
 | #17 `feat/search-autocomplete` → `feat/east-coast` | `17e610c2051f28a0c6df7d33e9046e7b1981c891` | #29 (scoped transfer) | Superseded by #29 |
-| #12 / #18 / #35 | QA and P5 evidence branches | — | Docs only. #35 is P5-02 device QA of #29, REPORTED by P5, not reviewed by P4. |
+| #12 / #18 / #35 | QA and P5 evidence branches | — | Docs only. #35 is P5-02 device QA of #29: a draft with no completion report, not reviewed by P4. |
 
 ## 4. What P3 can take from the reviewed Journey assembly
 
@@ -65,7 +65,7 @@ Transfer them by cherry-picking `0e44616`, `889ce0e` and `a4fa839` (or the #31�
 | API / date / transfer policy inputs: U2 schema and dated IDs, U4 past-date / DST, U5 tie-break, U8 7-day window, U9 transfer override, U10 fixture loading | UNKNOWN (P4-31 / P4-32) | P3 |
 | Planner correctness vs the independent fixtures (14 queries) and real-feed spot checks | NOT RUN (P4-32 `a800a11`) | P4 once assigned |
 | Resource measurements: snapshot size, server memory and cold start on the current free Render plan, API latency, bundle delta | NOT RUN (P4-31 O1, U7) | P3 report + P4 measurement |
-| Real-device / screen-reader coverage | P5-01 (production) and P5-02 (#29, PR #35) REPORTED by P5; not on #34 or the timetable candidate. Chromium-only results from P4. | P5 |
+| Real-device / screen-reader coverage | **UNKNOWN.** P5-01 (production) was acknowledged but no results are posted. P5-02 (on #29) exists only as draft PR #35 with no completion report; P4 hasn't reviewed it. Nothing covers #34 or the timetable candidate. All P4 results are Chromium-only. | P5 |
 | Inherited CSS scan effects (unused utilities, no app fix requested): `.rounded` (+30 B, P4-26), `.collapse` / `.container` (from #32, P4-33) | Recorded, Info | — |
 | **Owner decisions** | **Open** | **Owner** |
 
