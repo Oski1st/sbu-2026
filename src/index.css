@@ -569,6 +569,9 @@
   font-size: 16px;
   padding: 4px 6px;
 }
+/* :focus as well as :focus-visible: WebKit never matches :focus-visible on
+   date/time inputs, and Chromium/Firefox already show it on click for them. */
+.date-time-controls input:focus,
 .date-time-controls input:focus-visible {
   outline: 2px solid #4f7a2f;
   outline-offset: 2px;
