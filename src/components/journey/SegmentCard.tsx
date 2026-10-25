@@ -2,6 +2,9 @@ import { useEffect, useRef } from "react";
 import type { Leg } from "../../types/transit";
 import { addMinutes, agencyStyles, displaySegmentTime, legDuration } from "./journeyUtils";
 import { SIMULATED_DELAY_MINUTES } from "./journeySimulation";
+import { AmtrakHandoff } from "../AmtrakHandoff";
+
+const ticketButtonClass = "inline-flex min-h-10 items-center rounded-lg bg-white px-3 font-bold text-base-content shadow-sm ring-1 ring-base-300 transition hover:bg-base-200 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4";
 
 type SegmentCardProps = {
   leg: Leg;
@@ -123,16 +126,21 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
                   <li>2. Keep this itinerary handy and follow terminal or station signage for your service.</li>
                   <li>3. Exit at {leg.to} and continue to the next connection if shown below.</li>
                 </ol>
-                <a
-                  href={leg.purchaseUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-white px-3 font-bold text-base-content shadow-sm ring-1 ring-base-300 transition hover:bg-base-200 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4"
-                >
-                  Get tickets from {styles.label}
-                  <span className="sr-only"> for segment {index + 1}, {leg.from} to {leg.to} (opens in a new tab)</span>
-                  <span className="ml-2" aria-hidden="true">↗</span>
-                </a>
+                {leg.agency === "AMTRAK" ? (
+                  <span className="mt-4 block">
+                    <AmtrakHandoff details={leg} className={ticketButtonClass}>
+                      Get tickets from {styles.label}
+                      <span className="sr-only"> for segment {index + 1}, {leg.from} to {leg.to}; copies trip details (opens in a new tab)</span>
+                      <span className="ml-2" aria-hidden="true">↗</span>
+                    </AmtrakHandoff>
+                  </span>
+                ) : (
+                  <a href={leg.purchaseUrl} target="_blank" rel="noreferrer" className={`mt-4 ${ticketButtonClass}`}>
+                    Get tickets from {styles.label}
+                    <span className="sr-only"> for segment {index + 1}, {leg.from} to {leg.to} (opens in a new tab)</span>
+                    <span className="ml-2" aria-hidden="true">↗</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import type { Agency } from "../types";
+import { AMTRAK_BOOKING_URL } from "../lib/amtrakHandoff";
 export const agencies: Record<
   Agency,
   {
@@ -35,7 +36,7 @@ export const agencies: Record<
     name: "Amtrak",
     shortName: "Amtrak",
     color: "#246b63",
-    purchaseUrl: "https://www.amtrak.com/",
+    purchaseUrl: AMTRAK_BOOKING_URL,
   },
   GREYHOUND: {
     name: "Greyhound",

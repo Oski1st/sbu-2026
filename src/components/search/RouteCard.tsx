@@ -22,6 +22,7 @@ import {
 } from "../../data/tripUtils";
 import { useSelectedTrip } from "../layout/TripContext";
 import { ShareTripButton } from "./ShareTripButton";
+import { AmtrakHandoff } from "../AmtrakHandoff";
 export function RouteCard({
   trip,
   index,
@@ -196,15 +197,25 @@ export function RouteCard({
                     : "Fare unavailable"}
                 </small>
               </div>
-              <a
-                href={leg.purchaseUrl}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={`Agency site · ${agencies[leg.agency].name} official ticket information for segment ${i + 1}, ${leg.from} to ${leg.to} (opens in a new tab)`}
-              >
-                Agency site <ArrowUpRight size={13} />
-                <span className="sr-only"> (opens in a new tab)</span>
-              </a>
+              {leg.agency === "AMTRAK" ? (
+                <AmtrakHandoff
+                  details={leg}
+                  aria-label={`Agency site · Amtrak booking page for segment ${i + 1}, ${leg.from} to ${leg.to}; copies trip details (opens in a new tab)`}
+                >
+                  Agency site <ArrowUpRight size={13} />
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </AmtrakHandoff>
+              ) : (
+                <a
+                  href={leg.purchaseUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Agency site · ${agencies[leg.agency].name} official ticket information for segment ${i + 1}, ${leg.from} to ${leg.to} (opens in a new tab)`}
+                >
+                  Agency site <ArrowUpRight size={13} />
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+              )}
             </div>
           ))}
           <p className="fare-disclaimer">

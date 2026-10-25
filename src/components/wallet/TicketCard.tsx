@@ -1,5 +1,6 @@
 import type { Leg } from '../../types/transit';
 import { officialPurchaseUrl, ticketing } from './ticketing';
+import { AmtrakHandoff } from '../AmtrakHandoff';
 
 function itineraryTime(value: string): string {
   if (!value) return 'Time not supplied';
@@ -39,7 +40,8 @@ export function TicketCard({ leg, index, checked, onToggle, throughTicketNote }:
       <p>{agency?.help ?? 'This agency is outside the current shared integration contract. Confirm ticketing with the agency.'}</p>
       {throughTicketNote && <p className="ol-coverage" id={`ol-coverage-${index}`}>{throughTicketNote}</p>}
       <div className="ol-ticket-actions">
-        {agency && <a className="ol-button" href={officialPurchaseUrl(leg.agency, leg.purchaseUrl)} target="_blank" rel="noopener noreferrer">{agency.label} <span aria-hidden="true">↗</span><span className="ol-sr-only"> (opens in a new tab)</span></a>}
+        {agency && leg.agency === 'AMTRAK' && <AmtrakHandoff details={leg} className="ol-button">{agency.label} <span aria-hidden="true">↗</span><span className="ol-sr-only"> for {leg.from} to {leg.to}; copies trip details (opens in a new tab)</span></AmtrakHandoff>}
+        {agency && leg.agency !== 'AMTRAK' && <a className="ol-button" href={officialPurchaseUrl(leg.agency, leg.purchaseUrl)} target="_blank" rel="noopener noreferrer">{agency.label} <span aria-hidden="true">↗</span><span className="ol-sr-only"> (opens in a new tab)</span></a>}
         <label className="ol-check"><input type="checkbox" checked={checked} onChange={onToggle} aria-describedby={`ol-check-help-${index}${throughTicketNote ? ` ol-coverage-${index}` : ''}`} />Mark leg {index + 1} planning note as checked</label>
       </div>
       <p className="ol-fine" id={`ol-check-help-${index}`}>Demo planning note only. Checking this box does not purchase a ticket, confirm payment, or establish ticket validity. Actual tickets stay with the agency.</p>

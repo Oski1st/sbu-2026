@@ -1,4 +1,5 @@
 import type { Agency } from '../../types/transit';
+import { AMTRAK_BOOKING_URL } from '../../lib/amtrakHandoff';
 
 export const ticketing: Record<Agency, { name: string; url: string; label: string; help: string }> = {
   SEPTA: {
@@ -17,7 +18,7 @@ export const ticketing: Record<Agency, { name: string; url: string; label: strin
     help: 'Use MTA TrainTime for LIRR ticket options. Confirm stations and ticket conditions with MTA.',
   },
   AMTRAK: {
-    name: 'Amtrak', url: 'https://www.amtrak.com/mobile',
+    name: 'Amtrak', url: AMTRAK_BOOKING_URL,
     label: 'Amtrak booking & app',
     help: 'Book with Amtrak directly and confirm your selected train, travel date, and reservation conditions.',
   },
@@ -29,6 +30,8 @@ export const ticketing: Record<Agency, { name: string; url: string; label: strin
 export function officialPurchaseUrl(agency: Agency, candidate: string): string {
   const fallback = ticketing[agency]?.url;
   if (!fallback) return '';
+  // Amtrak session URLs expire within minutes: only ever hand off to the stable booking page.
+  if (agency === 'AMTRAK') return AMTRAK_BOOKING_URL;
   const domains: Record<Agency, string[]> = {
     SEPTA: ['septa.org', 'septakey.org'], NJ_TRANSIT: ['njtransit.com'], LIRR: ['mta.info'], AMTRAK: ['amtrak.com'], GREYHOUND: ['greyhound.com'], FLIXBUS: ['flixbus.com'],
   };

@@ -2656,3 +2656,44 @@
     gap: 16px 22px;
   }
 }
+
+/* Amtrak click-time handoff: stable booking page + copied trip details. */
+.amtrak-handoff {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 18rem;
+}
+.leg-detail > .amtrak-handoff > a,
+.handoff-leg > .amtrak-handoff > a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #466342;
+}
+.leg-detail > .amtrak-handoff > a {
+  font-size: 9px;
+  padding-top: 3px;
+}
+.handoff-leg > .amtrak-handoff > a {
+  font-size: 11px;
+}
+.amtrak-handoff-note {
+  font-size: 10px;
+  line-height: 1.5;
+  color: #5c6b54;
+}
+.amtrak-handoff-status {
+  font-size: 10px;
+  font-weight: 600;
+  color: #3f5d36;
+}
+.amtrak-handoff-field input {
+  width: 100%;
+  font: inherit;
+  font-size: 11px;
+  padding: 4px 6px;
+  border: 1px solid #b8c4ad;
+  border-radius: 6px;
+  background: #fff;
+}
