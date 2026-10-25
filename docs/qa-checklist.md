@@ -112,7 +112,7 @@ Playwright is a locked devDependency. Run `pnpm exec playwright install chromium
 - [x] `/`, `/search`, `/journey/regional-connection`, `/wallet/amtrak-connection` and `/journey/bogus` return 200 with the SPA HTML.
 - [x] A missing `/assets/*.js` returns 404, not HTML.
 - [x] Unknown `/api/*` returns 404. The proxy rejects `POST` (405) and query strings.
-- [x] Malformed percent-encoding (`/journey/%E0%A4%A`) returns 400 and does not crash the server.
+- [x] Malformed percent-encoding (`/journey/%E0%A4%A`) serves the app shell ("Journey not found") to browsers, returns 400 `invalid_path` to non-HTML requests, and does not crash the server.
 
 ### Search → Compare → Journey → Wallet
 
