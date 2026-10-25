@@ -31,7 +31,7 @@ export function DelaySimulation({ affectedLeg, isActive, onToggle }: DelaySimula
             type="button"
             onClick={onToggle}
             aria-pressed={isActive}
-            className={`min-h-11 rounded-xl px-4 text-sm font-extrabold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 focus-visible:ring-offset-2 ${isActive ? "bg-slate-900 text-white hover:bg-slate-700" : "bg-amber-400 text-amber-950 hover:bg-amber-300"}`}
+            className={`min-h-11 rounded-xl px-4 text-sm font-extrabold transition focus-visible:outline-3 focus-visible:outline-solid ${isActive ? "bg-slate-900 text-white hover:bg-slate-700 focus-visible:outline-[#d7ef95] focus-visible:outline-offset-[-5px]" : "bg-amber-400 text-amber-950 hover:bg-amber-300 focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4"}`}
           >
             {isActive ? "Reset simulation" : "Simulate delay"}
           </button>

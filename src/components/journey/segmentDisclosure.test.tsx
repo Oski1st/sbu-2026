@@ -29,7 +29,7 @@ describe("SegmentCard details disclosure", () => {
     expect(html).toContain("View trip details");
     // The link is preserved for expansion; native inert removes it from focus/AT.
     expect(html).toContain(`href="${leg.purchaseUrl}"`);
-    expect(html).toContain("focus-visible:ring-2");
+    expect(html).toContain("focus-visible:outline-3");
   });
 
   it("restores link access only in the expanded state, then re-applies inert on collapse", () => {
