@@ -99,6 +99,8 @@ export function SearchForm({
                   type="date"
                   value={departureDate}
                   onChange={(event) => setDepartureDate(event.target.value)}
+                  min="0001-01-01"
+                  max="9999-12-31"
                   required
                 />
               </label>

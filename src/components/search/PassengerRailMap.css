@@ -8,20 +8,41 @@
 .passenger-rail-map .prm-eyebrow { font-size: 11px; letter-spacing: 1.4px; font-weight: 700; }
 .passenger-rail-map .prm-heading h2 { margin: 7px 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.8px; }
 .passenger-rail-map .prm-heading p:last-child { margin: 0; font-size: 12px; line-height: 1.5; color: #4b6457; }
+.passenger-rail-map .prm-frame { position: relative; container-type: inline-size; }
 .passenger-rail-map .prm-art { display: block; width: 100%; height: auto; aspect-ratio: 800 / 420; }
 .passenger-rail-map .prm-water { fill: #e2ece7; }
 .passenger-rail-map .prm-states path { fill: #f3f5ec; stroke: #aabdaa; stroke-width: 0.7; }
-.passenger-rail-map .prm-routes path { fill: none; stroke: #895314; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.passenger-rail-map .prm-stations circle { fill: #153f32; stroke: #fff; stroke-width: 0.7; }
+.passenger-rail-map .prm-routes path { fill: none; stroke: #895314; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+/* Station markers: constant 7px dot with a 2px white halo so they separate from the brown line (1.85:1 dot-to-line otherwise). */
+.passenger-rail-map .prm-stations path { fill: none; stroke-linecap: round; }
+.passenger-rail-map .prm-station-halo { stroke: #fff; stroke-width: 10; }
+.passenger-rail-map .prm-station-dot { stroke: #153f32; stroke-width: 6.5; }
+.passenger-rail-map .prm-labels { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; pointer-events: none; }
+.passenger-rail-map .prm-label { position: absolute; font-size: 11px; line-height: 1; font-weight: 700; color: #153f32; white-space: nowrap; text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #fff; }
+.passenger-rail-map .prm-label-right { transform: translate(8px, -50%); }
+.passenger-rail-map .prm-label-right-low { transform: translate(8px, -5%); }
+.passenger-rail-map .prm-label-far-right { transform: translate(9px, -30%); }
+.passenger-rail-map .prm-label-below-right { transform: translate(7px, 4px); }
+.passenger-rail-map .prm-label-left { transform: translate(calc(-100% - 8px), -50%); }
+/* Narrow maps: smaller markers keep crowded Northeast stations and the lines between them distinguishable. */
+@container (max-width: 420px) {
+  .passenger-rail-map .prm-station-halo { stroke-width: 8; }
+  .passenger-rail-map .prm-station-dot { stroke-width: 5.5; }
+  /* New York, Philadelphia, Baltimore and Washington sit within ~12px here: label only New York. */
+  .passenger-rail-map .prm-label-wide-only { display: none; }
+}
 .passenger-rail-map .prm-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; list-style: none; margin: 12px 0 8px; padding: 0 8px; font-size: 11px; line-height: 1.5; }
 .passenger-rail-map .prm-legend li { display: flex; align-items: center; gap: 7px; }
-.passenger-rail-map .prm-line-key { width: 22px; height: 3px; background: #895314; flex: none; }
-.passenger-rail-map .prm-dot-key { width: 8px; height: 8px; border-radius: 50%; background: #153f32; flex: none; }
+.passenger-rail-map .prm-line-key { width: 22px; height: 3px; border-radius: 2px; background: #895314; flex: none; }
+.passenger-rail-map .prm-dot-key { width: 7px; height: 7px; border-radius: 50%; background: #153f32; flex: none; }
 .passenger-rail-map .prm-note { margin: 8px; font-size: 11px; line-height: 1.6; color: #40594b; }
 .passenger-rail-map .prm-details { margin-top: 12px; border: 1px solid #cfdbce; border-radius: 12px; background: #f7f9f1; font-size: 12px; line-height: 1.6; }
 .passenger-rail-map summary { cursor: pointer; padding: 12px; min-height: 44px; box-sizing: border-box; font-weight: 700; }
 .passenger-rail-map summary:focus-visible, .passenger-rail-map a:focus-visible { outline: 3px solid #244d3e; outline-offset: 3px; border-radius: 3px; }
-.passenger-rail-map .prm-details-content { padding: 0 14px 14px; overflow-wrap: anywhere; }
+/* Opened, the full audit is thousands of pixels tall; keep it in a bounded, keyboard-scrollable panel so it does not push the trip search form far down the page. */
+.passenger-rail-map .prm-details-content { max-height: min(24rem, 60vh); overflow-y: auto; overscroll-behavior: contain; margin: 0 4px 4px; padding: 0 10px 14px; border-top: 1px solid #d4dfcf; overflow-wrap: anywhere; }
+.passenger-rail-map .prm-details-content:focus-visible { outline: 3px solid #244d3e; outline-offset: -3px; border-radius: 8px; }
+.passenger-rail-map .prm-details-content > h3:first-child { margin-top: 12px; }
 .passenger-rail-map .prm-details-content h3 { font-size: 14px; margin: 18px 0 6px; }
 .passenger-rail-map .prm-details-content p { margin: 5px 0 10px; }
 .passenger-rail-map .prm-route-list, .passenger-rail-map .prm-city-list, .passenger-rail-map .prm-gap-list { padding-left: 18px; margin: 8px 0; }

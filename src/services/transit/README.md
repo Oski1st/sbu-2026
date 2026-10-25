@@ -88,7 +88,7 @@ Do not scrape booking endpoints or present static schedules as live data.
 
 ## Official ticketing references
 
-- SEPTA payment options: https://wwww.septa.org/fares/ways-to-pay/
+- SEPTA payment options: https://www.septa.org/fares/ways-to-pay/
 - NJ TRANSIT official app and ticketing: https://www.njtransit.com/app
 - LIRR MTA TrainTime: https://www.mta.info/traintime
 - Amtrak official booking/app information: https://www.amtrak.com/mobile

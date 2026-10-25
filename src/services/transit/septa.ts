@@ -26,7 +26,8 @@ export function parseSeptaTrains(payload: unknown): SeptaTrain[] {
     return {
       trainNumber: item.trainno as string, line: item.line as string,
       destination: item.dest as string, nextStop: item.nextstop as string,
-      delayMinutes: delay !== null && Number.isFinite(delay) && delay >= 0 ? delay : null,
+      // TrainView reports 999 when no delay is available; never show it as a real delay.
+      delayMinutes: delay !== null && Number.isFinite(delay) && delay >= 0 && delay < 999 ? delay : null,
     };
   });
 }

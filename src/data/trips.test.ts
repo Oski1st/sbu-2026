@@ -10,7 +10,30 @@ import {
   transferCount,
   tripMetrics,
   compareTrips,
+  formatDuration,
 } from "./tripUtils";
+import { planTrips } from "./tripLookup";
+describe("arrival-based ranking for generated concepts", () => {
+  it("ranks Fastest and the comparison by final arrival, not ride length", () => {
+    // Coach concepts start 30-60 minutes later, so a slightly shorter ride can still arrive later.
+    const trips = planTrips("Albany", "Boston");
+    const fastest = sortTrips(trips, "fastest");
+    const arrivals = fastest.map((trip) => +new Date(trip.legs.at(-1)!.arrival));
+    expect(arrivals).toEqual([...arrivals].sort((a, b) => a - b));
+    const rail = trips.find((trip) => trip.id.endsWith("--amtrak"))!;
+    const coach = trips.find((trip) => trip.id.endsWith("--greyhound"))!;
+    const result = compareTrips(coach, rail);
+    expect(result.faster.id).toBe(rail.id);
+    expect(result.minutesSaved).toBe(
+      (+new Date(coach.legs.at(-1)!.arrival) - +new Date(rail.legs.at(-1)!.arrival)) / 60000,
+    );
+  });
+  it("formats sub-hour durations without a 0h prefix", () => {
+    expect(formatDuration(30)).toBe("30m");
+    expect(formatDuration(60)).toBe("1h 0m");
+    expect(formatDuration(1800)).toBe("30h 0m");
+  });
+});
 describe("original Philadelphia demo route planning", () => {
   it("matches the demo corridor case-insensitively and trims whitespace", () => {
     expect(
@@ -91,7 +114,8 @@ describe("route comparison", () => {
     ]) {
       const result = compareTrips(pair[0], pair[1]);
       expect(result.faster.id).toBe("amtrak-connection");
-      expect(result.minutesSaved).toBe(65);
+      // Express arrives 12:40 PM vs 1:15 PM: 35 minutes sooner (ride is 65 minutes shorter).
+      expect(result.minutesSaved).toBe(35);
       expect(result.fareDifference).toBe(15);
       expect(result.transfersSaved).toBe(1);
     }

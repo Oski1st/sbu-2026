@@ -99,11 +99,12 @@ export function RouteCard({
       </div>
       <div
         className="agency-path"
+        role="group"
         aria-label={`Operated by ${unique.map((agency) => agencies[agency].name).join(", ")}`}
       >
         {unique.map((agency, i) => (
           <span className="agency-sequence" key={agency}>
-            {i > 0 && <ArrowRight size={12} className="agency-arrow" />}
+            {i > 0 && <ArrowRight size={12} className="agency-arrow" aria-hidden="true" />}
             <span
               className="agency-badge"
               style={
@@ -111,9 +112,9 @@ export function RouteCard({
               }
             >
               {agencies[agency].mode === "bus" ? (
-                <Bus size={13} />
+                <Bus size={13} aria-hidden="true" />
               ) : (
-                <TrainFront size={13} />
+                <TrainFront size={13} aria-hidden="true" />
               )}
               {agencies[agency].shortName}
             </span>
@@ -206,7 +207,7 @@ export function RouteCard({
             </div>
           ))}
           <p className="fare-disclaimer">
-            {trip.planningNote}
+            {trip.planningNote}{" "}
             Sample fares are for the demo only. Final prices, connections and
             availability must be confirmed with each agency. Tickets are
             purchased separately.

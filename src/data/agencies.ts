@@ -14,7 +14,7 @@ export const agencies: Record<
     name: "SEPTA",
     shortName: "SEPTA",
     color: "#4276c7",
-    purchaseUrl: "https://wwww.septa.org/fares/",
+    purchaseUrl: "https://www.septa.org/fares/",
   },
   NJ_TRANSIT: {
     mode: "rail",
