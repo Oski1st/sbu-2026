@@ -22,7 +22,7 @@ import {
 } from "../../data/tripUtils";
 import { useSelectedTrip } from "../layout/TripContext";
 import { ShareTripButton } from "./ShareTripButton";
-import { AmtrakHandoff } from "../AmtrakHandoff";
+import { PurchaseLink, useSearchDate } from "../purchase/PurchaseLink";
 export function RouteCard({
   trip,
   index,
@@ -36,6 +36,8 @@ export function RouteCard({
 }) {
   const [expanded, setExpanded] = useState(false);
   const { selectTrip } = useSelectedTrip();
+  // Remembers this Search date for Journey and Wallet ticket links, even while details are closed.
+  useSearchDate();
   const price = sampleTotal(trip);
   const metrics = tripMetrics(trip);
   const unique = [...new Set(trip.legs.map((leg) => leg.agency))];
@@ -197,25 +199,12 @@ export function RouteCard({
                     : "Fare unavailable"}
                 </small>
               </div>
-              {leg.agency === "AMTRAK" ? (
-                <AmtrakHandoff
-                  details={leg}
-                  aria-label={`Agency site · Amtrak booking page for segment ${i + 1}, ${leg.from} to ${leg.to}; copies trip details (opens in a new tab)`}
-                >
-                  Agency site <ArrowUpRight size={13} />
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </AmtrakHandoff>
-              ) : (
-                <a
-                  href={leg.purchaseUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Agency site · ${agencies[leg.agency].name} official ticket information for segment ${i + 1}, ${leg.from} to ${leg.to} (opens in a new tab)`}
-                >
-                  Agency site <ArrowUpRight size={13} />
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-              )}
+              <PurchaseLink
+                leg={leg}
+                tripStart={first.departure}
+                context={`segment ${i + 1}, ${leg.from} to ${leg.to}`}
+                icon={<ArrowUpRight size={13} aria-hidden="true" />}
+              />
             </div>
           ))}
           <p className="fare-disclaimer">

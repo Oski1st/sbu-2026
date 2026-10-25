@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import type { Leg } from "../../types/transit";
 import { addMinutes, agencyStyles, displaySegmentTime, legDuration } from "./journeyUtils";
 import { SIMULATED_DELAY_MINUTES } from "./journeySimulation";
-import { AmtrakHandoff } from "../AmtrakHandoff";
+import { PurchaseLink } from "../purchase/PurchaseLink";
 
 const ticketButtonClass = "inline-flex min-h-10 items-center rounded-lg bg-white px-3 font-bold text-base-content shadow-sm ring-1 ring-base-300 transition hover:bg-base-200 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4";
 
@@ -13,9 +13,11 @@ type SegmentCardProps = {
   isDelayed: boolean;
   isCurrent: boolean;
   onToggle: () => void;
+  /** The trip's first departure, for the ticket link's travel date. */
+  tripStart?: string;
 };
 
-export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onToggle }: SegmentCardProps) {
+export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onToggle, tripStart }: SegmentCardProps) {
   const styles = agencyStyles[leg.agency];
   const duration = legDuration(leg);
   const detailId = `segment-details-${leg.id}`;
@@ -126,21 +128,15 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
                   <li>2. Keep this itinerary handy and follow terminal or station signage for your service.</li>
                   <li>3. Exit at {leg.to} and continue to the next connection if shown below.</li>
                 </ol>
-                {leg.agency === "AMTRAK" ? (
-                  <span className="mt-4 block">
-                    <AmtrakHandoff details={leg} className={ticketButtonClass}>
-                      Get tickets from {styles.label}
-                      <span className="sr-only"> for segment {index + 1}, {leg.from} to {leg.to}; copies trip details (opens in a new tab)</span>
-                      <span className="ml-2" aria-hidden="true">↗</span>
-                    </AmtrakHandoff>
-                  </span>
-                ) : (
-                  <a href={leg.purchaseUrl} target="_blank" rel="noreferrer" className={`mt-4 ${ticketButtonClass}`}>
-                    Get tickets from {styles.label}
-                    <span className="sr-only"> for segment {index + 1}, {leg.from} to {leg.to} (opens in a new tab)</span>
-                    <span className="ml-2" aria-hidden="true">↗</span>
-                  </a>
-                )}
+                <span className="mt-4 block">
+                  <PurchaseLink
+                    leg={leg}
+                    tripStart={tripStart}
+                    className={ticketButtonClass}
+                    context={`segment ${index + 1}, ${leg.from} to ${leg.to}`}
+                    icon={<span className="ml-2" aria-hidden="true">↗</span>}
+                  />
+                </span>
               </div>
             </div>
           </div>

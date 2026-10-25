@@ -139,6 +139,7 @@ export default function JourneyPage() {
                 <SegmentCard
                   leg={leg}
                   index={index}
+                  tripStart={trip.legs[0]?.departure}
                   isExpanded={expandedLegId === leg.id}
                   isDelayed={isDelaySimulated && leg.id === affectedLeg?.id}
                   isCurrent={currentDemoStep?.kind === "leg" && currentDemoStep.legIndex === index}
