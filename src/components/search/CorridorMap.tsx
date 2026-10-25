@@ -23,7 +23,7 @@ export function CorridorMap() {
         <g className="prm-routes">
           {geometry.routes.map((route) => (
             <g key={route.id} data-route-id={route.id}>
-              <title>{route.name}: generalized rail alignment</title>
+              <title>{`${route.name}: generalized rail alignment`}</title>
               {route.paths.map((path, index) => <path key={index} d={path} vectorEffect="non-scaling-stroke" />)}
             </g>
           ))}
@@ -31,7 +31,7 @@ export function CorridorMap() {
         <g className="prm-stations">
           {geometry.stations.map((station) => (
             <circle key={station.code} cx={station.x} cy={station.y} r="2.8" vectorEffect="non-scaling-stroke">
-              <title>{station.locality}: {station.name} ({station.code})</title>
+              <title>{`${station.locality}: ${station.name} (${station.code})`}</title>
             </circle>
           ))}
         </g>
@@ -54,7 +54,7 @@ export function CorridorMap() {
           <p>Markers use train-station coordinates, not city centres. A nearby line alone is not proof that a particular train stops there.</p>
           <ul className="prm-city-list">
             {audit.cities.map((city) => <li key={city.id}>
-              <strong>{city.name}, {city.state}</strong>
+              <strong>{city.name.endsWith(`, ${city.state}`) ? city.name : `${city.name}, ${city.state}`}</strong>
               <p>{city.note}</p>
               {city.codes.length > 0 ? <ul>{city.codes.map((code) => {
                 const station = geometry.stations.find((item) => item.code === code)!;

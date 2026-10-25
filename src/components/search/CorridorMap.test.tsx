@@ -1,71 +1,55 @@
 import { describe, expect, test } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
-import overview from "../../data/usOverviewMap.json";
+import geometry from "../../data/railMap/geometry.json";
 import { CorridorMap } from "./CorridorMap";
-import { projectContiguous, projectInset } from "./mapProjection";
+import { projectContiguous } from "./mapProjection";
 
-function boundaryPoints(name: string) {
-  const state = [...overview.contiguous, ...overview.alaska, ...overview.hawaii].find((item) => item.name === name);
-  if (!state) throw new Error(`Missing boundary: ${name}`);
-  return [...state.path.matchAll(/[ML](-?[\d.]+),(-?[\d.]+)/g)]
-    .map((match) => [Number(match[1]), Number(match[2])] as const);
+function centre(name: string) {
+  const state = geometry.boundaries.find((entry) => entry.name === name)!;
+  const points = [...state.path.matchAll(/[ML](-?[\d.]+),(-?[\d.]+)/g)].map((point) => [Number(point[1]), Number(point[2])]);
+  return [0, 1].map((axis) => (Math.min(...points.map((p) => p[axis])) + Math.max(...points.map((p) => p[axis]))) / 2);
 }
 
-function boundaryCentre(name: string) {
-  const points = boundaryPoints(name);
-  const xs = points.map(([x]) => x), ys = points.map(([, y]) => y);
-  return [(Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...ys) + Math.max(...ys)) / 2];
-}
-
-describe("CorridorMap nationwide overview", () => {
-  test("bundles all state boundaries with clear Alaska and Hawaii insets", () => {
-    expect(overview.contiguous).toHaveLength(49);
-    expect(overview.alaska).toHaveLength(1);
-    expect(overview.hawaii).toHaveLength(1);
-    expect(overview.source).toContain("Natural Earth");
+describe("contiguous-U.S. passenger rail map", () => {
+  test("refits only the 48 contiguous states plus DC, with no inset polygons or space", () => {
+    expect(geometry.boundaries).toHaveLength(49);
+    expect(geometry.boundaries.map((state) => state.name)).not.toContain("Alaska");
+    expect(geometry.boundaries.map((state) => state.name)).not.toContain("Hawaii");
+    expect(geometry.viewBox).toEqual([0, 0, 800, 420]);
+    const ys = geometry.boundaries.flatMap((state) => [...state.path.matchAll(/[ML]-?[\d.]+,(-?[\d.]+)/g)].map((point) => Number(point[1])));
+    // The refitted country uses the full vertical frame, not the old inset layout.
+    expect(Math.min(...ys)).toBe(26);
+    expect(Math.max(...ys)).toBe(398);
   });
 
-  test("does not present state geography as nationwide service or routes", () => {
-    const html = renderToStaticMarkup(<CorridorMap />);
-
-    expect(html).toContain("ALASKA");
-    expect(html).toContain("HAWAII");
-    expect(html).toContain("no nationwide service lines shown");
-    expect(html).toContain("no nationwide connections are implied");
-    expect(html).toContain("not a route, schedule, or service-coverage map");
-    expect(html).toContain("Alaska and Hawaii: geographic insets, not to scale.");
-  });
-
-  test("bundled state geometry places northern states above southern states", () => {
+  test("preserves north-up and west-east orientation in the actual generated boundaries", () => {
     for (const [north, south] of [["Washington", "California"], ["North Dakota", "Texas"], ["Maine", "Florida"]]) {
-      expect(boundaryCentre(north)[1]).toBeLessThan(boundaryCentre(south)[1]);
+      expect(centre(north)[1]).toBeLessThan(centre(south)[1]);
     }
-    expect(boundaryCentre("California")[0]).toBeLessThan(boundaryCentre("Texas")[0]);
-    expect(boundaryCentre("Texas")[0]).toBeLessThan(boundaryCentre("Florida")[0]);
-  });
-
-  test("Albers SVG projection points north up and retains west-east ordering", () => {
+    expect(centre("California")[0]).toBeLessThan(centre("Texas")[0]);
+    expect(centre("Texas")[0]).toBeLessThan(centre("Florida")[0]);
     expect(projectContiguous([-100, 48])[1]).toBeLessThan(projectContiguous([-100, 30])[1]);
-    expect(projectContiguous([-120, 40])[0]).toBeLessThan(projectContiguous([-75, 40])[0]);
-    // Florida's peninsula extends south and east from its panhandle.
-    const panhandle = projectContiguous([-85.7, 30.2]);
-    const peninsula = projectContiguous([-80.5, 25.2]);
-    expect(peninsula[1]).toBeGreaterThan(panhandle[1]);
+    const panhandle = projectContiguous([-85.7, 30.2]), peninsula = projectContiguous([-80.5, 25.2]);
     expect(peninsula[0]).toBeGreaterThan(panhandle[0]);
+    expect(peninsula[1]).toBeGreaterThan(panhandle[1]);
   });
 
-  test("both inset projections put northern points above southern points", () => {
-    // Alaska: Utqiagvik above Anchorage; Hawaii: Kauai above the Big Island.
-    expect(projectInset([-156.8, 71.3])[1]).toBeLessThan(projectInset([-149.9, 61.2])[1]);
-    expect(projectInset([-159.5, 22.1])[1]).toBeLessThan(projectInset([-155.5, 19.6])[1]);
-    expect(projectInset([179, 52])[0]).toBeLessThan(projectInset([-170, 52])[0]);
-    for (const [name, left, right] of [["Alaska", 42, 312], ["Hawaii", 380, 580]] as const) {
-      for (const [x, y] of boundaryPoints(name)) {
-        expect(x).toBeGreaterThanOrEqual(left - 0.1);
-        expect(x).toBeLessThanOrEqual(right + 0.1);
-        expect(y).toBeGreaterThanOrEqual(443.9);
-        expect(y).toBeLessThanOrEqual(554.1);
-      }
-    }
+  test("provides native keyboard-accessible evidence and honest rail/coverage descriptions", () => {
+    const html = renderToStaticMarkup(<CorridorMap />);
+    expect(html).toContain("<summary>Corridors, cities &amp; coverage gaps</summary>");
+    expect(html).toContain("Generalized Amtrak rail alignment");
+    expect(html).toContain("Stony Brook");
+    expect(html).toContain("MTA station details · alignment not mapped");
+    expect(html).toContain("These lines do not change the sample itineraries");
+    expect(html).toContain("North Station");
+    expect(html).toContain("not a timetable");
+    expect(html).not.toContain("us-map-inset");
+    expect(html).not.toContain("<image");
+  });
+
+  test("keeps map and description IDs unique for multiple instances", () => {
+    const html = renderToStaticMarkup(<><CorridorMap /><CorridorMap /></>);
+    const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
+    expect(new Set(ids).size).toBe(ids.length);
   });
 });
