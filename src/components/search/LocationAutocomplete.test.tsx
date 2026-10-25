@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import {
   getLocationSuggestions,
   LocationAutocomplete,
+  suggestionOptionHandlers,
 } from "./LocationAutocomplete";
 import { createLocationCatalogue } from "./locationCatalogue";
 
@@ -71,5 +72,20 @@ describe("LocationAutocomplete markup", () => {
     expect(html).toContain('role="combobox"');
     expect(html).toContain('aria-autocomplete="list"');
     expect(html).toContain('aria-controls="origin-city-listbox"');
+  });
+});
+
+describe("LocationAutocomplete suggestion press handlers", () => {
+  test("cancels mousedown only, so WebKit touch taps still fire click", () => {
+    let chosen = 0;
+    const handlers = suggestionOptionHandlers(() => {
+      chosen += 1;
+    });
+    expect(Object.keys(handlers).sort()).toEqual(["onClick", "onMouseDown"]);
+    let prevented = false;
+    handlers.onMouseDown({ preventDefault: () => { prevented = true; } });
+    expect(prevented).toBe(true);
+    handlers.onClick();
+    expect(chosen).toBe(1);
   });
 });

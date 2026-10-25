@@ -34,6 +34,18 @@ export function getLocationSuggestions(
   return sampleLocationCatalogue.suggest(value, maxSuggestions);
 }
 
+/**
+ * Press handlers for a suggestion option. Cancelling `mousedown` keeps focus in
+ * the input for mouse users. `pointerdown` must not be cancelled: WebKit touch
+ * (iOS Safari) then also drops the click that picks the city.
+ */
+export function suggestionOptionHandlers(onChoose: () => void) {
+  return {
+    onMouseDown: (event: { preventDefault: () => void }) => event.preventDefault(),
+    onClick: () => onChoose(),
+  };
+}
+
 export function LocationAutocomplete({
   label,
   value,
@@ -169,8 +181,7 @@ export function LocationAutocomplete({
                     role="option"
                     aria-selected={isActive}
                     className={`cursor-pointer rounded-lg px-3 py-2 text-left transition ${isActive ? "bg-slate-950 text-white" : "text-slate-900 hover:bg-slate-100"}`}
-                    onPointerDown={(event) => event.preventDefault()}
-                    onClick={() => chooseCity(city)}
+                    {...suggestionOptionHandlers(() => chooseCity(city))}
                   >
                     <span className="block font-semibold">{city.name}</span>
                     <span className={`block text-sm ${isActive ? "text-slate-200" : "text-slate-500"}`}>{city.state}</span>
