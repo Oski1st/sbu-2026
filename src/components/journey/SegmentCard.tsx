@@ -14,6 +14,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
   const styles = agencyStyles[leg.agency];
   const duration = legDuration(leg);
   const detailId = `segment-details-${leg.id}`;
+  const simulatedArrival = isDelayed ? addMinutes(leg.arrival, 12) : null;
 
   return (
     <article aria-label={isCurrent ? `${leg.line}, current manual demo step` : undefined} className={`rounded-3xl border bg-white p-4 shadow-[0_10px_35px_-24px_rgba(15,23,42,0.45)] transition duration-300 motion-reduce:transition-none sm:p-5 ${isCurrent ? "border-emerald-400 ring-4 ring-emerald-100" : isDelayed ? "border-amber-300 ring-4 ring-amber-100" : "border-slate-200"}`}>
@@ -54,14 +55,14 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
               <p className="text-lg font-semibold leading-tight text-slate-950">{leg.to}</p>
               <p className="mt-1 text-sm text-slate-500">Arrive{isDelayed ? " (simulated)" : ""}</p>
             </div>
-            <time className={`text-left text-base font-bold tabular-nums sm:mt-5 sm:text-right ${isDelayed ? "text-amber-800" : "text-slate-900"}`}>
-              {isDelayed ? (
+            <div className={`text-left text-base font-bold tabular-nums sm:mt-5 sm:text-right ${isDelayed ? "text-amber-800" : "text-slate-900"}`}>
+              {simulatedArrival ? (
                 <span className="flex flex-col items-end">
-                  <span className="text-xs font-medium text-slate-400 line-through">{displaySegmentTime(leg.arrival)}</span>
-                  <span>{displaySegmentTime(addMinutes(leg.arrival, 12))}</span>
+                  <time dateTime={leg.arrival} aria-label={`Original sample arrival: ${displaySegmentTime(leg.arrival)}`} className="text-xs font-medium text-slate-400 line-through">{displaySegmentTime(leg.arrival)}</time>
+                  <time dateTime={simulatedArrival} aria-label={`Simulated arrival (+12 minutes): ${displaySegmentTime(simulatedArrival)}`}>{displaySegmentTime(simulatedArrival)}</time>
                 </span>
-              ) : displaySegmentTime(leg.arrival)}
-            </time>
+              ) : <time dateTime={leg.arrival}>{displaySegmentTime(leg.arrival)}</time>}
+            </div>
           </div>
 
           <p className="mt-4 text-sm font-medium text-slate-700">
