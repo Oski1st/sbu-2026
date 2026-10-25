@@ -64,6 +64,7 @@ export function AppLayout() {
           rel="noreferrer"
         >
           Built together <ArrowUpRight size={16} />
+          <span className="sr-only"> (opens in a new tab)</span>
         </a>
         <div className="footer-line">
           <MoveRight size={19} />

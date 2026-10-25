@@ -75,6 +75,7 @@ export function CorridorMap() {
         <div className="prm-details-content" role="region" aria-label="Corridor, city and coverage-gap details" tabIndex={0}>
           <h3>Documented passenger corridors</h3>
           <p>Railway alignment comes from FRA/BTS NTAD. Passenger-service descriptions are checked against Amtrak's published route pages. Neither establishes a departure on your chosen date or a guaranteed transfer.</p>
+          <p>The Floridian description names Chicago, but its line here is drawn only as far as the mapped source extent. This map does not show the full Chicago corridor.</p>
           <ul className="prm-route-list">
             {audit.routes.map((route) => <li key={route.id}><a href={route.url} target="_blank" rel="noreferrer">{route.name}<span className="prm-sr-only"> (official source, opens in a new tab)</span> ↗</a><p>{route.description}</p></li>)}
           </ul>
@@ -87,13 +88,13 @@ export function CorridorMap() {
               {city.codes.length > 0 ? <ul>{city.codes.map((code) => {
                 const station = geometry.stations.find((item) => item.code === code)!;
                 return <li key={code}><a href={`https://www.amtrak.com/stations/${code.toLowerCase()}.html`} target="_blank" rel="noreferrer">{station.locality} · {station.name} ({code})<span className="prm-sr-only"> (official station, opens in a new tab)</span> ↗</a></li>;
-              })}</ul> : <a href={city.sourceUrl} target="_blank" rel="noreferrer">MTA station details · alignment not mapped ↗</a>}
+              })}</ul> : <a href={city.sourceUrl} target="_blank" rel="noreferrer">MTA station details · alignment not mapped<span className="prm-sr-only"> · {city.name} (opens in a new tab)</span> ↗</a>}
             </li>)}
           </ul>
           <h3>What is missing</h3>
-          <ul className="prm-gap-list">{audit.operatorGaps.map((gap) => <li key={gap.operator}><strong>{gap.operator}:</strong> {gap.reason}{gap.url && <> <a href={gap.url} target="_blank" rel="noreferrer">Official source ↗</a></>}</li>)}</ul>
+          <ul className="prm-gap-list">{audit.operatorGaps.map((gap) => <li key={gap.operator}><strong>{gap.operator}:</strong> {gap.reason}{gap.url && <> <a href={gap.url} target="_blank" rel="noreferrer">Official source<span className="prm-sr-only"> · {gap.operator} (opens in a new tab)</span> ↗</a></>}</li>)}</ul>
           <p>Downeaster trains use Boston North Station. Northeast Regional uses South Station/Back Bay; no through-rail connector is drawn between them. Albany boarding is in Rensselaer; Charleston-area boarding is in North Charleston.</p>
-          <p className="prm-sources">Sources: <a href="https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Routes/FeatureServer/0" target="_blank" rel="noreferrer">FRA/BTS alignments ↗</a> · <a href="https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Stations/FeatureServer/0" target="_blank" rel="noreferrer">Amtrak station dataset ↗</a> · <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth boundaries ↗</a>. Public-domain geometry, checked {audit.checkedDate}, bundled offline. Shapes are generalized for this scale; they are not track-level navigation.</p>
+          <p className="prm-sources">Sources: <a href="https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Routes/FeatureServer/0" target="_blank" rel="noreferrer">FRA/BTS alignments<span className="prm-sr-only"> (opens in a new tab)</span> ↗</a> · <a href="https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Stations/FeatureServer/0" target="_blank" rel="noreferrer">Amtrak station dataset<span className="prm-sr-only"> (opens in a new tab)</span> ↗</a> · <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth boundaries<span className="prm-sr-only"> (opens in a new tab)</span> ↗</a>. Public-domain geometry, checked {audit.checkedDate}, bundled offline. Shapes are generalized for this scale; they are not track-level navigation.</p>
         </div>
       </details>
     </section>
