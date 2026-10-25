@@ -1,7 +1,12 @@
 import { useSearchParams } from "react-router-dom";
 import {
   defaultSearch,
+  describePlanningPreference,
+  hasPlanningPreference as urlHasPlanningPreference,
+  MAX_PLANNING_DATE,
   readSearchState,
+  todayInNewYork,
+  writePlanningPreference,
   writeSearchState,
   newSearchPatch,
   type SearchState,
@@ -10,6 +15,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import {
   ArrowRight,
   ArrowUpRight,
+  CalendarClock,
   Check,
   Compass,
   Layers3,
@@ -52,7 +58,7 @@ export default function SearchPage() {
   const query = { origin: criteria.origin, destination: criteria.destination };
   const { order, includeAmtrak, mode, operator } = criteria;
   const searched = searchParams.has("from") || searchParams.has("to");
-  const hasPlanningPreference = searchParams.has("date") || searchParams.has("time");
+  const hasPlanningPreference = urlHasPlanningPreference(searchParams);
   function updateCriteria(patch: Partial<SearchState>) {
     // History updates before React commits navigation; read it so rapid filter changes compose.
     const current = new URLSearchParams(window.location.search);
@@ -60,12 +66,33 @@ export default function SearchPage() {
       writeSearchState({ ...readSearchState(current), ...patch }, current),
     );
   }
+  const [formVersion, setFormVersion] = useState(0);
+  // Remounts the form only for searches made elsewhere (submit, corridors, Back/Forward to other
+  // cities). Date and time sync in place, so an auto-refresh never steals focus from the field.
+  const formKey = JSON.stringify([formVersion, query.origin, query.destination]);
+  // While the form's Date or Time is incomplete or out of range, results for the old preference
+  // are hidden. Keyed to the shown search, so any new search or preference clears it.
+  const shownPreferenceKey = JSON.stringify([formKey, criteria.departureDate, criteria.departureTime]);
+  const [invalidDraftFor, setInvalidDraftFor] = useState<string | null>(null);
+  const draftInvalid = invalidDraftFor === shownPreferenceKey;
+  const [announcement, setAnnouncement] = useState("");
+  /** A chosen Date or Time re-runs the current search; replace, so typing never fills Back. */
+  function applyPreferences(preferences: Pick<SearchState, "departureDate" | "departureTime"> | null) {
+    if (!preferences) {
+      setInvalidDraftFor(shownPreferenceKey);
+      return;
+    }
+    setInvalidDraftFor(null);
+    const current = new URLSearchParams(window.location.search);
+    const next = writePlanningPreference(preferences, current);
+    if (next.toString() !== current.toString()) setSearchParams(next, { replace: true });
+    setAnnouncement(`Results updated for ${describePlanningPreference(preferences.departureDate, preferences.departureTime)}`);
+  }
   const setOrder = (order: string) => updateCriteria({ order });
   const setMode = (mode: string) => updateCriteria({ mode });
   const setOperator = (operator: string) => updateCriteria({ operator });
   const setIncludeAmtrak = (includeAmtrak: boolean) =>
     updateCriteria({ includeAmtrak });
-  const [formVersion, setFormVersion] = useState(0);
   const resultsRef = useRef<HTMLElement>(null);
   const [compareIds, setCompareIds] = useState<string[]>([]);
   const [compareOpen, setCompareOpen] = useState(false);
@@ -99,7 +126,7 @@ export default function SearchPage() {
     ),
     order,
   );
-  const comparedTrips = trips.filter((trip) => compareIds.includes(trip.id));
+  const comparedTrips = draftInvalid ? [] : trips.filter((trip) => compareIds.includes(trip.id));
   function toggleCompare(id: string) {
     setCompareIds((ids) =>
       ids.includes(id)
@@ -113,7 +140,18 @@ export default function SearchPage() {
     preferences: Pick<SearchState, "departureDate" | "departureTime">,
   ) {
     // Form and corridor searches both start from unfiltered results.
-    updateCriteria(newSearchPatch(origin, destination, preferences));
+    const current = new URLSearchParams(window.location.search);
+    const next = writeSearchState(
+      { ...readSearchState(current), ...newSearchPatch(origin, destination, preferences) },
+      current,
+    );
+    // Once a date or time is chosen, keep both in the URL (even today 08:00) so results stay shifted.
+    setSearchParams(
+      urlHasPlanningPreference(current) || urlHasPlanningPreference(next)
+        ? writePlanningPreference(preferences, next)
+        : next,
+    );
+    setAnnouncement("");
     setFormVersion((version) => version + 1);
     setCompareIds([]);
     setCompareOpen(false);
@@ -223,12 +261,13 @@ export default function SearchPage() {
       )}
       <div className="content-wrap">
         <SearchForm
-          key={JSON.stringify([formVersion, query.origin, query.destination, criteria.departureDate, criteria.departureTime])}
+          key={formKey}
           initialOrigin={query.origin}
           initialDestination={query.destination}
           initialDepartureDate={criteria.departureDate}
           initialDepartureTime={criteria.departureTime}
           onSearch={search}
+          onPreferencesChange={applyPreferences}
         />
         <section className="coast-explorer" aria-labelledby="explore-title">
           <div className="explore-heading">
@@ -328,6 +367,11 @@ export default function SearchPage() {
                   ? `${trips.length} sample ${trips.length === 1 ? "connection" : "connections"} for ${query.origin} → ${query.destination}`
                   : "Showing the demo search: Philadelphia to Stony Brook."}
               </p>
+              <p className="results-update" role="status" aria-live="polite" aria-atomic="true">
+                {draftInvalid
+                  ? `Results paused. Choose a date from ${todayInNewYork()} to ${MAX_PLANNING_DATE} and a complete time.`
+                  : announcement}
+              </p>
             </div>
             <div className="sort-control">
               <label htmlFor="sort">SORT BY</label>
@@ -390,7 +434,7 @@ export default function SearchPage() {
               <div className="results-toolbar">
                 <span>
                   <span className="little-dot" />
-                  {trips.length} sample options
+                  {draftInvalid ? "Results paused" : `${trips.length} sample options`}
                 </span>
                 <label className="amtrak-toggle">
                   <input
@@ -405,7 +449,7 @@ export default function SearchPage() {
                   Include Amtrak
                 </label>
               </div>
-              {trips.length > 1 && (
+              {!draftInvalid && trips.length > 1 && (
                 <button
                   className="compare-shortcut"
                   onClick={() => {
@@ -417,7 +461,16 @@ export default function SearchPage() {
                   Compare the first two <ArrowRight size={14} />
                 </button>
               )}
-              {trips.length > 0 ? (
+              {draftInvalid ? (
+                <div className="empty-state preference-paused">
+                  <CalendarClock size={34} aria-hidden="true" />
+                  <h3>Finish choosing a date and time.</h3>
+                  <p>
+                    Routes update as soon as the Date is between today and
+                    Dec 31, 9999 and the Time is complete.
+                  </p>
+                </div>
+              ) : trips.length > 0 ? (
                 trips.map((trip, index) => (
                   <RouteCard
                     key={trip.id}

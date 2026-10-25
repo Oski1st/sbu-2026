@@ -745,6 +745,16 @@
   color: #7b8577;
   margin-top: 12px;
 }
+/* Polite "Results updated for …" confirmation after a Date/Time change. */
+.results-heading p.results-update {
+  margin-top: 4px;
+  color: #3f5a31;
+  font-weight: 600;
+}
+/* Stays in the accessibility tree while empty so the first update is announced. */
+.results-heading p.results-update:empty {
+  margin: 0;
+}
 .sort-control {
   display: flex;
   flex-direction: column;

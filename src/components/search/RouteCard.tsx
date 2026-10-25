@@ -215,6 +215,7 @@ export function RouteCard({
               <PurchaseLink
                 leg={leg}
                 tripStart={first.departure}
+                shiftedTimeline={planningPreferences !== undefined}
                 position={`segment ${i + 1}`}
                 icon={<ArrowUpRight size={13} aria-hidden="true" />}
               />

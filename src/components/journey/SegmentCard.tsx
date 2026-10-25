@@ -15,9 +15,11 @@ type SegmentCardProps = {
   onToggle: () => void;
   /** The trip's first departure, for the ticket link's travel date. */
   tripStart?: string;
+  /** Leg times are shifted to the planning date and time, so the ticket link books the leg's own date. */
+  shiftedTimeline?: boolean;
 };
 
-export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onToggle, tripStart }: SegmentCardProps) {
+export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onToggle, tripStart, shiftedTimeline }: SegmentCardProps) {
   const styles = agencyStyles[leg.agency];
   const duration = legDuration(leg);
   const detailId = `segment-details-${leg.id}`;
@@ -97,6 +99,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
             <PurchaseLink
               leg={leg}
               tripStart={tripStart}
+              shiftedTimeline={shiftedTimeline}
               className={ticketButtonClass}
               position={`segment ${index + 1}`}
               icon={<span className="ml-2" aria-hidden="true">↗</span>}

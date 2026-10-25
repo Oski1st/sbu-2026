@@ -3,7 +3,7 @@ import { Link, useParams, useSearchParams } from 'react-router-dom';
 import type { Trip } from '../types/transit';
 import { getTripById } from '../data/tripLookup';
 import { formatDuration, shiftSampleTimeline } from '../data/tripUtils';
-import { readSearchState } from '../data/searchState';
+import { hasPlanningPreference as urlHasPlanningPreference, readSearchState } from '../data/searchState';
 import { TicketCard } from '../components/wallet/TicketCard';
 import { TransitStatus } from '../components/wallet/TransitStatus';
 import { lirrThroughTicketNote } from '../components/wallet/ticketCoverage';
@@ -38,7 +38,7 @@ function TripWallet({ trip, septaEndpoint, planningSearch = '' }: { trip: Trip; 
       <progress aria-label="Demo checklist progress" value={completed} max={Math.max(trip.legs.length, 1)} />
       <p className="ol-muted">One planning note per leg, not one purchase per leg. Marks reset when you change trips or reload this wallet.</p>
     </section>
-    {trip.legs.length ? <ol className="ol-ticket-list">{trip.legs.map((leg, index) => <TicketCard key={leg.id} leg={leg} index={index} tripStart={trip.legs[0]?.departure} throughTicketNote={lirrThroughTicketNote(trip.legs, index)} checked={checked.has(leg.id)} onToggle={() => setChecked(previous => {
+    {trip.legs.length ? <ol className="ol-ticket-list">{trip.legs.map((leg, index) => <TicketCard key={leg.id} leg={leg} index={index} tripStart={trip.legs[0]?.departure} shiftedTimeline={planningSearch !== ''} throughTicketNote={lirrThroughTicketNote(trip.legs, index)} checked={checked.has(leg.id)} onToggle={() => setChecked(previous => {
       const next = new Set(previous); if (next.has(leg.id)) next.delete(leg.id); else next.add(leg.id); return next;
     })} />)}</ol> : <section className="ol-empty"><h2>No travel legs supplied</h2><p>Choose a complete journey to see its agency ticket requirements.</p></section>}
     {trip.legs.some(leg => leg.agency === 'SEPTA') && <TransitStatus endpoint={septaEndpoint} />}
@@ -50,7 +50,7 @@ export default function WalletPage({ tripId, septaEndpoint }: WalletPageProps) {
   const { tripId: routeTripId } = useParams<{ tripId: string }>();
   const [searchParams] = useSearchParams();
   const id = tripId ?? routeTripId ?? tripIdFromLocation();
-  const hasPlanningPreference = searchParams.has('date') || searchParams.has('time');
+  const hasPlanningPreference = urlHasPlanningPreference(searchParams);
   const preferences = readSearchState(searchParams);
   const planningSearch = hasPlanningPreference
     ? `?${new URLSearchParams({ date: preferences.departureDate, time: preferences.departureTime })}`

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   ArrowDownUp,
@@ -8,10 +8,18 @@ import {
 } from "lucide-react";
 import { LocationAutocomplete } from "./LocationAutocomplete";
 import { sampleLocationCatalogue, type LocationCatalogue } from "./locationCatalogue";
-import { todayInNewYork } from "../../data/searchState";
+import {
+  isPlanningDate,
+  MAX_PLANNING_DATE as MAX_DATE,
+  parsePlanningTime,
+  todayInNewYork,
+} from "../../data/searchState";
 import { IconTooltip } from "../ui/icon-tooltip";
-
-const MAX_DATE = "9999-12-31";
+import {
+  createPreferenceRefresh,
+  validPreferences,
+  type PlanningPreferences,
+} from "./preferenceRefresh";
 
 interface Props {
   initialOrigin?: string;
@@ -23,11 +31,19 @@ interface Props {
   onSearch: (
     origin: string,
     destination: string,
-    preferences: { departureDate: string; departureTime: string },
+    preferences: PlanningPreferences,
   ) => void;
+  /**
+   * Re-runs the search when the Date or Time changes: a valid value is sent after
+   * PREFERENCE_DEBOUNCE_MS (at once on blur); `null` at once while either is incomplete
+   * or out of range, so the page can hide results that no longer match the form.
+   * Enter and Search trips still submit through `onSearch`.
+   */
+  onPreferencesChange?: (preferences: PlanningPreferences | null) => void;
 }
 export function SearchForm({
   onSearch,
+  onPreferencesChange,
   initialOrigin = "Philadelphia",
   initialDestination = "Stony Brook",
   initialDepartureDate = todayInNewYork(),
@@ -38,6 +54,32 @@ export function SearchForm({
   const [destination, setDestination] = useState(initialDestination);
   const [departureDate, setDepartureDate] = useState(initialDepartureDate);
   const [departureTime, setDepartureTime] = useState(initialDepartureTime);
+  // The preference the results already show: from the URL, or last sent by this form.
+  const shown = useRef(`${initialDepartureDate}|${initialDepartureTime}`);
+  const latestOnPreferencesChange = useRef(onPreferencesChange);
+  useEffect(() => {
+    latestOnPreferencesChange.current = onPreferencesChange;
+  });
+  const [refresh] = useState(() =>
+    createPreferenceRefresh((preferences) => {
+      if (preferences) shown.current = `${preferences.departureDate}|${preferences.departureTime}`;
+      latestOnPreferencesChange.current?.(preferences);
+    }),
+  );
+  useEffect(() => refresh.cancel, [refresh]);
+  useEffect(() => {
+    const incoming = `${initialDepartureDate}|${initialDepartureTime}`;
+    if (incoming === shown.current) return;
+    // Back/Forward or a shared link changed the preference: show it, not a stale draft.
+    shown.current = incoming;
+    refresh.cancel();
+    setDepartureDate(initialDepartureDate);
+    setDepartureTime(initialDepartureTime);
+  }, [initialDepartureDate, initialDepartureTime, refresh]);
+  function preferencesChanged(nextDate: string, nextTime: string) {
+    if (onPreferencesChange) refresh.change(nextDate, nextTime);
+  }
+  const draftInvalid = onPreferencesChange !== undefined && !validPreferences(departureDate, departureTime);
   return (
     <section className="search-section" aria-label="Plan your journey">
       <div className="search-heading">
@@ -50,22 +92,34 @@ export function SearchForm({
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          // Search trips (or Enter) runs the full search now; drop any waiting auto-refresh.
+          refresh.cancel();
           const form = event.currentTarget;
           const dateInput = form.elements.namedItem("departure-date");
+          const timeInput = form.elements.namedItem("departure-time");
           const today = todayInNewYork();
           // Chrome can roll a typed 5-digit year into e.g. 0270; never submit or share an out-of-range date.
           if (dateInput instanceof HTMLInputElement) {
             dateInput.setCustomValidity(
-              /^\d{4}-\d{2}-\d{2}$/.test(departureDate) && departureDate >= today && departureDate <= MAX_DATE
+              isPlanningDate(departureDate, today)
                 ? ""
                 : `Choose a date from ${today} to ${MAX_DATE}.`,
+            );
+          }
+          // Text-field fallbacks can hold a partial time such as "4:3".
+          if (timeInput instanceof HTMLInputElement) {
+            timeInput.setCustomValidity(
+              !departureTime || parsePlanningTime(departureTime) ? "" : "Enter a complete time, such as 4:30 PM.",
             );
           }
           if (!form.checkValidity()) {
             form.reportValidity();
             return;
           }
-          onSearch(origin, destination, { departureDate, departureTime });
+          onSearch(origin, destination, {
+            departureDate,
+            departureTime: parsePlanningTime(departureTime) ?? departureTime,
+          });
         }}
         className="search-form"
       >
@@ -122,7 +176,10 @@ export function SearchForm({
                   onChange={(event) => {
                     event.target.setCustomValidity("");
                     setDepartureDate(event.target.value);
+                    preferencesChanged(event.target.value, departureTime);
                   }}
+                  onBlur={refresh.flush}
+                  aria-invalid={draftInvalid && !isPlanningDate(departureDate) ? true : undefined}
                   min={todayInNewYork()}
                   max={MAX_DATE}
                   required
@@ -134,7 +191,13 @@ export function SearchForm({
                   name="departure-time"
                   type="time"
                   value={departureTime}
-                  onChange={(event) => setDepartureTime(event.target.value)}
+                  onChange={(event) => {
+                    event.target.setCustomValidity("");
+                    setDepartureTime(event.target.value);
+                    preferencesChanged(departureDate, event.target.value);
+                  }}
+                  onBlur={refresh.flush}
+                  aria-invalid={draftInvalid && !parsePlanningTime(departureTime) ? true : undefined}
                   required
                 />
               </label>

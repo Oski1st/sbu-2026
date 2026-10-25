@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { getTripById } from "../data/tripLookup";
 import { formatDuration, shiftSampleTimeline } from "../data/tripUtils";
-import { readSearchState } from "../data/searchState";
+import { hasPlanningPreference as urlHasPlanningPreference, readSearchState } from "../data/searchState";
 import type { Trip } from "../types/transit";
 import { DelaySimulation } from "../components/journey/DelaySimulation";
 import { JourneyDemoControls } from "../components/journey/JourneyDemoControls";
@@ -31,7 +31,7 @@ export default function JourneyPage() {
   const { tripId } = useParams<{ tripId: string }>();
   const [searchParams] = useSearchParams();
   const preferenceKey = searchParams.toString();
-  const hasPlanningPreference = searchParams.has("date") || searchParams.has("time");
+  const hasPlanningPreference = urlHasPlanningPreference(searchParams);
   const planningPreferences = readSearchState(searchParams);
   const planningSearch = hasPlanningPreference
     ? `?${new URLSearchParams({ date: planningPreferences.departureDate, time: planningPreferences.departureTime })}`
@@ -153,6 +153,7 @@ export default function JourneyPage() {
                   leg={leg}
                   index={index}
                   tripStart={trip.legs[0]?.departure}
+                  shiftedTimeline={hasPlanningPreference}
                   isExpanded={expandedLegId === leg.id}
                   isDelayed={isDelaySimulated && leg.id === affectedLeg?.id}
                   isCurrent={currentDemoStep?.kind === "leg" && currentDemoStep.legIndex === index}

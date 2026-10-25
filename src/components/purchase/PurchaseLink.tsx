@@ -27,6 +27,11 @@ interface PurchaseLinkProps {
   leg: Leg;
   /** The trip's first departure, so later legs keep their day offset from the Search date. */
   tripStart?: string;
+  /**
+   * The leg's times are already shifted to the planning date and time (`?date&time`), so
+   * the link books the leg's own date, exactly as the timeline shows it, overnight legs included.
+   */
+  shiftedTimeline?: boolean;
   /** Screen-reader position that keeps each link's name unique, e.g. "segment 2". */
   position?: string;
   className?: string;
@@ -34,9 +39,9 @@ interface PurchaseLinkProps {
   icon?: ReactNode;
 }
 
-function PurchaseAnchor({ leg, tripStart, position, className, srOnlyClass = "sr-only", icon, searchDate }: PurchaseLinkProps & { searchDate?: string }) {
+function PurchaseAnchor({ leg, tripStart, shiftedTimeline, position, className, srOnlyClass = "sr-only", icon, searchDate }: PurchaseLinkProps & { searchDate?: string }) {
   const id = useId();
-  const link = purchaseLinkForLeg(leg, searchDate, tripStart);
+  const link = purchaseLinkForLeg(leg, shiftedTimeline ? null : searchDate, tripStart);
   // Labels of generic pages do not name the stations, so the screen-reader text does.
   const generic = link.kind === "official-ticket-page" || link.kind === "copy-handoff";
   const context = [position, generic ? `${leg.from} to ${leg.to}` : ""].filter(Boolean).join(", ");
