@@ -11,6 +11,8 @@ interface AmtrakHandoffProps {
   copyText?: string;
   /** Visible note; defaults to the homepage handoff note. */
   note?: string;
+  /** Purchase-link kind from src/lib/purchase, exposed as data-purchase-kind. */
+  kind?: string;
   /** Visible label plus a screen-reader "(opens in a new tab)" span supplied by the call site. */
   children: ReactNode;
   className?: string;
@@ -21,7 +23,7 @@ interface AmtrakHandoffProps {
  * Click-time Amtrak handoff: the link opens a non-expiring Amtrak page in a new tab
  * (never a stored session URL) while the trip details are copied as a backup.
  */
-export function AmtrakHandoff({ details, href = AMTRAK_BOOKING_URL, copyText, note = AMTRAK_HANDOFF_NOTE, children, className, "aria-label": ariaLabel }: AmtrakHandoffProps) {
+export function AmtrakHandoff({ details, href = AMTRAK_BOOKING_URL, copyText, note = AMTRAK_HANDOFF_NOTE, kind = "copy-handoff", children, className, "aria-label": ariaLabel }: AmtrakHandoffProps) {
   const id = useId();
   const field = useRef<HTMLInputElement>(null);
   const [status, setStatus] = useState<"idle" | "copied" | "manual">("idle");
@@ -36,6 +38,7 @@ export function AmtrakHandoff({ details, href = AMTRAK_BOOKING_URL, copyText, no
         aria-label={ariaLabel}
         aria-describedby={`${id}-note`}
         data-amtrak-handoff=""
+        data-purchase-kind={kind}
         onClick={() => {
           // No preventDefault: the native new-tab navigation keeps popup blockers out of the way.
           void copyTripText(text, field.current).then((copied) => setStatus(copied ? "copied" : "manual"));

@@ -2,12 +2,16 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import type { Leg } from "../../types/transit";
 import { SegmentCard } from "./SegmentCard";
+import { purchaseLinkForLeg } from "../../lib/purchase";
 
 const leg: Leg = {
   id: "disclosure-rail", agency: "AMTRAK", line: "Sample rail segment",
   from: "Boston", to: "Philadelphia", purchaseUrl: "https://www.amtrak.com/",
   departure: "2026-10-24T08:00:00-04:00", arrival: "2026-10-24T13:00:00-04:00",
 };
+
+// The ticket link comes from the shared resolver (no router here, so the leg's own date applies).
+const ticketHref = `href="${purchaseLinkForLeg(leg).href.replaceAll("&", "&amp;")}"`;
 
 function card(isExpanded: boolean, fixture = leg) {
   return <SegmentCard leg={fixture} index={0} isExpanded={isExpanded} isDelayed={false} isCurrent={false} onToggle={() => {}} />;
@@ -28,7 +32,7 @@ describe("SegmentCard details disclosure", () => {
     expect(html).toContain(`aria-controls="segment-details-${leg.id}"`);
     expect(html).toContain("View trip details");
     // The link is preserved for expansion; native inert removes it from focus/AT.
-    expect(html).toContain(`href="${leg.purchaseUrl}"`);
+    expect(html).toContain(ticketHref);
     expect(html).toContain("focus-visible:outline-3");
   });
 
@@ -39,7 +43,7 @@ describe("SegmentCard details disclosure", () => {
       expect(disclosure(html)).toContain(`aria-hidden="${!expanded}"`);
       expect(html).toContain(`aria-expanded="${expanded}"`);
       expect(html).toContain(expanded ? "Hide trip details" : "View trip details");
-      expect(html).toContain(`href="${leg.purchaseUrl}"`);
+      expect(html).toContain(ticketHref);
     }
   });
 

@@ -5,6 +5,8 @@ import WalletPage from '../../pages/WalletPage';
 import { demoTrips } from '../../data/demoTrips';
 import { getTripById } from '../../data/tripLookup';
 import { officialPurchaseUrl, ticketing } from './ticketing';
+import { purchaseLinkForLeg } from '../../lib/purchase';
+import { defaultSearch } from '../../data/searchState';
 import { lirrThroughTicketNote } from './ticketCoverage';
 import { TicketCard } from './TicketCard';
 import { TransitSnapshot } from './TransitStatus';
@@ -22,8 +24,10 @@ describe('shared wallet integration', () => {
     for (const leg of trip.legs) {
       expect(html).toContain(leg.from.replaceAll('&', '&amp;'));
       expect(html).toContain(leg.to.replaceAll('&', '&amp;'));
-      expect(html).toContain(officialPurchaseUrl(leg.agency, leg.purchaseUrl));
-      expect(html).toContain(ticketing[leg.agency].label.replaceAll('&', '&amp;'));
+      // Every Wallet ticket link comes from the shared resolver (this MemoryRouter sits at "/", so the Search date is today's default).
+      const link = purchaseLinkForLeg(leg, defaultSearch.departureDate, trip.legs[0].departure);
+      expect(html).toContain(`href="${link.href.replaceAll('&', '&amp;')}"`);
+      expect(html).toContain(link.label.replaceAll('&', '&amp;'));
     }
     expect(html).toContain('Times are simulated itinerary data');
     expect(html).toContain('not confirm payment');

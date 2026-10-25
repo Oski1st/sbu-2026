@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useId } from "react";
 import type { ReactNode } from "react";
 import { useInRouterContext, useLocation } from "react-router-dom";
 import type { Leg } from "../../types/transit";
@@ -35,6 +35,7 @@ interface PurchaseLinkProps {
 }
 
 function PurchaseAnchor({ leg, tripStart, context, className, srOnlyClass = "sr-only", icon, searchDate }: PurchaseLinkProps & { searchDate?: string }) {
+  const id = useId();
   const link = purchaseLinkForLeg(leg, searchDate, tripStart);
   const suffix = (
     <span className={srOnlyClass}>
@@ -44,7 +45,7 @@ function PurchaseAnchor({ leg, tripStart, context, className, srOnlyClass = "sr-
   );
   if (link.copyText !== undefined) {
     return (
-      <AmtrakHandoff details={{ ...leg, date: link.date }} href={link.href} copyText={link.copyText} note={link.note} className={className}>
+      <AmtrakHandoff details={{ ...leg, date: link.date }} href={link.href} copyText={link.copyText} note={link.note} kind={link.kind} className={className}>
         {link.label}
         {icon}
         {suffix}
@@ -52,11 +53,14 @@ function PurchaseAnchor({ leg, tripStart, context, className, srOnlyClass = "sr-
     );
   }
   return (
-    <a href={link.href} target="_blank" rel="noreferrer" className={className} data-purchase-kind={link.kind} title={link.note}>
-      {link.label}
-      {icon}
-      {suffix}
-    </a>
+    <span className="purchase-link">
+      <a href={link.href} target="_blank" rel="noreferrer" className={className} data-purchase-kind={link.kind} aria-describedby={link.note ? `${id}-note` : undefined}>
+        {link.label}
+        {icon}
+        {suffix}
+      </a>
+      {link.note && <span id={`${id}-note`} className="purchase-link-note">{link.note}</span>}
+    </span>
   );
 }
 
