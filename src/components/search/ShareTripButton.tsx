@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Check, Copy, Share2, X } from "lucide-react";
 import type { Trip } from "../../types";
 export function ShareTripButton({ trip }: { trip: Trip }) {
   const [status, setStatus] = useState<"idle" | "copied" | "manual">("idle");
   const [url, setUrl] = useState("");
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const local = ["localhost", "127.0.0.1", "[::1]"].includes(
-    window.location.hostname,
+    typeof window === "undefined" ? "" : window.location.hostname,
   );
+  const visibleLabel = status === "copied" ? "Link copied" : local ? "Copy preview link" : "Share route";
+
   async function share() {
     const link = new URL(
       `/journey/${encodeURIComponent(trip.id)}`,
       window.location.origin,
     ).href;
     setUrl(link);
+    // Repeated copies must update the status region again, not silently reuse it.
+    setStatus("idle");
     try {
       if (!navigator.clipboard?.writeText)
         throw new Error("Clipboard unavailable");
@@ -25,23 +30,24 @@ export function ShareTripButton({ trip }: { trip: Trip }) {
   return (
     <div className="share-trip">
       <button
+        ref={buttonRef}
         className="share-trip-button"
         type="button"
         onClick={share}
-        aria-label={`${local ? "Copy preview link for" : "Share"} ${trip.label ?? trip.id}`}
+        aria-label={`${visibleLabel} for ${trip.label ?? trip.id}`}
       >
         {status === "copied" ? <Check size={14} /> : <Share2 size={14} />}
-        {status === "copied"
-          ? "Link copied"
-          : local
-            ? "Copy preview link"
-            : "Share route"}
+        {visibleLabel}
       </button>
       {status !== "idle" && (
         <div className="share-feedback" role="status">
           <button
             className="share-dismiss"
-            onClick={() => setStatus("idle")}
+            type="button"
+            onClick={() => {
+              setStatus("idle");
+              buttonRef.current?.focus();
+            }}
             aria-label="Dismiss link message"
           >
             <X size={14} />
