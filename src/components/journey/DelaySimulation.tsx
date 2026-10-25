@@ -21,7 +21,7 @@ export function DelaySimulation({ affectedLeg, isActive, onToggle, hasConnection
             <p className="text-xs font-extrabold uppercase tracking-[0.13em] text-sage">Demo</p>
             <h2 id="delay-simulator-title" className="mt-1 text-xl font-bold tracking-tight text-base-content">Simulate a delay</h2>
             <p className="mt-2 max-w-lg text-sm leading-6 text-sage">{hasConnection
-                ? "Add a simulated 12-minute delay to the first leg to see what OneLine suggests when a connection is at risk."
+                ? `Add a simulated ${SIMULATED_DELAY_MINUTES}-minute delay to the first leg to see what OneLine suggests when a connection is at risk.`
                 : "This trip has no connection, so a delay only moves your sample arrival time."} This is a demo, not a live alert.</p>
           </div>
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-base-200 text-lg" aria-hidden="true">◷</span>
