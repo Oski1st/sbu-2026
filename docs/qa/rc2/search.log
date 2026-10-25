@@ -1,0 +1,40 @@
+PASS A1 origin: role=combobox, aria-autocomplete=list, aria-controls=origin-listbox, collapsed, labelled, required — {"role":"combobox","ac":"list","controls":"origin-listbox","expanded":"false","label":"From","required":true,"value":"Philadelphia"}
+PASS A1 destination: role=combobox, aria-autocomplete=list, aria-controls=destination-listbox, collapsed, labelled, required — {"role":"combobox","ac":"list","controls":"destination-listbox","expanded":"false","label":"To","required":true,"value":"Stony Brook"}
+PASS A2 defaults Philadelphia → Stony Brook
+PASS B1 typing opens the listbox and filters (bos → Boston)
+PASS B2 ArrowDown sets aria-activedescendant to an option id with aria-selected=true — origin-option-boston
+PASS B3 Enter selects the active option and closes the list (no submit)
+PASS B4 ArrowUp from no selection wraps to the last option — 8 options
+PASS B5 Escape closes the list and keeps typed text
+PASS B6 alias 'New York City' is accepted as supported (no amber warning)
+PASS B7 Enter-less submit Boston → NYC alias shows results — 3 sample connections for Boston → New York City
+PASS B8 URL carries from/to after submit — http://127.0.0.1:58423/?from=Boston&to=New+York+City
+PASS C1 no-match: status says no supported cities; visible no-match note
+PASS C2 after Escape the 'not yet a supported sample city' hint shows; manual text kept
+PASS C3 unsupported manual submit gives honest no-route feedback, no crash — 0 sample connections for Atlantis → New York City
+PASS D1 mouse click selects Philadelphia; focus stays on input
+PASS E1 submit writes date and time to the URL — http://127.0.0.1:58423/?date=2026-11-03&time=17%3A45
+PASS E2 sample itinerary cards are unchanged by date/time preferences — 2 cards
+PASS E3 refresh restores date and time inputs
+PASS E4 shared URL in a fresh browser restores preferences
+PASS E5 malformed/edge URL 'date=2026-02-30&time=25:00' → 2026-10-24 08:00
+PASS E5 malformed/edge URL 'date=abc&time=7:5' → 2026-10-24 08:00
+PASS E5 malformed/edge URL 'date=2028-02-29&time=23:59' → 2028-02-29 23:59
+PASS F1 Back restores the previous time (06:15) in the form — http://127.0.0.1:58423/?time=06%3A15
+PASS F2 Forward restores 21:30 — http://127.0.0.1:58423/?time=21%3A30
+PASS G1 corridor shortcut keeps the date/time preference in the URL — http://127.0.0.1:58423/?time=21%3A30&from=Boston&to=New+York
+PASS G2 swap button exchanges origin and destination — Boston/New York
+PASS H1 filters and Compare controls still render
+PASS I1 320px: open listbox within viewport, no page overflow — {"x":76,"y":411,"width":168,"height":120}
+PASS I2 320px: option tap target ≥ 40px tall — 60.0
+PASS I3 320px: touch tap selects the tapped city ("ba" lists Baltimore first) — Baltimore
+PASS I4 320px: date/time inputs ≥ 44px tall and inside viewport — {"x":69,"y":565.65625,"width":210,"height":44}
+PASS I1 390px: open listbox within viewport, no page overflow — {"x":76,"y":410.546875,"width":238,"height":120}
+PASS I2 390px: option tap target ≥ 40px tall — 60.0
+PASS I3 390px: touch tap selects the tapped city ("ba" lists Baltimore first) — Baltimore
+PASS I4 390px: date/time inputs ≥ 44px tall and inside viewport — {"x":69,"y":565.203125,"width":280,"height":44}
+PASS J1 focused combobox shows a visible focus indicator
+PASS J2 no geolocation call anywhere in the session — []
+PASS J3 no page or console errors
+
+38/38 P4-25 checks passed

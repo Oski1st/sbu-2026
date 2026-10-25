@@ -1,0 +1,10 @@
+PASS 0:00 Search loads with both route cards (307 ms)
+PASS 0:15 Compare both routes (1194 ms) — The express connection gets you there 35 minutes sooner for $15 more in sample fares.
+PASS 0:40 Choose route → Journey (163 ms)
+PASS 0:50 Simulate delay shows a recovery plan (1293 ms)
+PASS 1:10 View ticket wallet (131 ms)
+PASS 1:20 Tick the first checklist item (62 ms) — progress 1
+PASS 1:30 SEPTA panel settles (46 ms) — unavailable
+PASS 1:45 Refresh keeps the deep link (376 ms)
+
+Click path 3.7 s (excludes talking). All steps passed [offline SEPTA]

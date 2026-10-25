@@ -1,0 +1,5 @@
+PASS upstream HTTP 500: 502 {"error":"septa_unavailable"} (expected 502, no-store)
+PASS network failure: 502 {"error":"septa_unavailable"} (expected 502, no-store)
+PASS non-array JSON: 502 {"error":"septa_unavailable"} (expected 502, no-store)
+PASS stalled upstream: 504 {"error":"septa_timeout"} (expected 504, no-store)
+PASS valid empty feed: 200 [] (expected 200, no-store)
