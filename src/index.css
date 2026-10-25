@@ -57,7 +57,7 @@
     outline-offset: 5px;
   }
   :focus-visible {
-    outline: 3px solid #7da24b;
+    outline: 3px solid #173f35;
     outline-offset: 5px;
   }
   main:focus,
@@ -477,8 +477,9 @@
   border-radius: 0;
 }
 .location-field input:focus {
-  border-bottom-color: #97b47e;
-  outline: none;
+  border-bottom-color: #173f35;
+  outline: 3px solid #173f35;
+  outline-offset: 3px;
 }
 .swap-button {
   width: 32px;
@@ -549,7 +550,7 @@
   padding: 4px 6px;
 }
 .date-time-controls input:focus-visible {
-  outline: 2px solid #97b47e;
+  outline: 3px solid #173f35;
   outline-offset: 2px;
 }
 .date-field small {
@@ -562,7 +563,7 @@
 .date-field > div {
   min-width: 0;
 }
-@media (max-width: 360px) {
+@media (max-width: 400px) {
   .date-time-controls {
     flex-direction: column;
   }
@@ -2640,4 +2641,4 @@
 .scheduled-card .agency-badge {color:#173f35}
 .scheduled-journey {max-width:1000px;padding-top:3rem;padding-bottom:3rem;line-height:1.7;overflow-wrap:anywhere}
 .scheduled-journey h1 {font-size:clamp(2rem,6vw,3.5rem);line-height:1.15;letter-spacing:-.04em;margin:1rem 0}
-@media(max-width:360px){.timetable-page .date-time-controls {display:grid;grid-template-columns:minmax(0,1fr)}.timetable-page .date-time-controls label {width:100%}.scheduled-card .route-summary {gap:.5rem}.scheduled-card .route-time strong {font-size:.85rem}.scheduled-card .route-card-title {align-items:flex-start}.scheduled-card .fare {min-width:0;max-width:7rem}}
+@media(max-width:400px){.timetable-page .date-time-controls {display:grid;grid-template-columns:minmax(0,1fr)}.timetable-page .date-time-controls label {width:100%}.scheduled-card .route-summary {gap:.5rem}.scheduled-card .route-time strong {font-size:.85rem}.scheduled-card .route-card-title {align-items:flex-start}.scheduled-card .fare {min-width:0;max-width:7rem}}

@@ -5,6 +5,13 @@ NJ TRANSIT, LIRR, Amtrak, Greyhound and FlixBus. The original demonstration is
 Philadelphia → Stony Brook; the East Coast catalogue adds clearly labelled
 city-level rail/coach concepts.
 
+The main Search now offers **source-backed city autocomplete and dated Amtrak/LIRR
+timetable planning**. The calendar and manual date/time inputs affect published
+departure searches. The original sample experience is separate at `/demo`; it never
+fills gaps in a real timetable search. SEPTA/NJ TRANSIT/Greyhound/FlixBus dated feeds
+remain explicit gaps; no Google Transit participation, live inventory or fares are
+claimed. See [timetable sources, limits, refresh and checks](docs/dated-timetable-search.md).
+
 ## Run locally
 
 Use Node.js **22.12+** and **pnpm 11.25.0**. Run `corepack enable` if Corepack is
@@ -23,7 +30,8 @@ pnpm start                   # http://127.0.0.1:3000
 ```
 
 React + TypeScript + Vite, Tailwind CSS v4 and React Router are already configured.
-The Node host serves the built app, SPA deep links and the SEPTA proxy together.
+The Node host serves the built app, SPA deep links, the local-snapshot timetable API
+and the SEPTA proxy together. No runtime download or API key is needed for timetables.
 All UI/map assets are local, so a previously installed and built app works offline
 with the SEPTA panel showing its honest unavailable state.
 
@@ -36,7 +44,11 @@ pnpm test
 pnpm test:proxy
 ```
 
-With a production server running, browser and smoke checks use its actual URL:
+For the new planner, run `node scripts/verify-timetables.mjs` and
+`node scripts/verify-timetable-host.mjs`; see the timetable guide for actual browser
+checks. The historical sample-flow scripts below assume the old Search entrypoint;
+they require a scoped QA update for `/demo` and are not claimed as new-planner checks.
+With a production server running, those browser and smoke checks use its actual URL:
 
 ```sh
 pnpm exec playwright install chromium   # once, while online
@@ -69,7 +81,9 @@ The integrated pages are:
 
 | URL | Behavior |
 | --- | --- |
-| `/` or `/search` | Search, filters, route comparison and route selection |
+| `/` or `/search` | Published timetable Search, city/date input, filters and route selection |
+| `/itinerary/:id` | Reconstructable dated timetable itinerary |
+| `/demo` | Original sample Search, filters and comparison |
 | `/journey/:tripId` | Person 2's timeline, manual guided demo and labelled delay simulation |
 | `/wallet/:tripId` | Person 3's per-leg planning checklist and official ticket links |
 | `/journey` or `/wallet` | Use the selected trip, or show a choose-a-route state |
@@ -90,7 +104,10 @@ Page-level lazy loading keeps the navigation shell available.
 
 ## Sample data, live observations and ticket purchasing
 
-**All provided itineraries, departure times, durations and fares are sample data.**
+**The original `/demo` and legacy Journey/Wallet itineraries, times and fares are
+sample data.** The separate main Search uses published static timetable times,
+labelled with their source dates, and does not provide fares, tickets or realtime
+arrival guarantees.
 They are not verified timetables, fare quotes, connection guarantees or available
 inventory. Expanded city-level concepts do not verify operator coverage, direct
 service, terminal changes or rail/road alignments. Unknown fares stay unknown.
@@ -152,3 +169,5 @@ Keep the current release QA SHA stable while future feature PRs are in progress.
 Do not describe unmerged nationwide data, autocomplete or geolocation work as
 already deployed. Design tokens, responsive layout and reduced-motion styles live
 in `src/index.css`; page-specific Wallet CSS stays scoped under `.oneline-wallet`.
+
+The dated-transit checkpoint omits the locally tested Amtrak/LIRR derived snapshot pending Amtrak redistribution clearance. Fresh checkouts retain city suggestions and show an explicit routing gap. See `docs/dated-timetable-search.md`; no runtime download installs it.

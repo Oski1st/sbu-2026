@@ -51,6 +51,9 @@ for name,operator in [('amtrak','AMTRAK'),('lirr','LIRR')]:
    if cid not in {x['id'] for x in cities}:continue
    for sid in r['stopIds']:
     assert sid in stopindex
+    expected=[x for x in evidence if x['cityId']==r['cityId'] and x['marketedOperator']=='AMTRAK']
+    assert any(stopindex[sid]['stop_name'] in x['stops'] for x in expected),'Stop identity changed; source mapping review required'
+    assert km(allcities[r['cityId']],stopindex[sid])<50,'Stop moved outside reviewed mapping radius'
     output['cityStops'].setdefault(cid,[]).append(name+':'+sid)
  else:
   for city in cities:
@@ -68,3 +71,5 @@ rawout=json.dumps(output,separators=(',',':'),ensure_ascii=False).encode();versi
 rawout=json.dumps(output,separators=(',',':'),ensure_ascii=False).encode();dest=root/'server/data/timetables.json.gz';dest.write_bytes(gzip.compress(rawout,mtime=0))
 manifest={'version':version,'schema':1,'feeds':[{k:f[k] for k in ['id','operator','sourceUrl','sha256','checkedAt','version','startDate','endDate','skippedTrips']} for f in output['feeds']],'qualifiedChoices':len(cities),'placesWithTimetableStops':len(output['cityStops']),'limits':output['limits']}
 (root/'server/data/timetable-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print('artifact',len(rawout),'bytes',dest.stat().st_size,'gzipped','version',version,'mapped cities',len(output['cityStops']))
+
+(root/"server/data/transit-places.json").write_text(json.dumps(cities,separators=(",",":"))+"\n")

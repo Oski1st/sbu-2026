@@ -17,3 +17,6 @@ test-results/
 
 qa-results/
 playwright-report/
+
+# Local timetable preparation only; redistribution clearance is pending.
+server/data/timetables.json.gz

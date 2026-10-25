@@ -1,7 +1,100 @@
-import {it,expect} from 'vitest';
-import{createServer}from'node:http';import{once}from'node:events';
-import{createTimetableApi}from'./timetable-api.mjs';import{PlanningError}from'./timetable-engine.mjs';
-async function withApi(getEngine,run){const api=createTimetableApi({getEngine});const server=createServer((req,res)=>{void api(req,res,()=>{res.writeHead(418);res.end('next');});});server.listen(0,'127.0.0.1');await once(server,'listening');try{await run('http://127.0.0.1:'+server.address().port);}finally{await new Promise(resolve=>server.close(resolve));}}
-it('keeps existing SEPTA requests and unrelated endpoints available to the next middleware',async()=>{let loaded=false;await withApi(async()=>{loaded=true;return{};},async url=>{expect((await fetch(url+'/api/transit/septa/trains')).status).toBe(418);expect((await fetch(url+'/api/other')).status).toBe(418);expect(loaded).toBe(false);});});
-it('supports catalogue/plan/reconstruction, rejects mutation and duplicate query keys',async()=>{const engine={metadata:()=>({version:'x',cities:[]}),plan:q=>({query:q,itineraries:[]}),itinerary:id=>({id})};await withApi(async()=>engine,async url=>{expect((await(await fetch(url+'/api/transit/catalogue')).json()).version).toBe('x');const r=await(await fetch(url+'/api/transit/plan?from=A&to=B&date=2026-10-26&time=08%3A00&amtrak=0')).json();expect(r.query.includeAmtrak).toBe(false);expect((await fetch(url+'/api/transit/plan?from=A&from=B')).status).toBe(400);expect((await fetch(url+'/api/transit/plan?secret=wrong')).status).toBe(400);expect((await fetch(url+'/api/transit/plan',{method:'POST'})).status).toBe(405);expect(await(await fetch(url+'/api/transit/itinerary/tt1.fixture')).json()).toEqual({id:'tt1.fixture'});});});
-it('reports coverage/query errors and sanitizes internal failures without substituting sample data',async()=>{await withApi(async()=>({plan:()=>{throw new PlanningError('ambiguous-city','Choose state');}}),async url=>{const r=await fetch(url+'/api/transit/plan');expect(r.status).toBe(400);expect(await r.json()).toMatchObject({error:'ambiguous-city'});});await withApi(async()=>{throw new Error('private filesystem detail');},async url=>{const r=await fetch(url+'/api/transit/catalogue');expect(r.status).toBe(503);expect(JSON.stringify(await r.json())).not.toContain('private');});});
+import { it, expect } from "vitest";
+import { createServer } from "node:http";
+import { once } from "node:events";
+import { createTimetableApi } from "./timetable-api.mjs";
+import { PlanningError } from "./timetable-engine.mjs";
+async function withApi(getEngine, run) {
+  const api = createTimetableApi({ getEngine });
+  const server = createServer((req, res) => {
+    void api(req, res, () => {
+      res.writeHead(418);
+      res.end("next");
+    });
+  });
+  server.listen(0, "127.0.0.1");
+  await once(server, "listening");
+  try {
+    await run("http://127.0.0.1:" + server.address().port);
+  } finally {
+    await new Promise((resolve) => server.close(resolve));
+  }
+}
+it("keeps existing SEPTA requests and unrelated endpoints available to the next middleware", async () => {
+  let loaded = false;
+  await withApi(
+    async () => {
+      loaded = true;
+      return {};
+    },
+    async (url) => {
+      expect((await fetch(url + "/api/transit/septa/trains")).status).toBe(418);
+      expect((await fetch(url + "/api/other")).status).toBe(418);
+      expect(loaded).toBe(false);
+    },
+  );
+});
+it("supports catalogue/plan/reconstruction, rejects mutation and duplicate query keys", async () => {
+  const engine = {
+    metadata: () => ({ version: "x", cities: [] }),
+    plan: (q) => ({ query: q, itineraries: [] }),
+    itinerary: (id) => ({ id }),
+  };
+  await withApi(
+    async () => engine,
+    async (url) => {
+      expect(
+        (await (await fetch(url + "/api/transit/catalogue")).json()).version,
+      ).toBe("x");
+      const r = await (
+        await fetch(
+          url +
+            "/api/transit/plan?from=A&to=B&date=2026-10-26&time=08%3A00&amtrak=0",
+        )
+      ).json();
+      expect(r.query.includeAmtrak).toBe(false);
+      expect(
+        (await fetch(url + "/api/transit/plan?from=A&from=B")).status,
+      ).toBe(400);
+      expect((await fetch(url + "/api/transit/plan?secret=wrong")).status).toBe(
+        400,
+      );
+      expect(
+        (await fetch(url + "/api/transit/plan", { method: "POST" })).status,
+      ).toBe(405);
+      expect(
+        await (await fetch(url + "/api/transit/itinerary/tt1-fixture")).json(),
+      ).toEqual({ id: "tt1-fixture" });
+    },
+  );
+});
+it("reports coverage/query errors and sanitizes internal failures without substituting sample data", async () => {
+  await withApi(
+    async () => ({
+      plan: () => {
+        throw new PlanningError("ambiguous-city", "Choose state");
+      },
+    }),
+    async (url) => {
+      const r = await fetch(url + "/api/transit/plan");
+      expect(r.status).toBe(400);
+      expect(await r.json()).toMatchObject({ error: "ambiguous-city" });
+    },
+  );
+  await withApi(
+    async () => {
+      throw new Error("private filesystem detail");
+    },
+    async (url) => {
+      const r = await fetch(url + "/api/transit/catalogue");
+      expect(r.status).toBe(200);
+      const fallback = await r.json();
+      expect(fallback.version).toBe("catalogue-only");
+      expect(fallback.cities).toHaveLength(1371);
+      expect(fallback.cities.every(city => !city.hasTimetableStops)).toBe(true);
+      expect(fallback.feeds).toEqual([]);
+      const plan = await fetch(url + "/api/transit/plan");
+      expect(plan.status).toBe(503);
+      expect(JSON.stringify(await plan.json())).not.toContain("private");
+    },
+  );
+});

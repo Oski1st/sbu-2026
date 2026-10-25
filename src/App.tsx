@@ -48,7 +48,7 @@ function NavigationEffects() {
   const location = useLocation();
   const previousPath = useRef(location.pathname);
   useEffect(() => {
-    document.title = `OneLine · ${location.pathname.startsWith("/journey") ? "Your journey" : location.pathname.startsWith("/wallet") ? "Your wallet" : "A better way there"}`;
+    document.title = `OneLine · ${(location.pathname.startsWith("/journey") || location.pathname.startsWith("/itinerary")) ? "Your journey" : location.pathname.startsWith("/wallet") ? "Your wallet" : "A better way there"}`;
     if (previousPath.current !== location.pathname) {
       previousPath.current = location.pathname;
       window.scrollTo({ top: 0 });
