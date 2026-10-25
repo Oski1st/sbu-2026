@@ -102,12 +102,12 @@ export default function JourneyPage() {
         </div>
 
         <section className="mt-8" aria-labelledby="timeline-title">
-          <div className="mb-4 flex items-end justify-between gap-4">
+          <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
             <div>
               <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Step by step</p>
               <h2 id="timeline-title" className="mt-1 text-2xl font-bold tracking-tight text-slate-950">Journey timeline</h2>
             </div>
-            <p className="text-xs text-slate-500">Times shown from itinerary</p>
+            <p className="text-xs text-slate-500">Sample itinerary times in Eastern Time</p>
           </div>
 
           <div className="space-y-3">
