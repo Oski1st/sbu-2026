@@ -47,6 +47,29 @@ describe("contiguous-U.S. passenger rail map", () => {
     expect(html).not.toContain("<image");
   });
 
+  test("draws one constant-size marker per bundled station and labels only real station positions", () => {
+    const html = renderToStaticMarkup(<CorridorMap />);
+    const markers = [...html.matchAll(/data-station-code="([A-Z]+)"/g)].map((match) => match[1]);
+    expect(markers).toEqual(geometry.stations.map((station) => station.code));
+    // Each marker is a zero-length, round-capped, non-scaling stroke drawn exactly at the station coordinate.
+    for (const station of geometry.stations) {
+      expect(html).toContain(`d="M${station.x},${station.y}h0" vector-effect="non-scaling-stroke"`);
+    }
+    // Labels are decorative HTML (hidden from assistive tech; the SVG description and details carry the content).
+    const labels = html.match(/<ul class="prm-labels" aria-hidden="true">(.*?)<\/ul>/)?.[1] ?? "";
+    for (const name of ["Boston", "New York", "Washington", "Charlotte", "Savannah", "Tampa", "Miami"]) expect(labels).toContain(`>${name}</li>`);
+    const positions = [...labels.matchAll(/left:([\d.]+)%;top:([\d.]+)%/g)];
+    expect(positions).toHaveLength(7);
+    for (const [, x, y] of positions) {
+      expect(geometry.stations.some((s) => Math.abs((s.x / 800) * 100 - Number(x)) < 1e-9 && Math.abs((s.y / 420) * 100 - Number(y)) < 1e-9)).toBe(true);
+    }
+  });
+
+  test("keeps the opened audit in a bounded, keyboard-focusable, named region", () => {
+    const html = renderToStaticMarkup(<CorridorMap />);
+    expect(html).toContain('<div class="prm-details-content" role="region" aria-label="Corridor, city and coverage-gap details" tabindex="0">');
+  });
+
   test("keeps map and description IDs unique for multiple instances", () => {
     const html = renderToStaticMarkup(<><CorridorMap /><CorridorMap /></>);
     const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);

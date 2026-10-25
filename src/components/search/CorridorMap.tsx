@@ -3,6 +3,23 @@ import geometry from "../../data/railMap/geometry.json";
 import audit from "../../data/railMap/serviceAudit.json";
 import "./PassengerRailMap.css";
 
+/**
+ * A few orienting labels, positioned from the bundled station coordinates (no new geometry).
+ * They are HTML so their text stays a fixed, legible size while the SVG scales. "place" sets
+ * the label offset from its dot (see PassengerRailMap.css) so labels sit in open space clear of
+ * neighbouring stations; "wideOnly" labels are hidden where the map is too narrow for them.
+ */
+const mapLabels = [
+  { code: "BOS", text: "Boston", place: "right", wideOnly: false },
+  { code: "NYP", text: "New York", place: "below-right", wideOnly: false },
+  { code: "WAS", text: "Washington", place: "far-right", wideOnly: true },
+  { code: "CLT", text: "Charlotte", place: "left", wideOnly: false },
+  { code: "SAV", text: "Savannah", place: "right-low", wideOnly: false },
+  { code: "TPA", text: "Tampa", place: "left", wideOnly: false },
+  { code: "MIA", text: "Miami", place: "right", wideOnly: false },
+] as const;
+const [, , viewWidth, viewHeight] = geometry.viewBox;
+
 export function CorridorMap() {
   const id = useId();
   const titleId = `${id}-rail-title`;
@@ -14,28 +31,39 @@ export function CorridorMap() {
         <h2 id={titleId}>Follow the rails.</h2>
         <p>Selected Amtrak corridors serving our sample cities.</p>
       </header>
-      <svg className="prm-art" viewBox={geometry.viewBox.join(" ")} role="img" aria-labelledby={`${titleId} ${descriptionId}`}>
-        <desc id={descriptionId}>North-up geographic map of the contiguous United States. Eight selected Amtrak route alignments from the federal NTAD snapshot are drawn over state boundaries. Dots mark 26 Amtrak train stations serving 23 of the 24 sample-catalogue cities. Stony Brook's LIRR alignment is missing. This is partial rail coverage, not a timetable or a guarantee of a direct connection. Read the corridor and city list below for boarding locations and gaps.</desc>
-        <rect className="prm-water" width="800" height="420" rx="16" />
-        <g className="prm-states">
-          {geometry.boundaries.map((state) => <path key={state.name} d={state.path} />)}
-        </g>
-        <g className="prm-routes">
-          {geometry.routes.map((route) => (
-            <g key={route.id} data-route-id={route.id}>
-              <title>{`${route.name}: generalized rail alignment`}</title>
-              {route.paths.map((path, index) => <path key={index} d={path} vectorEffect="non-scaling-stroke" />)}
-            </g>
-          ))}
-        </g>
-        <g className="prm-stations">
-          {geometry.stations.map((station) => (
-            <circle key={station.code} cx={station.x} cy={station.y} r="2.8" vectorEffect="non-scaling-stroke">
-              <title>{`${station.locality}: ${station.name} (${station.code})`}</title>
-            </circle>
-          ))}
-        </g>
-      </svg>
+      <div className="prm-frame">
+        <svg className="prm-art" viewBox={geometry.viewBox.join(" ")} role="img" aria-labelledby={`${titleId} ${descriptionId}`}>
+          <desc id={descriptionId}>North-up geographic map of the contiguous United States. Eight selected Amtrak route alignments from the federal NTAD snapshot are drawn over state boundaries. Dots mark 26 Amtrak train stations serving 23 of the 24 sample-catalogue cities. Stony Brook's LIRR alignment is missing. This is partial rail coverage, not a timetable or a guarantee of a direct connection. Read the corridor and city list below for boarding locations and gaps.</desc>
+          <rect className="prm-water" width="800" height="420" rx="16" />
+          <g className="prm-states">
+            {geometry.boundaries.map((state) => <path key={state.name} d={state.path} />)}
+          </g>
+          <g className="prm-routes">
+            {geometry.routes.map((route) => (
+              <g key={route.id} data-route-id={route.id}>
+                <title>{`${route.name}: generalized rail alignment`}</title>
+                {route.paths.map((path, index) => <path key={index} d={path} vectorEffect="non-scaling-stroke" />)}
+              </g>
+            ))}
+          </g>
+          <g className="prm-stations">
+            {geometry.stations.map((station) => (
+              <g key={station.code} className="prm-station" data-station-code={station.code}>
+                <title>{`${station.locality}: ${station.name} (${station.code})`}</title>
+                {/* Zero-length round-capped strokes keep markers a constant on-screen size at every width. */}
+                <path className="prm-station-halo" d={`M${station.x},${station.y}h0`} vectorEffect="non-scaling-stroke" />
+                <path className="prm-station-dot" d={`M${station.x},${station.y}h0`} vectorEffect="non-scaling-stroke" />
+              </g>
+            ))}
+          </g>
+        </svg>
+        <ul className="prm-labels" aria-hidden="true">
+          {mapLabels.map(({ code, text, place, wideOnly }) => {
+            const station = geometry.stations.find((item) => item.code === code)!;
+            return <li key={code} className={`prm-label prm-label-${place}${wideOnly ? " prm-label-wide-only" : ""}`} style={{ left: `${(station.x / viewWidth) * 100}%`, top: `${(station.y / viewHeight) * 100}%` }}>{text}</li>;
+          })}
+        </ul>
+      </div>
       <ul className="prm-legend" aria-label="Rail map legend">
         <li><span className="prm-line-key" aria-hidden="true" />Generalized Amtrak rail alignment</li>
         <li><span className="prm-dot-key" aria-hidden="true" />Amtrak train station</li>
@@ -44,7 +72,7 @@ export function CorridorMap() {
       <p className="prm-note">Federal route snapshot: May 2026. Stations: October 2026. Partial coverage; confirm service and boarding details with the operator. These lines do not change the sample itineraries.</p>
       <details className="prm-details">
         <summary>Corridors, cities &amp; coverage gaps</summary>
-        <div className="prm-details-content">
+        <div className="prm-details-content" role="region" aria-label="Corridor, city and coverage-gap details" tabIndex={0}>
           <h3>Documented passenger corridors</h3>
           <p>Railway alignment comes from FRA/BTS NTAD. Passenger-service descriptions are checked against Amtrak's published route pages. Neither establishes a departure on your chosen date or a guaranteed transfer.</p>
           <ul className="prm-route-list">

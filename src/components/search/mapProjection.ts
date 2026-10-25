@@ -15,11 +15,6 @@ export function projectContiguous([longitude, latitude]: Point): Point {
   return [rho * Math.sin(theta), rho * Math.cos(theta) - rho0];
 }
 
-/** Unwrap Alaska's Aleutians around 180°; north is up in both geographic insets. */
-export function projectInset([longitude, latitude]: Point): Point {
-  return [longitude > 0 ? longitude - 360 : longitude, -latitude];
-}
-
 /** Uniform fit preserves aspect ratio and projection orientation. */
 export function fitProjection(points: readonly Point[], frame: Frame) {
   const xs = points.map(([x]) => x);
