@@ -30,6 +30,14 @@ describe("search URL state", () => {
       state,
     );
   });
+  it("keeps four-digit years 0001-0099 literal and rejects five-digit years", () => {
+    const read = (date: string) =>
+      readSearchState(new URLSearchParams({ date })).departureDate;
+    expect(read("0001-01-01")).toBe("0001-01-01");
+    expect(read("0050-06-01")).toBe("0050-06-01");
+    expect(read("0099-02-29")).toBe(defaultSearch.departureDate);
+    expect(read("20270-01-01")).toBe(defaultSearch.departureDate);
+  });
   it("rejects unknown filters and bounds city values without inventing supported cities", () => {
     const state = readSearchState(
       new URLSearchParams({
