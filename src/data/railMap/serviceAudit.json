@@ -40,7 +40,7 @@
   "operatorGaps": [
     {"operator":"SEPTA","url":"https://www3.septa.org/developer/","reason":"Official GTFS download identified; its shapes and usage conditions have not been validated for this map. No SEPTA-branded line is drawn."},
     {"operator":"NJ TRANSIT","url":"https://developer.njtransit.com/registration/appdoc?app=GTFS-RAIL","reason":"Official GTFS portal documents registration/token access. No account, token or agreement was created; no NJ TRANSIT-branded alignment is drawn."},
-    {"operator":"LIRR","url":"https://www.mta.info/stations/stony-brook","reason":"Stony Brook service confirmed on MTA's Port Jefferson station page; a permitted, validated shape is not bundled. No straight-line substitute is drawn."},
+    {"operator":"LIRR","url":"https://www.mta.info/stations/stony-brook","reason":"Stony Brook service confirmed on MTA's Port Jefferson station page. The dashed New York–Stony Brook link is a schematic for orientation; validated LIRR track geometry is not bundled."},
     {"operator":"Greyhound / FlixBus","url":null,"reason":"Coach operators are outside this rail layer and are never rendered as railway alignments."}
   ],
   "network": {

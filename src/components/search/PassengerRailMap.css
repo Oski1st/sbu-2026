@@ -18,6 +18,7 @@
 .passenger-rail-map .prm-station-halo { stroke: #fff; stroke-width: 10; }
 .passenger-rail-map .prm-station-dot { stroke: #153f32; stroke-width: 6.5; }
 /* LIRR: dashed schematic link plus a hollow marker, so it never reads as drawn Amtrak track. */
+.passenger-rail-map .prm-lirr { fill: none; stroke-linecap: round; }
 .passenger-rail-map .prm-lirr-link { fill: none; stroke: #1f5f8b; stroke-width: 2; stroke-dasharray: 3 3; stroke-linecap: round; }
 .passenger-rail-map .prm-lirr-ring { stroke: #1f5f8b; stroke-width: 7; }
 .passenger-rail-map .prm-lirr-hole { stroke: #fff; stroke-width: 3; }
