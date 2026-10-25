@@ -88,7 +88,7 @@ export function RouteComparison({ trips, open, onClose }: Props) {
             <strong>{comparison.faster.label}</strong>
             {comparison.minutesSaved > 0
               ? ` gets you there ${comparison.minutesSaved} minutes sooner`
-              : " has the same total journey time"}
+              : " arrives at the same time"}
             {comparison.fareDifference === null
               ? "."
               : comparison.fareDifference > 0

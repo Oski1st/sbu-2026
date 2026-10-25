@@ -1,7 +1,15 @@
 import { resolveCity } from "./eastCoast";
 import type { Trip } from "../types";
 export const formatDuration = (minutes: number) =>
-  `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
+  minutes < 60
+    ? `${minutes}m`
+    : `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
+/** Final arrival instant; coach concepts start later than rail, so duration alone can't rank arrival. */
+export const arrivalTime = (trip: Trip) => {
+  const last = trip.legs.at(-1);
+  const value = last ? +new Date(last.arrival) : NaN;
+  return Number.isFinite(value) ? value : Infinity;
+};
 export const formatTime = (iso: string) =>
   new Intl.DateTimeFormat("en-US", {
     timeZone: "America/New_York",
@@ -38,7 +46,8 @@ export function sortTrips(trips: Trip[], order: string): Trip[] {
     order === "fare"
       ? (sampleTotal(a) ?? Infinity) - (sampleTotal(b) ?? Infinity)
       : order === "fastest"
-        ? a.durationMinutes - b.durationMinutes
+        ? arrivalTime(a) - arrivalTime(b) ||
+          a.durationMinutes - b.durationMinutes
         : 0,
   );
 }
@@ -68,16 +77,19 @@ export function tripMetrics(trip: Trip) {
 }
 
 export function compareTrips(first: Trip, second: Trip) {
+  const gap = arrivalTime(first) - arrivalTime(second);
   const [faster, slower] =
-    first.durationMinutes <= second.durationMinutes
+    gap < 0 || (gap === 0 && first.durationMinutes <= second.durationMinutes)
       ? [first, second]
       : [second, first];
   const fastFare = sampleTotal(faster),
     slowFare = sampleTotal(slower);
+  const arrivalGap = (arrivalTime(slower) - arrivalTime(faster)) / 60000;
   return {
     faster,
     slower,
-    minutesSaved: slower.durationMinutes - faster.durationMinutes,
+    // "Gets you there sooner" means earlier arrival, not a shorter ride.
+    minutesSaved: Number.isFinite(arrivalGap) ? arrivalGap : 0,
     fareDifference:
       fastFare === null || slowFare === null ? null : fastFare - slowFare,
     transfersSaved: transferCount(slower) - transferCount(faster),
