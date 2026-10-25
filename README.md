@@ -49,7 +49,11 @@ pnpm test:e2e http://127.0.0.1:3000
 pnpm test:smoke http://127.0.0.1:3000
 node qa/demo-rehearsal.cjs http://127.0.0.1:3000
 node qa/demo-rehearsal.cjs http://127.0.0.1:3000 --offline
+node qa/purchase-links-click.cjs http://127.0.0.1:3000   # ticket links; operator sites are stubbed locally
 ```
+
+Ticket links for every operator come from one resolver. See
+[Purchase links](docs/purchase-links.md).
 
 Playwright is pinned as a devDependency. There is no configured lint script;
 TypeScript, build, unit tests and the relevant browser/proxy checks are the current
