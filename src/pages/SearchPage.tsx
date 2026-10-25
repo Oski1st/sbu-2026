@@ -512,7 +512,7 @@ export default function SearchPage() {
               You’re already on your way.
             </h2>
           </div>
-          <a href="#main-content" aria-label="Back to search">
+          <a href="#main-content" aria-label="Let’s go somewhere: back to search">
             Let’s go somewhere <ArrowUpRight size={22} />
           </a>
           <div className="banner-rails" aria-hidden="true">
