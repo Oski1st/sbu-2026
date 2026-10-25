@@ -82,7 +82,9 @@ export function RouteComparison({ trips, open, onClose, planningPreferences }: P
       </div>
       <h2 id="comparison-title">Two routes, side by side.</h2>
       <p id="comparison-note">
-        Times are a sample timeline shifted to your planning preference; they are not live schedules. Fares are sample data.
+        {planningPreferences
+          ? "Times are a sample timeline shifted to your planning preference; they are not live schedules. Fares are sample data."
+          : "All times and fares below are sample data."}
       </p>
       {comparison && (
         <div className="comparison-insight">

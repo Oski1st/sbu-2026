@@ -30,6 +30,13 @@ describe('shared wallet integration', () => {
     expect(html).not.toContain('Live feed fetched');
   });
 
+  test('a planning preference labels the shifted wallet timeline; the fixed sample does not', () => {
+    const shifted = renderToStaticMarkup(<MemoryRouter initialEntries={['/wallet/regional-connection?date=2026-11-03&time=16:30']}><WalletPage tripId="regional-connection" /></MemoryRouter>);
+    expect(shifted).toContain('Sample timeline shifted to your planning preference');
+    expect(shifted).toContain('Nov 3, 4:30 PM EST');
+    expect(markup('regional-connection')).not.toContain('shifted to your planning preference');
+  });
+
   test('Amtrak wallet has no unrelated SEPTA feed panel', () => {
     expect(markup('amtrak-connection')).not.toContain('SEPTA service snapshot');
     expect(markup('regional-connection')).toContain('SEPTA service snapshot');
