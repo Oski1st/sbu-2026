@@ -10,6 +10,8 @@ Person 5 · docs only.
 | Browser check | Every step below was clicked through in Google Chrome 156.0.8078.47 (installed, Playwright-driven) at 1440×900 on macOS 26.6. **8/8 steps PASS**, no page or console errors. Click-through: `p5-06/verify-demo.mjs`; results: `p5-06/demo-steps-rc1-2d0b5ef.json` |
 | Screenshots | `docs/demo/p5-06/01-…10-*.png` (local app only; no personal data) |
 
+**RC2 update:** the same click-through also passes **8/8** on RC2 `39de4ba0d104f53b56cdb817b03bbe63c3aa924f` (`docs/qa-device/results/p5-final-rc2-demo.json`). RC2 fixes **F1** (Search focus now 5.05:1) and **F2** (date no longer clipped at ~375px). If you present RC2, drop the first row of the known-limits table; every step and line below is unchanged.
+
 **Before you start:** serve RC1 locally as above, open `http://127.0.0.1:<port>/` in a **desktop-width** window (≥1280px wide, 100% zoom), and close other tabs. Don't present the Render URL; it is not this build and it cold-starts.
 
 ## The 3-minute script

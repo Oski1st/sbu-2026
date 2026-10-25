@@ -1,0 +1,131 @@
+{
+  "base": "http://127.0.0.1:5181",
+  "chrome": "156.0.8078.47",
+  "steps": [
+    {
+      "n": 1,
+      "name": "landing",
+      "ok": true,
+      "detail": {
+        "h1": "Different lines.\nSame direction.",
+        "t": "0.6"
+      }
+    },
+    {
+      "n": 2,
+      "name": "search with autocomplete",
+      "ok": true,
+      "detail": {
+        "fromOpts": [
+          "Philadelphia PA"
+        ],
+        "url": "/?date=2026-11-15",
+        "cards": 2,
+        "live": [
+          "Philadelphia to Stony Brook. Every connection, considered."
+        ],
+        "t": "1.6"
+      }
+    },
+    {
+      "n": 3,
+      "name": "rail map",
+      "ok": true,
+      "detail": {
+        "heading": "Follow the rails.",
+        "routes": 8,
+        "stations": 0,
+        "t": "1.9"
+      }
+    },
+    {
+      "n": 4,
+      "name": "compare",
+      "ok": true,
+      "detail": {
+        "compareButton": "Compare two options",
+        "insight": "The express connection gets you there 35 minutes sooner for $15 more in sample fares.",
+        "t": "2.2"
+      }
+    },
+    {
+      "n": 5,
+      "name": "journey + simulated delay",
+      "ok": true,
+      "detail": {
+        "pickedFromDialog": true,
+        "chooseNames": [
+          "Choose route",
+          "Choose route"
+        ],
+        "demoStatus": [
+          "Current step: transfer at Trenton Transit Center for the next service."
+        ],
+        "delayMsg": [
+          "Your connection may no longer be comfortable.",
+          "Simulated delay: +12 min",
+          "3. Exit at Trenton Transit Center and continue to the next connection if shown below.",
+          "Your planned connection is affected by a simulated delay. Check station boards or the agency app for the next available service before leaving your arriving service."
+        ],
+        "t": "3.7"
+      }
+    },
+    {
+      "n": 6,
+      "name": "wallet + SEPTA panel",
+      "ok": true,
+      "detail": {
+        "header": "4 travel legs · Demo itinerary · 5h 15m",
+        "septa": [
+          "This wallet is a demo mockup, not a boarding pass. Times are simulated itinerary data. Checklist marks are demo-only and do not confirm payment, ticket validity, or boarding eligibility. Prices and availability must be checked with each agency.",
+          "SEPTA · Leg 1",
+          "SEPTA payment options",
+          "SEPTA service snapshot",
+          "Refresh feed",
+          "SEPTA observations retrieved. This snapshot expires after 60 seconds.",
+          "Last retrieved: Oct 25, 2:32:11 AM EDT. This is our retrieval time; SEPTA does not supply an observation timestamp.",
+          "Snapshots expire after 60 seconds. Refresh feed requests a new snapshot from SEPTA."
+        ],
+        "t": "3.9"
+      }
+    },
+    {
+      "n": "7-outage-502",
+      "name": "backup: wallet when feed outage-502",
+      "ok": true,
+      "detail": {
+        "lines": [
+          "SEPTA · Leg 1",
+          "SEPTA payment options",
+          "SEPTA service snapshot",
+          "Refresh feed",
+          "SEPTA observations unavailable. Try Refresh feed or check SEPTA directly.",
+          "Live SEPTA data is unavailable. Check the agency for current service; your demo itinerary has not been updated."
+        ]
+      }
+    },
+    {
+      "n": "7-empty-200",
+      "name": "backup: wallet when feed empty-200",
+      "ok": true,
+      "detail": {
+        "lines": [
+          "SEPTA · Leg 1",
+          "SEPTA payment options",
+          "SEPTA service snapshot",
+          "Refresh feed",
+          "The feed returned no active trains. This does not confirm that service has stopped.",
+          "Last retrieved: Oct 25, 2:32:14 AM EDT. This is our retrieval time; SEPTA does not supply an observation timestamp."
+        ]
+      }
+    },
+    {
+      "n": 8,
+      "name": "no page/console errors",
+      "ok": true,
+      "detail": {
+        "errors": []
+      }
+    }
+  ]
+}
