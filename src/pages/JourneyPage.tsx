@@ -93,7 +93,7 @@ export default function JourneyPage() {
 
         {affectedLeg && (
           <div className="mt-8 one-line-journey-enter">
-            <DelaySimulation affectedLeg={affectedLeg} isActive={isDelaySimulated} onToggle={() => setIsDelaySimulated((active) => !active)} />
+            <DelaySimulation affectedLeg={affectedLeg} hasConnection={Boolean(affectedConnection)} isActive={isDelaySimulated} onToggle={() => setIsDelaySimulated((active) => !active)} />
           </div>
         )}
 
