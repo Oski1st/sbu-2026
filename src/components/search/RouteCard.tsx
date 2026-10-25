@@ -200,9 +200,10 @@ export function RouteCard({
                 href={leg.purchaseUrl}
                 target="_blank"
                 rel="noreferrer"
-                aria-label={`${agencies[leg.agency].name} official ticket information`}
+                aria-label={`Agency site · ${agencies[leg.agency].name} official ticket information for segment ${i + 1}, ${leg.from} to ${leg.to} (opens in a new tab)`}
               >
                 Agency site <ArrowUpRight size={13} />
+                <span className="sr-only"> (opens in a new tab)</span>
               </a>
             </div>
           ))}
