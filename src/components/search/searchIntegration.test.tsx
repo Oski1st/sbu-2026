@@ -4,7 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 import SearchPage from "../../pages/SearchPage";
 import { readSearchState, writeSearchState, defaultSearch, todayInNewYork } from "../../data/searchState";
 import { getTripById } from "../../data/tripLookup";
-import { formatTime } from "../../data/tripUtils";
+import { formatTime, shiftSampleTimeline } from "../../data/tripUtils";
 
 function renderSearch(query: string) {
   // Only the hostname read during ShareTripButton SSR; this is not a browser test.
@@ -22,7 +22,7 @@ describe("Search URL and controlled-input integration", () => {
     expect(html).toContain('value="Boston"');
     expect(html).toContain('value="2026-11-03"');
     expect(html).toContain('value="17:45"');
-    expect(html).toContain("Sample itinerary times do not change.");
+    expect(html).toContain("Sample timelines shift to your planning preference");
     expect(html).not.toContain("station-options");
   });
 
@@ -50,12 +50,13 @@ describe("Search URL and controlled-input integration", () => {
     }
   });
 
-  it("keeps original demo links and sample departure times for future preferences", () => {
+  it("shifts sample result timelines and preserves the selected preference into the journey link", () => {
     const html = renderSearch("date=2027-06-10&time=23%3A45");
     for (const id of ["regional-connection", "amtrak-connection"]) {
       const trip = getTripById(id)!;
-      expect(html).toContain(`href="/journey/${id}"`);
-      expect(html).toContain(formatTime(trip.legs[0].departure));
+      const shifted = shiftSampleTimeline(trip, "2027-06-10", "23:45");
+      expect(html).toContain(`href="/journey/${id}?date=2027-06-10&amp;time=23%3A45"`);
+      expect(html).toContain(formatTime(shifted.legs[0].departure));
       expect(trip.legs[0].departure).toContain("2026-10-24");
     }
   });

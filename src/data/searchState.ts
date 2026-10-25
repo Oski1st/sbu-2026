@@ -43,9 +43,23 @@ const date = (value: string | null) => {
     : defaultSearch.departureDate;
 };
 const time = (value: string | null) => {
-  if (!value || !/^\d{2}:\d{2}$/.test(value)) return defaultSearch.departureTime;
-  const [hours, minutes] = value.split(":").map(Number);
-  return hours < 24 && minutes < 60 ? value : defaultSearch.departureTime;
+  if (!value) return defaultSearch.departureTime;
+  const trimmed = value.trim();
+  // Native time fields serialize as 24-hour values, even on systems that display
+  // “04:30 PM”. Accept that familiar display form in shared links too, then always
+  // return the valid HH:mm value required by <input type="time">.
+  const twelveHour = trimmed.match(/^(\d{1,2}):(\d{2})\s*([AP]M)$/i);
+  if (twelveHour) {
+    const hours = Number(twelveHour[1]);
+    const minutes = Number(twelveHour[2]);
+    if (hours >= 1 && hours <= 12 && minutes < 60) {
+      const clockHours = (hours % 12) + (twelveHour[3].toUpperCase() === "PM" ? 12 : 0);
+      return `${String(clockHours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+    }
+  }
+  if (!/^\d{2}:\d{2}$/.test(trimmed)) return defaultSearch.departureTime;
+  const [hours, minutes] = trimmed.split(":").map(Number);
+  return hours < 24 && minutes < 60 ? trimmed : defaultSearch.departureTime;
 };
 
 /** A new search (form or corridor shortcut) clears mode/operator filters so they cannot hide every route. */

@@ -26,7 +26,7 @@ import { cities, featuredCorridors, resolveCity } from "../data/eastCoast";
 import { agencies } from "../data/agencies";
 import type { Agency } from "../types";
 import { planTrips } from "../data/tripLookup";
-import { sortTrips } from "../data/tripUtils";
+import { shiftSampleTimelines, sortTrips } from "../data/tripUtils";
 import { CorridorMap } from "../components/search/CorridorMap";
 import { SearchForm } from "../components/search/SearchForm";
 import { RouteCard } from "../components/search/RouteCard";
@@ -52,6 +52,7 @@ export default function SearchPage() {
   const query = { origin: criteria.origin, destination: criteria.destination };
   const { order, includeAmtrak, mode, operator } = criteria;
   const searched = searchParams.has("from") || searchParams.has("to");
+  const hasPlanningPreference = searchParams.has("date") || searchParams.has("time");
   function updateCriteria(patch: Partial<SearchState>) {
     // History updates before React commits navigation; read it so rapid filter changes compose.
     const current = new URLSearchParams(window.location.search);
@@ -74,8 +75,13 @@ export default function SearchPage() {
     setCompareOpen(false);
   }, [searchKey]);
   const matches = useMemo(
-    () => planTrips(query.origin, query.destination),
-    [query.origin, query.destination],
+    () => {
+      const plannedTrips = planTrips(query.origin, query.destination);
+      return hasPlanningPreference
+        ? shiftSampleTimelines(plannedTrips, criteria.departureDate, criteria.departureTime)
+        : plannedTrips;
+    },
+    [query.origin, query.destination, criteria.departureDate, criteria.departureTime, hasPlanningPreference],
   );
   const trips = sortTrips(
     matches.filter(
@@ -167,6 +173,10 @@ export default function SearchPage() {
         trips={comparedTrips}
         open={compareOpen}
         onClose={() => setCompareOpen(false)}
+        planningPreferences={hasPlanningPreference ? {
+          departureDate: criteria.departureDate,
+          departureTime: criteria.departureTime,
+        } : undefined}
       />
       {comparedTrips.length > 0 && (
         <div
@@ -415,6 +425,10 @@ export default function SearchPage() {
                     index={index}
                     comparing={compareIds.includes(trip.id)}
                     onCompare={() => toggleCompare(trip.id)}
+                    planningPreferences={hasPlanningPreference ? {
+                      departureDate: criteria.departureDate,
+                      departureTime: criteria.departureTime,
+                    } : undefined}
                   />
                 ))
               ) : (
