@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import type { Trip } from '../types/transit';
 import { getTripById } from '../data/tripLookup';
+import { formatDuration } from '../data/tripUtils';
 import { TicketCard } from '../components/wallet/TicketCard';
 import { TransitStatus } from '../components/wallet/TransitStatus';
 import { lirrThroughTicketNote } from '../components/wallet/ticketCoverage';
@@ -27,7 +28,7 @@ function TripWallet({ trip, septaEndpoint }: { trip: Trip; septaEndpoint?: strin
     <header className="ol-header"><span className="ol-eyebrow">ONELINE / TRIP WALLET</span>
       <h1>One journey.<br />Every ticket, together.</h1>
       <p className="ol-route">{trip.origin} <span aria-hidden="true">→</span> {trip.destination}</p>
-      <p className="ol-muted">{trip.legs.length} travel {trip.legs.length === 1 ? 'leg' : 'legs'} · Demo itinerary{Number.isFinite(trip.durationMinutes) && ` · ${trip.durationMinutes} ${trip.durationMinutes === 1 ? 'minute' : 'minutes'}`}</p>
+      <p className="ol-muted">{trip.legs.length} travel {trip.legs.length === 1 ? 'leg' : 'legs'} · Demo itinerary{Number.isFinite(trip.durationMinutes) && ` · ${formatDuration(trip.durationMinutes)}`}</p>
     </header>
     <aside className="ol-notice"><strong>Plan here. Purchase with the agency.</strong><p>This wallet is a demo mockup, not a boarding pass. Times are simulated itinerary data. Checklist marks are demo-only and do not confirm payment, ticket validity, or boarding eligibility. Prices and availability must be checked with each agency.</p></aside>
     <section className="ol-progress" aria-labelledby="ol-checklist-title"><div className="ol-section-heading"><h2 id="ol-checklist-title">Per-leg planning checklist</h2><span role="status" aria-atomic="true">{completed} / {trip.legs.length} demo items checked</span></div>

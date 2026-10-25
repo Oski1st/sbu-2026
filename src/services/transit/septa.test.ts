@@ -7,6 +7,8 @@ test('validates data and preserves unknown delays without inventing a value', ()
   expect(parseSeptaTrains([train])[0].delayMinutes).toBe(2);
   expect(parseSeptaTrains([{ ...train, late: 'unknown' }])[0].delayMinutes).toBe(null);
   expect(parseSeptaTrains([{ ...train, late: '' }])[0].delayMinutes).toBe(null);
+  expect(parseSeptaTrains([{ ...train, late: 999 }])[0].delayMinutes).toBe(null);
+  expect(parseSeptaTrains([{ ...train, late: '999' }])[0].delayMinutes).toBe(null);
   expect(parseSeptaTrains([])).toEqual([]);
   expect(() => parseSeptaTrains({ error: 'no access' })).toThrow();
   expect(() => parseSeptaTrains([{ line: 'missing required fields' }])).toThrow();
