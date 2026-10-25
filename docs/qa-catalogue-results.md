@@ -124,3 +124,77 @@ No finding blocks the data contract: counts, qualification fields and pending/un
 - Search UI, browser behaviour, production. This is a data-only task, and nothing in the app imports the catalogue yet.
 - Municipal-boundary containment, carrier identity and current service.
 - Records outside the 20-record sample, beyond the mechanical checks.
+
+---
+
+# P4-20: catalogue follow-up (#27) audit
+
+Assigned in hub issue #2 as **P4-20** (target `fc844f7`). Checklist: [qa-catalogue-followup-checklist.md](qa-catalogue-followup-checklist.md). The P4-19 section above is unchanged and stays the baseline record. This is a data-only audit with no browser, production or full-regression rerun.
+
+## Target
+
+| Item | Value |
+| --- | --- |
+| Tested SHA | **`fc844f72088521c4d0f0dcd3084fc2caf032dda2`** (PR #27 `feat/catalogue-evidence-batch1` → `feat/national-city-catalogue`, open draft) |
+| Base / control | PR #20 `d45b0d3305e154ac93c165af70ecfb6e8812f74b`, unchanged. Its runtime dump was regenerated and is byte-identical to the P4-19 dump. |
+| Diff | 11 files, all under `src/data/national*`. The four frozen JSON files (`candidates`, `coverage`, `operatorPlaces`, `sources`) are byte-identical to `d45b0d3`. The built app bundle is unchanged (`index-CtqRjWwS.js` on both), and nothing in the app imports the catalogue. |
+
+## Checks run
+
+| Check | Result |
+| --- | --- |
+| `pnpm install --frozen-lockfile`, `pnpm build` (`tsc -b` + Vite) | Pass. There's no separate `typecheck` script. |
+| `pnpm test` | **67 / 67** (8 files) |
+| `python3 src/data/national/test_ingestion.py` | **3 / 3** OK |
+| P4-19 all-record audit (`qa/p4-19-catalogue-audit.py`) | All checks pass except two expected harness differences: 8 `busNoHashedCheck`, because the new bus records are hashed in the batch ledger rather than the frozen manifest (verified below), and 1 `wrongHost`, because the NYP identity page is `greatamericanstations.com`, whose footer reads "© 2013-2026 Amtrak". Neither is a data defect. |
+| Prepared delta (`qa/p4-20-catalogue-delta.py`) | 16 PASS, 6 CHECK, 3 FAIL. The C1 FAILs and the C2, C4 and C5 CHECKs come from the harness expecting manifest page checks and no added metadata fields. #27 instead puts hashes in its ledger, adds `modeEvidence` and `sourceFamily`, and dedupes through `verifiedMarketChoices`. Each is resolved by the verifier below. **The C3 FAIL is real (D1).** |
+| Independent verifier (`qa/p4-20-catalogue-verify.py`, dumps from `qa/p4-19-catalogue-dump.test.ts` + `qa/p4-20-catalogue-extra-dump.test.ts`) | **46 PASS, 1 FAIL (D1), 3 NOTE** |
+| Minimal live official-source checks (changed records only, plain `curl`) | NJ TRANSIT West Side Avenue 200 ("Hudson-Bergen Light Rail", "Jersey City"). maconbibb.us 200 ("Macon-Bibb County", "Macon, GA 31201"). lexingtonky.gov 200 ("Lexington-Fayette Urban County Government"). Great American Stations NYP 200 ("Moynihan Train Hall (NYP)"). FlixBus and Greyhound `/bus/macon-ga` 200 with "Macon Bus Station". Boise FY19 PDF `HEAD` 200 `application/pdf`. DC pages: already checked live in P4-19 (same day), and their stops equal the new records. |
+
+## Counts reconciled
+
+| Quantity | Reported | Verified |
+| --- | ---: | ---: |
+| Audit rows / qualified / unresolved / excluded | 1,550 / 1,374 / 175 / 1 | Same |
+| Distinct market choices (`verifiedMarketChoices`) | 1,371 | 1,371 = 1,374 − 3 alias rows |
+| Raw brand/source associations | 2,057 | 2,057 (2,047 + 10 added) |
+| Canonical-market brand/source associations | 2,053 | 2,053. Four deduplicated: Boise FlixBus + Greyhound, Lexington FlixBus, Macon FlixBus. |
+| By operator | | SEPTA 2, NJ TRANSIT 4, LIRR 2, Amtrak 150, Greyhound 567, FlixBus 1,332 |
+| Benchmark / hubs / operator-listed | 342 (343 rows) / 3 / 1,204 | Unchanged |
+
+- **Resolution vs new markets:** the **four resolved audit rows** are `boise-city-id`, `lexington-fayette-urban-county-ky` and `macon-bibb-county-ga` (alias links) plus `jersey-city-nj`. Only **one new distinct market** appears (`jersey-city-nj`); the three alias rows add no market.
+- **Nothing else moved:** no other status changed. All 1,550 rows keep their IDs, names, aliases, population, coordinates and provenance fields. No baseline verified record was removed or altered once the additive `sourceFamily`, `independentCorroboration` and `modeEvidence` fields are ignored. Exactly the 10 expected records were added, none overwriting a baseline city/operator record.
+- **Added-record provenance:** each of the 10 has a dated HTTP 200 same-URL response in the ledger with a matching SHA-256 and `checkedAt`. NYP uses the frozen feed hash. All keep `municipalCoverage` and `operatingCarrier` `pending`, and all 2,057 records stay pending.
+
+## C1 to C5 verdict
+
+| # | Verdict | Evidence |
+| --- | --- | --- |
+| C1 DC | **Resolved** | `washington` gains FlixBus + Greyhound from `/bus/washington-dc` (ledger 200, hashed). Stops: Arlington (Rosslyn), Bethesda, Washington DC (Dupont Circle), Washington DC (Union Station), equal to the P4-19 live fetch. No new entry. `ingestion.py` adds only the explicit `{'D.C.': 'DC'}` exception. |
+| C2 links | **Resolved** | Three same-state links (`boise-city-id`→`boise-id`, `lexington-fayette-urban-county-ky`→`lexington-ky`, `macon-bibb-county-ga`→`macon-ga`). Targets are verified and not themselves linked: no chain, cycle, self-link or duplicate. Each link has a dated 200 official source plus the operator page. The canonical map moves only those 3 IDs, and an unknown ID returns `undefined`. Alias rows stay in `nationalCities` and `verifiedNationalCities` (raw audit IDs kept). Choices = verified minus the 3 aliases, so no smaller place is dropped and every choice has coordinates. Evidence is unioned only within the 3 links. |
+| C3 provenance | **Data resolved; docs not (D1)** | All 1,899 bus records carry `sourceFamily: flix-greyhound-shared-directories` and `independentCorroboration: false`, and non-bus records don't. 567 / 567 Greyhound stop lists are identical to FlixBus, with 0 Greyhound-only places. But the top-level `src/data/national/README.md` line 124 still says "The two brands are independent evidence sources". |
+| C4 NYP | **Resolved** | `new-york` Amtrak = exact GTFS `NYP` "Ny Moynihan Train Hall At Penn Station", plus the Amtrak-run identity page (200). The direct `amtrak.com/stations/nyp` 403 is kept as a failed attempt, with no bypass. No other Amtrak record was added. |
+| C5 modes | **Resolved** | All 150 `modeEvidence` entries were recomputed independently from the hash-checked GTFS (stop_times → trips → routes) and match: stop IDs, route IDs, route types, class, feed hash and start date 2026-10-25. Classes are **85 rail-only, 41 rail-and-bus, 23 bus-only, 1 unverified** (`kansas-city-mo`). The bus-only set equals the 23 IDs found independently in P4-19. Portland ME (`POR`) and OR (`PDX`) stay separate. |
+
+## Ledger and sources
+
+- **Selection:** the original 25 can be reproduced from baseline data with the stated rule (verified-state coverage, then major status, then population descending, then ID). The revised list = original − `peoria-az` + `macon-bibb-county-ga`, with 25 unique entries (coordinator comment 6392514158). Peoria's two preliminary directory screens are kept, and Peoria stays unresolved (`pending-next-batch`).
+- **Outcomes:** ledger before/after equals the runtime for all 25 rows (4 verified, 21 unresolved), and no unresolved row makes an absence claim.
+- **Sources:** 18 dated responses, including the NYP 403 and the Chattanooga detail redirect to the generic `/bus` page; Chattanooga stays unresolved. The batch's directory responses are byte-identical to the frozen manifest hashes. The four frozen JSON files match the recorded baseline hashes. The feed start-date limitation (2026-10-25) is stated on every mode record.
+
+## Findings
+
+| # | Severity | Owner | Finding | Evidence |
+| --- | --- | --- | --- | --- |
+| D1 | Low: documentation contradicts the data | Person 3 | `src/data/national/README.md` line 124 still says "The two brands are independent evidence sources", which contradicts the new `independentCorroboration: false` contract and the evidence README. | `qa/p4-20-catalogue-verify.py` C3 README line; delta C3 FAIL |
+| D2 | Low: stale counts | Person 3 | The new top-level README overlay sentence says "1373 qualified audit rows … 176 unresolved" and "the two explicitly sourced alias duplicates". The runtime, tests and evidence README say **1,374 / 175** and **three** links. | Verifier NOTE (README overlay sentence) |
+| D3 | Info | Consumers | `jersey-city-nj` qualifies through an NJ TRANSIT **Hudson-Bergen Light Rail** station. It's correctly labelled "not an inferred intercity rail or coach connection", but a UI shouldn't present it as intercity service. | Live page check |
+| D4 | Info | Consumers | `getVerifiedOperators('lexington-ky')` returns FlixBus only, while `getVerifiedMarketEvidence('lexington-ky')` returns FlixBus + Greyhound (from the linked row's Greyhound page). Consumers must use the market-evidence view for linked markets. Same pattern for Macon. | Verifier NOTE |
+
+**No blockers.** C1, C2, C4 and C5 are resolved and C3 is resolved in the data. D1 and D2 are documentation-only corrections. No service, carrier, connectivity or completeness claim is made, and missing evidence still isn't treated as absence.
+
+## Not tested (P4-20)
+
+- Browser, Search UI and production. There's no consumer of these exports in the app.
+- The 21 still-unresolved ledger rows beyond what the ledger records.
+- Records unchanged since P4-19, beyond the all-record mechanical checks.
