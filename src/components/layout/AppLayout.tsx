@@ -70,7 +70,7 @@ export function AppLayout() {
         <p className="footer-credit">Built together</p>
         <div className="footer-line">
           <MoveRight size={19} />
-          <span>Each leg of your trip on one page.</span>
+          <span>Not affiliated with any transit operator.</span>
           <small>Sample itineraries · Live data limited to labelled SEPTA snapshots</small>
         </div>
       </footer>
