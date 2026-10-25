@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
 import { Link, useParams } from "react-router-dom";
 import { getTripById } from "../data/tripLookup";
 import { formatDuration } from "../data/tripUtils";
@@ -8,6 +9,7 @@ import { JourneyDemoControls } from "../components/journey/JourneyDemoControls";
 import { RecoveryRecommendation } from "../components/journey/RecoveryRecommendation";
 import { SegmentCard } from "../components/journey/SegmentCard";
 import { TransferAssistant } from "../components/journey/TransferAssistant";
+import { Toaster } from "../components/ui/sonner";
 import "../styles/journey.css";
 import { agencyStyles } from "../components/journey/journeyUtils";
 import { initialJourneyDemoState, journeyStepCount, nextJourneyStep, previousJourneyStep, startJourneyDemo, stepAt } from "../components/journey/journeyProgress";
@@ -94,7 +96,16 @@ export default function JourneyPage() {
 
         {affectedLeg && (
           <div className="mt-8 one-line-journey-enter">
-            <DelaySimulation affectedLeg={affectedLeg} isActive={isDelaySimulated} onToggle={() => setIsDelaySimulated((active) => !active)} />
+            <DelaySimulation
+              affectedLeg={affectedLeg}
+              isActive={isDelaySimulated}
+              onToggle={() => {
+                // The inline delay UI stays the source of truth; the toast is an extra, polite cue.
+                if (!isDelaySimulated) toast("Simulated delay: +12 min", { id: "simulated-delay", description: `${affectedLeg.line} · demo scenario, not a live alert` });
+                else toast.dismiss("simulated-delay");
+                setIsDelaySimulated((active) => !active);
+              }}
+            />
           </div>
         )}
 
@@ -146,6 +157,7 @@ export default function JourneyPage() {
           <p className="mt-1">Platform, gate, and curbside boarding locations can change and are not included here. Always follow station or terminal signage, announcements, and official operator updates.</p>
         </aside>
       </div>
+      <Toaster />
     </main>
   );
 }
