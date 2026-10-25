@@ -82,7 +82,7 @@ export function getConceptTrip(from: string, to: string, profile: RoutingProfile
       result = { id, origin: cityIndex.get(from)!.name, destination: cityIndex.get(to)!.name,
         durationMinutes: elapsed - offset, legs, dataStatus: 'sample',
         label: `${agencies[primary].name} ${agencies[primary].mode === 'rail' ? 'rail' : 'coach'} concept`,
-        description: 'Explore the corridor. Check actual services and fares with the operator.', planningNote: samplePlanningNote };
+        description: 'Check actual services and fares with the operator.', planningNote: samplePlanningNote };
       counters.tripCreations++;
     }
   }
