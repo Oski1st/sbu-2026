@@ -474,3 +474,20 @@ it("keeps a published itinerary readable after departure while rejecting new pas
   expect(() => later.plan(query)).toThrow(/today or a future date/);
   expect(later.itinerary(booked.id).itinerary).toEqual(booked);
 });
+
+it("changing the requested clock time excludes earlier trains and updates dated IDs, including midnight", () => {
+  const data = fixture();
+  data.feeds[0].trips = [
+    trip("early", [["A",time(8)],["B",time(9)]]),
+    trip("late", [["A",time(12)],["B",time(13)]]),
+    trip("night", [["A",time(24,10)],["B",time(25)]])
+  ];
+  const e=engine(data);
+  const first=e.plan(query), later=e.plan({...query,time:"08:01"}), night=e.plan({...query,time:"23:59"});
+  expect(first.itineraries[0].legs[0].tripId).toBe("early");
+  expect(later.itineraries[0].legs[0].tripId).toBe("late");
+  expect(later.itineraries[0].id).not.toBe(first.itineraries[0].id);
+  expect(later.itineraries.every(t=>Date.parse(t.departure)>=Date.parse("2026-10-26T12:01:00Z"))).toBe(true);
+  expect(night.itineraries[0].legs[0].tripId).toBe("night");
+  expect(night.itineraries[0].departure).toBe("2026-10-27T04:10:00.000Z");
+});
