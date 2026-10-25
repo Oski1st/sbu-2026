@@ -246,8 +246,14 @@
 }
 
 .oneline-wallet :focus-visible {
-  outline:3px solid #ad5b00;
+  outline:3px solid #4f7a2f;
   outline-offset:4px;
+}
+
+/* Inset lime stays against the dark fill instead of failing on the light card. */
+.oneline-wallet .ol-button:not(.ol-secondary):focus-visible {
+  outline-color:#d7ef95;
+  outline-offset:-5px;
 }
 
 .oneline-wallet .ol-sr-only {
@@ -309,6 +315,11 @@
 .oneline-wallet .ol-button[aria-disabled=true] {
   opacity:.65;
   cursor:wait;
+}
+
+/* Refresh remains a Tab stop while loading; don't fade its focus indicator. */
+.oneline-wallet .ol-button[aria-disabled=true]:focus-visible {
+  opacity:1;
 }
 
 .oneline-wallet .ol-ticket,
