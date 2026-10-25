@@ -448,6 +448,12 @@
 .location-field > svg {
   color: #7b926a;
 }
+.location-field .location-autocomplete {
+  flex: 1;
+}
+.location-autocomplete [role="option"] {
+  min-height: 44px;
+}
 .location-field label {
   display: flex;
   flex-direction: column;
@@ -511,6 +517,50 @@
   font-size: 12px;
   font-weight: 550;
   white-space: nowrap;
+}
+.date-time-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.date-time-controls label {
+  display: flex;
+  flex: 1 1 100px;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+  color: #52634e;
+  font-size: 11px;
+  font-weight: 650;
+}
+.date-time-controls input {
+  min-height: 44px;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #dfe5d9;
+  border-radius: 7px;
+  background: #fbfcf8;
+  color: #35483a;
+  font: inherit;
+  font-size: 16px;
+  padding: 4px 6px;
+}
+.date-time-controls input:focus-visible {
+  outline: 2px solid #97b47e;
+  outline-offset: 2px;
+}
+.date-field small {
+  display: block;
+  max-width: 260px;
+  color: #52634e;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.date-field > div {
+  min-width: 0;
 }
 .search-button {
   display: inline-flex;
