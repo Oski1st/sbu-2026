@@ -1,0 +1,79 @@
+/* OneLine UI refresh — Journey timeline steps.
+   Loaded with the Journey page chunk. */
+
+/* Stepped timeline over the existing segment list: numbered forest markers joined by
+   a rail. Markers are decorative (aria-hidden); "Journey segment N" stays in the card. */
+.journey-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.journey-step {
+  position: relative;
+  padding: 0 0 14px 46px;
+}
+.journey-step::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 46px;
+  bottom: -14px;
+  width: 2px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    #b3c2a6 0 6px,
+    transparent 6px 11px
+  );
+}
+.journey-step:last-child::before {
+  display: none;
+}
+.journey-step-marker {
+  position: absolute;
+  left: 0;
+  top: 14px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-content);
+  font-size: 14px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 0 0 4px var(--color-base-100);
+}
+/* Current demo step: forest on lime (9.3:1) with a forest outer ring. */
+.journey-step-marker.is-current {
+  background: var(--color-accent);
+  color: var(--color-accent-content);
+  box-shadow:
+    0 0 0 3px var(--color-base-100),
+    0 0 0 5px var(--color-primary);
+}
+/* Simulated delay: dark brown on amber (8.5:1). */
+.journey-step-marker.is-delayed {
+  background: var(--color-warning);
+  color: var(--color-warning-content);
+}
+@media (max-width: 480px) {
+  .journey-step {
+    padding-left: 34px;
+  }
+  /* The rail already shows hierarchy; give transfer text the full width on phones. */
+  .journey-step > section {
+    margin-left: 0;
+  }
+  .journey-step::before {
+    left: 12px;
+    top: 40px;
+  }
+  .journey-step-marker {
+    width: 26px;
+    height: 26px;
+    font-size: 12px;
+  }
+}

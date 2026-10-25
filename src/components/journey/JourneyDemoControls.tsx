@@ -51,7 +51,7 @@ export function JourneyDemoControls({ destination, legs, state, step, stepCount,
 
   return (
     <section
-      className="mt-6 rounded-3xl border border-emerald-200 bg-emerald-50 p-4 shadow-[0_12px_32px_-26px_rgba(6,78,59,0.5)] sm:p-5"
+      className="mt-6 rounded-box border border-base-300 bg-white p-4 shadow-[0_1px_2px_#173f350d,0_12px_32px_-18px_#173f3540] sm:p-5"
       aria-labelledby="demo-journey-title"
       onKeyDown={handleKeyDown}
       onFocusCapture={(event) => {
@@ -67,16 +67,16 @@ export function JourneyDemoControls({ destination, legs, state, step, stepCount,
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-xs font-extrabold uppercase tracking-[0.13em] text-emerald-800">Manual demo</p>
-          <h2 id="demo-journey-title" className="mt-1 text-xl font-bold tracking-tight text-emerald-950">Steps to {destination}</h2>
-          <p className="mt-1 max-w-xl text-sm leading-6 text-emerald-950/80">You tap through each step yourself. It doesn’t use GPS, confirm boarding, or show live arrivals.</p>
+          <p className="text-xs font-extrabold uppercase tracking-[0.13em] text-primary">Manual demo</p>
+          <h2 id="demo-journey-title" className="mt-1 text-xl font-bold tracking-tight text-primary">Steps to {destination}</h2>
+          <p className="mt-1 max-w-xl text-sm leading-6 text-sage">You tap through each step yourself. It doesn’t use GPS, confirm boarding, or show live arrivals.</p>
         </div>
-        <span className="rounded-full bg-white px-3 py-1.5 text-xs font-bold text-emerald-900 ring-1 ring-emerald-200">{state.isActive ? `Step ${currentPosition} of ${stepCount}` : "Ready to start"}</span>
+        <span className="rounded-full bg-white px-3 py-1.5 text-xs font-bold text-primary ring-1 ring-base-300">{state.isActive ? `Step ${currentPosition} of ${stepCount}` : "Ready to start"}</span>
       </div>
 
       <div className="mt-4" aria-live="polite" aria-atomic="true">
         <div
-          className="h-2 overflow-hidden rounded-full bg-emerald-100"
+          className="h-2 overflow-hidden rounded-full bg-base-200"
           role="progressbar"
           aria-label="Manual journey progress"
           aria-valuemin={0}
@@ -84,26 +84,26 @@ export function JourneyDemoControls({ destination, legs, state, step, stepCount,
           aria-valuenow={currentPosition}
           aria-valuetext={state.isActive ? `Step ${currentPosition} of ${stepCount}` : "Not started"}
         >
-          <div className="h-full rounded-full bg-emerald-600 transition-[width] duration-300 motion-reduce:transition-none" style={{ width: `${stepCount ? (currentPosition / stepCount) * 100 : 0}%` }} />
+          <div className="h-full rounded-full bg-primary transition-[width] duration-300 motion-reduce:transition-none" style={{ width: `${stepCount ? (currentPosition / stepCount) * 100 : 0}%` }} />
         </div>
-        <p className="mt-3 text-sm font-semibold leading-6 text-emerald-950">{stepDescription(state.isActive ? step : null, legs)}</p>
+        <p className="mt-3 text-sm font-semibold leading-6 text-primary">{stepDescription(state.isActive ? step : null, legs)}</p>
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-        <button ref={startRef} type="button" onClick={onStart} className="min-h-11 rounded-xl bg-emerald-700 px-3 text-sm font-extrabold text-white transition hover:bg-emerald-800 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#d7ef95] focus-visible:outline-offset-[-5px]">
+        <button ref={startRef} type="button" onClick={onStart} className="min-h-11 rounded-xl bg-primary px-3 text-sm font-extrabold text-white transition hover:bg-secondary focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#d7ef95] focus-visible:outline-offset-[-5px]">
           Start demo journey
         </button>
-        <button ref={previousRef} type="button" onClick={onPrevious} disabled={atFirstStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-emerald-950 ring-1 ring-emerald-200 transition hover:bg-emerald-100 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-45">
+        <button ref={previousRef} type="button" onClick={onPrevious} disabled={atFirstStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-primary ring-1 ring-base-300 transition hover:bg-base-200 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-45">
           Previous step
         </button>
-        <button ref={nextRef} type="button" onClick={onNext} disabled={atLastStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-emerald-950 ring-1 ring-emerald-200 transition hover:bg-emerald-100 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-45">
+        <button ref={nextRef} type="button" onClick={onNext} disabled={atLastStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-primary ring-1 ring-base-300 transition hover:bg-base-200 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-45">
           Next step
         </button>
-        <button type="button" onClick={onReset} className="min-h-11 rounded-xl px-3 text-sm font-extrabold text-emerald-950 transition hover:bg-emerald-100 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4">
+        <button type="button" onClick={onReset} className="min-h-11 rounded-xl px-3 text-sm font-extrabold text-primary transition hover:bg-base-200 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4">
           Reset
         </button>
       </div>
-      <p className="mt-3 text-xs font-medium leading-5 text-emerald-900/75">Tip: when these controls are focused, use the left and right arrow keys to move between available manual steps.</p>
+      <p className="mt-3 text-xs font-medium leading-5 text-sage">Tip: when these controls are focused, use the left and right arrow keys to move between available manual steps.</p>
     </section>
   );
 }
