@@ -35,7 +35,26 @@ First step on the target: confirm with `git merge-base --is-ancestor` that the c
 2. **Cache version invalidation** (plan F3) still can't be tested at runtime without a version-override hook. It's covered only by a source assertion and the fact that a new build starts with an empty cache.
 3. **Search latency is frame-quantised** (two-frame method), so differences under one frame aren't resolvable.
 4. **No national graph or catalogue** in the candidate (as scoped), so national performance, coverage and search cases (plan sections A / B / E for national data) remain out of scope.
-5. **Bundle budget conflict:** the proposed C3 budget (≤ readiness + 5 KB gzip) can't hold with the map's bundled geography (~+39 KB). Either the budget is revised for the map or the geography is lazy-loaded. That's a decision for Persons 1 / 2 / 3, not a QA failure.
+5. **Bundle budget conflict:** resolved by Person 1. See the decisions below: the routing-only comparison is kept, and combined ≤ map-only + 5 KB gzip is the provisional regression check.
+
+## Decisions from Person 1 (hub #2, comment 6392047036)
+
+- **Results location:** PR #18, in a distinct "Combined results" section naming the exact target. No separate QA PR.
+- **Bundle accounting** (gap 5 resolved for this candidate). Measure all four builds with the **same** method: `qa/p4-16-perf.cjs` "JS + CSS loaded on `/`" totals (raw / `gzip -9` / brotli), plus main-JS `gzip -9`, built and served identically.
+
+  | Build | Head |
+  | --- | --- |
+  | Readiness | `49742e7` |
+  | Routing-only | `c0ff3e4` |
+  | Map-only | `7ff27bf` |
+  | Combined | target SHA |
+
+  - The original **readiness + 5 KB gzip** proposal stays a **routing-only** comparison. It is not applied to the geography-inclusive candidate and is never marked passing for it.
+  - **Provisional integration-regression check: combined ≤ map-only + 5 KB gzip.** It doesn't approve a total release budget.
+  - Report separately: the **map contribution** (map-only − readiness), **combined − map-only**, and the **total increase over readiness**, stated plainly for review.
+  - Lazy-loading the geography is a possible follow-up, not a change to this frozen candidate.
+- **Latency and heap budgets** stay proposals. They're reported with actual results and never adjusted to fit.
+- **Old East-Coast map section:** marked superseded, with its non-map assertions and historical results kept. The national-map harness covers current geography. The build-constant invalidation and frame-quantised search limits stay stated.
 
 ## When the target arrives
 
