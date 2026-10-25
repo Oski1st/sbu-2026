@@ -4,6 +4,7 @@ import {
   getLocationSuggestions,
   LocationAutocomplete,
   suggestionOptionHandlers,
+  optionStateLabel,
 } from "./LocationAutocomplete";
 import { createLocationCatalogue } from "./locationCatalogue";
 
@@ -26,6 +27,13 @@ describe("LocationAutocomplete catalogue matching", () => {
       state: "ME",
     });
     expect(getLocationSuggestions("Atlantis")).toEqual([]);
+  });
+
+  test("does not repeat the state when the city name already includes it (W7)", () => {
+    const [washington] = getLocationSuggestions("Wash");
+    expect(washington.name).toBe("Washington, DC");
+    expect(optionStateLabel(washington)).toBeNull();
+    expect(optionStateLabel(getLocationSuggestions("Portland")[0])).toBe("ME");
   });
 
   test("keeps the sample-city catalogue bounded for an empty focused input", () => {

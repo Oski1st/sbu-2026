@@ -46,6 +46,11 @@ export function suggestionOptionHandlers(onChoose: () => void) {
   };
 }
 
+/** Secondary option line; omitted when the name already ends with the state (e.g. "Washington, DC"). */
+export function optionStateLabel(city: LocationCity): string | null {
+  return city.name.trim().toLowerCase().endsWith(`, ${city.state.toLowerCase()}`) ? null : city.state;
+}
+
 export function LocationAutocomplete({
   label,
   value,
@@ -184,7 +189,9 @@ export function LocationAutocomplete({
                     {...suggestionOptionHandlers(() => chooseCity(city))}
                   >
                     <span className="block font-semibold">{city.name}</span>
-                    <span className={`block text-sm ${isActive ? "text-slate-200" : "text-slate-500"}`}>{city.state}</span>
+                    {optionStateLabel(city) && (
+                      <span className={`block text-sm ${isActive ? "text-slate-200" : "text-slate-500"}`}>{optionStateLabel(city)}</span>
+                    )}
                   </li>
                 );
               })}
