@@ -1,0 +1,523 @@
+/* OneLine UI refresh — Search page. Visual only: markup, copy and behaviour unchanged.
+   Small grey text (7-10px, 3-4:1) is raised to ≥10px and ≥4.5:1 throughout. */
+
+/* Hero copy */
+.eyebrow {
+  font-size: 11px;
+  color: #3f6b4a;
+}
+.hero-copy > p {
+  color: var(--ui-muted);
+  font-size: 15px;
+}
+.hero-meta {
+  font-size: 12px;
+  color: var(--ui-muted);
+}
+
+/* Search panel */
+.search-section {
+  border-radius: var(--radius-box);
+  border-color: var(--color-base-300);
+  background: #fff;
+  box-shadow: var(--ui-card-shadow);
+}
+.search-heading {
+  font-size: 11px;
+  color: var(--ui-forest);
+}
+.search-heading small {
+  font-size: 12px;
+  color: var(--ui-muted);
+}
+.location-field label {
+  font-size: 11px;
+  color: var(--ui-muted);
+}
+.location-field > svg {
+  color: #4f7a46;
+}
+.swap-button {
+  width: 40px;
+  height: 40px;
+  color: var(--ui-forest);
+  border-color: var(--color-base-300);
+}
+.swap-button:hover {
+  background: var(--ui-lime);
+}
+.date-field {
+  color: var(--ui-muted);
+}
+.date-field span {
+  font-size: 11px;
+}
+.date-time-controls input {
+  border-color: #cdd6c4;
+  border-radius: var(--radius-field);
+  background: #fff;
+  color: var(--ui-ink);
+}
+.search-button {
+  border-radius: var(--radius-field);
+  background: var(--ui-forest);
+  font-size: 14px;
+  font-weight: 650;
+  box-shadow: 0 6px 16px -8px #173f35aa;
+}
+.search-button:hover {
+  background: var(--ui-forest-2);
+}
+.search-footnote {
+  font-size: 11px;
+  color: var(--ui-muted);
+}
+
+/* Network strip and East Coast explorer */
+.network-strip > span {
+  font-size: 10px;
+  color: var(--ui-muted);
+}
+.network-strip > span strong {
+  color: var(--ui-ink);
+}
+.network-wordmark {
+  border-radius: 999px;
+  padding: 6px 13px;
+}
+
+/* Results heading, filters and sort */
+.results-heading p,
+.results-toolbar {
+  font-size: 13px;
+  color: var(--ui-muted);
+}
+.results-toolbar > span,
+.amtrak-toggle {
+  color: var(--ui-muted);
+}
+.amtrak-toggle input {
+  width: 16px;
+  height: 16px;
+}
+.sort-control label,
+.transport-filters label {
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--ui-muted);
+}
+.sort-control select,
+.transport-filters select {
+  font-size: 13px;
+  color: var(--ui-ink);
+  border-color: #cdd6c4;
+  border-radius: var(--radius-field);
+  background-color: #fff;
+  min-height: 40px;
+}
+.transport-filters [role="group"] {
+  gap: 6px;
+}
+.transport-filters button {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-forest);
+  border-color: #cdd6c4;
+  padding: 9px 15px;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s;
+}
+.transport-filters button:hover {
+  border-color: var(--ui-forest);
+}
+.transport-filters button[aria-pressed="true"] {
+  background: var(--ui-forest);
+  border-color: var(--ui-forest);
+  color: var(--ui-paper);
+  box-shadow: inset 0 -2px 0 var(--ui-lime);
+}
+.compare-shortcut {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-forest);
+  border-radius: var(--radius-field);
+}
+
+/* Route cards: big times and price, stat-style duration chip, pill badges. */
+.route-card {
+  border-radius: var(--radius-box);
+  border-color: var(--color-base-300);
+  box-shadow: var(--ui-card-shadow);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+.route-card:hover {
+  border-color: #b9c9ad;
+  box-shadow: 0 1px 2px #173f350d, 0 18px 40px -20px #173f3560;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .route-card:hover {
+    transform: translateY(-1px);
+  }
+}
+.route-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  color: #3f5f4f;
+  background: var(--color-base-200);
+  border-radius: 999px;
+  padding: 5px 11px;
+}
+.route-kicker.recommended {
+  background: var(--ui-lime);
+  color: var(--ui-forest);
+}
+.sample-label {
+  font-size: 10px;
+  font-weight: 650;
+  color: var(--ui-muted);
+}
+.route-card h3 {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--ui-ink);
+}
+.route-card-title p {
+  font-size: 13px;
+  color: var(--ui-muted);
+}
+.fare strong {
+  font-size: 34px;
+  font-weight: 750;
+  color: var(--ui-forest);
+  letter-spacing: -1.2px;
+  font-variant-numeric: tabular-nums;
+}
+.fare strong small {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ui-muted);
+}
+.fare > span {
+  font-size: 11px;
+  color: var(--ui-muted);
+}
+.route-summary {
+  padding-top: 22px;
+}
+.route-time strong {
+  font-size: 30px;
+  font-weight: 750;
+  letter-spacing: -1px;
+  line-height: 1.05;
+  color: var(--ui-ink);
+  font-variant-numeric: tabular-nums;
+}
+.route-time > span {
+  font-size: 12px;
+  color: var(--ui-muted);
+}
+.duration-line {
+  color: var(--ui-muted);
+}
+/* Duration · transfers as a stat chip above the track. */
+.duration-line > span {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ui-forest);
+  background: var(--color-base-200);
+  border: 1px solid var(--color-base-300);
+  border-radius: 999px;
+  padding: 4px 11px;
+}
+.duration-line > div > i {
+  border-color: var(--ui-forest);
+  background: #fff;
+  height: 8px;
+  width: 8px;
+}
+.duration-line > div > span {
+  border-top: 2px dashed #b3c2a6;
+}
+.duration-line > div > svg {
+  color: var(--ui-forest);
+}
+.agency-badge {
+  font-size: 12px;
+  border-radius: 999px;
+  padding: 5px 11px;
+}
+.agency-arrow {
+  color: #7f8f77;
+}
+.concept-note {
+  color: var(--ui-muted);
+  font-size: 12px;
+}
+.route-card-utility {
+  border-top-color: var(--color-base-200);
+}
+.compare-route-check,
+.share-trip-button {
+  font-size: 13px;
+}
+.compare-route-check input {
+  accent-color: var(--ui-forest);
+}
+.route-card-bottom {
+  border-top-color: var(--color-base-200);
+  background: #fbfcf8;
+}
+.detail-toggle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ui-forest);
+  min-height: 40px;
+}
+.select-route {
+  background: var(--ui-forest);
+  color: var(--ui-paper);
+  border-radius: var(--radius-field);
+  padding: 11px 18px;
+  font-size: 13px;
+  font-weight: 650;
+  gap: 12px;
+  box-shadow: 0 6px 14px -8px #173f35aa;
+}
+.select-route:hover {
+  background: var(--ui-forest-2);
+  color: #fff;
+}
+.leg-details {
+  background: #fbfcf8;
+}
+.details-note,
+.leg-detail p,
+.leg-detail small,
+.fare-disclaimer {
+  font-size: 12px;
+  color: var(--ui-muted);
+}
+.leg-detail strong {
+  font-size: 14px;
+}
+.leg-detail > a {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--ui-forest);
+}
+.trip-time-breakdown {
+  font-size: 13px;
+}
+.results-disclaimer {
+  font-size: 12px;
+  color: var(--ui-muted);
+}
+
+/* Aside card, demo note and corridor picks */
+.aside-card {
+  border-radius: var(--radius-box);
+}
+.aside-card .eyebrow,
+.coverage-tag,
+.corridor-pick > span {
+  font-size: 10px;
+}
+.aside-card p,
+.aside-signoff,
+.demo-note p,
+.explore-heading p,
+.corridor-pick small,
+.coverage-details,
+.corridor-pick > span,
+.coverage-tag {
+  color: var(--ui-muted);
+}
+.aside-card li {
+  font-size: 12px;
+  color: #3f5f4f;
+}
+.aside-signoff strong {
+  color: #3f6b4a;
+}
+.demo-note p {
+  font-size: 11px;
+}
+.demo-note strong {
+  font-size: 12px;
+}
+.corridor-pick {
+  border-radius: var(--radius-box);
+}
+
+/* Closing banner */
+.closing-banner {
+  background: var(--ui-forest);
+  border-radius: calc(var(--radius-box) + 4px);
+}
+.closing-banner .eyebrow {
+  font-size: 11px;
+  color: var(--ui-lime);
+}
+.closing-banner > a {
+  background: var(--ui-lime);
+  color: var(--ui-forest);
+  font-size: 14px;
+  font-weight: 650;
+  border-radius: 999px;
+  padding: 14px 22px;
+}
+.closing-banner > a:hover {
+  background: #e8f6c1;
+}
+
+/* Compare tray and dialog */
+.compare-tray {
+  background: #173f35f5;
+  border-radius: var(--radius-box);
+}
+.compare-tray small {
+  font-size: 11px;
+  color: #c9dccb;
+}
+.compare-tray-action {
+  background: var(--ui-lime);
+  color: var(--ui-forest);
+  border-radius: 999px;
+  font-size: 13px;
+}
+.compare-tray {
+  --focus-ring: #d7ef95;
+}
+.comparison-dialog {
+  background: #fff;
+  border-color: var(--color-base-300);
+  border-radius: 22px;
+  color: var(--ui-ink);
+}
+.comparison-header {
+  background: #fff;
+}
+.comparison-dialog > p,
+.comparison-table tbody th,
+.comparison-table small {
+  color: var(--ui-muted);
+}
+.comparison-table small {
+  font-size: 11px;
+}
+.comparison-table td {
+  color: var(--ui-ink);
+}
+.comparison-table td strong {
+  color: var(--ui-forest);
+  font-weight: 750;
+}
+.comparison-close {
+  color: var(--ui-forest);
+  background: var(--color-base-200);
+}
+.comparison-insight {
+  color: #36562d;
+  border-radius: var(--radius-field);
+}
+.comparison-action-row .select-route {
+  background: var(--ui-forest);
+  font-size: 12px;
+}
+
+@media (max-width: 760px) {
+  .route-card-title p {
+    font-size: 12px;
+  }
+  .fare strong {
+    font-size: 28px;
+  }
+  .route-time strong {
+    font-size: 24px;
+  }
+  .duration-line > span {
+    font-size: 11px;
+    padding: 3px 9px;
+    line-height: 1.5;
+  }
+  .select-route {
+    font-size: 13px;
+    padding: 11px 14px;
+    gap: 8px;
+  }
+  .detail-toggle {
+    font-size: 12px;
+  }
+  .compare-route-check,
+  .share-trip-button {
+    font-size: 12px;
+  }
+  .search-footnote {
+    font-size: 11px;
+  }
+  .search-heading small {
+    font-size: 11px;
+  }
+  .date-field span {
+    font-size: 11px;
+  }
+  .network-strip > span {
+    font-size: 10px;
+  }
+  .results-heading p {
+    font-size: 13px;
+  }
+  .comparison-table small {
+    font-size: 10px;
+  }
+  .comparison-action-row .select-route {
+    font-size: 11px;
+    padding: 10px 7px;
+  }
+}
+@media (max-width: 480px) {
+  .route-time strong {
+    font-size: 21px;
+  }
+  /* Narrow cards: chips may wrap, so use a soft rectangle instead of a pill. */
+  .route-kicker,
+  .duration-line > span {
+    border-radius: 8px;
+  }
+  .route-kicker {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+  .duration-line > span {
+    padding: 3px 6px;
+  }
+  .route-card-bottom {
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+  .select-route {
+    flex: 1 0 auto;
+    justify-content: space-between;
+  }
+  .transport-filters button {
+    font-size: 12px;
+    padding: 9px 12px;
+  }
+}
+@media (max-width: 380px) {
+  .route-time strong {
+    font-size: 19px;
+  }
+  .fare strong {
+    font-size: 25px;
+  }
+  .select-route {
+    font-size: 12px;
+    padding: 10px 11px;
+  }
+}
