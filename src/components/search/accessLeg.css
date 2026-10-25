@@ -1,0 +1,84 @@
+/* Unscheduled access steps for places without a timetable stop.
+   Scoped to .access-* classes; does not touch shared focus/date/map rules. */
+.access-leg {
+  margin: 12px 24px 0;
+  padding: 10px 12px;
+  border: 1px dashed #b9c6ad;
+  border-radius: 8px;
+  background: #f6f8f1;
+  color: #2f4438;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.access-leg p + p,
+.access-leg .access-listings {
+  margin-top: 4px;
+}
+.access-leg-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #6a4b12;
+  background: #fbefd2;
+  border-radius: 4px;
+  padding: 2px 6px;
+  margin-bottom: 4px;
+}
+.access-leg-title strong {
+  color: #173f35;
+}
+.access-summary {
+  margin: 1rem 0;
+  padding: 1rem 1.1rem;
+  border: 1px dashed #b9c6ad;
+  border-radius: 10px;
+  background: #f6f8f1;
+  line-height: 1.6;
+  font-size: 0.9rem;
+  color: #2f4438;
+  overflow-wrap: anywhere;
+}
+.access-summary-title {
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: #173f35;
+  margin-bottom: 0.4rem;
+}
+.access-side + .access-side {
+  margin-top: 0.9rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid #dfe5d6;
+}
+.access-side h3 {
+  font-size: 0.95rem;
+  font-weight: 650;
+  color: #173f35;
+}
+.access-stations,
+.access-listings ul {
+  margin: 0.3rem 0 0.3rem 1.2rem;
+  list-style: disc;
+}
+.access-listings {
+  margin-top: 0.4rem;
+}
+.access-listings a {
+  color: #173f35;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.access-qualifier {
+  font-weight: 650;
+}
+@media (max-width: 400px) {
+  .access-leg {
+    margin: 10px 17px 0;
+  }
+  .access-summary {
+    padding: 0.85rem;
+  }
+}

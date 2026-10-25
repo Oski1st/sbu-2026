@@ -4,6 +4,7 @@ import { ArrowRight, ChevronDown, TrainFront, Bus } from "lucide-react";
 import type { ScheduledItinerary } from "../../services/transit/timetables";
 import { stationTime } from "../../services/transit/timetables";
 import { formatDuration } from "../../data/tripUtils";
+import { AccessLegNotice } from "./AccessLeg";
 export function ScheduledRouteCard({
   trip,
   index = 0,
@@ -16,6 +17,8 @@ export function ScheduledRouteCard({
   const [expanded, setExpanded] = useState(detailsOnly);
   const first = trip.legs[0],
     last = trip.legs.at(-1)!;
+  const before = trip.access?.before ?? null,
+    after = trip.access?.after ?? null;
   return (
     <article className="route-card scheduled-card">
       <div className="route-card-top">
@@ -47,6 +50,9 @@ export function ScheduledRouteCard({
           <span>No fare or ticket inventory feed</span>
         </div>
       </div>
+      {before && (
+        <AccessLegNotice leg={before} direction="before" showListings={detailsOnly} />
+      )}
       <div className="route-summary">
         <div className="route-time">
           <strong>
@@ -79,10 +85,17 @@ export function ScheduledRouteCard({
           </span>
         </div>
       </div>
+      {after && (
+        <AccessLegNotice leg={after} direction="after" showListings={detailsOnly} />
+      )}
       <p className="timetable-station-note">
-        Starts at the named station, not a city centre. Departure is{" "}
-        {trip.waitFromRequestedMinutes} min after your requested time. Times
-        show each station’s time zone.
+        {before
+          ? `Timetable starts at ${first.from.name}, about ${before.straightLineKm} km from ${before.place}; the time above is the station departure, ${trip.waitFromRequestedMinutes} min after your requested time at the station.`
+          : `Starts at the named station, not a city centre. Departure is ${trip.waitFromRequestedMinutes} min after your requested time.`}
+        {after
+          ? ` Timetable ends at ${last.to.name}, about ${after.straightLineKm} km from ${after.place}; the arrival time is at the station.`
+          : ""}{" "}
+        Times show each station’s time zone.
       </p>
       <div className="agency-path">
         {trip.legs.map((leg, i) => (

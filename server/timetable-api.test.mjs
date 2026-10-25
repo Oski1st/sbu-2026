@@ -91,6 +91,10 @@ it("reports coverage/query errors and sanitizes internal failures without substi
       expect(fallback.version).toBe("catalogue-only");
       expect(fallback.cities).toHaveLength(1371);
       expect(fallback.cities.every(city => !city.hasTimetableStops)).toBe(true);
+      // Representative points and listings stay server-side.
+      expect(Object.keys(fallback.cities[0]).sort()).toEqual(
+        ["aliases", "hasNearbyTimetableStation", "hasTimetableStops", "id", "name", "state"],
+      );
       expect(fallback.feeds).toEqual([]);
       const plan = await fetch(url + "/api/transit/plan");
       expect(plan.status).toBe(503);

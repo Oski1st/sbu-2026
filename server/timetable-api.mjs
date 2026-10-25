@@ -3,11 +3,20 @@ import { gunzipSync } from "node:zlib";
 import { createTimetableEngine, PlanningError } from "./timetable-engine.mjs";
 import { sendJson } from "./septa-proxy.mjs";
 let enginePromise;
+const readPlaces = async () =>
+  JSON.parse(
+    await readFile(new URL("./data/transit-places.json", import.meta.url), "utf8"),
+  );
+/** Suggestion fields only; representative points and listings stay server-side. */
+const publicPlace = ({ id, name, state, aliases }) => ({ id, name, state, aliases });
 export function loadTimetableEngine() {
-  enginePromise ??= readFile(
-    new URL("./data/timetables.json.gz", import.meta.url),
-  )
-    .then((raw) => createTimetableEngine(JSON.parse(gunzipSync(raw))))
+  enginePromise ??= Promise.all([
+    readFile(new URL("./data/timetables.json.gz", import.meta.url)),
+    readPlaces(),
+  ])
+    .then(([raw, places]) =>
+      createTimetableEngine(JSON.parse(gunzipSync(raw)), { places }),
+    )
     .catch((error) => {
       enginePromise = undefined;
       throw error;
@@ -30,8 +39,8 @@ export function createTimetableApi({ getEngine = loadTimetableEngine } = {}) {
       if (url.pathname === "/api/transit/catalogue") {
         try { return sendJson(res, 200, (await getEngine()).metadata()); }
         catch {
-          const cities = JSON.parse(await readFile(new URL("./data/transit-places.json", import.meta.url), "utf8"));
-          return sendJson(res, 200, {version: "catalogue-only", cities: cities.map(city => ({...city, hasTimetableStops: false})), feeds: [], limits: ["Timetable snapshot not installed: source redistribution clearance is pending. City suggestions remain available; no dated routes can be verified on this checkout."]});
+          const cities = await readPlaces();
+          return sendJson(res, 200, {version: "catalogue-only", cities: cities.map(city => ({...publicPlace(city), hasTimetableStops: false, hasNearbyTimetableStation: false})), feeds: [], limits: ["Timetable snapshot not installed: source redistribution clearance is pending. City suggestions remain available; no dated routes can be verified on this checkout."]});
         }
       }
       const engine = await getEngine();

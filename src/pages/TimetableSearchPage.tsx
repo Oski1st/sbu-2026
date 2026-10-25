@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { SearchForm } from "../components/search/SearchForm";
 import { createLocationCatalogue } from "../components/search/locationCatalogue";
 import { ScheduledRouteCard } from "../components/search/ScheduledRouteCard";
+import { AccessSummaryPanel } from "../components/search/AccessLeg";
 import {
   fetchTimetableCatalogue,
   fetchTimetables,
@@ -159,7 +160,7 @@ export default function TimetableSearchPage() {
         />
         <p className="catalogue-qualification" role="status">
           {catalogue
-            ? `${catalogue.cities.length.toLocaleString()} source-backed transit places. Only ${catalogue.cities.filter((c) => c.hasTimetableStops).length} currently have mapped stops in the loaded timetable feeds. A city listing does not guarantee a route; Google Transit coverage is not verified.`
+            ? `${catalogue.cities.length.toLocaleString()} source-backed transit places. Only ${catalogue.cities.filter((c) => c.hasTimetableStops).length} currently have mapped stops in the loaded timetable feeds${catalogue.accessPolicy ? `; ${catalogue.cities.filter((c) => !c.hasTimetableStops && c.hasNearbyTimetableStation).length.toLocaleString()} more are searched from published stations within ${catalogue.accessPolicy.radiusKm} km, with the trip to the station shown as not scheduled` : ""}. A city listing does not guarantee a route; Google Transit coverage is not verified.`
             : catalogueError ||
               "Loading city suggestions. You can still type your cities manually."}
         </p>
@@ -246,6 +247,9 @@ export default function TimetableSearchPage() {
               Include Amtrak
             </label>
           </div>
+          {!loading && !error && result?.access && (
+            <AccessSummaryPanel access={result.access} />
+          )}
           {error && (
             <div className="empty-state">
               <h3>We couldn’t verify this search.</h3>

@@ -92,6 +92,15 @@ export default function ScheduledJourneyPage() {
               The station names shown are the actual GTFS stops. They are not
               the city centre or your current location.
             </li>
+            {(result.itinerary.access?.before ||
+              result.itinerary.access?.after) && (
+              <li>
+                Steps marked “Not in published schedules” connect a listed
+                place to the nearest published station. Their distances are
+                straight-line references only; plan that part yourself and
+                check the listed operators directly.
+              </li>
+            )}
           </ul>
         </>
       )}

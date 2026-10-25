@@ -1,4 +1,11 @@
 import { createHash } from "node:crypto";
+import {
+  ACCESS_POLICY,
+  chooseAccessStations,
+  roundKm,
+  stationsInRange,
+  straightLineKm,
+} from "./access-stations.mjs";
 
 export const POLICY = Object.freeze({
   horizonDays: 7,
@@ -112,7 +119,7 @@ const validDate = (s) =>
 
 export function createTimetableEngine(
   data,
-  { now = () => Date.now(), maxWork = 2_000_000 } = {},
+  { now = () => Date.now(), maxWork = 2_000_000, places = [] } = {},
 ) {
   const cityIndex = new Map(data.cities.map((c) => [c.id, c])),
     textIndex = new Map(),
@@ -132,6 +139,34 @@ export function createTimetableEngine(
   for (const f of data.feeds)
     for (const [id, s] of Object.entries(f.stops))
       stops.set(f.id + ":" + id, { ...s, feed: f.id, id });
+  // Representative points and qualified operator listings for catalogue places.
+  // Used only to pick nearby published stations; never to create schedules.
+  const placeInfo = new Map();
+  for (const p of [...data.cities, ...places])
+    if (cityIndex.has(p.id))
+      placeInfo.set(p.id, {
+        ...placeInfo.get(p.id),
+        ...(Number.isFinite(p.latitude) && Number.isFinite(p.longitude)
+          ? { latitude: p.latitude, longitude: p.longitude }
+          : {}),
+        ...(Array.isArray(p.listings) ? { listings: p.listings } : {}),
+      });
+  // Stops where at least one published trip allows boarding / alighting.
+  const boardingStops = new Set(),
+    alightingStops = new Set();
+  for (const f of data.feeds)
+    for (const t of f.trips)
+      t.stops.forEach(([stop, , , pickup, dropoff], i) => {
+        if (pickup === 0 && i < t.stops.length - 1)
+          boardingStops.add(f.id + ":" + stop);
+        if (dropoff === 0 && i > 0) alightingStops.add(f.id + ":" + stop);
+      });
+  const placePoint = (id) => {
+    const p = placeInfo.get(id);
+    return p && "latitude" in p ? p : null;
+  };
+  const nearby = (cityId, pool) =>
+    stationsInRange(placePoint(cityId), pool, (id) => stops.get(id));
   const incoming = new Map(),
     rules = new Map();
   const addIncoming = (from, to) => {
@@ -173,6 +208,14 @@ export function createTimetableEngine(
     if (inside.size === 1 && outside.size === 1)
       singleGatewayFeeds.add(feed.id);
   }
+  const nearbyFlag = new Map(
+    data.cities.map((c) => [
+      c.id,
+      !!data.cityStops[c.id]?.length ||
+        nearby(c.id, boardingStops).length > 0 ||
+        nearby(c.id, alightingStops).length > 0,
+    ]),
+  );
   const cache = new Map();
   let computations = 0;
   const resolveCity = (value) => {
@@ -194,6 +237,7 @@ export function createTimetableEngine(
   const metadata = () => ({
     version: data.version,
     policy: POLICY,
+    accessPolicy: ACCESS_POLICY,
     limits: data.limits,
     feeds: data.feeds.map(
       ({
@@ -217,8 +261,14 @@ export function createTimetableEngine(
       }),
     ),
     cities: data.cities.map((c) => ({
-      ...c,
+      id: c.id,
+      name: c.name,
+      state: c.state,
+      aliases: c.aliases,
       hasTimetableStops: !!data.cityStops[c.id]?.length,
+      // A published station lies within the access radius; the access trip
+      // itself is never scheduled. Mapped places are trivially true.
+      hasNearbyTimetableStation: nearbyFlag.get(c.id),
     })),
   });
   function parse(input, allowPast = false) {
@@ -234,11 +284,24 @@ export function createTimetableEngine(
       time = String(input.time ?? "");
     if (!validDate(date) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(time))
       fail("invalid-date", "Choose a valid departure date and time.");
-    const originIds = data.cityStops[from.id] ?? [],
-      destinationIds = data.cityStops[to.id] ?? [];
-    const tz = originIds.length
-      ? stops.get(originIds[0]).timezone
-      : "America/New_York";
+    const includeAmtrak =
+      input.includeAmtrak !== false && input.includeAmtrak !== "0";
+    const mappedOrigin = data.cityStops[from.id] ?? [],
+      mappedDestination = data.cityStops[to.id] ?? [];
+    const access = resolveAccess(
+      from,
+      to,
+      mappedOrigin,
+      mappedDestination,
+      date,
+      includeAmtrak,
+      input.access,
+    );
+    const originIds = access.origin?.stations.map((s) => s.id) ?? mappedOrigin,
+      destinationIds =
+        access.destination?.stations.map((s) => s.id) ?? mappedDestination;
+    const tzStop = originIds[0] ?? nearby(from.id, boardingStops)[0]?.id;
+    const tz = tzStop ? stops.get(tzStop).timezone : "America/New_York";
     if (!allowPast && date < localDate(now(), tz))
       fail(
         "past-date",
@@ -278,10 +341,139 @@ export function createTimetableEngine(
       mode,
       operator,
       order,
-      includeAmtrak:
-        input.includeAmtrak !== false && input.includeAmtrak !== "0",
+      includeAmtrak,
       originIds,
       destinationIds,
+      access,
+    };
+  }
+  const usableFeed = (id, date, includeAmtrak) => {
+    const feed = feeds.get(stops.get(id).feed);
+    return {
+      covered: covered(feed, date),
+      included: includeAmtrak || feed.operator !== "AMTRAK",
+    };
+  };
+  /**
+   * Access stations for a side whose place has no mapped stop. `override` comes
+   * only from a versioned itinerary ID and is revalidated against the radius, so
+   * a shared link reconstructs the same station choice.
+   */
+  function resolveAccess(
+    from,
+    to,
+    mappedOrigin,
+    mappedDestination,
+    date,
+    includeAmtrak,
+    override,
+  ) {
+    const result = { origin: null, destination: null };
+    const sides = [
+      ["origin", from, mappedOrigin, boardingStops, to, mappedDestination, alightingStops],
+      ["destination", to, mappedDestination, alightingStops, from, mappedOrigin, boardingStops],
+    ];
+    const inRange = sides.map(([, place, mapped, pool]) =>
+      mapped.length ? null : nearby(place.id, pool),
+    );
+    if (
+      override !== undefined &&
+      (!Array.isArray(override) ||
+        override.length !== 2 ||
+        override.some(
+          (ids, i) =>
+            (ids === null) !== (inRange[i] === null) ||
+            (ids !== null &&
+              (!Array.isArray(ids) ||
+                !ids.length ||
+                ids.length > ACCESS_POLICY.maxStations ||
+                new Set(ids).size !== ids.length ||
+                ids.some((id) => !inRange[i].some((s) => s.id === id)))),
+        ))
+    )
+      fail("invalid-itinerary", "Invalid itinerary link.", 404);
+    sides.forEach(([side, place, , , other, otherMapped, otherPool], i) => {
+      if (!inRange[i]) return;
+      let choice;
+      if (override !== undefined)
+        choice = {
+          status: "ok",
+          stations: override[i].map((id) =>
+            inRange[i].find((s) => s.id === id),
+          ),
+        };
+      else {
+        const usable = (id) => usableFeed(id, date, includeAmtrak);
+        const otherIds = otherMapped.length
+          ? otherMapped
+          : nearby(other.id, otherPool)
+              .filter((s) => usable(s.id).covered && usable(s.id).included)
+              .map((s) => s.id);
+        const point = placePoint(place.id);
+        choice = chooseAccessStations({
+          inRange: inRange[i],
+          covered: (id) => usable(id).covered,
+          included: (id) => usable(id).included,
+          otherStationIds: otherIds,
+          distanceTo: (id) => straightLineKm(point, stops.get(id)),
+        });
+      }
+      result[side] = {
+        placeId: place.id,
+        place: `${place.name}, ${place.state}`,
+        status: choice.status,
+        hasPoint: !!placePoint(place.id),
+        stations: choice.stations.map((s) => ({ id: s.id, km: s.km })),
+      };
+    });
+    return result;
+  }
+  const usesAccess = (q) => !!(q.access.origin || q.access.destination);
+  function stopSummary(id) {
+    const s = stops.get(id);
+    return { stationId: id, id: s.id, feed: s.feed, name: s.name };
+  }
+  function accessSummary(q) {
+    const side = (a) =>
+      a
+        ? {
+            placeId: a.placeId,
+            place: a.place,
+            status: a.status,
+            stations: a.stations.map((s) => ({
+              ...stopSummary(s.id),
+              straightLineKm: roundKm(s.km),
+            })),
+            listings: placeInfo.get(a.placeId)?.listings ?? [],
+          }
+        : null;
+    return {
+      radiusKm: ACCESS_POLICY.radiusKm,
+      maxStations: ACCESS_POLICY.maxStations,
+      distanceReference: "catalogue-representative-point",
+      scheduled: false,
+      origin: side(q.access.origin),
+      destination: side(q.access.destination),
+    };
+  }
+  /** Unscheduled access between a place and the station actually used. */
+  function itineraryAccess(q, label) {
+    const leg = (a, stationId) => {
+      if (!a) return null;
+      const s = a.stations.find((x) => x.id === stationId);
+      return {
+        place: a.place,
+        placeId: a.placeId,
+        station: stopSummary(stationId),
+        straightLineKm: roundKm(s.km),
+        distanceReference: "catalogue-representative-point",
+        scheduled: false,
+        listings: placeInfo.get(a.placeId)?.listings ?? [],
+      };
+    };
+    return {
+      before: leg(q.access.origin, label.legs[0].fromStop),
+      after: leg(q.access.destination, label.legs.at(-1).toStop),
     };
   }
   function instances(q) {
@@ -437,7 +629,35 @@ export function createTimetableEngine(
       warnings,
       feeds: metadata().feeds,
       policy: POLICY,
+      ...(usesAccess(q) ? { access: accessSummary(q) } : {}),
     };
+    for (const a of [q.access.origin, q.access.destination]) {
+      // Places without a representative point fall through to the generic gap.
+      if (!a || a.status === "ok" || !a.hasPoint) continue;
+      if (a.status === "none-in-range")
+        return {
+          ...response,
+          reason: "no-station-in-range",
+          message: `No published Amtrak or LIRR station in the loaded timetables is within ${ACCESS_POLICY.radiusKm} km (straight-line) of ${a.place}. Check the operators listed for this place; their listings are not schedules.`,
+        };
+      if (a.status === "outside-snapshot")
+        return {
+          ...response,
+          reason: "date-outside-snapshot",
+          message: `The selected date is outside the published snapshot for the stations near ${a.place}. Check the feed dates below or choose another travel date.`,
+        };
+      if (a.status === "filtered-out")
+        return {
+          ...response,
+          reason: "access-filtered-out",
+          message: `The published stations within ${ACCESS_POLICY.radiusKm} km of ${a.place} are all excluded by your operator settings. Include Amtrak to search them.`,
+        };
+      return {
+        ...response,
+        reason: "no-useful-scheduled-leg",
+        message: `The published stations nearest ${a.place} are no closer to it than the stations used for ${a === q.access.origin ? `${to.name}, ${to.state}` : `${from.name}, ${from.state}`}, so the loaded timetables offer no useful scheduled leg between these places. Check the operators listed for these places; this is not proof that no real service exists.`,
+      };
+    }
     if (!q.originIds.length || !q.destinationIds.length)
       return {
         ...response,
@@ -623,6 +843,14 @@ export function createTimetableEngine(
           operator: q.operator,
           order: q.order,
           includeAmtrak: q.includeAmtrak,
+          // Exact access-station choice, so a shared link reconstructs it.
+          ...(usesAccess(q)
+            ? {
+                access: [q.access.origin, q.access.destination].map(
+                  (a) => a?.stations.map((s) => s.id) ?? null,
+                ),
+              }
+            : {}),
           pick,
         };
       return {
@@ -638,6 +866,7 @@ export function createTimetableEngine(
           (label.legs[0].departure - q.epoch) / 60000,
         ),
         transfers: label.legs.length - 1,
+        ...(usesAccess(q) ? { access: itineraryAccess(q, label) } : {}),
         legs: label.legs.map((l) => ({
           ...l,
           departure: new Date(l.departure).toISOString(),

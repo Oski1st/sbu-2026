@@ -42,6 +42,44 @@ coverage. There is no Google API/key/billing dependency. No device location is u
   past-departure/reference notice. The hyphenated identifier supports production
   SPA deep-link refresh without being mistaken for an asset filename.
 
+## Places without a timetable stop (unscheduled access step)
+
+Only 151 of the 1,371 places have a mapped Amtrak/LIRR stop. For any other place
+(for example Quakertown, PA, listed by FlixBus), the planner now:
+
+1. Takes the place's catalogue representative point (Census internal point or
+   operator-stop representative; committed in `server/data/transit-places.json`,
+   never sent to the browser) and finds published stations within
+   `ACCESS_POLICY.radiusKm` = **100 km straight-line**, nearest first, ID order for
+   exact ties (`server/access-stations.mjs`). Only stops where a loaded trip allows
+   boarding (origin side) or alighting (destination side) qualify.
+2. Drops stations whose feed does not cover the date or is excluded by the Amtrak
+   toggle, any station that belongs to the other place, and any station that is not
+   strictly nearer to the place than the other place's stations (a scheduled leg
+   would not bring the rider closer). Keeps at most `ACCESS_POLICY.maxStations` = **3**.
+3. Plans the dated itinerary from/to those real stations with the unchanged engine
+   (calendars, transfer rules, 7-day / 4-boarding bounds, ordering).
+4. Shows the access step as **“NOT IN PUBLISHED SCHEDULES — Get from Quakertown, PA to
+   Paoli Amtrak Station (PAO): about 46 km straight-line from the catalogue point;
+   not a road or transit distance … no time, fare or duration is shown for this
+   part.”** The requested time is applied at the station, which the card states.
+5. Lists the catalogue operators for that place with their official city-page links
+   and the qualified wording “Listed service area — check boarding stop”. Listings
+   are never turned into schedules.
+
+Honest outcomes when no access station is usable: `no-station-in-range`
+(e.g. Scranton, PA → Philadelphia), `date-outside-snapshot`, `access-filtered-out`
+(Amtrak toggle) and `no-useful-scheduled-leg` (e.g. Quakertown ↔ Doylestown, whose
+nearest stations are shared). Places without a representative point keep the
+generic `coverage-gap`.
+
+Reproducible links: access itineraries add `access: [originStationIds|null,
+destinationStationIds|null]` to the versioned `tt1-` payload. Reconstruction uses
+exactly those stations after revalidating that each is a qualifying published stop
+within the radius; anything else returns `invalid-itinerary`. Itineraries between
+mapped places carry no `access` field, so their IDs and responses are unchanged.
+No geolocation, runtime third-party request or sample data is involved.
+
 ## Sources, dates, licences and refresh
 
 **Publication blocker:** written Amtrak GTFS redistribution permission has not been
@@ -106,7 +144,9 @@ There is one explicit cross-feed complex: Amtrak NYP↔LIRR237 (Penn/Moynihan), 
 15minutes as a planning assumption, not an operator guarantee or accessibility/
 walking-time verification. Identity sources are the Amtrak-run GreatAmericanStations
 NYP page and the official MTA Penn Station page. No arbitrary nearby station or
-same-city walking link is created. All boarding points are named source stops.
+same-city walking link is created between stations. All boarding points are named
+source stops. (The unscheduled place-to-station access step above is shown only at
+the ends of an itinerary and is never a routing edge.)
 
 Round-based timetable search retains exact trip contexts where transfer rules depend
 on them. Uniform transfer contexts use sorted arrival/prefix-best-departure indexes;

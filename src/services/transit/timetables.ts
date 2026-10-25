@@ -4,6 +4,8 @@ export interface TimetablePlace {
   state: string;
   aliases: string[];
   hasTimetableStops: boolean;
+  /** A published station lies within the access radius (access trip itself unscheduled). */
+  hasNearbyTimetableStation?: boolean;
 }
 export interface TimetableFeed {
   id: string;
@@ -17,6 +19,7 @@ export interface TimetableFeed {
 }
 export interface TimetableCatalogue {
   version: string;
+  accessPolicy?: { radiusKm: number; maxStations: number };
   cities: TimetablePlace[];
   feeds: TimetableFeed[];
   limits: string[];
@@ -48,6 +51,48 @@ export interface ScheduledLeg {
   sourceUrl: string;
   purchaseUrl: string;
 }
+/** Qualified catalogue listing: a named service area, never a schedule. */
+export interface OperatorListing {
+  operator: string;
+  url: string;
+}
+export interface AccessStation {
+  stationId: string;
+  id: string;
+  feed: string;
+  name: string;
+}
+/** Unscheduled trip between a place and a timetable station. No times/fares/durations. */
+export interface AccessLeg {
+  place: string;
+  placeId: string;
+  station: AccessStation;
+  /** Rounded straight-line km from the catalogue representative point. */
+  straightLineKm: number;
+  distanceReference: "catalogue-representative-point";
+  scheduled: false;
+  listings: OperatorListing[];
+}
+export interface AccessSide {
+  placeId: string;
+  place: string;
+  status:
+    | "ok"
+    | "none-in-range"
+    | "outside-snapshot"
+    | "filtered-out"
+    | "no-useful-leg";
+  stations: (AccessStation & { straightLineKm: number })[];
+  listings: OperatorListing[];
+}
+export interface AccessSummary {
+  radiusKm: number;
+  maxStations: number;
+  distanceReference: "catalogue-representative-point";
+  scheduled: false;
+  origin: AccessSide | null;
+  destination: AccessSide | null;
+}
 export interface ScheduledItinerary {
   id: string;
   origin: string;
@@ -57,6 +102,7 @@ export interface ScheduledItinerary {
   durationMinutes: number;
   waitFromRequestedMinutes: number;
   transfers: number;
+  access?: { before: AccessLeg | null; after: AccessLeg | null };
   legs: ScheduledLeg[];
 }
 export interface TimetableResult {
@@ -73,6 +119,7 @@ export interface TimetableResult {
   feeds: TimetableFeed[];
   reason?: string;
   message?: string;
+  access?: AccessSummary;
 }
 export interface ItineraryResult extends Omit<TimetableResult, "itineraries"> {
   itinerary: ScheduledItinerary;

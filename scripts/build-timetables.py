@@ -72,4 +72,11 @@ rawout=json.dumps(output,separators=(',',':'),ensure_ascii=False).encode();dest=
 manifest={'version':version,'schema':1,'feeds':[{k:f[k] for k in ['id','operator','sourceUrl','sha256','checkedAt','version','startDate','endDate','skippedTrips']} for f in output['feeds']],'qualifiedChoices':len(cities),'placesWithTimetableStops':len(output['cityStops']),'limits':output['limits']}
 (root/'server/data/timetable-manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print('artifact',len(rawout),'bytes',dest.stat().st_size,'gzipped','version',version,'mapped cities',len(output['cityStops']))
 
-(root/"server/data/transit-places.json").write_text(json.dumps(cities,separators=(",",":"))+"\n")
+# Public catalogue facts only (no feed data): suggestion fields, the Census/operator
+# representative point used to find nearby published stations, and the qualified
+# operator listing URLs. Listings are never schedules.
+operators=['SEPTA','NJ_TRANSIT','LIRR','AMTRAK','GREYHOUND','FLIXBUS'];listings=collections.defaultdict(dict)
+for x in evidence:
+ if x.get('status')=='verified':listings[aliases.get(x['cityId'],x['cityId'])].setdefault((x['marketedOperator'],x['sourceUrl']),None)
+places=[{'id':x['id'],'name':x['name'],'state':x['state'],'aliases':x['aliases'],'latitude':x['latitude'],'longitude':x['longitude'],'listings':[{'operator':o,'url':u} for o,u in sorted(listings[x['id']],key=lambda k:(operators.index(k[0]),k[1]))]} for x in cities]
+(root/"server/data/transit-places.json").write_text(json.dumps(places,separators=(",",":"),ensure_ascii=False)+"\n")
