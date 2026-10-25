@@ -64,7 +64,7 @@ export function RouteComparison({ trips, open, onClose }: Props) {
     >
       <div className="comparison-header">
         <span className="eyebrow">
-          <GitCompareArrows size={15} />A LITTLE PERSPECTIVE
+          <GitCompareArrows size={15} />COMPARE ROUTES
         </span>
         <button
           type="button"
@@ -76,10 +76,9 @@ export function RouteComparison({ trips, open, onClose }: Props) {
           <X size={20} />
         </button>
       </div>
-      <h2 id="comparison-title">Find your kind of journey.</h2>
+      <h2 id="comparison-title">Two routes, side by side.</h2>
       <p id="comparison-note">
-        Side by side. Every trade-off in the open. All times and fares below are
-        sample data.
+        All times and fares below are sample data.
       </p>
       {comparison && (
         <div className="comparison-insight">

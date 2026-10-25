@@ -28,7 +28,7 @@ export function CorridorMap() {
     <section className="passenger-rail-map" aria-labelledby={titleId}>
       <header className="prm-heading">
         <p className="prm-eyebrow">CONTIGUOUS UNITED STATES</p>
-        <h2 id={titleId}>Follow the rails.</h2>
+        <h2 id={titleId}>Amtrak corridors.</h2>
         <p>Selected Amtrak corridors serving our sample cities.</p>
       </header>
       <div className="prm-frame">

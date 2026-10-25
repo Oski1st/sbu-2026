@@ -49,7 +49,7 @@ export function RouteCard({
         <span className={`route-kicker ${index === 0 ? "recommended" : ""}`}>
           <span className="little-dot" />
           {trip.planningNote
-            ? "EXPLORE THIS CORRIDOR"
+            ? "CITY-LEVEL CONCEPT"
             : trip.legs.some((leg) => leg.agency === "AMTRAK")
               ? "FEWER TRANSFERS"
               : "LOWER SAMPLE FARE"}
