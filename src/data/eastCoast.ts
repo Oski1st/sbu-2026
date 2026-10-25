@@ -279,7 +279,7 @@ export function buildEastCoastTrips(): Trip[] {
           dataStatus: "sample",
           label: `${agencies[primaryAgency].name} ${agencies[primaryAgency].mode === "rail" ? "rail" : "coach"} concept`,
           description:
-            "Explore the corridor. Check actual services and fares with the operator.",
+            "Check actual services and fares with the operator.",
           planningNote: samplePlanningNote,
         });
       }
@@ -291,25 +291,25 @@ export const featuredCorridors = [
   {
     origin: "Boston",
     destination: "New York",
-    label: "City lights",
+    label: "Show sample trips",
     region: "NEW ENGLAND",
   },
   {
     origin: "New York",
     destination: "Washington, DC",
-    label: "The capital connection",
+    label: "Show sample trips",
     region: "MID-ATLANTIC",
   },
   {
     origin: "Raleigh",
     destination: "Charlotte",
-    label: "Carolina calling",
+    label: "Show sample trips",
     region: "THE CAROLINAS",
   },
   {
     origin: "Orlando",
     destination: "Miami",
-    label: "Chase the sunshine",
+    label: "Show sample trips",
     region: "FLORIDA",
   },
 ];

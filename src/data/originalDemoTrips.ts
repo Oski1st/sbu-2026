@@ -37,7 +37,7 @@ export const originalDemoTrips: Trip[] = [
     durationMinutes: 315,
     dataStatus: "sample",
     label: "The scenic connection",
-    description: "A little more time. A lot more possibility.",
+    description: "SEPTA, NJ TRANSIT, then LIRR. Lower sample fare, one more transfer.",
     legs: [
       leg(
         "regional-1",
@@ -88,7 +88,7 @@ export const originalDemoTrips: Trip[] = [
     durationMinutes: 250,
     dataStatus: "sample",
     label: "The express connection",
-    description: "Trade a transfer for a little more breathing room.",
+    description: "Amtrak to New York, then LIRR. 65 minutes faster, $15 more in sample fares.",
     legs: [
       leg(
         "express-1",
