@@ -1,0 +1,190 @@
+[
+  {
+    "control": "From (#origin)",
+    "focused": true,
+    "focusVisible": true,
+    "computed": {
+      "outline": "solid 3px rgb(23, 63, 53)",
+      "borderBottom": "solid 1px rgb(23, 63, 53)",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.129 -0.00388322 -0.0418201 / 0.15) 0px 0px 0px 2px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "ownBg": "rgba(0, 0, 0, 0)",
+      "adjacentBg": "rgb(255, 255, 255) (search-section)"
+    },
+    "indicators": [
+      {
+        "kind": "outline 3px (offset 3px)",
+        "color": "rgb(23, 63, 53)",
+        "vsAdjacent": 11.67
+      },
+      {
+        "kind": "border-bottom 1px",
+        "color": "rgb(23, 63, 53)",
+        "vsAdjacent": 11.67,
+        "vsOwnBg": 11.67
+      },
+      {
+        "kind": "box-shadow",
+        "color": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.129 -0.00388322 -0.0418201 / 0.15) 0px 0px 0px 2px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      }
+    ],
+    "pixelDiff": {
+      "changedPx": 5697,
+      "changedPxWith3to1Change": 1554,
+      "required2pxPerimeterArea": 1080,
+      "maxChangeContrast": 11.67
+    }
+  },
+  {
+    "control": "To (#destination)",
+    "focused": true,
+    "focusVisible": true,
+    "computed": {
+      "outline": "solid 3px rgb(23, 63, 53)",
+      "borderBottom": "solid 1px rgb(23, 63, 53)",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.129 -0.00388322 -0.0418201 / 0.15) 0px 0px 0px 2px, rgba(0, 0, 0, 0) 0px 0px 0px 0px",
+      "ownBg": "rgba(0, 0, 0, 0)",
+      "adjacentBg": "rgb(255, 255, 255) (search-section)"
+    },
+    "indicators": [
+      {
+        "kind": "outline 3px (offset 3px)",
+        "color": "rgb(23, 63, 53)",
+        "vsAdjacent": 11.67
+      },
+      {
+        "kind": "border-bottom 1px",
+        "color": "rgb(23, 63, 53)",
+        "vsAdjacent": 11.67,
+        "vsOwnBg": 11.67
+      },
+      {
+        "kind": "box-shadow",
+        "color": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, oklab(0.129 -0.00388322 -0.0418201 / 0.15) 0px 0px 0px 2px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"
+      }
+    ],
+    "pixelDiff": {
+      "changedPx": 5692,
+      "changedPxWith3to1Change": 1544,
+      "required2pxPerimeterArea": 1072,
+      "maxChangeContrast": 11.67
+    }
+  },
+  {
+    "control": "Date",
+    "focused": true,
+    "focusVisible": true,
+    "computed": {
+      "outline": "solid 3px rgb(23, 63, 53)",
+      "borderBottom": "solid 1px rgb(223, 229, 217)",
+      "boxShadow": "none",
+      "ownBg": "rgb(251, 252, 248)",
+      "adjacentBg": "rgb(255, 255, 255) (search-section)"
+    },
+    "indicators": [
+      {
+        "kind": "outline 3px (offset 2px)",
+        "color": "rgb(23, 63, 53)",
+        "vsAdjacent": 11.67
+      },
+      {
+        "kind": "border-bottom 1px",
+        "color": "rgb(223, 229, 217)",
+        "vsAdjacent": 1.28,
+        "vsOwnBg": 1.25
+      }
+    ],
+    "pixelDiff": {
+      "changedPx": 1760,
+      "changedPxWith3to1Change": 1175,
+      "required2pxPerimeterArea": 750,
+      "maxChangeContrast": 11.67
+    }
+  },
+  {
+    "control": "Time",
+    "focused": true,
+    "focusVisible": true,
+    "computed": {
+      "outline": "solid 3px rgb(23, 63, 53)",
+      "borderBottom": "solid 1px rgb(223, 229, 217)",
+      "boxShadow": "none",
+      "ownBg": "rgb(251, 252, 248)",
+      "adjacentBg": "rgb(255, 255, 255) (search-section)"
+    },
+    "indicators": [
+      {
+        "kind": "outline 3px (offset 2px)",
+        "color": "rgb(23, 63, 53)",
+        "vsAdjacent": 11.67
+      },
+      {
+        "kind": "border-bottom 1px",
+        "color": "rgb(223, 229, 217)",
+        "vsAdjacent": 1.28,
+        "vsOwnBg": 1.25
+      }
+    ],
+    "pixelDiff": {
+      "changedPx": 1760,
+      "changedPxWith3to1Change": 1175,
+      "required2pxPerimeterArea": 750,
+      "maxChangeContrast": 11.67
+    }
+  },
+  {
+    "control": "Swap button (reference)",
+    "focused": true,
+    "focusVisible": true,
+    "computed": {
+      "outline": "solid 3px rgb(23, 63, 53)",
+      "borderBottom": "solid 1px rgb(226, 231, 218)",
+      "boxShadow": "none",
+      "ownBg": "rgb(250, 251, 247)",
+      "adjacentBg": "rgb(255, 255, 255) (search-section)"
+    },
+    "indicators": [
+      {
+        "kind": "outline 3px (offset 5px)",
+        "color": "rgb(23, 63, 53)",
+        "vsAdjacent": 11.67
+      },
+      {
+        "kind": "border-bottom 1px",
+        "color": "rgb(226, 231, 218)",
+        "vsAdjacent": 1.26,
+        "vsOwnBg": 1.21
+      }
+    ],
+    "pixelDiff": {
+      "changedPx": 584,
+      "changedPxWith3to1Change": 414,
+      "required2pxPerimeterArea": 240,
+      "maxChangeContrast": 11.67
+    }
+  },
+  {
+    "control": "Find my way (reference)",
+    "focused": true,
+    "focusVisible": true,
+    "computed": {
+      "outline": "solid 3px rgb(23, 63, 53)",
+      "borderBottom": "none 0px rgb(255, 255, 255)",
+      "boxShadow": "none",
+      "ownBg": "rgb(23, 63, 53)",
+      "adjacentBg": "rgb(255, 255, 255) (search-section)"
+    },
+    "indicators": [
+      {
+        "kind": "outline 3px (offset 5px)",
+        "color": "rgb(23, 63, 53)",
+        "vsAdjacent": 11.67
+      }
+    ],
+    "pixelDiff": {
+      "changedPx": 1427,
+      "changedPxWith3to1Change": 1344,
+      "required2pxPerimeterArea": 823,
+      "maxChangeContrast": 11.67
+    }
+  }
+]

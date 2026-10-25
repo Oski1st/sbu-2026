@@ -1,0 +1,321 @@
+{
+  "F1a": {
+    "expected": {
+      "arrival": "2026-10-26T13:30:00.000Z",
+      "trips": [
+        "T2",
+        "T3"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-26T13:30:00.000Z",
+      "boardings": 2,
+      "trips": [
+        "T2",
+        "T3"
+      ],
+      "legs": [
+        "T2@2026-10-26 fx:A 2026-10-26T12:10:00.000Z -> fx:B 2026-10-26T12:40:00.000Z",
+        "T3@2026-10-26 fx:B 2026-10-26T13:00:00.000Z -> fx:C 2026-10-26T13:30:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-26T13:30:00.000Z T2+T3",
+        "2026-10-26T14:00:00.000Z T1",
+        "2026-10-26T15:00:00.000Z T4"
+      ]
+    }
+  },
+  "F1b": {
+    "expected": {
+      "arrival": "2026-10-26T15:00:00.000Z",
+      "trips": [
+        "T4"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-26T15:00:00.000Z",
+      "boardings": 1,
+      "trips": [
+        "T4"
+      ],
+      "legs": [
+        "T4@2026-10-26 fx:A 2026-10-26T13:00:00.000Z -> fx:C 2026-10-26T15:00:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-26T15:00:00.000Z T4"
+      ]
+    }
+  },
+  "F2a": {
+    "expected": {
+      "arrival": "2026-10-26T14:00:00.000Z",
+      "trips": [
+        "T1",
+        "T3"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-26T14:00:00.000Z",
+      "boardings": 2,
+      "trips": [
+        "T1",
+        "T3"
+      ],
+      "legs": [
+        "T1@2026-10-26 fx:A 2026-10-26T12:00:00.000Z -> fx:B 2026-10-26T12:50:00.000Z",
+        "T3@2026-10-26 fx:B 2026-10-26T13:10:00.000Z -> fx:C 2026-10-26T14:00:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-26T14:00:00.000Z T1+T3"
+      ]
+    }
+  },
+  "F2b": {
+    "expected": {
+      "arrival": "2026-10-26T15:15:00.000Z",
+      "trips": [
+        "T1",
+        "T5"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-26T15:15:00.000Z",
+      "boardings": 2,
+      "trips": [
+        "T1",
+        "T5"
+      ],
+      "legs": [
+        "T1@2026-10-26 fx:A 2026-10-26T12:00:00.000Z -> fx:B 2026-10-26T12:50:00.000Z",
+        "T5@2026-10-26 fx:B 2026-10-26T14:30:00.000Z -> fx:C 2026-10-26T15:15:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-26T15:15:00.000Z T1+T5"
+      ]
+    }
+  },
+  "F2c": {
+    "expected": {
+      "arrival": "2026-10-26T13:30:00.000Z",
+      "trips": [
+        "T1",
+        "T2"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-26T13:30:00.000Z",
+      "boardings": 2,
+      "trips": [
+        "T1",
+        "T2"
+      ],
+      "legs": [
+        "T1@2026-10-26 fx:A 2026-10-26T12:00:00.000Z -> fx:B 2026-10-26T12:50:00.000Z",
+        "T2@2026-10-26 fx:B 2026-10-26T12:55:00.000Z -> fx:C 2026-10-26T13:30:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-26T13:30:00.000Z T1+T2"
+      ]
+    }
+  },
+  "F3": {
+    "expected": {
+      "arrival": "2026-10-25T06:30:00.000Z",
+      "trips": [
+        "T1",
+        "T2"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-25T06:30:00.000Z",
+      "boardings": 2,
+      "trips": [
+        "T1",
+        "T2"
+      ],
+      "legs": [
+        "T1@2026-10-24 fx:A 2026-10-25T03:30:00.000Z -> fx:B 2026-10-25T05:10:00.000Z",
+        "T2@2026-10-25 fx:B 2026-10-25T05:40:00.000Z -> fx:C 2026-10-25T06:30:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-25T06:30:00.000Z T1+T2"
+      ]
+    }
+  },
+  "F4a": {
+    "expected": {
+      "arrival": "2026-10-26T14:45:00.000Z",
+      "trips": [
+        "T2"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-26T14:45:00.000Z",
+      "boardings": 1,
+      "trips": [
+        "T2"
+      ],
+      "legs": [
+        "T2@2026-10-26 fx:A 2026-10-26T13:30:00.000Z -> fx:B 2026-10-26T14:45:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-26T14:45:00.000Z T2",
+        "2026-10-27T13:00:00.000Z T1",
+        "2026-10-28T13:00:00.000Z T1",
+        "2026-10-29T13:00:00.000Z T1",
+        "2026-10-30T13:00:00.000Z T1"
+      ]
+    }
+  },
+  "F4b": {
+    "expected": {
+      "arrival": "2026-10-27T13:00:00.000Z",
+      "trips": [
+        "T1"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-27T13:00:00.000Z",
+      "boardings": 1,
+      "trips": [
+        "T1"
+      ],
+      "legs": [
+        "T1@2026-10-27 fx:A 2026-10-27T12:00:00.000Z -> fx:B 2026-10-27T13:00:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-27T13:00:00.000Z T1",
+        "2026-10-28T13:00:00.000Z T1",
+        "2026-10-29T13:00:00.000Z T1",
+        "2026-10-30T13:00:00.000Z T1"
+      ]
+    }
+  },
+  "F4c": {
+    "expected": {
+      "arrival": "2026-10-26T14:45:00.000Z",
+      "trips": [
+        "T2"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-26T14:45:00.000Z",
+      "boardings": 1,
+      "trips": [
+        "T2"
+      ],
+      "legs": [
+        "T2@2026-10-26 fx:A 2026-10-26T13:30:00.000Z -> fx:B 2026-10-26T14:45:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-26T14:45:00.000Z T2",
+        "2026-10-27T13:00:00.000Z T1",
+        "2026-10-28T13:00:00.000Z T1",
+        "2026-10-29T13:00:00.000Z T1",
+        "2026-10-30T13:00:00.000Z T1"
+      ]
+    },
+    "note": "U8 resolved: forward search over 7x24h from the requested instant"
+  },
+  "F5": {
+    "expected": {
+      "arrival": "2026-10-26T14:00:00.000Z",
+      "trips": [
+        "T1"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-26T14:00:00.000Z",
+      "boardings": 1,
+      "trips": [
+        "T1"
+      ],
+      "legs": [
+        "T1@2026-10-26 fx:A 2026-10-26T12:00:00.000Z -> fx:C 2026-10-26T14:00:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-26T14:00:00.000Z T1",
+        "2026-10-26T14:00:00.000Z T2+T3"
+      ]
+    }
+  },
+  "F6a": {
+    "expected": {
+      "none": [
+        "no-connection",
+        "coverage-gap"
+      ]
+    },
+    "actual": {
+      "reason": "no-connection",
+      "message": "No usable published connection found within the loaded feeds, selected filters, seven-day horizon and four-boarding limit. This is not proof that no real service exists."
+    }
+  },
+  "F6a-gap": {
+    "expected": {
+      "none": [
+        "coverage-gap"
+      ]
+    },
+    "actual": {
+      "reason": "coverage-gap",
+      "message": "No verified scheduled stop mapping for one or both listed places. Catalogue membership does not prove a timetable or route."
+    }
+  },
+  "F6b": {
+    "expected": {
+      "none": [
+        "no-connection"
+      ]
+    },
+    "actual": {
+      "reason": "no-connection",
+      "message": "No usable published connection found within the loaded feeds, selected filters, seven-day horizon and four-boarding limit. This is not proof that no real service exists."
+    }
+  },
+  "F6c": {
+    "expected": {
+      "arrival": "2026-10-26T14:20:00.000Z",
+      "trips": [
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ]
+    },
+    "actual": {
+      "arrival": "2026-10-26T14:20:00.000Z",
+      "boardings": 4,
+      "trips": [
+        "L1",
+        "L2",
+        "L3",
+        "L4"
+      ],
+      "legs": [
+        "L1@2026-10-26 fx:P 2026-10-26T12:00:00.000Z -> fx:Q 2026-10-26T12:20:00.000Z",
+        "L2@2026-10-26 fx:Q 2026-10-26T12:40:00.000Z -> fx:R 2026-10-26T13:00:00.000Z",
+        "L3@2026-10-26 fx:R 2026-10-26T13:20:00.000Z -> fx:S1 2026-10-26T13:40:00.000Z",
+        "L4@2026-10-26 fx:S1 2026-10-26T14:00:00.000Z -> fx:U 2026-10-26T14:20:00.000Z"
+      ],
+      "allOptions": [
+        "2026-10-26T14:20:00.000Z L1+L2+L3+L4",
+        "2026-10-27T14:20:00.000Z L1+L2+L3+L4",
+        "2026-10-28T14:20:00.000Z L1+L2+L3+L4",
+        "2026-10-29T14:20:00.000Z L1+L2+L3+L4",
+        "2026-10-30T14:20:00.000Z L1+L2+L3+L4"
+      ]
+    }
+  },
+  "F6d": {
+    "expected": {
+      "none": [
+        "date-outside-snapshot"
+      ]
+    },
+    "actual": {
+      "reason": "date-outside-snapshot",
+      "message": "The selected date is outside the published snapshot available for this city. Check the feed dates below or choose another travel date."
+    }
+  }
+}

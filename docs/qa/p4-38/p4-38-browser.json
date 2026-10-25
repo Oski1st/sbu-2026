@@ -1,0 +1,455 @@
+{
+  "base": "http://127.0.0.1:4185",
+  "checks": [
+    {
+      "id": "root-catalogue-1371",
+      "result": "PASS",
+      "detail": "1,371 source-backed transit places. Only 0 currently have mapped stops in the loaded timetable feeds. A city listing does not guarantee a route; Google Transit coverage is not verified."
+    },
+    {
+      "id": "root-coverage-says-no-snapshot",
+      "result": "PASS",
+      "detail": "What this search can verify\n\nNo published timetable snapshot is loaded on this checkout. Source redistribution clearance is pending. No verified scheduled feed is loaded for SEPTA, NJ TRANSIT, Greyhound or FlixBus. Their"
+    },
+    {
+      "id": "root-no-search-before-submit",
+      "result": "PASS",
+      "detail": [
+        "GET /api/transit/catalogue",
+        "GET /api/transit/catalogue",
+        "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+        "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+        "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-27&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+        "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+        "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-27&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+        "GET /api/transit/catalogue",
+        "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-27&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+        "GET /api/transit/catalogue",
+        "GET /api/transit/plan?from=Philadelphia%2C+PA&to=Stony+Brook%2C+NY&date=2026-10-26&time=08%3A00&mode=all&operator=SEPTA&order=arrival&amtrak=1",
+        "GET /api/transit/itinerary/tt1-eyJ2IjoieCJ9",
+        "GET /api/transit/catalogue",
+        "GET /api/transit/itinerary/tt1-eyJ2IjoieCJ9"
+      ]
+    },
+    {
+      "id": "autocomplete-phil-ranks-philadelphia-first",
+      "result": "PASS",
+      "detail": {
+        "opts": [
+          "Philadelphia\nPA",
+          "Philadelphia\nNY",
+          "Philpsburg\nPA",
+          "New Philadelphia\nOH"
+        ],
+        "typeMs": 135
+      }
+    },
+    {
+      "id": "autocomplete-keyboard-select",
+      "result": "PASS",
+      "detail": "Philadelphia, PA"
+    },
+    {
+      "id": "autocomplete-portland-disambiguated",
+      "result": "PASS",
+      "detail": [
+        "Portland\nME",
+        "Portland\nOR",
+        "Portland\nIN"
+      ]
+    },
+    {
+      "id": "autocomplete-escape-closes",
+      "result": "PASS",
+      "detail": "false"
+    },
+    {
+      "id": "autocomplete-no-match-feedback",
+      "result": "PASS",
+      "detail": "From\n\nNo listed transit cities match this text.\n\nNo listed transit cities match “Atlantis”. Try a city and state from the catalogue."
+    },
+    {
+      "id": "submit-url-has-query",
+      "result": "PASS",
+      "detail": "/?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&search=1"
+    },
+    {
+      "id": "submit-honest-unavailable",
+      "result": "PASS",
+      "detail": "Published timetables are unavailable on this checkout. Snapshot redistribution clearance or preparation may be pending. Check directly with the operators."
+    },
+    {
+      "id": "submit-no-sample-fallback",
+      "result": "PASS",
+      "detail": {
+        "routeCards": 0
+      }
+    },
+    {
+      "id": "submit-says-no-sample-substitution",
+      "result": "PASS",
+      "detail": ""
+    },
+    {
+      "id": "history-date-roundtrip",
+      "result": "PASS",
+      "detail": {
+        "backDate": "2026-10-26",
+        "fwdDate": "2026-10-27"
+      }
+    },
+    {
+      "id": "reload-keeps-query-and-honest-state",
+      "result": "PASS",
+      "detail": "Published timetables are unavailable on this checkout. Snapshot redistribution clearance or preparation may be pending. Check directly with the operators."
+    },
+    {
+      "id": "shared-url-fresh-context",
+      "result": "PASS",
+      "detail": "Boston, MA"
+    },
+    {
+      "id": "operator-septa-no-sample",
+      "result": "PASS",
+      "detail": "Published timetables are unavailable on this checkout. Snapshot redistribution clearance or preparation may be pending. Check directly with the operators."
+    },
+    {
+      "id": "itinerary-fake-id-no-sample",
+      "result": "PASS",
+      "detail": "YOUR PUBLISHED ITINERARY\nItinerary unavailable\n\nPublished timetables are unavailable on this checkout. Snapshot redistribution clearance or preparation may be pending. Check directly with the operators.\n\nRetry timetable lookup\nBack to timet"
+    },
+    {
+      "id": "width-320-no-overflow",
+      "result": "PASS",
+      "detail": {
+        "docScroll": 320,
+        "inner": 320,
+        "date": {
+          "w": 172,
+          "x": 69,
+          "right": 241,
+          "y": 675,
+          "scrollW": 170,
+          "clientW": 170
+        },
+        "time": {
+          "w": 172,
+          "x": 69,
+          "right": 241,
+          "y": 748,
+          "scrollW": 170,
+          "clientW": 170
+        },
+        "stacked": true
+      }
+    },
+    {
+      "id": "width-360-no-overflow",
+      "result": "PASS",
+      "detail": {
+        "docScroll": 360,
+        "inner": 360,
+        "date": {
+          "w": 172,
+          "x": 69,
+          "right": 241,
+          "y": 675,
+          "scrollW": 170,
+          "clientW": 170
+        },
+        "time": {
+          "w": 172,
+          "x": 69,
+          "right": 241,
+          "y": 748,
+          "scrollW": 170,
+          "clientW": 170
+        },
+        "stacked": true
+      }
+    },
+    {
+      "id": "width-375-no-overflow",
+      "result": "PASS",
+      "detail": {
+        "docScroll": 375,
+        "inner": 375,
+        "date": {
+          "w": 172,
+          "x": 69,
+          "right": 241,
+          "y": 675,
+          "scrollW": 170,
+          "clientW": 170
+        },
+        "time": {
+          "w": 172,
+          "x": 69,
+          "right": 241,
+          "y": 748,
+          "scrollW": 170,
+          "clientW": 170
+        },
+        "stacked": true
+      }
+    },
+    {
+      "id": "width-390-no-overflow",
+      "result": "PASS",
+      "detail": {
+        "docScroll": 390,
+        "inner": 390,
+        "date": {
+          "w": 172,
+          "x": 69,
+          "right": 241,
+          "y": 637,
+          "scrollW": 170,
+          "clientW": 170
+        },
+        "time": {
+          "w": 172,
+          "x": 69,
+          "right": 241,
+          "y": 710,
+          "scrollW": 170,
+          "clientW": 170
+        },
+        "stacked": true
+      }
+    },
+    {
+      "id": "width-400-no-overflow",
+      "result": "PASS",
+      "detail": {
+        "docScroll": 400,
+        "inner": 400,
+        "date": {
+          "w": 172,
+          "x": 69,
+          "right": 241,
+          "y": 637,
+          "scrollW": 170,
+          "clientW": 170
+        },
+        "time": {
+          "w": 172,
+          "x": 69,
+          "right": 241,
+          "y": 710,
+          "scrollW": 170,
+          "clientW": 170
+        },
+        "stacked": true
+      }
+    },
+    {
+      "id": "J2-race-stale-reply-not-shown",
+      "result": "PASS",
+      "detail": {
+        "seen": [
+          "2026-10-26",
+          "2026-10-26",
+          "2026-10-27"
+        ],
+        "failed": [
+          "/api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1 net::ERR_ABORTED",
+          "/api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1 net::ERR_ABORTED"
+        ],
+        "status": "QA-FRESH-RESPONSE-B"
+      }
+    },
+    {
+      "id": "no-third-party-requests",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "id": "no-geolocation-calls",
+      "result": "PASS",
+      "detail": 0
+    },
+    {
+      "id": "storage-no-coordinates",
+      "result": "PASS",
+      "detail": {
+        "local": {},
+        "session": {}
+      }
+    }
+  ],
+  "requests": {
+    "thirdParty": [],
+    "api": [
+      "GET /api/transit/catalogue",
+      "GET /api/transit/catalogue",
+      "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+      "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+      "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-27&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+      "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+      "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-27&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+      "GET /api/transit/catalogue",
+      "GET /api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-27&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1",
+      "GET /api/transit/catalogue",
+      "GET /api/transit/plan?from=Philadelphia%2C+PA&to=Stony+Brook%2C+NY&date=2026-10-26&time=08%3A00&mode=all&operator=SEPTA&order=arrival&amtrak=1",
+      "GET /api/transit/itinerary/tt1-eyJ2IjoieCJ9",
+      "GET /api/transit/catalogue",
+      "GET /api/transit/itinerary/tt1-eyJ2IjoieCJ9"
+    ]
+  },
+  "console": [
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+    "Failed to load resource: the server responded with a status of 503 (Service Unavailable)"
+  ],
+  "geolocationCalls": 0,
+  "heroText": "YOUR CITIES. YOUR TRAVEL DATE.\nFind your next connection.\n\nSearch published train and connecting-bus timetables. Start with two cities and choose when you want to leave.\n\nSCHEDULED SERVICE · NOT REALTIME OR TICKET INVENTORY",
+  "itineraryText": "YOUR PUBLISHED ITINERARY\nItinerary unavailable\n\nPublished timetables are unavailable on this checkout. Snapshot redistribution clearance or preparation may be pending. Check directly with the operators.\n\nRetry timetable lookup\nBack to timetable search",
+  "wording/": [
+    "/google/i :: 1,371 source-backed transit places. Only 0 currently have mapped stops in the loaded timetable feeds. A city listing does not guarantee a route; Google Transit ",
+    "/\\blive\\b/i :: Date and time are used to find published departures. Fares and live disruption data are not included.",
+    "/\\blive\\b/i :: Published timetables + separate sample journeys · Live data limited to labelled SEPTA snapshots",
+    "/real-?time/i :: SCHEDULED SERVICE · NOT REALTIME OR TICKET INVENTORY",
+    "/real-?time/i :: Ordered within the loaded feeds and transfer assumptions only: next 7 days, at most 4 boardings. No fare feed, reservation availability or realtime disruption c",
+    "/\\bfares?\\b/i :: Date and time are used to find published departures. Fares and live disruption data are not included.",
+    "/\\bfares?\\b/i :: Ordered within the loaded feeds and transfer assumptions only: next 7 days, at most 4 boardings. No fare feed, reservation availability or realtime disruption c",
+    "/\\bfares?\\b/i :: The original Philadelphia–Stony Brook demonstration is still available separately. Its times and fares are illustrative and never become search results for your"
+  ],
+  "wording/itinerary/tt1-eyJ2IjoieCJ9": [
+    "/\\blive\\b/i :: Published timetables + separate sample journeys · Live data limited to labelled SEPTA snapshots"
+  ],
+  "widths": [
+    {
+      "w": 320,
+      "docScroll": 320,
+      "inner": 320,
+      "date": {
+        "w": 172,
+        "x": 69,
+        "right": 241,
+        "y": 675,
+        "scrollW": 170,
+        "clientW": 170
+      },
+      "time": {
+        "w": 172,
+        "x": 69,
+        "right": 241,
+        "y": 748,
+        "scrollW": 170,
+        "clientW": 170
+      },
+      "stacked": true
+    },
+    {
+      "w": 360,
+      "docScroll": 360,
+      "inner": 360,
+      "date": {
+        "w": 172,
+        "x": 69,
+        "right": 241,
+        "y": 675,
+        "scrollW": 170,
+        "clientW": 170
+      },
+      "time": {
+        "w": 172,
+        "x": 69,
+        "right": 241,
+        "y": 748,
+        "scrollW": 170,
+        "clientW": 170
+      },
+      "stacked": true
+    },
+    {
+      "w": 375,
+      "docScroll": 375,
+      "inner": 375,
+      "date": {
+        "w": 172,
+        "x": 69,
+        "right": 241,
+        "y": 675,
+        "scrollW": 170,
+        "clientW": 170
+      },
+      "time": {
+        "w": 172,
+        "x": 69,
+        "right": 241,
+        "y": 748,
+        "scrollW": 170,
+        "clientW": 170
+      },
+      "stacked": true
+    },
+    {
+      "w": 390,
+      "docScroll": 390,
+      "inner": 390,
+      "date": {
+        "w": 172,
+        "x": 69,
+        "right": 241,
+        "y": 637,
+        "scrollW": 170,
+        "clientW": 170
+      },
+      "time": {
+        "w": 172,
+        "x": 69,
+        "right": 241,
+        "y": 710,
+        "scrollW": 170,
+        "clientW": 170
+      },
+      "stacked": true
+    },
+    {
+      "w": 400,
+      "docScroll": 400,
+      "inner": 400,
+      "date": {
+        "w": 172,
+        "x": 69,
+        "right": 241,
+        "y": 637,
+        "scrollW": 170,
+        "clientW": 170
+      },
+      "time": {
+        "w": 172,
+        "x": 69,
+        "right": 241,
+        "y": 710,
+        "scrollW": 170,
+        "clientW": 170
+      },
+      "stacked": true
+    }
+  ],
+  "race": {
+    "seen": [
+      "2026-10-26",
+      "2026-10-26",
+      "2026-10-27"
+    ],
+    "failed": [
+      "/api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1 net::ERR_ABORTED",
+      "/api/transit/plan?from=Boston%2C+MA&to=Philadelphia%2C+PA&date=2026-10-26&time=08%3A00&mode=all&operator=all&order=arrival&amtrak=1 net::ERR_ABORTED"
+    ],
+    "status": "QA-FRESH-RESPONSE-B"
+  },
+  "storage": {
+    "local": {},
+    "session": {}
+  }
+}
