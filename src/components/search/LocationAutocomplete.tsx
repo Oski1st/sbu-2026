@@ -193,7 +193,7 @@ export function LocationAutocomplete({
         </div>
       )}
 
-      {hasTypedValue && !selectedIsSupported && !hasNoMatches && (
+      {hasTypedValue && !selectedIsSupported && !isOpen && (
         <p className="mt-1 text-sm text-amber-800">
           This is not yet a supported sample city. Choose a suggestion to use the sample catalogue.
         </p>
