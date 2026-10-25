@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest';
 import { getVerifiedOperators, nationalCatalogueSources, nationalCities,
-  nationalCoverageAudit, nationalOperators, verifiedNationalCities, majorCityCandidates } from './nationalCities';
+  nationalCoverageAudit, nationalOperators, verifiedNationalCities, majorCityCandidates, nationalEvidenceBatches } from './nationalCities';
 
 const legacy = ['portland', 'boston', 'providence', 'hartford', 'new-haven', 'albany',
   'new-york', 'stony-brook', 'trenton', 'philadelphia', 'baltimore', 'washington',
@@ -9,7 +9,7 @@ const legacy = ['portland', 'boston', 'providence', 'hartford', 'new-haven', 'al
 
 test('complete frozen Census selection is accounted for, including its excluded CDP exception', () => {
   expect(nationalCoverageAudit).toMatchObject({ candidates: 1550, eligibleMajorCities: 342,
-    regionalHubs: 3, excluded: 1, verifiedCityMarkets: 1370, unresolved: 179 });
+    regionalHubs: 3, excluded: 1, verifiedCityMarkets: 1374, unresolved: 175 });
   expect(nationalCatalogueSources.counts.rawThresholdRows).toBe(343);
   expect(nationalCities.filter(c => c.inclusionReason === 'population-100000'))
     .toSatisfy((cities: typeof nationalCities) => cities.every(c => c.population! >= 100_000 && c.populationVintage === 2025 && c.geography !== 'census-designated-place'));
@@ -88,7 +88,7 @@ test('market verification always retains source, date, observed stops and pendin
 });
 
 test('operator counts reconcile against records, not guessed market/municipal equivalence', () => {
-  const expected = { SEPTA: 2, NJ_TRANSIT: 3, LIRR: 2, AMTRAK: 149, GREYHOUND: 563, FLIXBUS: 1328 };
+  const expected = { SEPTA: 2, NJ_TRANSIT: 4, LIRR: 2, AMTRAK: 150, GREYHOUND: 567, FLIXBUS: 1332 };
   for (const op of nationalOperators) {
     const records = nationalCities.flatMap(c => c.coverage).filter(r => r.marketedOperator === op);
     const summary = nationalCoverageAudit.byOperator[op];
@@ -133,8 +133,15 @@ test('each verified bus market has a successful hashed city-page observation, no
   for (const city of verifiedNationalCities) for (const record of getVerifiedOperators(city.id)) {
     if (record.marketedOperator !== 'GREYHOUND' && record.marketedOperator !== 'FLIXBUS') continue;
     const check = nationalCatalogueSources.busPageChecks.find(c => c.cityId === city.id && c.operator === record.marketedOperator && c.sourceUrl === record.sourceUrl);
-    expect(check).toMatchObject({ status: 'verified', sourceUrl: record.sourceUrl, checkedDate: record.checkedDate });
-    expect(check?.sha256).toMatch(/^[a-f0-9]{64}$/);
+    if (check) {
+      expect(check).toMatchObject({ status: 'verified', sourceUrl: record.sourceUrl, checkedDate: record.checkedDate });
+      expect(check.sha256).toMatch(/^[a-f0-9]{64}$/);
+    } else {
+      const addition = nationalEvidenceBatches[0].coverageAdditions.find(r => r.cityId === city.id && r.sourceUrl === record.sourceUrl);
+      expect(addition?.responseSha256).toMatch(/^[a-f0-9]{64}$/);
+      const attempt = nationalEvidenceBatches[0].sources.find(s => s.sourceUrl === record.sourceUrl);
+      expect(attempt).toMatchObject({ httpStatus: 200, finalUrl: record.sourceUrl, sha256: addition?.responseSha256 });
+    }
   }
   expect(nationalCatalogueSources.busPageChecks).toHaveLength(2792);
   expect(nationalCatalogueSources.busPageChecks.filter(c => c.status === 'verified')).toHaveLength(1891);

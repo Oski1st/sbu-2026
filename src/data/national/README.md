@@ -1,5 +1,15 @@
 # Nationwide candidate catalogue — checked October 24, 2026
 
+Historical population/operator audit counts and validation below describe frozen
+PR20. The current data-only batch1 overlay is documented in
+[evidence/README.md](evidence/README.md): **1,550 audit rows**, **1,374 qualified**,
+**175 unresolved**, **1 excluded**, and **1,371 distinct choices** after **three
+sourced alias links**. Raw operator/source associations total **2,057**; canonical
+market/brand/source associations total **2,053**. Neither is an independent-source
+or verified-carrier count. Consumers should use `verifiedMarketChoices` and the
+canonical market-evidence view; raw benchmark identities, snapshots and qualifiers
+remain separate. No UI migration is performed by the overlay.
+
 This is an auditable city/market directory, not nationwide routing, live service,
 verified municipal-stop coverage, or proof that every major city is served.
 Application Search migration belongs to Person 2. No legacy data, trip IDs, Search,
@@ -8,21 +18,32 @@ router, operator registry, dependencies or frozen expansion branch are modified.
 ## Consumer contract
 
 Import `nationalCities`, `verifiedNationalCities`, `getVerifiedOperators`,
-`nationalOperators`, `majorCityCandidates`, `nationalCoverageAudit` and `nationalCatalogueSources` from
+`getVerifiedMarketEvidence`, `verifiedMarketChoices`, `nationalOperators`,
+`majorCityCandidates`, `nationalCoverageAudit` and `nationalCatalogueSources` from
 `src/data/nationalCities.ts`. Exported `NationalCity`, `OperatorCoverage` and
 `MarketCoverage` types document the data shape. The six operators are the existing
 SEPTA, NJ_TRANSIT, LIRR, AMTRAK, GREYHOUND and FLIXBUS identities only.
 
 - `nationalCities`: **all 1,550 audit entries**, including unresolved and excluded
   rows. Never present this whole list as verified supported origins.
-- `verifiedNationalCities`: **1,370** entries with at least one qualified listing.
+- `verifiedNationalCities`: **1,374** current qualified audit rows (frozen PR20 had
+  **1,370**). `verifiedMarketChoices` has **1,371** distinct choices after the three
+  explicit links; population/geometry and raw IDs are not merged.
 - `majorCityCandidates`: **343** population-benchmark rows, including the explicit
   non-incorporated exception. This set is independent of Search eligibility.
 - Smaller operator-listed cities, towns, CDPs and explicitly named markets are
   eligible when verified, regardless of population. There are **1,204 additional
   directory-derived audit entries**, not a blanket population cutoff.
 - `getVerifiedOperators(id)`: verified records only, always retaining qualification,
-  evidence, date and observed stop names. Unknown IDs return an empty array.
+  evidence, date and observed stop names. This is the **raw per-row** view; unknown
+  IDs return an empty array. For canonical choices use `getVerifiedMarketEvidence(id)`,
+  which deduplicates exact brand/source associations across the explicit linked rows.
+  For example raw LexingtonKY/MaconGA rows list FlixBus only; their canonical market
+  view also includes the separately sourced Greyhound evidence on the linked row.
+  Do not infer operators from an alias or count repeated source associations twice.
+- Jersey City's new evidence is **Hudson-Bergen Light Rail**, not intercity rail or
+  coach connectivity. Consumers must retain this qualification; no UI fix or new
+  routing edge is supplied by the data overlay.
 - `auditStatus`: `verified` (at least one city-market listing), `unresolved` (no
   qualifying evidence recorded), or `excluded` (outside the stated inclusion rule).
   Unresolved does **not** mean unserved.
@@ -90,7 +111,7 @@ scope here is the population-estimates source's states/DC; territories have no
 verified operator entry and are not claimed covered by omission. Anchorage is
 present but unresolved. Hawaii's non-incorporated exception is explicitly excluded.
 
-## Operator evidence and gaps
+## Frozen PR20 operator evidence and gaps
 
 | Marketed operator | Verified city-market records | Pending eligible entries |
 | --- | ---: | ---: |
@@ -108,14 +129,18 @@ count includes unreviewed evidence; it is not an exclusion from that operator's
 actual network. See per-city entries for the complete verified/unresolved/excluded
 coverage audit. `getVerifiedOperators` never returns pending/excluded records.
 
-Bus process: independently read each operator's official US directory, match exact
+Baseline bus process: read each brand's official US directory, match exact
 normalized city+state (only St/Saint and Mt/Mount normalization; no nearby-city
 substitution), follow its actual listed city URL, and require HTTP200 at that URL
 with observed `BusStop` JSON-LD names. **2,792 city-page audit requests** were processed from the full saved US
 directories; **1,891** supplied qualifying records (1,328 FlixBus / 563 Greyhound).
 The remaining **901** stay pending: 816 request failures and 85 pages without
-structured stop data. The two brands are independent evidence sources; a successful
-FlixBus listing never verifies Greyhound membership. The
+structured stop data. The two brands share directory/stop-list source provenance;
+these are marketed-brand city-market observations, **not independent corroboration**.
+A successful FlixBus listing alone does not establish a Greyhound listing, and
+neither brand listing verifies the actual operating carrier, which stays **pending**.
+The overlay exposes the shared source family and `independentCorroboration=false`;
+see the evidence README for the audited overlap. The
 Grand Rapids MI and Columbia SC pages on both sites lacked this structured stop
 evidence and remain pending. Directory page and per-city response hashes, dates and
 outcomes are in `sources.json`; observed stop-name snapshots are in `coverage.json`.
@@ -142,7 +167,7 @@ Regional records use individually checked MTA/NJ TRANSIT/SEPTA station pages and
 SEPTA's official Trenton Line station list. Exact source URLs, checked dates, stop
 names and limits are carried on each record. No four-w SEPTA ticket URL is changed.
 
-## Actual validation
+## Historical PR20 validation
 
 On separate main-based data branch: locked install, TypeScript/Vite build and
 56 tests passed, including 11 focused catalogue tests. Census regeneration
