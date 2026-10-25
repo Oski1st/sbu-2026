@@ -2,7 +2,7 @@ import type { Agency } from '../../types/transit';
 
 export const ticketing: Record<Agency, { name: string; url: string; label: string; help: string }> = {
   SEPTA: {
-    name: 'SEPTA', url: 'https://wwww.septa.org/fares/ways-to-pay/',
+    name: 'SEPTA', url: 'https://www.septa.org/fares/ways-to-pay/',
     label: 'SEPTA payment options',
     help: 'Review the official payment options for your service. OneLine does not issue or validate tickets.',
   },
