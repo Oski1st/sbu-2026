@@ -42,5 +42,18 @@
     {"operator":"NJ TRANSIT","url":"https://developer.njtransit.com/registration/appdoc?app=GTFS-RAIL","reason":"Official GTFS portal documents registration/token access. No account, token or agreement was created; no NJ TRANSIT-branded alignment is drawn."},
     {"operator":"LIRR","url":"https://www.mta.info/stations/stony-brook","reason":"Stony Brook service confirmed on MTA's Port Jefferson station page; a permitted, validated shape is not bundled. No straight-line substitute is drawn."},
     {"operator":"Greyhound / FlixBus","url":null,"reason":"Coach operators are outside this rail layer and are never rendered as railway alignments."}
-  ]
+  ],
+  "network": {
+    "description": "OneLine's sample rail network (src/data/eastCoast.ts). Each edge is drawn only along bundled NTAD Amtrak track between its two cities' stations; track beyond our cities is not shown.",
+    "corridors": [
+      {"id":"downeaster","name":"Downeaster","edges":[["portland","boston"]]},
+      {"id":"northeast-regional","name":"Northeast Regional","edges":[["boston","providence"],["providence","new-haven"],["new-haven","new-york"],["new-york","trenton"],["trenton","philadelphia"],["philadelphia","baltimore"],["baltimore","washington"],["richmond","norfolk"]]},
+      {"id":"hartford-line","name":"Hartford Line","edges":[["hartford","new-haven"]]},
+      {"id":"empire-service","name":"Empire Service","edges":[["albany","new-york"]]},
+      {"id":"silver-meteor","name":"Silver Meteor corridor","edges":[["washington","richmond"],["richmond","fayetteville"],["fayetteville","charleston"],["charleston","savannah"],["savannah","jacksonville"],["jacksonville","orlando"],["orlando","fort-lauderdale"],["fort-lauderdale","miami"]]},
+      {"id":"carolinian","name":"Carolinian","edges":[["richmond","raleigh"],["raleigh","charlotte"]]},
+      {"id":"orlando-tampa","name":"Orlando–Tampa","edges":[["orlando","tampa"]]}
+    ]
+  },
+  "lirr": {"id":"stony-brook-lirr","cityId":"stony-brook","from":"new-york","name":"Stony Brook (LIRR Port Jefferson Branch)","longitude":-73.12851,"latitude":40.92028,"source":"https://en.wikipedia.org/wiki/Stony_Brook_station_(LIRR)","note":"Station coordinates from Wikipedia (secondary source, checked 2026-10-25). LIRR track is not in the bundled federal Amtrak data, so the New York link is a dashed schematic, not track geometry."}
 }

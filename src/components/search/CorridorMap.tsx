@@ -29,11 +29,11 @@ export function CorridorMap() {
       <header className="prm-heading">
         <p className="prm-eyebrow">CONTIGUOUS UNITED STATES</p>
         <h2 id={titleId}>Amtrak corridors.</h2>
-        <p>Selected Amtrak corridors serving our sample cities.</p>
+        <p>Where our sample trips run: Amtrak track between our 24 cities, plus the LIRR to Stony Brook.</p>
       </header>
       <div className="prm-frame">
         <svg className="prm-art" viewBox={geometry.viewBox.join(" ")} role="img" aria-labelledby={`${titleId} ${descriptionId}`}>
-          <desc id={descriptionId}>North-up geographic map of the contiguous United States. Eight selected Amtrak route alignments from the federal NTAD snapshot are drawn over state boundaries. Dots mark 26 Amtrak train stations serving 23 of the 24 sample-catalogue cities. Stony Brook's LIRR alignment is missing. This is partial rail coverage, not a timetable or a guarantee of a direct connection. Read the corridor and city list below for boarding locations and gaps.</desc>
+          <desc id={descriptionId}>North-up geographic map of the contiguous United States. Lines follow federal NTAD Amtrak track only between the cities in OneLine's sample network, from Portland, Maine to Miami, Charlotte and Tampa; track beyond our cities is not drawn. Dots mark 26 Amtrak train stations serving 23 of the 24 sample cities. A hollow marker shows Stony Brook's LIRR station, joined to New York by a dashed line because LIRR track is not in the federal data. This is the sample network, not a timetable or a guarantee of a direct connection. Read the corridor and city list below for boarding locations and gaps.</desc>
           <rect className="prm-water" width="800" height="420" rx="16" />
           <g className="prm-states">
             {geometry.boundaries.map((state) => <path key={state.name} d={state.path} />)}
@@ -41,7 +41,7 @@ export function CorridorMap() {
           <g className="prm-routes">
             {geometry.routes.map((route) => (
               <g key={route.id} data-route-id={route.id}>
-                <title>{`${route.name}: generalized rail alignment`}</title>
+                <title>{`${route.name}: Amtrak track between our sample cities`}</title>
                 {route.paths.map((path, index) => <path key={index} d={path} vectorEffect="non-scaling-stroke" />)}
               </g>
             ))}
@@ -56,6 +56,14 @@ export function CorridorMap() {
               </g>
             ))}
           </g>
+          {/* Drawn after the Amtrak markers so the LIRR ring stays visible beside New Haven and New York. */}
+          <g className="prm-lirr" data-station-code={geometry.lirr.id}>
+            <title>{`${geometry.lirr.name}: LIRR from New York; track not drawn`}</title>
+            <path className="prm-lirr-link" d={`M${geometry.lirr.schematicFrom.x},${geometry.lirr.schematicFrom.y}L${geometry.lirr.x},${geometry.lirr.y}`} vectorEffect="non-scaling-stroke" />
+            <path className="prm-station-halo" d={`M${geometry.lirr.x},${geometry.lirr.y}h0`} vectorEffect="non-scaling-stroke" />
+            <path className="prm-lirr-ring" d={`M${geometry.lirr.x},${geometry.lirr.y}h0`} vectorEffect="non-scaling-stroke" />
+            <path className="prm-lirr-hole" d={`M${geometry.lirr.x},${geometry.lirr.y}h0`} vectorEffect="non-scaling-stroke" />
+          </g>
         </svg>
         <ul className="prm-labels" aria-hidden="true">
           {mapLabels.map(({ code, text, place, wideOnly }) => {
@@ -65,8 +73,9 @@ export function CorridorMap() {
         </ul>
       </div>
       <ul className="prm-legend" aria-label="Rail map legend">
-        <li><span className="prm-line-key" aria-hidden="true" />Generalized Amtrak rail alignment</li>
+        <li><span className="prm-line-key" aria-hidden="true" />Amtrak track between our cities</li>
         <li><span className="prm-dot-key" aria-hidden="true" />Amtrak train station</li>
+        <li><span className="prm-lirr-key" aria-hidden="true" />LIRR to Stony Brook (track not drawn)</li>
         <li>North up · Albers equal-area</li>
       </ul>
       <p className="prm-note">Federal route snapshot: May 2026. Stations: October 2026. Partial coverage; confirm service and boarding details with the operator. These lines do not change the sample itineraries.</p>
@@ -75,7 +84,7 @@ export function CorridorMap() {
         <div className="prm-details-content" role="region" aria-label="Corridor, city and coverage-gap details" tabIndex={0}>
           <h3>Documented passenger corridors</h3>
           <p>Railway alignment comes from FRA/BTS NTAD. Passenger-service descriptions are checked against Amtrak's published route pages. Neither establishes a departure on your chosen date or a guaranteed transfer.</p>
-          <p>The Floridian description names Chicago, but its line here is drawn only as far as the mapped source extent. This map does not show the full Chicago corridor.</p>
+          <p>Lines stop at our last city on each route. Services that continue further, such as the Floridian to Chicago, Empire Service to Niagara Falls, the Downeaster to Brunswick and Northeast Regional trains to Roanoke, are not drawn beyond our network.</p>
           <ul className="prm-route-list">
             {audit.routes.map((route) => <li key={route.id}><a href={route.url} target="_blank" rel="noreferrer">{route.name}<span className="prm-sr-only"> (official source, opens in a new tab)</span> ↗</a><p>{route.description}</p></li>)}
           </ul>
