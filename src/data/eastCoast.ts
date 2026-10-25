@@ -57,6 +57,8 @@ type Edge = {
   from: string;
   to: string;
   minutes: number;
+  /** Opposite direction, only where the operator lists a different time. */
+  reverseMinutes?: number;
   agency: Agency;
   line: string;
 };
@@ -117,25 +119,30 @@ corridor(
 );
 corridor(rail, ["richmond", "norfolk"], [140], "Northeast Regional · sample");
 corridor(rail, ["orlando", "tampa"], [120], "Florida rail corridor · sample");
+// Penn Station to Stony Brook including the Huntington change (MTA Port Jefferson Branch
+// timetable, Sep 8-Nov 8, 2026). Sources: docs/sample-data-accuracy.md.
 corridor(
   rail,
   ["new-york", "stony-brook"],
-  [180],
+  [117],
   "LIRR connection concept · changes to confirm",
   "LIRR",
 );
 
-function busCorridor(stops: string[], minutes: number[]) {
-  stops
-    .slice(1)
-    .forEach((to, i) =>
-      bus.push({
-        from: stops[i],
-        to,
-        minutes: minutes[i],
-        line: "Intercity coach corridor · sample",
-      }),
-    );
+/** A number applies both ways; [there, back] when the operator lists different times. */
+type BusMinutes = number | [there: number, back: number];
+function busCorridor(stops: string[], minutes: BusMinutes[]) {
+  stops.slice(1).forEach((to, i) => {
+    const value = minutes[i];
+    const [there, back] = typeof value === "number" ? [value, value] : value;
+    bus.push({
+      from: stops[i],
+      to,
+      minutes: there,
+      ...(back === there ? {} : { reverseMinutes: back }),
+      line: "Intercity coach corridor · sample",
+    });
+  });
 }
 busCorridor(
   [
@@ -157,19 +164,28 @@ busCorridor(
     "fort-lauderdale",
     "miami",
   ],
-  [135, 65, 210, 90, 50, 115, 60, 130, 180, 80, 200, 115, 145, 155, 205, 55],
+  // Richmond-Raleigh and Charleston-Savannah use Greyhound's fastest listed trip each way.
+  [135, 65, 210, 90, 50, 115, 60, 130, [130, 150], 80, 200, [190, 180], 145, 155, 205, 55],
 );
 busCorridor(["boston", "hartford", "new-haven", "new-york"], [120, 55, 110]);
 busCorridor(["albany", "new-york"], [170]);
 busCorridor(["richmond", "norfolk"], [120]);
 busCorridor(["raleigh", "charlotte"], [180]);
 busCorridor(["orlando", "tampa"], [110]);
+// City-pair times from Greyhound's route pages; intermediate stops are not verified.
+busCorridor(["albany", "boston"], [[220, 200]]);
+busCorridor(["fayetteville", "savannah"], [265]);
+
+const bothWays = ({ reverseMinutes, ...edge }: Edge): Edge[] => [
+  edge,
+  { ...edge, from: edge.to, to: edge.from, minutes: reverseMinutes ?? edge.minutes },
+];
 
 /** Static concept graph export for on-demand routing; no trips computed here. */
 export function getConceptEdges(profile: "AMTRAK" | "GREYHOUND" | "FLIXBUS"): Edge[] {
   const forward: Edge[] = profile === "AMTRAK" ? rail
     : [...bus.map(edge => ({ ...edge, agency: profile })), ...rail.filter(edge => edge.agency === "LIRR")];
-  return forward.flatMap(edge => [{ ...edge }, { ...edge, from: edge.to, to: edge.from }]);
+  return forward.flatMap(bothWays);
 }
 
 /** Dijkstra on an illustrative city graph; it makes no claim about actual service availability. */
@@ -217,17 +233,7 @@ const start = Date.parse("2026-10-24T08:00:00-04:00");
 export function buildEastCoastTrips(): Trip[] {
   const trips: Trip[] = [];
   for (const profile of ["AMTRAK", "GREYHOUND", "FLIXBUS"] as const) {
-    const forward: Edge[] =
-      profile === "AMTRAK"
-        ? rail
-        : [
-            ...bus.map((edge) => ({ ...edge, agency: profile })),
-            ...rail.filter((edge) => edge.agency === "LIRR"),
-          ];
-    const edges = forward.flatMap((edge) => [
-      edge,
-      { ...edge, from: edge.to, to: edge.from },
-    ]);
+    const edges = getConceptEdges(profile);
     for (const from of cities)
       for (const to of cities) {
         if (from.id === to.id) continue;
