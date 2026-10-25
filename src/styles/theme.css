@@ -42,3 +42,17 @@
   outline: 3px solid var(--focus-ring);
   outline-offset: 2px;
 }
+
+/* shadcn-style Tooltip (Radix). Fade only, and only when motion is welcome. */
+@keyframes ui-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ui-tooltip[data-state="delayed-open"],
+  .ui-tooltip[data-state="instant-open"] {
+    animation: ui-tooltip-in 0.15s ease-out;
+  }
+}

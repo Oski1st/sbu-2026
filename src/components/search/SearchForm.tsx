@@ -9,6 +9,7 @@ import {
 import { LocationAutocomplete } from "./LocationAutocomplete";
 import { sampleLocationCatalogue, type LocationCatalogue } from "./locationCatalogue";
 import { todayInNewYork } from "../../data/searchState";
+import { IconTooltip } from "../ui/icon-tooltip";
 
 const MAX_DATE = "9999-12-31";
 
@@ -81,17 +82,19 @@ export function SearchForm({
             catalogue={catalogue}
           />
         </div>
-        <button
-          type="button"
-          className="swap-button"
-          aria-label="Swap origin and destination"
-          onClick={() => {
-            setOrigin(destination);
-            setDestination(origin);
-          }}
-        >
-          <ArrowDownUp size={17} />
-        </button>
+        <IconTooltip label="Swap origin and destination">
+          <button
+            type="button"
+            className="swap-button"
+            aria-label="Swap origin and destination"
+            onClick={() => {
+              setOrigin(destination);
+              setDestination(origin);
+            }}
+          >
+            <ArrowDownUp size={17} />
+          </button>
+        </IconTooltip>
         <div className="location-field destination-field">
           <MapPin size={19} />
           <LocationAutocomplete

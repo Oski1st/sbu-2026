@@ -31,6 +31,7 @@ import { CorridorMap } from "../components/search/CorridorMap";
 import { SearchForm } from "../components/search/SearchForm";
 import { RouteCard } from "../components/search/RouteCard";
 import { RouteComparison } from "../components/search/RouteComparison";
+import { IconTooltip } from "../components/ui/icon-tooltip";
 
 /**
  * Operators named in the sample routes, shown as plain text badges. These are
@@ -196,16 +197,18 @@ export default function SearchPage() {
           >
             Compare routes <ArrowRight size={15} />
           </button>
-          <button
-            className="compare-tray-clear"
-            onClick={() => {
-              setCompareIds([]);
-              setCompareOpen(false);
-            }}
-            aria-label="Clear comparison"
-          >
-            <X size={18} />
-          </button>
+          <IconTooltip label="Clear comparison" side="top">
+            <button
+              className="compare-tray-clear"
+              onClick={() => {
+                setCompareIds([]);
+                setCompareOpen(false);
+              }}
+              aria-label="Clear comparison"
+            >
+              <X size={18} />
+            </button>
+          </IconTooltip>
         </div>
       )}
       <div className="content-wrap">
