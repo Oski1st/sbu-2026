@@ -42,7 +42,7 @@ The app uses `BrowserRouter`, so these real paths must load `index.html` on a fr
 - `/journey`, `/journey/:tripId` (for example `/journey/regional-connection`)
 - `/wallet`, `/wallet/:tripId` (for example `/wallet/amtrak-connection`)
 - Legacy `?trip=<id>` links, which redirect client-side to the canonical path
-- Any unknown path, which shows the in-app "A little off the line" page
+- Any unknown path, which shows the in-app "Page not found" page
 
 `server/index.mjs` already handles this. A request with no file extension that sends `Accept: text/html` gets `index.html`. Missing assets (`/assets/x.js`) and unknown `/api/*` paths stay **404**, so a broken deploy fails loudly instead of returning HTML.
 

@@ -32,14 +32,14 @@ export function AppLayout() {
         </nav>
         <span className="header-note">
           <span className="little-dot" />
-          Less switching. More going.
+          Prototype · sample trips
         </span>
       </header>
       <div id="main-content" tabIndex={-1}>
         <Suspense
           fallback={
             <main className="page-loading" role="status">
-              Connecting your journey…
+              Loading…
             </main>
           }
         >
@@ -51,10 +51,10 @@ export function AppLayout() {
           <Link to="/" aria-label="OneLine home">
             <Brand />
           </Link>
-          <p>A better way there.</p>
+          <p>Trip planning across transit operators.</p>
         </div>
         <span>
-          Made for the in-between.
+          For trips with transfers.
           <br />
           <small>SBUHacks 2026 · Independent student project</small>
         </span>
@@ -63,11 +63,11 @@ export function AppLayout() {
           target="_blank"
           rel="noreferrer"
         >
-          Built together <ArrowUpRight size={16} />
+          Source on GitHub <ArrowUpRight size={16} />
         </a>
         <div className="footer-line">
           <MoveRight size={19} />
-          <span>One journey. Many connections.</span>
+          <span>Each leg of your trip on one page.</span>
           <small>Sample itineraries · Live data limited to labelled SEPTA snapshots</small>
         </div>
       </footer>

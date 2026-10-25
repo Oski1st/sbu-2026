@@ -46,7 +46,7 @@ function NavigationEffects() {
   const location = useLocation();
   const previousPath = useRef(location.pathname);
   useEffect(() => {
-    document.title = `OneLine · ${location.pathname.startsWith("/journey") ? "Your journey" : location.pathname.startsWith("/wallet") ? "Your wallet" : "A better way there"}`;
+    document.title = `OneLine · ${location.pathname.startsWith("/journey") ? "Your journey" : location.pathname.startsWith("/wallet") ? "Your wallet" : "Trip planner"}`;
     if (previousPath.current !== location.pathname) {
       previousPath.current = location.pathname;
       window.scrollTo({ top: 0 });
@@ -62,7 +62,7 @@ export default function App() {
       <Suspense
         fallback={
           <div className="page-loading" role="status">
-            Connecting your journey…
+            Loading…
           </div>
         }
       >
@@ -78,8 +78,8 @@ export default function App() {
               path="*"
               element={
                 <main className="empty-state">
-                  <h1>A little off the line.</h1>
-                  <p>Let’s get you back on track.</p>
+                  <h1>Page not found</h1>
+                  <p>There’s no OneLine page at this address.</p>
                   <Link to="/">Return to search</Link>
                 </main>
               }
