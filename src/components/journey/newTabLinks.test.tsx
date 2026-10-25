@@ -72,9 +72,8 @@ describe("P2-NEWTAB-K5 declared accessible names", () => {
     expect(sources).toHaveLength(3);
     expect(new Set(sources.map((link) => link.name)).size).toBe(sources.length);
     for (const operator of ["SEPTA", "NJ TRANSIT", "LIRR"]) expect(sources.some((link) => link.name.includes(operator))).toBe(true);
-    expect(html).toContain("Floridian description names Chicago");
-    expect(html).toContain("drawn only as far as the mapped source extent");
-    expect(html).toContain("does not show the full Chicago corridor");
+    expect(html).toContain("such as the Floridian to Chicago");
+    expect(html).toContain("are not drawn beyond our network");
   });
 
   it("covers Search plus its shared footer, including closed map details", () => {
