@@ -14,6 +14,8 @@ describe("search URL state", () => {
     const state = {
       origin: "New York",
       destination: "Washington, DC",
+      departureDate: "2026-11-03",
+      departureTime: "17:45",
       mode: "bus",
       operator: "FLIXBUS",
       order: "fastest",
@@ -22,6 +24,8 @@ describe("search URL state", () => {
     const params = writeSearchState(state);
     expect(params.get("from")).toBe("New York");
     expect(params.get("to")).toBe("Washington, DC");
+    expect(params.get("date")).toBe("2026-11-03");
+    expect(params.get("time")).toBe("17:45");
     expect(readSearchState(new URLSearchParams(params.toString()))).toEqual(
       state,
     );
@@ -42,13 +46,38 @@ describe("search URL state", () => {
       readSearchState(new URLSearchParams({ from: "x".repeat(101) })).origin,
     ).toHaveLength(100);
   });
+  it("keeps only safely formatted planning preferences in share links", () => {
+    expect(
+      readSearchState(new URLSearchParams({ date: "not-a-date", time: "27:99" })),
+    ).toMatchObject({
+      departureDate: defaultSearch.departureDate,
+      departureTime: defaultSearch.departureTime,
+    });
+  });
   it("resets supported search keys while preserving unrelated parameters", () => {
     const params = writeSearchState(
       defaultSearch,
       new URLSearchParams(
-        "from=Boston&to=Miami&mode=bus&operator=FLIXBUS&sort=fastest&amtrak=0&source=demo",
+        "from=Boston&to=Miami&date=2026-11-03&time=17%3A45&mode=bus&operator=FLIXBUS&sort=fastest&amtrak=0&source=demo",
       ),
     );
     expect(params.toString()).toBe("source=demo");
+  });
+  it("validates leap days, calendar dates and clock boundaries", () => {
+    expect(readSearchState(new URLSearchParams("date=2028-02-29&time=23%3A59"))).toMatchObject({ departureDate: "2028-02-29", departureTime: "23:59" });
+    for (const value of ["2027-02-29", "2026-02-30", "2026-13-01", "2026-00-10", "2026-10-00"]) {
+      expect(readSearchState(new URLSearchParams({ date: value })).departureDate).toBe(defaultSearch.departureDate);
+    }
+    for (const value of ["24:00", "23:60", "-1:00", "8:00"]) {
+      expect(readSearchState(new URLSearchParams({ time: value })).departureTime).toBe(defaultSearch.departureTime);
+    }
+  });
+
+  it("reconstructs different preferences for back/forward URLs even when cities match", () => {
+    const first = { ...defaultSearch, departureDate: "2026-11-01", departureTime: "09:30" };
+    const second = { ...first, departureDate: "2026-11-02", departureTime: "19:15" };
+    const urls = [first, second].map((state) => writeSearchState(state).toString());
+    expect(readSearchState(new URLSearchParams(urls[0]))).toEqual(first);
+    expect(readSearchState(new URLSearchParams(urls[1]))).toEqual(second);
   });
 });

@@ -57,7 +57,7 @@
     outline-offset: 5px;
   }
   :focus-visible {
-    outline: 3px solid #7da24b;
+    outline: 3px solid #173f35;
     outline-offset: 5px;
   }
   main:focus,
@@ -448,6 +448,12 @@
 .location-field > svg {
   color: #7b926a;
 }
+.location-field .location-autocomplete {
+  flex: 1;
+}
+.location-autocomplete [role="option"] {
+  min-height: 44px;
+}
 .location-field label {
   display: flex;
   flex-direction: column;
@@ -471,8 +477,9 @@
   border-radius: 0;
 }
 .location-field input:focus {
-  border-bottom-color: #97b47e;
-  outline: none;
+  border-bottom-color: #173f35;
+  outline: 3px solid #173f35;
+  outline-offset: 3px;
 }
 .swap-button {
   width: 32px;
@@ -511,6 +518,59 @@
   font-size: 12px;
   font-weight: 550;
   white-space: nowrap;
+}
+.date-time-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.date-time-controls label {
+  display: flex;
+  flex: 1 1 100px;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+  color: #52634e;
+  font-size: 11px;
+  font-weight: 650;
+}
+.date-time-controls input {
+  min-height: 44px;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #dfe5d9;
+  border-radius: 7px;
+  background: #fbfcf8;
+  color: #35483a;
+  font: inherit;
+  font-size: 16px;
+  padding: 4px 6px;
+}
+.date-time-controls input:focus-visible {
+  outline: 3px solid #173f35;
+  outline-offset: 2px;
+}
+.date-field small {
+  display: block;
+  max-width: 260px;
+  color: #52634e;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.date-field > div {
+  min-width: 0;
+}
+@media (max-width: 400px) {
+  .date-time-controls {
+    flex-direction: column;
+  }
+  .date-time-controls label {
+    flex: none;
+    width: 100%;
+  }
 }
 .search-button {
   display: inline-flex;
@@ -2563,3 +2623,22 @@
     gap: 16px 22px;
   }
 }
+
+/* Dated timetable search: manual date/time inputs stay readable on narrow screens. */
+.timetable-hero {padding-top:3rem;padding-bottom:1rem;max-width:1100px;margin:auto}
+.timetable-hero h1 {font-size:clamp(2.2rem,6vw,4.5rem);letter-spacing:-.05em;line-height:1.08;margin:.8rem 0 1rem}
+.timetable-hero p {max-width:50rem;line-height:1.7}
+.timetable-page .date-field {min-width:0}
+.timetable-page .date-time-controls {display:flex;gap:.6rem;flex-wrap:wrap}
+.timetable-page .date-time-controls label {flex:1 1 8rem;min-width:0}
+.timetable-page .date-time-controls input {width:100%;min-width:0;box-sizing:border-box}
+.catalogue-qualification,.timetable-station-note {line-height:1.6;font-size:.88rem;color:#526057;overflow-wrap:anywhere}
+.timetable-coverage {padding:2rem 0 3rem;line-height:1.75;border-top:1px solid #d8ded3;overflow-wrap:anywhere}
+.timetable-label {background:#e4efdf;color:#254a35}
+.scheduled-card {margin:1rem 0}
+.scheduled-card .route-time strong {font-size:1rem;line-height:1.5}
+.scheduled-card .agency-path {flex-wrap:wrap}
+.scheduled-card .agency-badge {color:#173f35}
+.scheduled-journey {max-width:1000px;padding-top:3rem;padding-bottom:3rem;line-height:1.7;overflow-wrap:anywhere}
+.scheduled-journey h1 {font-size:clamp(2rem,6vw,3.5rem);line-height:1.15;letter-spacing:-.04em;margin:1rem 0}
+@media(max-width:400px){.timetable-page .date-time-controls {display:grid;grid-template-columns:minmax(0,1fr)}.timetable-page .date-time-controls label {width:100%}.scheduled-card .route-summary {gap:.5rem}.scheduled-card .route-time strong {font-size:.85rem}.scheduled-card .route-card-title {align-items:flex-start}.scheduled-card .fare {min-width:0;max-width:7rem}}

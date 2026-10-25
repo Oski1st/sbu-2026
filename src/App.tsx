@@ -3,6 +3,8 @@ import type { ComponentType } from "react";
 import { Navigate, Link, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import SearchPage from "./pages/SearchPage";
+import TimetableSearchPage from "./pages/TimetableSearchPage";
+const ScheduledJourney = lazy(() => import("./pages/ScheduledJourneyPage"));
 import { AppLayout } from "./components/layout/AppLayout";
 import { TripProvider, useSelectedTrip } from "./components/layout/TripContext";
 import { IntegrationPage } from "./components/layout/IntegrationPage";
@@ -46,7 +48,7 @@ function NavigationEffects() {
   const location = useLocation();
   const previousPath = useRef(location.pathname);
   useEffect(() => {
-    document.title = `OneLine · ${location.pathname.startsWith("/journey") ? "Your journey" : location.pathname.startsWith("/wallet") ? "Your wallet" : "A better way there"}`;
+    document.title = `OneLine · ${(location.pathname.startsWith("/journey") || location.pathname.startsWith("/itinerary")) ? "Your journey" : location.pathname.startsWith("/wallet") ? "Your wallet" : "A better way there"}`;
     if (previousPath.current !== location.pathname) {
       previousPath.current = location.pathname;
       window.scrollTo({ top: 0 });
@@ -68,8 +70,10 @@ export default function App() {
       >
         <Routes>
           <Route element={<AppLayout />}>
-            <Route index element={<SearchPage />} />
-            <Route path="search" element={<SearchPage />} />
+            <Route index element={<TimetableSearchPage />} />
+            <Route path="demo" element={<SearchPage />} />
+            <Route path="itinerary/:id" element={<ScheduledJourney />} />
+            <Route path="search" element={<TimetableSearchPage />} />
             <Route path="journey" element={<SelectionEntry kind="journey" />} />
             <Route path="journey/:tripId" element={<Journey />} />
             <Route path="wallet" element={<SelectionEntry kind="wallet" />} />

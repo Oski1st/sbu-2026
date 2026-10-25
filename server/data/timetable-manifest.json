@@ -1,0 +1,36 @@
+{
+  "version": "8843b04b7d2ba291",
+  "schema": 1,
+  "feeds": [
+    {
+      "id": "amtrak",
+      "operator": "AMTRAK",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "sha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "checkedAt": "2026-10-25T03:48:26.433439+00:00",
+      "version": "20261024",
+      "startDate": "20261025",
+      "endDate": "20271018",
+      "skippedTrips": 0
+    },
+    {
+      "id": "lirr",
+      "operator": "LIRR",
+      "sourceUrl": "https://rrgtfsfeeds.s3.amazonaws.com/gtfslirr.zip",
+      "sha256": "11b080e1e645ce0e899bdd79f7be52adcf6c8004816a6196a916b5a18bad9f12",
+      "checkedAt": "2026-10-25T03:48:31.445161+00:00",
+      "version": "GO202_26",
+      "startDate": "20261021",
+      "endDate": "20261108",
+      "skippedTrips": 0
+    }
+  ],
+  "qualifiedChoices": 1371,
+  "placesWithTimetableStops": 151,
+  "limits": [
+    "Published timetable snapshot, not realtime delays/cancellations, ticket stock or fares.",
+    "Search next7days, at most4boardings; optimal arrival only within loaded feeds and stated transfer buffers.",
+    "No verified scheduled feed loaded for SEPTA, NJ TRANSIT, Greyhound or FlixBus; their directory presence/sample routes never fill schedule gaps.",
+    "Same-station unspecified transfers use10minute planning buffer; explicit GTFS rules take precedence. No arbitrary city/station walking links."
+  ]
+}
