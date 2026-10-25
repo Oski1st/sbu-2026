@@ -85,7 +85,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
             Leg {index + 1}
           </p>
 
-          {leg.mode === "bus" && <p className="mt-3 rounded-xl bg-slate-50 p-3 text-sm leading-6 text-slate-600"><strong>Sample coach corridor. </strong>This segment may merge several city-to-city sample stops. Intermediate stops, vehicle changes and rest breaks are not shown or verified. Confirm the full itinerary and breaks with the operator; this is not a claim of nonstop service.</p>}
+          {leg.mode === "bus" && <p className="mt-3 rounded-xl bg-base-100 p-3 text-sm leading-6 text-sage"><strong>Sample coach corridor. </strong>This segment may merge several city-to-city sample stops. Intermediate stops, vehicle changes and rest breaks are not shown or verified. Confirm the full itinerary and breaks with the operator; this is not a claim of nonstop service.</p>}
 
           <button
             ref={toggleRef}
@@ -127,7 +127,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
                   href={leg.purchaseUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-white px-3 font-bold text-base-content shadow-sm ring-1 ring-base-300 transition hover:bg-base-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-white px-3 font-bold text-base-content shadow-sm ring-1 ring-base-300 transition hover:bg-base-200 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4"
                 >
                   Get tickets from {styles.label}
                   <span className="sr-only"> for segment {index + 1}, {leg.from} to {leg.to} (opens in a new tab)</span>
