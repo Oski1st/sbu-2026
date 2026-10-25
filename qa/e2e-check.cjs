@@ -22,6 +22,8 @@ const settled = (page) =>
 const flat = (s) => s.replace(/\s+/g, " ").trim();
 
 // Buttons and links in the given scope with no accessible name, or whose text is clipped.
+// Skips controls that are neither rendered nor in the accessibility tree: content of a closed
+// <details> (summary excepted) still has a layout box in Chromium but an empty innerText.
 async function unlabelledOrClipped(page, scope = "body") {
   return page.evaluate((scope) => {
     const bad = [];
@@ -29,6 +31,9 @@ async function unlabelledOrClipped(page, scope = "body") {
       const r = el.getBoundingClientRect();
       if (!r.width || !r.height || getComputedStyle(el).visibility === "hidden") continue;
       if (el.closest(".sr-only, .ol-sr-only")) continue;
+      const closedDetails = el.closest("details:not([open])");
+      if (closedDetails && !closedDetails.querySelector(":scope > summary")?.contains(el)) continue;
+      if (!el.checkVisibility() || el.closest("[inert]")) continue;
       const name = (el.getAttribute("aria-label") || el.innerText || el.getAttribute("title") || "").trim();
       if (!name) bad.push(`unnamed <${el.tagName.toLowerCase()}> ${el.outerHTML.slice(0, 80)}`);
       else if (el.scrollWidth > el.clientWidth + 1 && getComputedStyle(el).overflow !== "visible")

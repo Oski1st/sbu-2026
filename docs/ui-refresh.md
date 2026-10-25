@@ -21,9 +21,9 @@ the native Compare `<dialog>` and native date/time inputs are unchanged.
   numbered step markers on a dashed rail (lime = current demo step, amber = simulated
   delay); larger times; daisyUI `btn`/`badge`.
 - **Toast** — shadcn Sonner: pressing *Simulate delay* also shows a short “Delay simulation on”
-  toast (RC3-UI: worded differently so #41's live region stays the single full
-  “Simulated delay” announcement); *Reset simulation*, the demo *Reset* and a trip change dismiss it;
-  no motion under `prefers-reduced-motion`.
+  toast. It is visual-only (`aria-hidden` + `inert` wrapper, no Alt+T hotkey), so #41's live
+  region is the single “Simulated delay” announcement; *Reset simulation*, the demo *Reset* and a
+  trip change dismiss it; no motion under `prefers-reduced-motion`.
 - **Tooltip** — shadcn/Radix tooltip on the icon-only swap and clear-comparison buttons,
   lazily loaded. Not on the Compare dialog close button (a portalled tooltip would sit
   under the native modal's top layer).

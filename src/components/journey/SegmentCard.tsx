@@ -48,7 +48,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
       {isDelayed && (
         <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-900">
           <span className="h-1.5 w-1.5 rounded-full bg-amber-600" aria-hidden="true" />
-          Simulated delay: +12 min
+          Simulated delay: +{SIMULATED_DELAY_MINUTES} min
         </p>
       )}
 
@@ -80,7 +80,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
               {simulatedArrival ? (
                 <span className="flex flex-col items-start sm:items-end">
                   <time dateTime={leg.arrival} aria-label={`Original sample arrival: ${displaySegmentTime(leg.arrival)}`} className="text-xs font-medium text-sage line-through">{displaySegmentTime(leg.arrival)}</time>
-                  <time dateTime={simulatedArrival} aria-label={`Simulated arrival (+12 minutes): ${displaySegmentTime(simulatedArrival)}`}>{displaySegmentTime(simulatedArrival)}</time>
+                  <time dateTime={simulatedArrival} aria-label={`Simulated arrival (+${SIMULATED_DELAY_MINUTES} minutes): ${displaySegmentTime(simulatedArrival)}`}>{displaySegmentTime(simulatedArrival)}</time>
                 </span>
               ) : <time dateTime={leg.arrival}>{displaySegmentTime(leg.arrival)}</time>}
             </div>

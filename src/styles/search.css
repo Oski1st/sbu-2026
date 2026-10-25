@@ -348,6 +348,8 @@
   font-size: 11px;
 }
 .demo-note strong {
+  /* index.css's #8a9d75 was 2.77:1 on paper; muted is 5.70:1. */
+  color: var(--ui-muted);
   font-size: 12px;
 }
 .corridor-pick {

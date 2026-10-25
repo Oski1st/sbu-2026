@@ -67,6 +67,14 @@ describe("P5D-JOURNEY33 delay feedback (J2 / F6)", () => {
     expect(html).toContain('role="status" aria-live="polite" aria-atomic="true"');
     expect(html).toContain("Simulation off");
   });
+
+  it("keeps the Sonner toast visual-only so the delay is announced once", () => {
+    const html = renderToStaticMarkup(<MemoryRouter initialEntries={["/journey/east-new-york--stony-brook--amtrak"]}><Routes><Route path="/journey/:tripId" element={<JourneyPage />} /></Routes></MemoryRouter>);
+    const toaster = html.match(/<div aria-hidden="true" inert="">(<section\b[^>]*>)/);
+    expect(toaster?.[1]).toContain('aria-live="polite"');
+    expect(toaster?.[1]).toContain('aria-label="Notifications ');
+    expect(html.match(/<section\b[^>]*aria-live=/g)).toHaveLength(1);
+  });
 });
 
 describe("Transfer and segment clarity (S4 / J3 / F8)", () => {
