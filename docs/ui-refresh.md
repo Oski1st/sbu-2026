@@ -20,8 +20,9 @@ the native Compare `<dialog>` and native date/time inputs are unchanged.
 - **Journey** — theme tokens instead of slate/emerald; ordered list of segments with
   numbered step markers on a dashed rail (lime = current demo step, amber = simulated
   delay); larger times; daisyUI `btn`/`badge`.
-- **Toast** — shadcn Sonner: pressing *Simulate delay* also shows “Simulated delay: +12 min”
-  in a polite live region (inline delay UI unchanged); *Reset simulation* dismisses it;
+- **Toast** — shadcn Sonner: pressing *Simulate delay* also shows a short “Delay simulation on”
+  toast (RC3-UI: worded differently so #41's live region stays the single full
+  “Simulated delay” announcement); *Reset simulation*, the demo *Reset* and a trip change dismiss it;
   no motion under `prefers-reduced-motion`.
 - **Tooltip** — shadcn/Radix tooltip on the icon-only swap and clear-comparison buttons,
   lazily loaded. Not on the Compare dialog close button (a portalled tooltip would sit

@@ -10,6 +10,7 @@ import { SimulationFeedback } from "../components/journey/SimulationFeedback";
 import { SegmentCard } from "../components/journey/SegmentCard";
 import { TransferAssistant } from "../components/journey/TransferAssistant";
 import { Toaster } from "../components/ui/sonner";
+import { SIMULATED_DELAY_MINUTES } from "../components/journey/journeySimulation";
 import "../styles/journey.css";
 import { agencyStyles } from "../components/journey/journeyUtils";
 import { initialJourneyDemoState, journeyStepCount, nextJourneyStep, previousJourneyStep, startJourneyDemo, stepAt } from "../components/journey/journeyProgress";
@@ -35,6 +36,7 @@ export default function JourneyPage() {
   useEffect(() => {
     setExpandedLegId(null);
     setIsDelaySimulated(false);
+    toast.dismiss("simulated-delay");
     setDemoState(initialJourneyDemoState());
   }, [tripId]);
 
@@ -49,6 +51,7 @@ export default function JourneyPage() {
   function resetJourneyExperience() {
     setExpandedLegId(null);
     setIsDelaySimulated(false);
+    toast.dismiss("simulated-delay");
     setDemoState(initialJourneyDemoState());
   }
 
@@ -102,7 +105,8 @@ export default function JourneyPage() {
               isActive={isDelaySimulated}
               onToggle={() => {
                 // The inline delay UI stays the source of truth; the toast is an extra, polite cue.
-                if (!isDelaySimulated) toast("Simulated delay: +12 min", { id: "simulated-delay", description: `${affectedLeg.line} · demo scenario, not a live alert` });
+                // Short, distinct wording: #41's live region already announces the full "Simulated delay" message once.
+                if (!isDelaySimulated) toast("Delay simulation on", { id: "simulated-delay", description: `+${SIMULATED_DELAY_MINUTES} min on ${affectedLeg.line} · demo, not a live alert` });
                 else toast.dismiss("simulated-delay");
                 setIsDelaySimulated((active) => !active);
               }}
