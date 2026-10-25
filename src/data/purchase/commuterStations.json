@@ -1,0 +1,67 @@
+{
+  "verifiedOn": "2026-10-25",
+  "SEPTA": {
+    "source": "SEPTA Trip Planner (plan.septa.org) OTP stop records SEPTA-Rail:90004 and SEPTA-Rail:90701",
+    "stations": [
+      {
+        "id": "gray-30th-street",
+        "name": "Gray 30th St Station",
+        "stopId": "SEPTA-Rail:90004",
+        "lat": 39.95667,
+        "lon": -75.18166,
+        "aliases": ["Philadelphia · 30th Street", "30th Street", "30th Street Station", "Gray 30th Street Station", "Philadelphia 30th Street", "Philadelphia"]
+      },
+      {
+        "id": "trenton",
+        "name": "Trenton Transit Center",
+        "stopId": "SEPTA-Rail:90701",
+        "lat": 40.21851,
+        "lon": -74.75393,
+        "aliases": ["Trenton", "Trenton Station"]
+      }
+    ]
+  },
+  "NJ_TRANSIT": {
+    "source": "Station codes emitted by njtransit.com/train-to (originStationCode/destinationStationCode) and accepted by webtickets.njtransit.com",
+    "stations": [
+      {
+        "id": "trenton",
+        "name": "Trenton Transit Center",
+        "code": "180",
+        "aliases": ["Trenton", "Trenton Station"]
+      },
+      {
+        "id": "ny-penn",
+        "name": "New York Penn Station",
+        "code": "0",
+        "aliases": ["NY Penn", "NY Penn Station", "Penn Station", "New York Penn", "New York"]
+      }
+    ]
+  },
+  "LIRR": {
+    "source": "LIRR station codes and fare zones from the TrainTime/MTA schedules backend (backend-unified.mylirr.org infrastructure)",
+    "stations": [
+      {
+        "id": "NYK",
+        "name": "Penn Station",
+        "code": "NYK",
+        "zone": 1,
+        "aliases": ["New York Penn Station", "NY Penn", "NY Penn Station", "New York Penn", "New York"]
+      },
+      {
+        "id": "HUN",
+        "name": "Huntington",
+        "code": "HUN",
+        "zone": 9,
+        "aliases": ["Huntington Station"]
+      },
+      {
+        "id": "BK",
+        "name": "Stony Brook",
+        "code": "BK",
+        "zone": 10,
+        "aliases": ["Stony Brook Station"]
+      }
+    ]
+  }
+}
