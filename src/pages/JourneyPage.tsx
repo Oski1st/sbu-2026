@@ -5,7 +5,7 @@ import { formatDuration } from "../data/tripUtils";
 import type { Trip } from "../types/transit";
 import { DelaySimulation } from "../components/journey/DelaySimulation";
 import { JourneyDemoControls } from "../components/journey/JourneyDemoControls";
-import { RecoveryRecommendation } from "../components/journey/RecoveryRecommendation";
+import { SimulationFeedback } from "../components/journey/SimulationFeedback";
 import { SegmentCard } from "../components/journey/SegmentCard";
 import { TransferAssistant } from "../components/journey/TransferAssistant";
 import { agencyStyles } from "../components/journey/journeyUtils";
@@ -97,8 +97,8 @@ export default function JourneyPage() {
           </div>
         )}
 
-        <div className="mt-6" aria-live="polite">
-          {isDelaySimulated && affectedConnection && <RecoveryRecommendation missedLeg={affectedConnection} finalDestination={trip.destination} />}
+        <div className="mt-6" role="status" aria-live="polite" aria-atomic="true">
+          {affectedLeg && <SimulationFeedback affectedLeg={affectedLeg} nextLeg={affectedConnection} destination={trip.destination} active={isDelaySimulated} />}
         </div>
 
         <section className="mt-8" aria-labelledby="timeline-title">

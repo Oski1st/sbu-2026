@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { Leg } from "../../types/transit";
 import { addMinutes, agencyStyles, displaySegmentTime, legDuration } from "./journeyUtils";
+import { SIMULATED_DELAY_MINUTES } from "./journeySimulation";
 
 type SegmentCardProps = {
   leg: Leg;
@@ -15,7 +16,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
   const styles = agencyStyles[leg.agency];
   const duration = legDuration(leg);
   const detailId = `segment-details-${leg.id}`;
-  const simulatedArrival = isDelayed ? addMinutes(leg.arrival, 12) : null;
+  const simulatedArrival = isDelayed ? addMinutes(leg.arrival, SIMULATED_DELAY_MINUTES) : null;
   const toggleRef = useRef<HTMLButtonElement>(null);
   const detailsRef = useRef<HTMLDivElement>(null);
   const detailsHadFocus = useRef(false);
@@ -70,7 +71,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
             </div>
             <div className={`text-left text-base font-bold tabular-nums sm:mt-5 sm:text-right ${isDelayed ? "text-amber-800" : "text-slate-900"}`}>
               {simulatedArrival ? (
-                <span className="flex flex-col items-end">
+                <span className="flex flex-col items-start sm:items-end">
                   <time dateTime={leg.arrival} aria-label={`Original sample arrival: ${displaySegmentTime(leg.arrival)}`} className="text-xs font-medium text-slate-400 line-through">{displaySegmentTime(leg.arrival)}</time>
                   <time dateTime={simulatedArrival} aria-label={`Simulated arrival (+12 minutes): ${displaySegmentTime(simulatedArrival)}`}>{displaySegmentTime(simulatedArrival)}</time>
                 </span>
@@ -83,6 +84,8 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
             <span className="mx-2 text-slate-300" aria-hidden="true">•</span>
             Journey segment {index + 1}
           </p>
+
+          {leg.mode === "bus" && <p className="mt-3 rounded-xl bg-slate-50 p-3 text-sm leading-6 text-slate-600"><strong>Sample coach corridor. </strong>This segment may merge several city-to-city sample stops. Intermediate stops, vehicle changes and rest breaks are not shown or verified. Confirm the full itinerary and breaks with the operator; this is not a claim of nonstop service.</p>}
 
           <button
             ref={toggleRef}

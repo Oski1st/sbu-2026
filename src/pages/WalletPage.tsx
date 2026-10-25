@@ -25,6 +25,7 @@ function TripWallet({ trip, septaEndpoint }: { trip: Trip; septaEndpoint?: strin
   const [checked, setChecked] = useState<Set<string>>(() => new Set());
   const completed = trip.legs.filter(leg => checked.has(leg.id)).length;
   return <>
+    <Link className="ol-button" to={`/journey/${trip.id}`}>Back to journey</Link>
     <header className="ol-header"><span className="ol-eyebrow">ONELINE / TRIP WALLET</span>
       <h1>One journey.<br />Every ticket, together.</h1>
       <p className="ol-route">{trip.origin} <span aria-hidden="true">→</span> {trip.destination}</p>
