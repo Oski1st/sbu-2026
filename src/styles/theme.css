@@ -1,0 +1,44 @@
+/* OneLine UI refresh — shared tokens and accessibility baseline.
+   Loaded after index.css so equal-specificity rules here win. Colours come from the
+   daisyUI `oneline` theme declared at the top of index.css. */
+:root {
+  --ui-forest: var(--color-primary, #173f35);
+  --ui-forest-2: var(--color-secondary, #234f3e);
+  --ui-lime: var(--color-accent, #d7ef95);
+  --ui-paper: var(--color-base-100, #f8f9f3);
+  --ui-ink: #1f3a30;
+  /* 6.0:1 on white, 5.7:1 on paper. */
+  --ui-muted: #55675b;
+  --ui-card-shadow: 0 1px 2px #173f350d, 0 12px 32px -18px #173f3540;
+  /* Focus: forest ring on light surfaces (11:1 on paper), lime ring on forest (9.3:1). */
+  --focus-ring: #173f35;
+  --muted: var(--ui-muted);
+  color: var(--ui-ink);
+}
+
+/* In the base layer (like index.css's original rule) so the programmatic-focus
+   opt-outs for main/#main-content there keep winning by specificity. */
+@layer base {
+  :focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+/* Dark surfaces switch the ring to lime so it stays ≥3:1 against the surface. */
+.site-header-bar,
+.closing-banner,
+.skip-link {
+  --focus-ring: #d7ef95;
+}
+
+/* The location inputs previously signalled focus only with a #97b47e underline
+   (2.3:1). Keep the underline but make it forest and 2px. */
+.location-field input:focus {
+  border-bottom: 2px solid var(--ui-forest);
+  margin-bottom: -1px;
+}
+.date-time-controls input:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
