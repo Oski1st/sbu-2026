@@ -1,0 +1,4440 @@
+{
+  "batchId": "catalogue-evidence-batch1",
+  "baselineSha": "d45b0d3305e154ac93c165af70ecfb6e8812f74b",
+  "checkedDate": "2026-10-24",
+  "selection": "Revised25: original deterministic missing-state/major-population selection with Peoria AZ displaced by targeted Macon/Bibb per coordinator6392514158. Not the original deterministic sample; preliminary screens retained separately.",
+  "recordLimit": 25,
+  "originalSelection": [
+    "anchorage-ak",
+    "aurora-co",
+    "henderson-nv",
+    "lexington-fayette-urban-county-ky",
+    "jersey-city-nj",
+    "north-las-vegas-nv",
+    "plano-tx",
+    "gilbert-az",
+    "chandler-az",
+    "chula-vista-ca",
+    "glendale-az",
+    "irving-tx",
+    "chesapeake-va",
+    "garland-tx",
+    "scottsdale-az",
+    "boise-city-id",
+    "frisco-tx",
+    "cape-coral-fl",
+    "hialeah-fl",
+    "fontana-ca",
+    "moreno-valley-ca",
+    "grand-prairie-tx",
+    "overland-park-ks",
+    "peoria-az",
+    "chattanooga-tn"
+  ],
+  "revisedSelection": [
+    "anchorage-ak",
+    "aurora-co",
+    "henderson-nv",
+    "lexington-fayette-urban-county-ky",
+    "jersey-city-nj",
+    "north-las-vegas-nv",
+    "plano-tx",
+    "gilbert-az",
+    "chandler-az",
+    "chula-vista-ca",
+    "glendale-az",
+    "irving-tx",
+    "chesapeake-va",
+    "garland-tx",
+    "scottsdale-az",
+    "boise-city-id",
+    "frisco-tx",
+    "cape-coral-fl",
+    "hialeah-fl",
+    "fontana-ca",
+    "moreno-valley-ca",
+    "grand-prairie-tx",
+    "overland-park-ks",
+    "chattanooga-tn",
+    "macon-bibb-county-ga"
+  ],
+  "selectionRevision": {
+    "coordinatorComment": 6392514158,
+    "displacedCityId": "peoria-az",
+    "addedCityId": "macon-bibb-county-ga",
+    "reason": "Prioritize explicit P4-19 C2 naming finding within25, preserve prior screens separately."
+  },
+  "preliminaryScreening": [
+    {
+      "cityId": "peoria-az",
+      "status": "pending-next-batch",
+      "reason": "Coordinator6392514158 prioritizes explicit Macon/Bibb finding instead; only two saved-directory exact-label screens completed, no individual source request or substantive investigation.",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot"
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot"
+        }
+      ]
+    }
+  ],
+  "selectedCount": 25,
+  "sources": [
+    {
+      "key": "flix-directory",
+      "sourceUrl": "https://www.flixbus.com/bus/united-states",
+      "finalUrl": "https://www.flixbus.com/bus/united-states",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:25.339331+00:00",
+      "sha256": "15c7454fbdf779caba0c555964bc124da945576869c1375b61a93d5922ac36fb",
+      "bytes": 425700
+    },
+    {
+      "key": "grey-directory",
+      "sourceUrl": "https://www.greyhound.com/bus/united-states",
+      "finalUrl": "https://www.greyhound.com/bus/united-states",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:25.568616+00:00",
+      "sha256": "935822d83ce91b09581aacf2b1e62db46b866abed3e4ea04cdef01fd161c9225",
+      "bytes": 409432
+    },
+    {
+      "key": "grey-stops",
+      "sourceUrl": "https://www.greyhound.com/bus-stops",
+      "finalUrl": "https://www.greyhound.com/bus-stops",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:25.956287+00:00",
+      "sha256": "11038dcfedc74ac3e77dc691de844d6c5593870044999caf2f3e3121584e78e4",
+      "bytes": 110174
+    },
+    {
+      "key": "njt-jersey",
+      "sourceUrl": "https://www.njtransit.com/station/west-side-avenue-station",
+      "finalUrl": "https://www.njtransit.com/station/west-side-avenue-station",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:26.672240+00:00",
+      "sha256": "c3c68f552d45f4f9cb6b832ff4be9cb54509bc11146a5ca3d514936b7e9be761",
+      "bytes": 977333
+    },
+    {
+      "key": "flix-boise",
+      "sourceUrl": "https://www.flixbus.com/bus/boise-id",
+      "finalUrl": "https://www.flixbus.com/bus/boise-id",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:26.788693+00:00",
+      "sha256": "d509637260c9b5856cc3ac4201226a4743a8aa64725764f13ff698165612ca0f",
+      "bytes": 201058
+    },
+    {
+      "key": "flix-lexington",
+      "sourceUrl": "https://www.flixbus.com/bus/lexington-ky",
+      "finalUrl": "https://www.flixbus.com/bus/lexington-ky",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:26.904279+00:00",
+      "sha256": "ab69a2940b0712cf4b5d030ab522b77650a0b5cfaec484107e395f2656d493cd",
+      "bytes": 192379
+    },
+    {
+      "key": "grey-boise",
+      "sourceUrl": "https://www.greyhound.com/bus/boise-id",
+      "finalUrl": "https://www.greyhound.com/bus/boise-id",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:27.084297+00:00",
+      "sha256": "b8382e4d4f5fd13a6c89bbadae2853bb1211f5397825c45aea0ebea6502c2c19",
+      "bytes": 400375
+    },
+    {
+      "key": "grey-lexington",
+      "sourceUrl": "https://www.greyhound.com/bus/lexington-ky",
+      "finalUrl": "https://www.greyhound.com/bus/lexington-ky",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:27.605853+00:00",
+      "sha256": "1170af147a841e232fd086ccf69db8bc82afc2183a9d6afee3d3c37e167dd6e5",
+      "bytes": 522113
+    },
+    {
+      "key": "boise-name",
+      "sourceUrl": "https://www.cityofboise.org/media/11556/fy19_annual_report.pdf",
+      "finalUrl": "https://www.cityofboise.org/media/11556/fy19_annual_report.pdf",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:29.262748+00:00",
+      "sha256": "b0cb05eeeb24d60edd5b136e2fb86952a4008dc5e19ac1c02ec95e58e8180027",
+      "bytes": 10663870
+    },
+    {
+      "key": "lexington-name",
+      "sourceUrl": "https://www.lexingtonky.gov/",
+      "finalUrl": "https://www.lexingtonky.gov/",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:29.788800+00:00",
+      "sha256": "a3d02c444e2985023f50acb8b50cfaed51100e21991e87fcfb369cbe4e5b1bbd",
+      "bytes": 71003
+    },
+    {
+      "key": "grey-chattanooga",
+      "sourceUrl": "https://www.greyhound.com/bus/chattanooga-tn/chattanooga-bus-station",
+      "finalUrl": "https://www.greyhound.com/bus",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:18:30.187620+00:00",
+      "sha256": "ef8fb6a60fca7ac263a426f10aafe9f4917dbf328ee0ff06e1871f67b7ef88e4",
+      "bytes": 508034
+    },
+    {
+      "key": "macon-name",
+      "sourceUrl": "https://www.maconbibb.us/",
+      "finalUrl": "https://www.maconbibb.us/",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:27.605510+00:00",
+      "sha256": "7df593c3114f9d975d5049e36dacbae50c53b2939f526d7274cf725c61a33187",
+      "bytes": 90235
+    },
+    {
+      "key": "flix-macon",
+      "sourceUrl": "https://www.flixbus.com/bus/macon-ga",
+      "finalUrl": "https://www.flixbus.com/bus/macon-ga",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:28.557751+00:00",
+      "sha256": "9084b98efe4b81b37cdea3cb98554f2f08c8542f2ed67a63b6865d9b8dbc9282",
+      "bytes": 227444
+    },
+    {
+      "key": "grey-macon",
+      "sourceUrl": "https://www.greyhound.com/bus/macon-ga",
+      "finalUrl": "https://www.greyhound.com/bus/macon-ga",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:28.802346+00:00",
+      "sha256": "e8541099606466d58377bc169967c8a22b74223910190966b734f32248d0e985",
+      "bytes": 458229
+    },
+    {
+      "key": "flix-dc",
+      "sourceUrl": "https://www.flixbus.com/bus/washington-dc",
+      "finalUrl": "https://www.flixbus.com/bus/washington-dc",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:29.222428+00:00",
+      "sha256": "d57e62d7bf096f8345257f0beb5c5662ef4ea200bfac4f4bcd900501951ed6b6",
+      "bytes": 449715
+    },
+    {
+      "key": "grey-dc",
+      "sourceUrl": "https://www.greyhound.com/bus/washington-dc",
+      "finalUrl": "https://www.greyhound.com/bus/washington-dc",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:29.406779+00:00",
+      "sha256": "c5203f413f0a269b550423b9b940343be1d01a8d4a1bcfd923ade16485aaabbd",
+      "bytes": 762242
+    },
+    {
+      "key": "amtrak-nyp",
+      "sourceUrl": "https://www.amtrak.com/stations/nyp",
+      "finalUrl": "https://www.amtrak.com/stations/nyp",
+      "httpStatus": 403,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:29.548105+00:00",
+      "sha256": "b31732a7f279b23f88186e6b75c26f66a6f79c7217ddc6d50aa46c30d01f9df4",
+      "bytes": 1904
+    },
+    {
+      "key": "nyp-identity",
+      "sourceUrl": "https://www.greatamericanstations.com/stations/new-york-penn-station-ny-nyp/",
+      "finalUrl": "https://www.greatamericanstations.com/stations/new-york-penn-station-ny-nyp/",
+      "httpStatus": 200,
+      "curlExit": 0,
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:29.707782+00:00",
+      "sha256": "a27e20a09a5baf80822c6fde24886ca917d4a159cdb333119e6112df831cfb10",
+      "bytes": 136251
+    }
+  ],
+  "baselineFileSha256": {
+    "candidates.json": "0fce5524ecabd315a0579c11cbe416055d13bba6af3572e11af425b3f1f3b1af",
+    "operatorPlaces.json": "69b4832797066407b37cf497c3d83b43da4229498aac194033f4361a48dc6d2b",
+    "coverage.json": "6f7708f8904d37d4ab6e73e94c9780347f3929979f41e383e0a50c4603f64960",
+    "sources.json": "825c67cda828207b9d62cf5c3da06ea7a3bfbfeaf816d73e8a662aa364fc4d5f"
+  },
+  "fieldAudit": {
+    "qualifiedRecordsChecked": 2047,
+    "requiredFields": [
+      "status",
+      "marketedOperator",
+      "qualification",
+      "sourceUrl",
+      "evidenceUrl",
+      "checkedDate",
+      "stops",
+      "municipalCoverage",
+      "operatingCarrier",
+      "note"
+    ],
+    "missingRequiredFields": [],
+    "municipalCoveragePending": 2047,
+    "operatingCarrierPending": 2047,
+    "note": "Pending municipal/carrier details are explicit unknowns, not missing required city-market fields."
+  },
+  "summary": {
+    "totalAuditRows": 1550,
+    "beforeQualifiedAuditRows": 1370,
+    "afterQualifiedAuditRows": 1374,
+    "beforeUnresolved": 179,
+    "afterUnresolved": 175,
+    "excluded": 1,
+    "resolvedRows": 4,
+    "aliasResolvedRows": 3,
+    "newDistinctNamedMarkets": 1,
+    "afterDistinctVerifiedMarkets": 1371,
+    "rawOperatorRecordsBefore": 2047,
+    "rawOperatorRecordsAfter": 2057,
+    "distinctOperatorEvidenceBefore": 2047,
+    "distinctOperatorEvidenceAfter": 2053
+  },
+  "records": [
+    {
+      "cityId": "anchorage-ak",
+      "name": "Anchorage",
+      "state": "AK",
+      "population": 287155,
+      "priority": "missing-state",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "Missing verified AK coverage remains unresolved. Neither bus directory provides an exact Anchorage listing; no unsupported Alaska operator added or inference of no service."
+    },
+    {
+      "cityId": "aurora-co",
+      "name": "Aurora",
+      "state": "CO",
+      "population": 410053,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "henderson-nv",
+      "name": "Henderson",
+      "state": "NV",
+      "population": 353289,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "lexington-fayette-urban-county-ky",
+      "name": "Lexington-Fayette urban county",
+      "state": "KY",
+      "population": 329751,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "verified",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "flix-lexington",
+          "result": "qualifying-named-market-evidence",
+          "observedStops": [
+            "Lexington Bus Stop"
+          ]
+        },
+        {
+          "sourceKey": "grey-lexington",
+          "result": "qualifying-named-market-evidence",
+          "observedStops": [
+            "Lexington Bus Stop"
+          ]
+        },
+        {
+          "sourceKey": "lexington-name",
+          "result": "official-name-crosswalk",
+          "note": "City homepage identifies Lexington-Fayette Urban County Government and Lexington KY."
+        }
+      ],
+      "reason": "Resolved qualified audit-row association only; explicit alias links preserve distinct market counting. New verified operator observations do not establish municipal service or connections."
+    },
+    {
+      "cityId": "jersey-city-nj",
+      "name": "Jersey City",
+      "state": "NJ",
+      "population": 302013,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "verified",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "njt-jersey",
+          "result": "qualifying-named-market-evidence",
+          "observedStops": [
+            "West Side Avenue Station"
+          ]
+        }
+      ],
+      "reason": "Official NJ TRANSIT West Side Avenue listing names Jersey City NJ and Hudson-Bergen Light Rail; new named market only, not an intercity connection or municipal-boundary proof."
+    },
+    {
+      "cityId": "north-las-vegas-nv",
+      "name": "North Las Vegas",
+      "state": "NV",
+      "population": 296653,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "plano-tx",
+      "name": "Plano",
+      "state": "TX",
+      "population": 293028,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "gilbert-az",
+      "name": "Gilbert",
+      "state": "AZ",
+      "population": 287285,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "chandler-az",
+      "name": "Chandler",
+      "state": "AZ",
+      "population": 278748,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "chula-vista-ca",
+      "name": "Chula Vista",
+      "state": "CA",
+      "population": 275533,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "glendale-az",
+      "name": "Glendale",
+      "state": "AZ",
+      "population": 260572,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-stops",
+          "result": "different-market",
+          "observedStops": [
+            "Phoenix Glendale Bus Stop, Phoenix, AZ"
+          ],
+          "note": "Operator labels the market Phoenix, not Glendale; stop name alone cannot establish Glendale city-market membership."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "irving-tx",
+      "name": "Irving",
+      "state": "TX",
+      "population": 257076,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "chesapeake-va",
+      "name": "Chesapeake",
+      "state": "VA",
+      "population": 255332,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "garland-tx",
+      "name": "Garland",
+      "state": "TX",
+      "population": 249625,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "scottsdale-az",
+      "name": "Scottsdale",
+      "state": "AZ",
+      "population": 243006,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "boise-city-id",
+      "name": "Boise City",
+      "state": "ID",
+      "population": 238429,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "verified",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "flix-boise",
+          "result": "qualifying-named-market-evidence",
+          "observedStops": [
+            "Boise (Chevron)",
+            "Boise Airport"
+          ]
+        },
+        {
+          "sourceKey": "grey-boise",
+          "result": "qualifying-named-market-evidence",
+          "observedStops": [
+            "Boise (Chevron)",
+            "Boise Airport"
+          ]
+        },
+        {
+          "sourceKey": "boise-name",
+          "result": "official-name-crosswalk",
+          "note": "City of Boise report page16 uses Boise City; relation is named-market only."
+        }
+      ],
+      "reason": "Resolved qualified audit-row association only; explicit alias links preserve distinct market counting. New verified operator observations do not establish municipal service or connections."
+    },
+    {
+      "cityId": "frisco-tx",
+      "name": "Frisco",
+      "state": "TX",
+      "population": 236955,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "cape-coral-fl",
+      "name": "Cape Coral",
+      "state": "FL",
+      "population": 236264,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "hialeah-fl",
+      "name": "Hialeah",
+      "state": "FL",
+      "population": 230968,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "fontana-ca",
+      "name": "Fontana",
+      "state": "CA",
+      "population": 221223,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "moreno-valley-ca",
+      "name": "Moreno Valley",
+      "state": "CA",
+      "population": 214263,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "grand-prairie-tx",
+      "name": "Grand Prairie",
+      "state": "TX",
+      "population": 209434,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "overland-park-ks",
+      "name": "Overland Park",
+      "state": "KS",
+      "population": 203677,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        }
+      ],
+      "reason": "No qualifying exact named-market/station evidence established within this bounded two-directory review; other supported-operator possibilities remain unreviewed, not unserved."
+    },
+    {
+      "cityId": "chattanooga-tn",
+      "name": "Chattanooga",
+      "state": "TN",
+      "population": 194144,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "unresolved",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-stops",
+          "result": "directory-detail-conflict",
+          "observedStops": [
+            "Chattanooga Bus Station, Chattanooga, TN"
+          ]
+        },
+        {
+          "sourceKey": "grey-chattanooga",
+          "result": "redirect-to-generic-index",
+          "note": "Named detail link redirects to general /bus index without stop evidence. Current status uncertain; do not promote or call unserved."
+        }
+      ],
+      "reason": "Official popular-stop listing and redirected detail disagree; remains unresolved rather than accepting potentially stale named-stop evidence."
+    },
+    {
+      "cityId": "macon-bibb-county-ga",
+      "name": "Macon-Bibb County",
+      "state": "GA",
+      "population": 157556,
+      "priority": "major-population",
+      "before": "unresolved",
+      "after": "verified",
+      "attempts": [
+        {
+          "sourceKey": "flix-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "grey-directory",
+          "result": "no-exact-listing-in-snapshot",
+          "matches": [],
+          "note": "Absence in this directory is not proof of no service; no nearby/metro substitution."
+        },
+        {
+          "sourceKey": "flix-macon",
+          "result": "qualifying-named-market-evidence",
+          "observedStops": [
+            "Macon Bus Station"
+          ]
+        },
+        {
+          "sourceKey": "grey-macon",
+          "result": "qualifying-named-market-evidence",
+          "observedStops": [
+            "Macon Bus Station"
+          ]
+        },
+        {
+          "sourceKey": "macon-name",
+          "result": "official-name-crosswalk",
+          "note": "Official Macon-Bibb government homepage identifies Macon GA; name-market identity only."
+        }
+      ],
+      "reason": "Resolved qualified audit-row association only; explicit alias links preserve distinct market counting. New verified operator observations do not establish municipal service or connections."
+    }
+  ],
+  "coverageAdditions": [
+    {
+      "cityId": "boise-city-id",
+      "status": "verified",
+      "marketedOperator": "FLIXBUS",
+      "qualification": "city-market",
+      "sourceUrl": "https://www.flixbus.com/bus/boise-id",
+      "evidenceUrl": "https://www.flixbus.com/bus/boise-id",
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:26.788693+00:00",
+      "responseSha256": "d509637260c9b5856cc3ac4201226a4743a8aa64725764f13ff698165612ca0f",
+      "stops": [
+        "Boise (Chevron)",
+        "Boise Airport"
+      ],
+      "municipalCoverage": "pending",
+      "operatingCarrier": "pending",
+      "note": "Batch1 official named-market/station observation. See explicit sameMarketAsCityId relation where present; no municipal-boundary, carrier, availability or connection verification."
+    },
+    {
+      "cityId": "boise-city-id",
+      "status": "verified",
+      "marketedOperator": "GREYHOUND",
+      "qualification": "city-market",
+      "sourceUrl": "https://www.greyhound.com/bus/boise-id",
+      "evidenceUrl": "https://www.greyhound.com/bus/boise-id",
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:27.084297+00:00",
+      "responseSha256": "b8382e4d4f5fd13a6c89bbadae2853bb1211f5397825c45aea0ebea6502c2c19",
+      "stops": [
+        "Boise (Chevron)",
+        "Boise Airport"
+      ],
+      "municipalCoverage": "pending",
+      "operatingCarrier": "pending",
+      "note": "Batch1 official named-market/station observation. See explicit sameMarketAsCityId relation where present; no municipal-boundary, carrier, availability or connection verification."
+    },
+    {
+      "cityId": "lexington-fayette-urban-county-ky",
+      "status": "verified",
+      "marketedOperator": "FLIXBUS",
+      "qualification": "city-market",
+      "sourceUrl": "https://www.flixbus.com/bus/lexington-ky",
+      "evidenceUrl": "https://www.flixbus.com/bus/lexington-ky",
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:26.904279+00:00",
+      "responseSha256": "ab69a2940b0712cf4b5d030ab522b77650a0b5cfaec484107e395f2656d493cd",
+      "stops": [
+        "Lexington Bus Stop"
+      ],
+      "municipalCoverage": "pending",
+      "operatingCarrier": "pending",
+      "note": "Batch1 official named-market/station observation. See explicit sameMarketAsCityId relation where present; no municipal-boundary, carrier, availability or connection verification."
+    },
+    {
+      "cityId": "lexington-fayette-urban-county-ky",
+      "status": "verified",
+      "marketedOperator": "GREYHOUND",
+      "qualification": "city-market",
+      "sourceUrl": "https://www.greyhound.com/bus/lexington-ky",
+      "evidenceUrl": "https://www.greyhound.com/bus/lexington-ky",
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:27.605853+00:00",
+      "responseSha256": "1170af147a841e232fd086ccf69db8bc82afc2183a9d6afee3d3c37e167dd6e5",
+      "stops": [
+        "Lexington Bus Stop"
+      ],
+      "municipalCoverage": "pending",
+      "operatingCarrier": "pending",
+      "note": "Batch1 official named-market/station observation. See explicit sameMarketAsCityId relation where present; no municipal-boundary, carrier, availability or connection verification."
+    },
+    {
+      "cityId": "jersey-city-nj",
+      "status": "verified",
+      "marketedOperator": "NJ_TRANSIT",
+      "qualification": "city-market",
+      "sourceUrl": "https://www.njtransit.com/station/west-side-avenue-station",
+      "evidenceUrl": "https://www.njtransit.com/station/west-side-avenue-station",
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:17:26.672240+00:00",
+      "responseSha256": "c3c68f552d45f4f9cb6b832ff4be9cb54509bc11146a5ca3d514936b7e9be761",
+      "stops": [
+        "West Side Avenue Station"
+      ],
+      "municipalCoverage": "pending",
+      "operatingCarrier": "pending",
+      "note": "Batch1 official named-market/station observation. See explicit sameMarketAsCityId relation where present; no municipal-boundary, carrier, availability or connection verification. Official station lists Hudson-Bergen Light Rail, not an inferred intercity rail or coach connection."
+    },
+    {
+      "cityId": "macon-bibb-county-ga",
+      "status": "verified",
+      "marketedOperator": "FLIXBUS",
+      "qualification": "city-market",
+      "sourceUrl": "https://www.flixbus.com/bus/macon-ga",
+      "evidenceUrl": "https://www.flixbus.com/bus/macon-ga",
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:28.557751+00:00",
+      "responseSha256": "9084b98efe4b81b37cdea3cb98554f2f08c8542f2ed67a63b6865d9b8dbc9282",
+      "stops": [
+        "Macon Bus Station"
+      ],
+      "municipalCoverage": "pending",
+      "operatingCarrier": "pending",
+      "note": "Batch1 official named-market/station observation. See explicit sameMarketAsCityId relation where present; no municipal-boundary, carrier, availability or connection verification."
+    },
+    {
+      "cityId": "macon-bibb-county-ga",
+      "status": "verified",
+      "marketedOperator": "GREYHOUND",
+      "qualification": "city-market",
+      "sourceUrl": "https://www.greyhound.com/bus/macon-ga",
+      "evidenceUrl": "https://www.greyhound.com/bus/macon-ga",
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:28.802346+00:00",
+      "responseSha256": "e8541099606466d58377bc169967c8a22b74223910190966b734f32248d0e985",
+      "stops": [
+        "Macon Bus Station"
+      ],
+      "municipalCoverage": "pending",
+      "operatingCarrier": "pending",
+      "note": "Batch1 official named-market/station observation. See explicit sameMarketAsCityId relation where present; no municipal-boundary, carrier, availability or connection verification."
+    },
+    {
+      "cityId": "washington",
+      "status": "verified",
+      "marketedOperator": "FLIXBUS",
+      "qualification": "city-market",
+      "sourceUrl": "https://www.flixbus.com/bus/washington-dc",
+      "evidenceUrl": "https://www.flixbus.com/bus/washington-dc",
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:29.222428+00:00",
+      "responseSha256": "d57e62d7bf096f8345257f0beb5c5662ef4ea200bfac4f4bcd900501951ed6b6",
+      "stops": [
+        "Arlington (Rosslyn)",
+        "Bethesda",
+        "Washington DC (Dupont Circle)",
+        "Washington DC (Union Station)"
+      ],
+      "municipalCoverage": "pending",
+      "operatingCarrier": "pending",
+      "note": "Batch1 official named-market/station observation. See explicit sameMarketAsCityId relation where present; no municipal-boundary, carrier, availability or connection verification."
+    },
+    {
+      "cityId": "washington",
+      "status": "verified",
+      "marketedOperator": "GREYHOUND",
+      "qualification": "city-market",
+      "sourceUrl": "https://www.greyhound.com/bus/washington-dc",
+      "evidenceUrl": "https://www.greyhound.com/bus/washington-dc",
+      "checkedDate": "2026-10-24",
+      "checkedAt": "2026-10-25T02:36:29.406779+00:00",
+      "responseSha256": "c5203f413f0a269b550423b9b940343be1d01a8d4a1bcfd923ade16485aaabbd",
+      "stops": [
+        "Arlington (Rosslyn)",
+        "Bethesda",
+        "Washington DC (Dupont Circle)",
+        "Washington DC (Union Station)"
+      ],
+      "municipalCoverage": "pending",
+      "operatingCarrier": "pending",
+      "note": "Batch1 official named-market/station observation. See explicit sameMarketAsCityId relation where present; no municipal-boundary, carrier, availability or connection verification."
+    },
+    {
+      "cityId": "new-york",
+      "status": "verified",
+      "marketedOperator": "AMTRAK",
+      "qualification": "city-market",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "evidenceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "additionalSourceUrls": [
+        "https://www.greatamericanstations.com/stations/new-york-penn-station-ny-nyp/"
+      ],
+      "checkedDate": "2026-10-24",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "stops": [
+        "Ny Moynihan Train Hall At Penn Station"
+      ],
+      "municipalCoverage": "pending",
+      "operatingCarrier": "pending",
+      "note": "Explicit NYC/NYP identity from official Amtrak Great American Stations page and exact GTFS stop ID NYP. Feed version20261024 starts2026-10-25, not current-service, ticket, boarding-stop equivalence or connection proof. Direct amtrak.com station request403 retained as failed attempt."
+    }
+  ],
+  "marketRelations": [
+    {
+      "cityId": "macon-bibb-county-ga",
+      "sameMarketAsCityId": "macon-ga",
+      "qualification": "named-city-market-alias",
+      "checkedDate": "2026-10-24",
+      "sourceUrls": [
+        "https://www.maconbibb.us/",
+        "https://www.flixbus.com/bus/macon-ga"
+      ],
+      "observation": "Official Macon-Bibb County government homepage identifies its Macon GA address; operator page names Macon GA.",
+      "note": "Same named market only, not equal city/county boundaries, boarding stops, actual carrier or connections."
+    },
+    {
+      "cityId": "boise-city-id",
+      "sameMarketAsCityId": "boise-id",
+      "qualification": "named-city-market-alias",
+      "checkedDate": "2026-10-24",
+      "sourceUrls": [
+        "https://www.cityofboise.org/media/11556/fy19_annual_report.pdf",
+        "https://www.flixbus.com/bus/boise-id"
+      ],
+      "observation": "Official City of Boise FY2019 report, page16, uses Boise City; current operator page names Boise ID.",
+      "note": "Same-state named-market identity only, not equal municipal boundaries, stops, carrier or connections."
+    },
+    {
+      "cityId": "lexington-fayette-urban-county-ky",
+      "sameMarketAsCityId": "lexington-ky",
+      "qualification": "named-city-market-alias",
+      "checkedDate": "2026-10-24",
+      "sourceUrls": [
+        "https://www.lexingtonky.gov/",
+        "https://www.flixbus.com/bus/lexington-ky"
+      ],
+      "observation": "Official Lexington homepage identifies Lexington-Fayette Urban County Government and Lexington KY.",
+      "note": "Named-market identity; no claim every part of the consolidated area shares a boarding stop or route."
+    }
+  ],
+  "matchingRepairs": [
+    {
+      "finding": "C1",
+      "cityId": "washington",
+      "directoryLabel": "Washington, D.C.",
+      "normalizedState": "DC",
+      "sourceKeys": [
+        "flix-dc",
+        "grey-dc"
+      ],
+      "scope": "Already-qualified market; two new brand/source observations, not new service."
+    },
+    {
+      "finding": "C4",
+      "cityId": "new-york",
+      "stopId": "NYP",
+      "stopName": "Ny Moynihan Train Hall At Penn Station",
+      "sourceKeys": [
+        "nyp-identity",
+        "amtrak-nyp"
+      ],
+      "scope": "Already-qualified market; exact sourced station identity only, direct station403 retained."
+    }
+  ],
+  "reusedSources": [
+    {
+      "url": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "sha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "use": "Stop names/URLs only, never schedules or current service availability.",
+      "checkedDate": "2026-10-24",
+      "retrieval": "Reused frozen successfully retrieved official snapshot; local hash revalidated, no new feed request."
+    }
+  ],
+  "modeEvidence": [
+    {
+      "cityId": "albany",
+      "stopIds": [
+        "ALB"
+      ],
+      "routeIds": [
+        "36921",
+        "36949",
+        "68",
+        "81",
+        "95"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "albuquerque-nm",
+      "stopIds": [
+        "ABQ"
+      ],
+      "routeIds": [
+        "51"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "alexandria-va",
+      "stopIds": [
+        "ALX"
+      ],
+      "routeIds": [
+        "36923",
+        "42947",
+        "42994",
+        "58",
+        "69",
+        "85",
+        "88"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "anaheim-ca",
+      "stopIds": [
+        "ANA"
+      ],
+      "routeIds": [
+        "42954",
+        "78"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "ann-arbor-mi",
+      "stopIds": [
+        "ARB"
+      ],
+      "routeIds": [
+        "41080",
+        "42954",
+        "80"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "atlanta-ga",
+      "stopIds": [
+        "ATL"
+      ],
+      "routeIds": [
+        "36923"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "austin-tx",
+      "stopIds": [
+        "AUS"
+      ],
+      "routeIds": [
+        "87"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "bakersfield-ca",
+      "stopIds": [
+        "BFD"
+      ],
+      "routeIds": [
+        "42896",
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "baltimore",
+      "stopIds": [
+        "BAL"
+      ],
+      "routeIds": [
+        "36923",
+        "40751",
+        "42947",
+        "42985",
+        "58",
+        "69",
+        "85",
+        "88",
+        "90"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "beaumont-tx",
+      "stopIds": [
+        "BMT"
+      ],
+      "routeIds": [
+        "36930"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "berkeley-ca",
+      "stopIds": [
+        "BKY"
+      ],
+      "routeIds": [
+        "84"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "birmingham-al",
+      "stopIds": [
+        "BHM"
+      ],
+      "routeIds": [
+        "36923"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "boston",
+      "stopIds": [
+        "BBY",
+        "BON",
+        "BOS"
+      ],
+      "routeIds": [
+        "40751",
+        "61",
+        "81",
+        "88"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "bridgeport-ct",
+      "stopIds": [
+        "BRP"
+      ],
+      "routeIds": [
+        "42948",
+        "88",
+        "90"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "buffalo-ny",
+      "stopIds": [
+        "BFX",
+        "BUF"
+      ],
+      "routeIds": [
+        "36921",
+        "68",
+        "81"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "burbank-ca",
+      "stopIds": [
+        "BBK",
+        "BUR"
+      ],
+      "routeIds": [
+        "36924",
+        "42954",
+        "78"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "cary-nc",
+      "stopIds": [
+        "CYN"
+      ],
+      "routeIds": [
+        "42994",
+        "79",
+        "85"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "charleston",
+      "stopIds": [
+        "CHS"
+      ],
+      "routeIds": [
+        "42947",
+        "69"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "charlotte",
+      "stopIds": [
+        "CLT"
+      ],
+      "routeIds": [
+        "36923",
+        "79",
+        "85"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "chicago-il",
+      "stopIds": [
+        "CHI"
+      ],
+      "routeIds": [
+        "36926",
+        "41080",
+        "42946",
+        "42951",
+        "42956",
+        "42957",
+        "42991",
+        "42994",
+        "51",
+        "54",
+        "55",
+        "56",
+        "58",
+        "63",
+        "72",
+        "75",
+        "80",
+        "81",
+        "87",
+        "96"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "chico-ca",
+      "stopIds": [
+        "CIC"
+      ],
+      "routeIds": [
+        "36924",
+        "42954"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "cincinnati-oh",
+      "stopIds": [
+        "CIN"
+      ],
+      "routeIds": [
+        "58"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "cleveland-oh",
+      "stopIds": [
+        "CLE"
+      ],
+      "routeIds": [
+        "42994",
+        "81"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "columbia-sc",
+      "stopIds": [
+        "CLB"
+      ],
+      "routeIds": [
+        "42994"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "dallas-tx",
+      "stopIds": [
+        "DAL"
+      ],
+      "routeIds": [
+        "87"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "dearborn-mi",
+      "stopIds": [
+        "DER"
+      ],
+      "routeIds": [
+        "41080",
+        "42954",
+        "80"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "denver-co",
+      "stopIds": [
+        "DEN"
+      ],
+      "routeIds": [
+        "96"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "detroit-mi",
+      "stopIds": [
+        "DET"
+      ],
+      "routeIds": [
+        "41080",
+        "42954",
+        "80"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "durham-nc",
+      "stopIds": [
+        "DNC"
+      ],
+      "routeIds": [
+        "79",
+        "85"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "el-paso-tx",
+      "stopIds": [
+        "ELP"
+      ],
+      "routeIds": [
+        "36930",
+        "87"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "elk-grove-ca",
+      "stopIds": [
+        "EKG"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "eugene-or",
+      "stopIds": [
+        "EUG"
+      ],
+      "routeIds": [
+        "36924",
+        "60"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "everett-wa",
+      "stopIds": [
+        "EVR"
+      ],
+      "routeIds": [
+        "42954",
+        "60",
+        "75"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "fairfield-ca",
+      "stopIds": [
+        "FFV"
+      ],
+      "routeIds": [
+        "84"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "fargo-nd",
+      "stopIds": [
+        "FAR"
+      ],
+      "routeIds": [
+        "75"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "fayetteville",
+      "stopIds": [
+        "FAY"
+      ],
+      "routeIds": [
+        "42947",
+        "69"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "fort-lauderdale",
+      "stopIds": [
+        "FTL"
+      ],
+      "routeIds": [
+        "42947",
+        "42994"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "fort-myers-fl",
+      "stopIds": [
+        "FTM"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "fort-worth-tx",
+      "stopIds": [
+        "FTW"
+      ],
+      "routeIds": [
+        "86",
+        "87"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "fremont-ca",
+      "stopIds": [
+        "FMT",
+        "FRT"
+      ],
+      "routeIds": [
+        "42954",
+        "84"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "fresno-ca",
+      "stopIds": [
+        "FNO"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "fullerton-ca",
+      "stopIds": [
+        "FUL"
+      ],
+      "routeIds": [
+        "42954",
+        "51",
+        "78"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "gainesville-fl",
+      "stopIds": [
+        "GNF"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "glendale-ca",
+      "stopIds": [
+        "GDL"
+      ],
+      "routeIds": [
+        "42954",
+        "78"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "grand-rapids-mi",
+      "stopIds": [
+        "GRR"
+      ],
+      "routeIds": [
+        "55"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "greensboro-nc",
+      "stopIds": [
+        "GRO"
+      ],
+      "routeIds": [
+        "36923",
+        "79",
+        "85"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "hartford",
+      "stopIds": [
+        "HFD"
+      ],
+      "routeIds": [
+        "41042",
+        "41044",
+        "88",
+        "90"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "hayward-ca",
+      "stopIds": [
+        "HAY"
+      ],
+      "routeIds": [
+        "84"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "high-point-nc",
+      "stopIds": [
+        "HPT"
+      ],
+      "routeIds": [
+        "36923",
+        "79",
+        "85"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "hollywood-fl",
+      "stopIds": [
+        "HOL"
+      ],
+      "routeIds": [
+        "42947",
+        "42994"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "houston-tx",
+      "stopIds": [
+        "HOS"
+      ],
+      "routeIds": [
+        "36930",
+        "42954"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "independence-mo",
+      "stopIds": [
+        "IDP"
+      ],
+      "routeIds": [
+        "36926",
+        "36948"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "indianapolis-in",
+      "stopIds": [
+        "IND"
+      ],
+      "routeIds": [
+        "58"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "irvine-ca",
+      "stopIds": [
+        "IRV"
+      ],
+      "routeIds": [
+        "42954",
+        "78"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "jackson-ms",
+      "stopIds": [
+        "JAN"
+      ],
+      "routeIds": [
+        "42946"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "jacksonville",
+      "stopIds": [
+        "JAX"
+      ],
+      "routeIds": [
+        "42947",
+        "42954",
+        "42994"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "joliet-il",
+      "stopIds": [
+        "JOL"
+      ],
+      "routeIds": [
+        "36926",
+        "42951",
+        "87"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "kansas-city-mo",
+      "stopIds": [],
+      "routeIds": [],
+      "routeTypes": [],
+      "qualification": "unverified",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "killeen-tx",
+      "stopIds": [
+        "KIL"
+      ],
+      "routeIds": [
+        "43"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "lafayette-la",
+      "stopIds": [
+        "LFT"
+      ],
+      "routeIds": [
+        "36930"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "lakeland-fl",
+      "stopIds": [
+        "LAK",
+        "LKL"
+      ],
+      "routeIds": [
+        "42954",
+        "42994"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "las-vegas-nv",
+      "stopIds": [
+        "LVS",
+        "LVT"
+      ],
+      "routeIds": [
+        "42896",
+        "42912"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "lee-s-summit-mo",
+      "stopIds": [
+        "LEE"
+      ],
+      "routeIds": [
+        "36926",
+        "36948"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "lincoln-ne",
+      "stopIds": [
+        "LNK"
+      ],
+      "routeIds": [
+        "96"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "little-rock-ar",
+      "stopIds": [
+        "LRK"
+      ],
+      "routeIds": [
+        "87"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "los-angeles-ca",
+      "stopIds": [
+        "LAX"
+      ],
+      "routeIds": [
+        "36924",
+        "36930",
+        "42896",
+        "42954",
+        "51",
+        "78",
+        "87"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "memphis-tn",
+      "stopIds": [
+        "MEM"
+      ],
+      "routeIds": [
+        "42946"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "miami",
+      "stopIds": [
+        "MIA"
+      ],
+      "routeIds": [
+        "42947",
+        "42994"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "milwaukee-wi",
+      "stopIds": [
+        "MKE"
+      ],
+      "routeIds": [
+        "42991",
+        "54",
+        "75"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "mobile-al",
+      "stopIds": [
+        "MOE"
+      ],
+      "routeIds": [
+        "42996"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "naperville-il",
+      "stopIds": [
+        "NPV"
+      ],
+      "routeIds": [
+        "42957",
+        "51",
+        "72",
+        "96"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "new-haven",
+      "stopIds": [
+        "NHV",
+        "STS"
+      ],
+      "routeIds": [
+        "40751",
+        "41042",
+        "41044",
+        "42948",
+        "42985",
+        "88",
+        "90"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "new-orleans-la",
+      "stopIds": [
+        "NOL"
+      ],
+      "routeIds": [
+        "36923",
+        "36930",
+        "42946",
+        "42996"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "newark-nj",
+      "stopIds": [
+        "EWR",
+        "NWK"
+      ],
+      "routeIds": [
+        "36923",
+        "40751",
+        "42947",
+        "58",
+        "64",
+        "69",
+        "85",
+        "88",
+        "90",
+        "94"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "newport-news-va",
+      "stopIds": [
+        "NPN"
+      ],
+      "routeIds": [
+        "42954",
+        "88"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "norfolk",
+      "stopIds": [
+        "NFK"
+      ],
+      "routeIds": [
+        "42954",
+        "88"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "norman-ok",
+      "stopIds": [
+        "NOR"
+      ],
+      "routeIds": [
+        "86"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "oakland-ca",
+      "stopIds": [
+        "OAC",
+        "OKJ"
+      ],
+      "routeIds": [
+        "36924",
+        "42954",
+        "84"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "oceanside-ca",
+      "stopIds": [
+        "OSD"
+      ],
+      "routeIds": [
+        "42954",
+        "78"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "oklahoma-city-ok",
+      "stopIds": [
+        "OKC"
+      ],
+      "routeIds": [
+        "42920",
+        "86"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "omaha-ne",
+      "stopIds": [
+        "OMA"
+      ],
+      "routeIds": [
+        "96"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "ontario-ca",
+      "stopIds": [
+        "ONA"
+      ],
+      "routeIds": [
+        "36930",
+        "42954",
+        "87"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "orlando",
+      "stopIds": [
+        "ORL"
+      ],
+      "routeIds": [
+        "42947",
+        "42954",
+        "42994"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "oxnard-ca",
+      "stopIds": [
+        "OXN"
+      ],
+      "routeIds": [
+        "36924",
+        "42896",
+        "78"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "pasadena-ca",
+      "stopIds": [
+        "PAS"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "peoria-il",
+      "stopIds": [
+        "PIA"
+      ],
+      "routeIds": [
+        "18650"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "philadelphia",
+      "stopIds": [
+        "PHL"
+      ],
+      "routeIds": [
+        "36923",
+        "40751",
+        "42947",
+        "58",
+        "64",
+        "69",
+        "85",
+        "88",
+        "90",
+        "94"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "phoenix-az",
+      "stopIds": [
+        "PHA"
+      ],
+      "routeIds": [
+        "33820"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "pittsburgh-pa",
+      "stopIds": [
+        "PGH"
+      ],
+      "routeIds": [
+        "42994",
+        "64"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "pomona-ca",
+      "stopIds": [
+        "POS"
+      ],
+      "routeIds": [
+        "36930",
+        "87"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "portland",
+      "stopIds": [
+        "POR"
+      ],
+      "routeIds": [
+        "61"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "portland-or",
+      "stopIds": [
+        "PDX"
+      ],
+      "routeIds": [
+        "36924",
+        "60",
+        "75"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "providence",
+      "stopIds": [
+        "PVD"
+      ],
+      "routeIds": [
+        "40751",
+        "88"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "provo-ut",
+      "stopIds": [
+        "PRO"
+      ],
+      "routeIds": [
+        "96"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "raleigh",
+      "stopIds": [
+        "RGH"
+      ],
+      "routeIds": [
+        "42994",
+        "79",
+        "85"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "reno-nv",
+      "stopIds": [
+        "RNO"
+      ],
+      "routeIds": [
+        "42954",
+        "43001",
+        "96"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "richmond",
+      "stopIds": [
+        "RVM",
+        "RVR"
+      ],
+      "routeIds": [
+        "41080",
+        "42947",
+        "42954",
+        "42994",
+        "69",
+        "85",
+        "88"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "richmond-ca",
+      "stopIds": [
+        "RIC"
+      ],
+      "routeIds": [
+        "84",
+        "96"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "riverside-ca",
+      "stopIds": [
+        "RIV"
+      ],
+      "routeIds": [
+        "42954",
+        "51"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "rochester-ny",
+      "stopIds": [
+        "ROC"
+      ],
+      "routeIds": [
+        "36921",
+        "68",
+        "81"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "roseville-ca",
+      "stopIds": [
+        "RSV"
+      ],
+      "routeIds": [
+        "42954",
+        "43001",
+        "84",
+        "96"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "sacramento-ca",
+      "stopIds": [
+        "SAC",
+        "SCS"
+      ],
+      "routeIds": [
+        "36924",
+        "41080",
+        "42954",
+        "43001",
+        "84",
+        "96"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "salem-or",
+      "stopIds": [
+        "SLM"
+      ],
+      "routeIds": [
+        "36924",
+        "60"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "salinas-ca",
+      "stopIds": [
+        "SNS"
+      ],
+      "routeIds": [
+        "36924",
+        "42954"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "salt-lake-city-ut",
+      "stopIds": [
+        "SLC"
+      ],
+      "routeIds": [
+        "96"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "san-antonio-tx",
+      "stopIds": [
+        "SAS"
+      ],
+      "routeIds": [
+        "36930",
+        "87"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "san-bernardino-ca",
+      "stopIds": [
+        "SNB"
+      ],
+      "routeIds": [
+        "42896",
+        "42954",
+        "51"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "san-diego-ca",
+      "stopIds": [
+        "OLT",
+        "SAN"
+      ],
+      "routeIds": [
+        "42954",
+        "78"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "san-jose-ca",
+      "stopIds": [
+        "SJC"
+      ],
+      "routeIds": [
+        "36924",
+        "42954",
+        "84"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "santa-ana-ca",
+      "stopIds": [
+        "SNA"
+      ],
+      "routeIds": [
+        "42954",
+        "78"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "santa-clara-ca",
+      "stopIds": [
+        "GAC",
+        "SCC"
+      ],
+      "routeIds": [
+        "84"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "santa-clarita-ca",
+      "stopIds": [
+        "NHL"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "santa-maria-ca",
+      "stopIds": [
+        "SAT"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "santa-rosa-ca",
+      "stopIds": [
+        "SRC"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "savannah",
+      "stopIds": [
+        "SAV"
+      ],
+      "routeIds": [
+        "42947",
+        "42994",
+        "69"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "seattle-wa",
+      "stopIds": [
+        "SEA"
+      ],
+      "routeIds": [
+        "36924",
+        "42954",
+        "60",
+        "75"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "shreveport-la",
+      "stopIds": [
+        "SHR"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "simi-valley-ca",
+      "stopIds": [
+        "SIM"
+      ],
+      "routeIds": [
+        "36924",
+        "78"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "south-bend-in",
+      "stopIds": [
+        "SOB"
+      ],
+      "routeIds": [
+        "42994",
+        "81"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "sparks-nv",
+      "stopIds": [
+        "SPX"
+      ],
+      "routeIds": [
+        "42954",
+        "43001"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "spokane-wa",
+      "stopIds": [
+        "SPK"
+      ],
+      "routeIds": [
+        "75"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "springfield-il",
+      "stopIds": [
+        "SPI"
+      ],
+      "routeIds": [
+        "18650",
+        "36926",
+        "42951",
+        "87"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "springfield-ma",
+      "stopIds": [
+        "SPG"
+      ],
+      "routeIds": [
+        "41042",
+        "41044",
+        "81",
+        "88",
+        "90"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "st-louis-mo",
+      "stopIds": [
+        "STL"
+      ],
+      "routeIds": [
+        "18650",
+        "36926",
+        "36948",
+        "42951",
+        "87"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "st-paul-mn",
+      "stopIds": [
+        "MSP"
+      ],
+      "routeIds": [
+        "42991",
+        "75"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "st-petersburg-fl",
+      "stopIds": [
+        "STP"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "stamford-ct",
+      "stopIds": [
+        "STM"
+      ],
+      "routeIds": [
+        "40751",
+        "42948",
+        "88",
+        "90"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "stockton-ca",
+      "stopIds": [
+        "SKN",
+        "SKT"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "syracuse-ny",
+      "stopIds": [
+        "SYR"
+      ],
+      "routeIds": [
+        "36921",
+        "68",
+        "81"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "tacoma-wa",
+      "stopIds": [
+        "TAC"
+      ],
+      "routeIds": [
+        "36924",
+        "60"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "tampa",
+      "stopIds": [
+        "TPA"
+      ],
+      "routeIds": [
+        "42954",
+        "42994"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "tempe-az",
+      "stopIds": [
+        "TEM"
+      ],
+      "routeIds": [
+        "33820"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "toledo-oh",
+      "stopIds": [
+        "TOL"
+      ],
+      "routeIds": [
+        "42954",
+        "42994",
+        "81"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "topeka-ks",
+      "stopIds": [
+        "TOP"
+      ],
+      "routeIds": [
+        "51"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "tracy-ca",
+      "stopIds": [
+        "TRA"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "trenton",
+      "stopIds": [
+        "TRE"
+      ],
+      "routeIds": [
+        "36923",
+        "42947",
+        "58",
+        "64",
+        "69",
+        "85",
+        "88",
+        "90",
+        "94"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "tucson-az",
+      "stopIds": [
+        "TUS"
+      ],
+      "routeIds": [
+        "36930",
+        "87"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "tuscaloosa-al",
+      "stopIds": [
+        "TCL"
+      ],
+      "routeIds": [
+        "36923"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "vallejo-ca",
+      "stopIds": [
+        "VAL"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "vancouver-wa",
+      "stopIds": [
+        "VAN"
+      ],
+      "routeIds": [
+        "36924",
+        "60",
+        "75"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "victorville-ca",
+      "stopIds": [
+        "VRV"
+      ],
+      "routeIds": [
+        "42896",
+        "51"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "virginia-beach-va",
+      "stopIds": [
+        "VAB"
+      ],
+      "routeIds": [
+        "42954"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "washington",
+      "stopIds": [
+        "WAS"
+      ],
+      "routeIds": [
+        "36923",
+        "40751",
+        "41080",
+        "42947",
+        "42985",
+        "42994",
+        "58",
+        "69",
+        "85",
+        "88",
+        "90"
+      ],
+      "routeTypes": [
+        2,
+        3
+      ],
+      "qualification": "rail-and-bus",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "west-palm-beach-fl",
+      "stopIds": [
+        "WPB"
+      ],
+      "routeIds": [
+        "42947",
+        "42994"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "wichita-ks",
+      "stopIds": [
+        "WIC"
+      ],
+      "routeIds": [
+        "42920"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "wilmington-nc",
+      "stopIds": [
+        "WMN"
+      ],
+      "routeIds": [
+        "42958"
+      ],
+      "routeTypes": [
+        3
+      ],
+      "qualification": "bus-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "worcester-ma",
+      "stopIds": [
+        "WOR"
+      ],
+      "routeIds": [
+        "81"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "yonkers-ny",
+      "stopIds": [
+        "YNY"
+      ],
+      "routeIds": [
+        "36921",
+        "36949",
+        "68",
+        "95"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "yuma-az",
+      "stopIds": [
+        "YUM"
+      ],
+      "routeIds": [
+        "36930",
+        "87"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    },
+    {
+      "cityId": "new-york",
+      "stopIds": [
+        "NYP"
+      ],
+      "routeIds": [
+        "36921",
+        "36923",
+        "36949",
+        "40751",
+        "42947",
+        "58",
+        "64",
+        "68",
+        "69",
+        "81",
+        "85",
+        "88",
+        "90",
+        "94",
+        "95"
+      ],
+      "routeTypes": [
+        2
+      ],
+      "qualification": "rail-only",
+      "checkedDate": "2026-10-24",
+      "sourceUrl": "https://content.amtrak.com/content/gtfs/GTFS.zip",
+      "responseSha256": "ff8fc4c5bf75c1be7aa6f141e9ad3de30e7bdf3c89be7bff9ceb6ad91abd07f0",
+      "feedVersion": "20261024",
+      "feedStartDate": "2026-10-25",
+      "note": "Snapshot mode evidence only, exact recorded stop names plus original <50km representative-point disambiguation (explicit NYP ID for NYC); not municipal containment. GTFS2=rail,3=bus. Brand is not mode/current-service/carrier proof. Unmatched manual station names remain mode-unverified. No schedule or routing edges imported."
+    }
+  ],
+  "busSourceProvenance": {
+    "sourceFamily": "flix-greyhound-shared-directories",
+    "independentCorroboration": false,
+    "auditComment": 6392411912,
+    "auditEvidenceSha": "3b297e01407b3735de674560cedfe49f22797b16",
+    "baselineSharedDirectoryLabels": 1395,
+    "baselineIdenticalGreyhoundStopLists": 563,
+    "baselineGreyhoundOnlyPlaces": 0,
+    "batchIdenticalDualBrandStopLists": [
+      "boise",
+      "lexington",
+      "macon",
+      "dc"
+    ],
+    "note": "Shared directory/stop-list provenance; two marketed brands are not independent corroboration and never verify actual Greyhound vehicle operation. New batch dual-brand stops also checked for equality."
+  },
+  "limits": [
+    "25 substantive baseline-unresolved reviews plus separately retained preliminary Peoria screen and qualified-market matching/mode repairs. No exhaustive all-operator/no-service claim.",
+    "Anchorage unresolved, Urban Honolulu CDP still excluded; HI/territory service not inferred.",
+    "No sources or fields imply equal municipal boundaries, actual carrier, boarding stop equivalence or routable connections."
+  ]
+}

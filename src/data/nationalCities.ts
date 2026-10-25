@@ -2,11 +2,27 @@ import candidates from './national/candidates.json';
 import operatorPlaces from './national/operatorPlaces.json';
 import evidence from './national/coverage.json';
 import manifest from './national/sources.json';
+import batch1 from './national/evidence/batch1.json';
+import { createMarketRelationIndex } from './national/marketRelations';
+import type { MarketRelation } from './national/marketRelations';
 
 /** Existing OneLine operators only. No service, fare or direct-route inference. */
 export const nationalOperators = ['SEPTA', 'NJ_TRANSIT', 'LIRR', 'AMTRAK', 'GREYHOUND', 'FLIXBUS'] as const;
 export type NationalOperator = typeof nationalOperators[number];
 
+export interface AmtrakModeEvidence {
+  cityId: string;
+  stopIds: readonly string[];
+  routeIds: readonly string[];
+  routeTypes: readonly number[];
+  qualification: 'rail-only' | 'rail-and-bus' | 'bus-only' | 'unverified';
+  sourceUrl: string;
+  responseSha256: string;
+  checkedDate: string;
+  feedVersion: string;
+  feedStartDate: string;
+  note: string;
+}
 export interface MarketCoverage {
   status: 'verified';
   marketedOperator: NationalOperator;
@@ -16,6 +32,13 @@ export interface MarketCoverage {
   evidenceUrl: string;
   additionalSourceUrls?: readonly string[];
   checkedDate: string;
+  checkedAt?: string;
+  responseSha256?: string;
+  /** Both bus brands share source provenance; two brands are not two independent confirmations. */
+  sourceFamily?: 'flix-greyhound-shared-directories';
+  independentCorroboration?: false;
+  /** Snapshot mode only. Never label a bus-only or unverified Amtrak record as train proof. */
+  modeEvidence?: AmtrakModeEvidence;
   stops: readonly string[];
   municipalCoverage: 'pending';
   operatingCarrier: 'pending';
@@ -46,6 +69,8 @@ export interface NationalCity {
   populationVintage: number | null;
   inclusionReason: 'population-100000' | 'regional-hub' | 'excluded-non-incorporated' | 'operator-listed-place';
   legacyId: boolean;
+  /** Explicit named-market link only; raw audit IDs/population/coordinates stay separate. */
+  sameMarketAsCityId?: string;
   coordinateSourceUrl: string | null;
   coordinateMethod: 'census-internal-point' | 'operator-stop-representative' | 'unavailable';
   populationSourceUrl: string | null;
@@ -64,7 +89,18 @@ const directory: Record<NationalOperator, string> = {
   GREYHOUND: 'https://www.greyhound.com/bus/united-states',
   FLIXBUS: 'https://www.flixbus.com/bus/united-states',
 };
-const records = evidence as readonly (MarketCoverage & { cityId: string })[];
+export const nationalEvidenceBatches = [batch1] as const;
+export const nationalCityMarketRelations = batch1.marketRelations as readonly MarketRelation[];
+const relationByCity = new Map(nationalCityMarketRelations.map(relation => [relation.cityId, relation]));
+export const nationalBusSourceProvenance = batch1.busSourceProvenance;
+const modeByCity = new Map((batch1.modeEvidence as readonly AmtrakModeEvidence[]).map(mode => [mode.cityId, mode]));
+const records: readonly (MarketCoverage & { cityId: string })[] =
+  ([...evidence, ...batch1.coverageAdditions] as readonly (MarketCoverage & { cityId: string })[])
+    .map(record => ({ ...record,
+      ...(['FLIXBUS', 'GREYHOUND'].includes(record.marketedOperator)
+        ? { sourceFamily: 'flix-greyhound-shared-directories' as const, independentCorroboration: false as const } : {}),
+      ...(record.marketedOperator === 'AMTRAK' ? { modeEvidence: modeByCity.get(record.cityId) } : {}),
+    }));
 
 /**
  * All candidates, including excluded/unresolved rows: NOT all supported origins.
@@ -92,7 +128,7 @@ export const nationalCities: readonly NationalCity[] = [...candidates, ...operat
     };
   });
   return {
-    ...city, coordinateSourceUrl: 'coordinateSourceUrl' in raw ? raw.coordinateSourceUrl as string | null : manifest.coordinates.url,
+    ...city, ...(relationByCity.has(city.id) ? { sameMarketAsCityId: relationByCity.get(city.id)!.sameMarketAsCityId } : {}), coordinateSourceUrl: 'coordinateSourceUrl' in raw ? raw.coordinateSourceUrl as string | null : manifest.coordinates.url,
     coordinateMethod: 'coordinateMethod' in raw ? raw.coordinateMethod as NationalCity['coordinateMethod'] : 'census-internal-point',
     populationSourceUrl: city.population === null ? null : manifest.population.url,
     auditStatus: excluded ? 'excluded' : coverage.some(item => item.status === 'verified') ? 'verified' : 'unresolved',
@@ -113,6 +149,39 @@ export function getVerifiedOperators(cityId: string): readonly MarketCoverage[] 
     .filter((item): item is MarketCoverage => item.status === 'verified') ?? [];
 }
 
+/** Explicit aliases do not change raw city/operator evidence or infer agency unions. */
+const marketIndex = createMarketRelationIndex(nationalCities, nationalCityMarketRelations);
+export const getCanonicalMarketCityId = (id: string) => marketIndex.canonical(id);
+/** Future Search should use this view to avoid duplicate choices for the three sourced links. */
+export const verifiedMarketChoices = verifiedNationalCities.filter(city => marketIndex.canonical(city.id) === city.id);
+export interface VerifiedMarketEvidence {
+  evidenceCityIds: readonly string[];
+  coverage: MarketCoverage;
+}
+const marketEvidence = new Map<string, Map<string, { ids: Set<string>; coverage: MarketCoverage }>>();
+for (const city of verifiedNationalCities) {
+  const canonical = marketIndex.canonical(city.id)!;
+  if (!marketEvidence.has(canonical)) marketEvidence.set(canonical, new Map());
+  for (const coverage of getVerifiedOperators(city.id)) {
+    const key = JSON.stringify([coverage.marketedOperator, coverage.sourceUrl]);
+    const entries = marketEvidence.get(canonical)!;
+    const previous = entries.get(key);
+    if (!previous) entries.set(key, { ids: new Set([city.id]), coverage });
+    else {
+      previous.ids.add(city.id);
+      if ((coverage.checkedAt ?? coverage.checkedDate) > (previous.coverage.checkedAt ?? previous.coverage.checkedDate)) {
+        previous.coverage = coverage;
+      }
+    }
+  }
+}
+/** Qualified source-backed evidence only; repeated alias rows do not count twice. */
+export function getVerifiedMarketEvidence(id: string): readonly VerifiedMarketEvidence[] {
+  const canonical = marketIndex.canonical(id);
+  return [...(canonical ? marketEvidence.get(canonical)?.values() ?? [] : [])]
+    .map(item => ({ evidenceCityIds: [...item.ids].sort(), coverage: item.coverage }));
+}
+
 /** Counts describe the checked snapshot, not a completeness claim for operator service. */
 export const nationalCoverageAudit = {
   candidates: nationalCities.length,
@@ -120,7 +189,12 @@ export const nationalCoverageAudit = {
   operatorListedAdditionalPlaces: operatorPlaces.length,
   majorCandidateRows: majorCityCandidates.length,
   regionalHubs: nationalCities.filter(city => city.inclusionReason === 'regional-hub').length,
+  /** Legacy count of qualified audit rows; use distinctVerifiedMarkets for linked-market counts. */
   verifiedCityMarkets: verifiedNationalCities.length,
+  qualifiedAuditRows: verifiedNationalCities.length,
+  distinctVerifiedMarkets: verifiedMarketChoices.length,
+  /** Brand/source associations, not independent corroborations or verified carriers. */
+  distinctOperatorEvidence: [...marketEvidence.values()].reduce((count, entries) => count + entries.size, 0),
   unresolved: nationalCities.filter(city => city.auditStatus === 'unresolved').length,
   excluded: nationalCities.filter(city => city.auditStatus === 'excluded').length,
   confirmedMunicipalCoverage: 0,
