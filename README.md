@@ -23,6 +23,11 @@ pnpm start                   # http://127.0.0.1:3000
 ```
 
 React + TypeScript + Vite, Tailwind CSS v4 and React Router are already configured.
+The UI uses daisyUI 5 (a Tailwind plugin, dev dependency) with a single custom light
+`oneline` theme declared at the top of `src/index.css`, plus a few shadcn/ui-style
+components copied into `src/components/ui/` (Sonner toast, Radix Tooltip) with a `cn()`
+helper in `src/lib/utils.ts` (clsx + tailwind-merge). These install with the normal
+`pnpm install --frozen-lockfile`; no extra setup, fonts or CDNs are needed.
 The Node host serves the built app, SPA deep links and the SEPTA proxy together.
 All UI/map assets are local, so a previously installed and built app works offline
 with the SEPTA panel showing its honest unavailable state.
@@ -136,6 +141,20 @@ See the [two-minute demo script](docs/demo-script.md),
 [QA checklist](docs/qa-checklist.md), [deployment guide](docs/deployment.md),
 [server notes](server/README.md) and
 [Wallet adapter handoff](src/services/transit/README.md).
+
+## UI credits / licenses
+
+All UI dependencies are MIT-licensed and bundled locally (no runtime third-party requests):
+
+| Package | Use | License |
+| --- | --- | --- |
+| [daisyUI](https://daisyui.com) 5 | Tailwind plugin; custom `oneline` theme, `btn`/`badge` | MIT |
+| [shadcn/ui](https://ui.shadcn.com) | Source pattern for `src/components/ui/{sonner,tooltip}.tsx` (copied, adapted) | MIT |
+| [sonner](https://sonner.emilkowal.ski) | Journey "Simulated delay" toast | MIT |
+| [@radix-ui/react-tooltip](https://www.radix-ui.com) | Tooltips on icon-only Search controls | MIT |
+| [clsx](https://github.com/lukeed/clsx), [tailwind-merge](https://github.com/dcastil/tailwind-merge) | `cn()` class helper | MIT |
+
+No paid, GPL or AGPL UI kits are used. See [docs/ui-refresh.md](docs/ui-refresh.md).
 
 ## Team workflow
 
