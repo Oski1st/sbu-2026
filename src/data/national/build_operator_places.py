@@ -1,6 +1,7 @@
 import json,csv,re,unicodedata
 from pathlib import Path
 import argparse
+from ingestion import directory_state
 parser=argparse.ArgumentParser(description='Build operator-listed place inputs from saved official directories; no network calls.')
 parser.add_argument('source_folder',type=Path);parser.add_argument('--output-folder',type=Path,required=True);args=parser.parse_args();root=Path(__file__).parent;folder=args.source_folder
 from html.parser import HTMLParser
@@ -33,7 +34,8 @@ for brand,host,operator in [('flix','www.flixbus.com','FLIXBUS'),('greyhound','w
  for label,url in json.loads((folder/(brand+'-links.json')).read_text()):
   if ', ' not in label:continue
   name,state=label.rsplit(', ',1)
-  if state not in states:continue
+  state=directory_state(state,states)
+  if state is None:continue
   matches=[c for c in cities if c['state']==state and any(norm(a)==norm(name) for a in c['aliases'] if ', ' not in a)]
   if len(matches)==1:id=matches[0]['id']
   else:

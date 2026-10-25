@@ -1,5 +1,12 @@
 # Nationwide candidate catalogue — checked October 24, 2026
 
+The counts below describe frozen PR20 baseline. The current data-only batch1
+overlay is documented in [evidence/README.md](evidence/README.md):1373qualified
+audit rows,1371distinct named markets,176unresolved,1excluded. Consumers should use
+`verifiedMarketChoices` to avoid the two explicitly sourced alias duplicates; raw
+benchmark identities, snapshots and qualifiers remain separate. No UI migration is
+performed by the overlay.
+
 This is an auditable city/market directory, not nationwide routing, live service,
 verified municipal-stop coverage, or proof that every major city is served.
 Application Search migration belongs to Person 2. No legacy data, trip IDs, Search,
