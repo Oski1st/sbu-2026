@@ -1,0 +1,87 @@
+/* OneLine UI refresh — header bar and footer. */
+
+/* Bold full-width forest bar. Text pairs: paper on forest 11:1, nav #dbe7d6 on
+   the nav track (≈#2b5046) 7.6:1, forest on lime pill 9.3:1. */
+.site-header-bar {
+  background: var(--ui-forest);
+  color: var(--ui-paper);
+  box-shadow: 0 1px 0 #0f2b24, 0 8px 24px -16px #0f2b24aa;
+  position: relative;
+  z-index: 5;
+}
+.site-header-bar .site-header {
+  height: 76px;
+  border-bottom: none;
+}
+.site-header-bar .brand {
+  color: var(--ui-paper);
+}
+.site-header-bar .brand svg {
+  fill: var(--ui-forest);
+  stroke: var(--ui-lime);
+}
+.site-header-bar nav {
+  background: #ffffff14;
+  border-color: #ffffff26;
+}
+.site-header-bar nav a {
+  color: #dbe7d6;
+  font-size: 13px;
+  font-weight: 650;
+}
+.site-header-bar nav a:not(.active):hover {
+  background: #ffffff1f;
+  color: #ffffff;
+}
+.site-header-bar nav a.active {
+  background: var(--ui-lime);
+  color: var(--ui-forest);
+  box-shadow: 0 1px 2px #0f2b2440;
+}
+.site-header-bar .header-note {
+  color: #c9dccb;
+  font-size: 12px;
+}
+
+/* Footer: same layout, readable sizes and ≥4.5:1 text. */
+.site-footer {
+  color: var(--ui-muted);
+  padding-top: 8px;
+}
+.site-footer > div > p,
+.site-footer > a {
+  font-size: 12px;
+}
+.site-footer > span {
+  font-size: 13px;
+  line-height: 1.7;
+}
+.site-footer small,
+.footer-line {
+  font-size: 11px;
+  color: var(--ui-muted);
+}
+.site-footer > a {
+  font-weight: 600;
+  color: var(--ui-forest);
+  padding: 8px 14px;
+  border: 1px solid var(--color-base-300);
+  border-radius: 999px;
+}
+.site-footer > a:hover {
+  background: var(--color-base-200);
+}
+
+@media (max-width: 760px) {
+  .site-header-bar .site-header {
+    height: 68px;
+  }
+  .site-header-bar nav a {
+    font-size: 12px;
+  }
+}
+@media (max-width: 380px) {
+  .site-header-bar nav a {
+    font-size: 11px;
+  }
+}
