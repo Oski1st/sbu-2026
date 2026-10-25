@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { LocationAutocomplete } from "./LocationAutocomplete";
 import { sampleLocationCatalogue, type LocationCatalogue } from "./locationCatalogue";
+import { IconTooltip } from "../ui/icon-tooltip";
 
 interface Props {
   initialOrigin?: string;
@@ -63,17 +64,19 @@ export function SearchForm({
             catalogue={catalogue}
           />
         </div>
-        <button
-          type="button"
-          className="swap-button"
-          aria-label="Swap origin and destination"
-          onClick={() => {
-            setOrigin(destination);
-            setDestination(origin);
-          }}
-        >
-          <ArrowDownUp size={17} />
-        </button>
+        <IconTooltip label="Swap origin and destination">
+          <button
+            type="button"
+            className="swap-button"
+            aria-label="Swap origin and destination"
+            onClick={() => {
+              setOrigin(destination);
+              setDestination(origin);
+            }}
+          >
+            <ArrowDownUp size={17} />
+          </button>
+        </IconTooltip>
         <div className="location-field destination-field">
           <MapPin size={19} />
           <LocationAutocomplete
