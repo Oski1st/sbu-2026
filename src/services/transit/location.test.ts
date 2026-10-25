@@ -2,10 +2,10 @@ import { afterEach, expect, test, vi } from 'vitest';
 import { requestCurrentLocation } from './location';
 import type { LocationCity } from './location';
 
-// Synthetic city centres and browser positions: no real user location is used.
+// Synthetic representative points and browser positions: no real user location is used.
 const cities: LocationCity[] = [
-  { id: 'a', name: 'City A', latitude: 40, longitude: -75 },
-  { id: 'b', name: 'City B', latitude: 41, longitude: -74 },
+  { id: 'a', name: 'City A', state: 'PA', latitude: 40, longitude: -75 },
+  { id: 'b', name: 'City B', state: 'NJ', latitude: 41, longitude: -74 },
 ];
 const position = (latitude = 40.00123, longitude = -75.00456, accuracy = 20) => ({
   coords: { latitude, longitude, accuracy },
@@ -29,15 +29,16 @@ test('import has no location side effect; only an explicit request invokes brows
   ]);
 });
 
-test('returns rounded position, nearest supported city and distance without substituting city centre', async () => {
+test('returns state-disambiguated place and representative distance without returning coordinates', async () => {
   const result = await requestCurrentLocation(cities, { geolocation: provider(position(40.12345, -75.12345)) });
   expect(result).toMatchObject({
-    status: 'suggestion', coordinates: { latitude: 40.12, longitude: -75.12, precisionDegrees: 0.01 },
-    nearestCity: { id: 'a', name: 'City A' }, proximity: 'nearby',
+    status: 'suggestion', distanceReference: 'catalogue-representative-point',
+    nearestCity: { id: 'a', name: 'City A', state: 'PA' }, proximity: 'nearby',
     uncertaintyKm: 0.9, requiresConfirmation: true, manualEntryAvailable: true,
   });
   if (result.status === 'suggestion') expect(result.distanceKm).toBeCloseTo(16.8, 0);
   expect(JSON.stringify(result)).not.toContain('40.12345');
+  expect(result).not.toHaveProperty('coordinates');
   expect(cities[0].latitude).toBe(40);
 });
 
@@ -46,7 +47,7 @@ test('faraway city is labelled and still requires explicit confirmation', async 
     .toMatchObject({ status: 'suggestion', proximity: 'faraway', requiresConfirmation: true, manualEntryAvailable: true });
 });
 
-test('large accuracy radius and competing nearby centres are uncertain', async () => {
+test('large accuracy radius and competing nearby representative points are uncertain', async () => {
   for (const geo of [provider(position(40, -75, 100_000)), provider(position(40.5, -74.5, 2000))]) {
     expect(await requestCurrentLocation(cities, { geolocation: geo, maxDistanceKm: 100 }))
       .toMatchObject({ status: 'suggestion', proximity: 'uncertain', requiresConfirmation: true });
@@ -54,7 +55,7 @@ test('large accuracy radius and competing nearby centres are uncertain', async (
 });
 
 test('distance uses great-circle geometry, including antimeridian and poles', async () => {
-  const catalogue = [{ id: 'east', name: 'East', latitude: 0, longitude: 179.9 }];
+  const catalogue = [{ id: 'east', name: 'East', state: 'ME', latitude: 0, longitude: 179.9 }];
   const result = await requestCurrentLocation(catalogue, { geolocation: provider(position(0, -179.9)) });
   expect(result).toMatchObject({ distanceKm: 22.2, proximity: 'nearby' });
   const polar = await requestCurrentLocation([{ ...catalogue[0], latitude: -90 }], {
@@ -89,14 +90,14 @@ test.each([new Error('private detail'), new DOMException('blocked', 'SecurityErr
   },
 );
 
-test('watchdog resolves a silent provider and ignores late callbacks', async () => {
+test('application wait limit resolves a silent provider separately from browser timeout and ignores late callbacks', async () => {
   vi.useFakeTimers();
   let success!: PositionCallback;
   const geo = { getCurrentPosition: (ok: PositionCallback) => { success = ok; } };
-  const pending = requestCurrentLocation(cities, { geolocation: geo, timeoutMs: 100 });
+  const pending = requestCurrentLocation(cities, { geolocation: geo, waitLimitMs: 100 });
   await vi.advanceTimersByTimeAsync(100);
   const result = await pending;
-  expect(result).toMatchObject({ code: 'timeout', manualEntryAvailable: true });
+  expect(result).toMatchObject({ code: 'request-expired', manualEntryAvailable: true });
   success(position());
   expect(await pending).toBe(result);
   expect(vi.getTimerCount()).toBe(0);
@@ -148,3 +149,130 @@ test.each([{ timeoutMs: 0 }, { timeoutMs: Infinity }, { maxDistanceKm: -1 }, { m
     expect(geo.getCurrentPosition).not.toHaveBeenCalled();
   },
 );
+
+test('permission-wait duration is unknown; a12s callback is not discarded by10s acquisition option', async () => {
+  vi.useFakeTimers();
+  let success!: PositionCallback;
+  const geo = { getCurrentPosition: vi.fn((ok: PositionCallback) => { success = ok; }) };
+  const pending = requestCurrentLocation(cities, { geolocation: geo });
+  const resolved = vi.fn(); void pending.then(resolved);
+  await vi.advanceTimersByTimeAsync(12_000);
+  expect(resolved).not.toHaveBeenCalled();
+  expect(geo.getCurrentPosition.mock.calls[0][0]).toBe(success);
+  success(position());
+  expect(await pending).toMatchObject({status:'suggestion',manualEntryAvailable:true,requiresConfirmation:true});
+  expect(vi.getTimerCount()).toBe(0);
+});
+
+test('default30s application limit never claims browser acquisition or permission timing', async () => {
+  vi.useFakeTimers();
+  const pending = requestCurrentLocation(cities, { geolocation: {getCurrentPosition: () => {}} });
+  await vi.advanceTimersByTimeAsync(30_000);
+  expect(await pending).toMatchObject({code:'request-expired',manualEntryAvailable:true,requiresConfirmation:true});
+  expect(await pending).not.toHaveProperty('coordinates');
+  expect(vi.getTimerCount()).toBe(0);
+});
+
+test('browser code3 remains acquisition timeout even before the separate application limit', async () => {
+  vi.useFakeTimers();
+  let fail!: PositionErrorCallback;
+  const pending = requestCurrentLocation(cities, { timeoutMs:100,waitLimitMs:30_000,
+    geolocation:{getCurrentPosition: (_ok, error) => {fail = error!;}} });
+  await vi.advanceTimersByTimeAsync(100);
+  fail({code:3,message:'private provider detail'} as GeolocationPositionError);
+  expect(await pending).toMatchObject({code:'timeout',manualEntryAvailable:true,requiresConfirmation:true});
+  expect(vi.getTimerCount()).toBe(0);
+});
+
+test('pre-aborted request never asks the provider or creates timers', async () => {
+  vi.useFakeTimers();
+  const controller = new AbortController();controller.abort();
+  const geo = provider();
+  expect(await requestCurrentLocation(cities,{signal:controller.signal,geolocation:geo}))
+    .toMatchObject({code:'cancelled',manualEntryAvailable:true,requiresConfirmation:true});
+  expect(geo.getCurrentPosition).not.toHaveBeenCalled();expect(vi.getTimerCount()).toBe(0);
+});
+
+test('abort settles once, cleans listener/timer and ignores late success/error without reading coordinates', async () => {
+  vi.useFakeTimers();
+  const controller = new AbortController();
+  const remove = vi.spyOn(controller.signal,'removeEventListener');
+  let success!: PositionCallback;let failure!: PositionErrorCallback;
+  const pending = requestCurrentLocation(cities,{signal:controller.signal,
+    geolocation:{getCurrentPosition:(ok,fail) => {success=ok;failure=fail!;}}});
+  controller.abort();const result = await pending;
+  expect(result).toMatchObject({code:'cancelled',requiresConfirmation:true,manualEntryAvailable:true});
+  const read = vi.fn(() => position().coords);
+  success({get coords(){return read();}} as GeolocationPosition);
+  failure({code:1} as GeolocationPositionError);
+  expect(read).not.toHaveBeenCalled();expect(await pending).toBe(result);
+  expect(remove).toHaveBeenCalledWith('abort',expect.any(Function));expect(vi.getTimerCount()).toBe(0);
+});
+
+test.each(['success','error','expiry','unsupported','throw'] as const)('%s removes abort listener and timer', async kind => {
+  vi.useFakeTimers();const controller=new AbortController();
+  const remove=vi.spyOn(controller.signal,'removeEventListener');
+  const geo=kind==='unsupported'?null:{getCurrentPosition:(ok:PositionCallback,fail?:PositionErrorCallback|null)=>{
+    if(kind==='success')ok(position());
+    if(kind==='error')fail?.({code:2} as GeolocationPositionError);
+    if(kind==='throw')throw new Error('private');
+  }};
+  const pending=requestCurrentLocation(cities,{signal:controller.signal,geolocation:geo,waitLimitMs:50});
+  if(kind==='expiry')await vi.advanceTimersByTimeAsync(50);
+  await pending;expect(remove).toHaveBeenCalledWith('abort',expect.any(Function));expect(vi.getTimerCount()).toBe(0);
+});
+
+test('a replacement request is independent of the aborted old provider', async () => {
+  const controller=new AbortController();let oldSuccess!:PositionCallback;
+  const old=requestCurrentLocation(cities,{signal:controller.signal,geolocation:{getCurrentPosition:ok=>{oldSuccess=ok;}}});
+  controller.abort();
+  const current=await requestCurrentLocation(cities,{geolocation:provider(position(41,-74))});
+  oldSuccess(position());expect(await old).toMatchObject({code:'cancelled'});
+  expect(current).toMatchObject({nearestCity:{id:'b',state:'NJ'}});
+});
+
+test('representative points need not be city centres; output identifies the point distance, never the rider point', async () => {
+  // Qualified catalogue point fixture deliberately distinct from any supposed downtown.
+  const result=await requestCurrentLocation([{id:'market',name:'Large Place',state:'AK',latitude:0.5,longitude:0}],
+    {geolocation:provider(position(0,0,200))});
+  expect(result).toMatchObject({distanceReference:'catalogue-representative-point',distanceKm:55.6,
+    proximity:'faraway',nearestCity:{id:'market',name:'Large Place',state:'AK'},requiresConfirmation:true,manualEntryAvailable:true});
+  for(const field of ['coordinates','latitude','longitude'])expect(result).not.toHaveProperty(field);
+});
+
+test('same-named places retain their state; exact ties use stable IDs rather than input order', async () => {
+  const portlands=[{id:'portland-or',name:'Portland',state:'OR',latitude:0,longitude:0},
+    {id:'portland-me',name:'Portland',state:'ME',latitude:0,longitude:0}];
+  for(const catalogue of [portlands,[...portlands].reverse()]){
+    expect(await requestCurrentLocation(catalogue,{geolocation:provider(position(0,0))}))
+      .toMatchObject({nearestCity:{id:'portland-me',name:'Portland',state:'ME'},proximity:'uncertain',requiresConfirmation:true});
+  }
+});
+
+test.each([{id:' '},{name:'\t'},{state:' '},{state:'or'},{id:' a'},{name:'City A '}])(
+  'blank/padded identity or ambiguous state rejects before permission request: %j',async change=>{
+    const geo=provider();expect(await requestCurrentLocation([{...cities[0],...change}],{geolocation:geo}))
+      .toMatchObject({code:'invalid-catalogue',manualEntryAvailable:true,requiresConfirmation:true});
+    expect(geo.getCurrentPosition).not.toHaveBeenCalled();
+  });
+
+test.each([[48.9,'nearby'],[49.1,'uncertain'],[50.9,'uncertain'],[51.1,'faraway']] as const)(
+  'default50km boundary retains uncertainty at%s km',async(km,proximity)=>{
+    const city={id:'point',name:'Place',state:'ME',latitude:km/6371*180/Math.PI,longitude:0};
+    expect(await requestCurrentLocation([city],{geolocation:provider(position(0,0,200))}))
+      .toMatchObject({proximity,uncertaintyKm:1,requiresConfirmation:true,manualEntryAvailable:true});
+  });
+
+test('malformed asynchronous position fails safely and ignores duplicate callbacks',async()=>{
+  let callback!:PositionCallback;
+  const pending=requestCurrentLocation(cities,{geolocation:{getCurrentPosition:ok=>{callback=ok;}}});
+  callback({} as GeolocationPosition);const result=await pending;
+  expect(result).toMatchObject({code:'unavailable',manualEntryAvailable:true});
+  callback(position());expect(await pending).toBe(result);
+});
+
+test.each([{waitLimitMs:0},{waitLimitMs:Infinity},{waitLimitMs:2_147_483_648},{timeoutMs:0.5}])(
+  'invalid new timing options fail before provider request: %j',async options=>{
+    const geo=provider();expect(await requestCurrentLocation(cities,{...options,geolocation:geo})).toMatchObject({code:'unavailable'});
+    expect(geo.getCurrentPosition).not.toHaveBeenCalled();
+  });
