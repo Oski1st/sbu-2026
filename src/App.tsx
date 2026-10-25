@@ -1,11 +1,12 @@
 import { lazy, Suspense } from "react";
 import type { ComponentType } from "react";
-import { Navigate, Link, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import SearchPage from "./pages/SearchPage";
 import { AppLayout } from "./components/layout/AppLayout";
 import { TripProvider, useSelectedTrip } from "./components/layout/TripContext";
 import { IntegrationPage } from "./components/layout/IntegrationPage";
+import { NotFoundPage } from "./components/layout/NotFoundPage";
 // Teammate-owned pages are optional until their PRs merge. No files are created in their paths.
 // Both default exports and named JourneyPage/WalletPage exports are accepted.
 type HostedPageProps = { septaEndpoint?: string };
@@ -46,7 +47,7 @@ function NavigationEffects() {
   const location = useLocation();
   const previousPath = useRef(location.pathname);
   useEffect(() => {
-    document.title = `OneLine · ${location.pathname.startsWith("/journey") ? "Your journey" : location.pathname.startsWith("/wallet") ? "Your wallet" : "A better way there"}`;
+    document.title = `OneLine · ${location.pathname.startsWith("/journey") ? "Your journey" : location.pathname.startsWith("/wallet") ? "Your wallet" : "Trip planner"}`;
     if (previousPath.current !== location.pathname) {
       previousPath.current = location.pathname;
       window.scrollTo({ top: 0 });
@@ -62,7 +63,7 @@ export default function App() {
       <Suspense
         fallback={
           <div className="page-loading" role="status">
-            Connecting your journey…
+            Loading…
           </div>
         }
       >
@@ -76,13 +77,7 @@ export default function App() {
             <Route path="wallet/:tripId" element={<WalletRoute />} />
             <Route
               path="*"
-              element={
-                <main className="empty-state">
-                  <h1>A little off the line.</h1>
-                  <p>Let’s get you back on track.</p>
-                  <Link to="/">Return to search</Link>
-                </main>
-              }
+              element={<NotFoundPage />}
             />
           </Route>
         </Routes>

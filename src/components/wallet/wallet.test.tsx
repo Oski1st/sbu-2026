@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
 import WalletPage from '../../pages/WalletPage';
 import { demoTrips } from '../../data/demoTrips';
+import { getTripById } from '../../data/tripLookup';
 import { officialPurchaseUrl, ticketing } from './ticketing';
 import { lirrThroughTicketNote } from './ticketCoverage';
 import { TicketCard } from './TicketCard';
@@ -15,7 +16,7 @@ function markup(tripId: string) {
 
 describe('shared wallet integration', () => {
   test.each(['regional-connection', 'amtrak-connection'])('%s renders every shared leg and official ticket destination', id => {
-    const trip = demoTrips.find(candidate => candidate.id === id)!;
+    const trip = getTripById(id)!;
     const html = markup(id);
     expect(html.match(/type="checkbox"/g)).toHaveLength(trip.legs.length);
     for (const leg of trip.legs) {
@@ -56,7 +57,7 @@ describe('shared wallet integration', () => {
     expect(html).toContain('A train change does not mean you must buy twice');
     expect(html).toContain('One planning note per leg, not one purchase per leg');
     expect(html).not.toContain('Purchase needed');
-    const trip = demoTrips.find(item => item.id === id)!;
+    const trip = getTripById(id)!;
     const firstLirr = trip.legs.findIndex(leg => leg.agency === 'LIRR');
     expect(lirrThroughTicketNote(trip.legs, firstLirr)).toBe(lirrThroughTicketNote(trip.legs, firstLirr + 1));
     expect(lirrThroughTicketNote(trip.legs, 0)).toBeUndefined();

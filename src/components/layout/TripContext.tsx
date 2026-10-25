@@ -1,7 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import type { ReactNode } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { demoTrips } from "../../data/demoTrips";
+import { getTripById } from "../../data/tripLookup";
 import type { Trip } from "../../types";
 const SelectionContext = createContext<{
   selectedTrip?: Trip;
@@ -24,10 +24,11 @@ export function TripProvider({ children }: { children: ReactNode }) {
       /* URL remains the source of truth when storage is unavailable. */
     }
   }
+  const selectedTrip = useMemo(() => getTripById(id), [id]);
   return (
     <SelectionContext.Provider
       value={{
-        selectedTrip: demoTrips.find((trip) => trip.id === id),
+        selectedTrip,
         selectTrip,
       }}
     >
@@ -35,17 +36,18 @@ export function TripProvider({ children }: { children: ReactNode }) {
     </SelectionContext.Provider>
   );
 }
-/** Teammates can use this hook, or resolve ?trip= against demoTrips directly. */
+/** Canonical route IDs win; legacy query IDs are supported on selection entry routes. */
 export function useSelectedTrip() {
   const context = useContext(SelectionContext);
   const [params] = useSearchParams();
   const { tripId } = useParams();
-  const requested = params.get("trip") ?? tripId ?? null;
+  const requested = tripId ?? params.get("trip") ?? null;
+  const requestedTrip = useMemo(() => getTripById(requested), [requested]);
   return {
     ...context,
     selectedTrip:
       requested === null
         ? context.selectedTrip
-        : demoTrips.find((trip) => trip.id === requested),
+        : requestedTrip,
   };
 }

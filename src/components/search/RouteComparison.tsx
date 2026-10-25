@@ -8,6 +8,7 @@ import {
   formatDuration,
   formatMoney,
   formatTime,
+  formatJourneyTime,
   sampleTotal,
   transferCount,
   tripMetrics,
@@ -63,7 +64,7 @@ export function RouteComparison({ trips, open, onClose }: Props) {
     >
       <div className="comparison-header">
         <span className="eyebrow">
-          <GitCompareArrows size={15} />A LITTLE PERSPECTIVE
+          <GitCompareArrows size={15} />COMPARE ROUTES
         </span>
         <button
           type="button"
@@ -75,10 +76,9 @@ export function RouteComparison({ trips, open, onClose }: Props) {
           <X size={20} />
         </button>
       </div>
-      <h2 id="comparison-title">Find your kind of journey.</h2>
+      <h2 id="comparison-title">Two routes, side by side.</h2>
       <p id="comparison-note">
-        Side by side. Every trade-off in the open. All times and fares below are
-        sample data.
+        All times and fares below are sample data.
       </p>
       {comparison && (
         <div className="comparison-insight">
@@ -87,7 +87,7 @@ export function RouteComparison({ trips, open, onClose }: Props) {
             <strong>{comparison.faster.label}</strong>
             {comparison.minutesSaved > 0
               ? ` gets you there ${comparison.minutesSaved} minutes sooner`
-              : " has the same total journey time"}
+              : " arrives at the same time"}
             {comparison.fareDifference === null
               ? "."
               : comparison.fareDifference > 0
@@ -146,19 +146,19 @@ export function RouteComparison({ trips, open, onClose }: Props) {
               })}
             </tr>
             <tr>
-              <th scope="row">Train changes</th>
+              <th scope="row">Connections</th>
               {trips.map((trip) => (
-                <td key={trip.id}>{transferCount(trip)} transfers</td>
+                <td key={trip.id}>{trip.planningNote ? "Unverified" : `${transferCount(trip)} transfers`}</td>
               ))}
             </tr>
             <tr>
-              <th scope="row">Time on trains</th>
+              <th scope="row">Time on board</th>
               {trips.map((trip) => (
                 <td key={trip.id}>{minutes(tripMetrics(trip)?.rideMinutes)}</td>
               ))}
             </tr>
             <tr>
-              <th scope="row">Between trains</th>
+              <th scope="row">Between services</th>
               {trips.map((trip) => (
                 <td key={trip.id}>
                   {minutes(tripMetrics(trip)?.transferMinutes)}
@@ -180,6 +180,18 @@ export function RouteComparison({ trips, open, onClose }: Props) {
               {trips.map((trip) => (
                 <td key={trip.id}>
                   {formatTime(trip.legs[0].departure)}
+                  <small>Eastern Time</small>
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th scope="row">Sample arrival</th>
+              {trips.map((trip) => (
+                <td key={trip.id}>
+                  {formatJourneyTime(
+                    trip.legs.at(-1)!.arrival,
+                    trip.legs[0].departure,
+                  )}
                   <small>Eastern Time</small>
                 </td>
               ))}

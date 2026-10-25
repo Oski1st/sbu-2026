@@ -1,0 +1,46 @@
+{
+  "checkedDate": "2026-10-25",
+  "scope": "The 24 cities in this branch's existing sample-routing catalogue; not the separate national market catalogue.",
+  "routes": [
+    {"id":"downeaster","objectId":16,"name":"Downeaster","url":"https://www.amtrak.com/downeaster-train","description":"Brunswick and Portland to Boston North Station. Boston's North and South stations are separate; no through-track connection is implied."},
+    {"id":"northeast-regional","objectId":32,"name":"Northeast Regional","url":"https://www.amtrak.com/northeast-regional-train","description":"Boston and the Northeast Corridor to Washington and Virginia branches, including Richmond and Norfolk. Not every train serves every branch."},
+    {"id":"hartford-line","objectId":20,"name":"Amtrak Hartford Line","url":"https://www.amtrak.com/amtrak-hartford-line-train","description":"New Haven, Hartford and Springfield. A separate service; connecting trains and boarding details must be checked."},
+    {"id":"empire-service","objectId":48,"name":"Empire Service","url":"https://www.amtrak.com/empire-service-train","description":"New York via Albany–Rensselaer to western New York. Albany's Amtrak station is in Rensselaer."},
+    {"id":"carolinian","objectId":11,"name":"Carolinian","url":"https://www.amtrak.com/routes","description":"New York, Richmond, Raleigh and Charlotte. Amtrak's current route directory lists this passenger corridor; the former combined Carolinian/Piedmont URL redirects to that directory."},
+    {"id":"palmetto","objectId":34,"name":"Palmetto","url":"https://www.amtrak.com/silver-service-palmetto-train","description":"Northeast cities to Savannah via the Carolinas. The Charleston-area station is in North Charleston."},
+    {"id":"silver-meteor","objectId":39,"name":"Silver Meteor","url":"https://www.amtrak.com/silver-service-palmetto-train","description":"New York to Miami via the coastal Carolinas, Savannah, Jacksonville and Orlando. Tampa is not inferred from this line."},
+    {"id":"floridian","objectId":49,"name":"Floridian","url":"https://www.amtrak.com/floridian-train","description":"Chicago, Pittsburgh, Washington, Savannah and Tampa/Miami. Geometry is the federal route snapshot, not an operating timetable."}
+  ],
+  "cities": [
+    {"id":"portland","name":"Portland","state":"ME","codes":["POR"],"note":"Amtrak train station; Downeaster uses Boston North Station."},
+    {"id":"boston","name":"Boston","state":"MA","codes":["BON","BOS","BBY"],"note":"North Station and South/Back Bay are distinct boarding locations. No rail link between them is drawn."},
+    {"id":"providence","name":"Providence","state":"RI","codes":["PVD"],"note":"Amtrak train station."},
+    {"id":"hartford","name":"Hartford","state":"CT","codes":["HFD"],"note":"Amtrak train station."},
+    {"id":"new-haven","name":"New Haven","state":"CT","codes":["NHV"],"note":"New Haven Union Station."},
+    {"id":"albany","name":"Albany","state":"NY","codes":["ALB"],"note":"Regional boarding location: Albany–Rensselaer station is in Rensselaer, not Albany municipality."},
+    {"id":"new-york","name":"New York","state":"NY","codes":["NYP"],"note":"Penn Station / Moynihan Train Hall. LIRR branch geometry is not supplied by the Amtrak layer."},
+    {"id":"stony-brook","name":"Stony Brook","state":"NY","codes":[],"note":"LIRR Port Jefferson Branch station confirmed by MTA. Alignment not mapped: no permitted, validated LIRR shape is bundled in this package.","sourceUrl":"https://www.mta.info/stations/stony-brook"},
+    {"id":"trenton","name":"Trenton","state":"NJ","codes":["TRE"],"note":"Amtrak station shown. This does not label shared tracks as validated SEPTA or NJ TRANSIT route geometry."},
+    {"id":"philadelphia","name":"Philadelphia","state":"PA","codes":["PHL"],"note":"30th Street Station. SEPTA local/commuter alignments are not mapped by this layer."},
+    {"id":"baltimore","name":"Baltimore","state":"MD","codes":["BAL"],"note":"Baltimore Penn Station."},
+    {"id":"washington","name":"Washington, DC","state":"DC","codes":["WAS"],"note":"Washington Union Station."},
+    {"id":"richmond","name":"Richmond","state":"VA","codes":["RVM","RVR"],"note":"Main Street and Staples Mill are separate boarding locations; the station record is not a municipal-boundary claim."},
+    {"id":"norfolk","name":"Norfolk","state":"VA","codes":["NFK"],"note":"Amtrak train station; do not confuse nearby bus connections with rail."},
+    {"id":"raleigh","name":"Raleigh","state":"NC","codes":["RGH"],"note":"Raleigh Union Station."},
+    {"id":"charlotte","name":"Charlotte","state":"NC","codes":["CLT"],"note":"Amtrak train station."},
+    {"id":"fayetteville","name":"Fayetteville","state":"NC","codes":["FAY"],"note":"Amtrak train station."},
+    {"id":"charleston","name":"Charleston","state":"SC","codes":["CHS"],"note":"Regional boarding location: the Amtrak station is in North Charleston, not Charleston municipality."},
+    {"id":"savannah","name":"Savannah","state":"GA","codes":["SAV"],"note":"Amtrak train station."},
+    {"id":"jacksonville","name":"Jacksonville","state":"FL","codes":["JAX"],"note":"Amtrak train station."},
+    {"id":"orlando","name":"Orlando","state":"FL","codes":["ORL"],"note":"Amtrak train station."},
+    {"id":"tampa","name":"Tampa","state":"FL","codes":["TPA"],"note":"Tampa Union Station; Floridian alignment is included."},
+    {"id":"fort-lauderdale","name":"Fort Lauderdale","state":"FL","codes":["FTL"],"note":"Amtrak train station; no Brightline service or alignment is asserted."},
+    {"id":"miami","name":"Miami","state":"FL","codes":["MIA"],"note":"Amtrak station location; no claim that the marker is downtown Miami."}
+  ],
+  "operatorGaps": [
+    {"operator":"SEPTA","url":"https://www3.septa.org/developer/","reason":"Official GTFS download identified; its shapes and usage conditions have not been validated for this map. No SEPTA-branded line is drawn."},
+    {"operator":"NJ TRANSIT","url":"https://developer.njtransit.com/registration/appdoc?app=GTFS-RAIL","reason":"Official GTFS portal documents registration/token access. No account, token or agreement was created; no NJ TRANSIT-branded alignment is drawn."},
+    {"operator":"LIRR","url":"https://www.mta.info/stations/stony-brook","reason":"Stony Brook service confirmed on MTA's Port Jefferson station page; a permitted, validated shape is not bundled. No straight-line substitute is drawn."},
+    {"operator":"Greyhound / FlixBus","url":null,"reason":"Coach operators are outside this rail layer and are never rendered as railway alignments."}
+  ]
+}

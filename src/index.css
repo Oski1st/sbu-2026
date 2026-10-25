@@ -1,8 +1,53 @@
 @import "tailwindcss";
+/* daisyUI 5 (MIT). Only the custom OneLine theme ships, and only the components
+   the app uses are included: Tailwind scans every word in the sources, so a broad
+   include would emit unused `.input`, `.tab`, `.collapse`… rules (and `.hero`,
+   which the Search page already owns). Modal scroll helpers are omitted because
+   the Compare dialog is a native <dialog>. */
+@plugin "daisyui" {
+  themes: false;
+  include: properties, rootcolor, scrollbar, svg, button, badge;
+}
+@plugin "daisyui/theme" {
+  name: "oneline";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: #f8f9f3;
+  --color-base-200: #eef1e6;
+  --color-base-300: #dfe5d6;
+  --color-base-content: #1f3a30;
+  --color-primary: #173f35;
+  --color-primary-content: #f8f9f3;
+  --color-secondary: #234f3e;
+  --color-secondary-content: #ffffff;
+  --color-accent: #d7ef95;
+  --color-accent-content: #173f35;
+  --color-neutral: #1b2a24;
+  --color-neutral-content: #f8f9f3;
+  --color-info: #1f5c8c;
+  --color-info-content: #ffffff;
+  --color-success: #2c6a3f;
+  --color-success-content: #ffffff;
+  --color-warning: #f3c552;
+  --color-warning-content: #3d2a00;
+  --color-error: #a8321f;
+  --color-error-content: #ffffff;
+  --radius-selector: 2rem;
+  --radius-field: 0.625rem;
+  --radius-box: 1.125rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
 @theme {
   --color-forest: #173f35;
   --color-lime: #d7ef95;
   --color-paper: #f8f9f3;
+  /* Muted UI text: 6.0:1 on white, 5.7:1 on paper. */
+  --color-sage: #55675b;
   --font-sans:
     "OneLine Sans", "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
@@ -56,9 +101,25 @@
   select {
     outline-offset: 5px;
   }
+  /* Keyboard focus ring: #4f7a2f is >= 4.5:1 on every light surface (#fff,
+     #fbfcf8, #f8f9f3, #f1f3e9). Dark containers switch to lime (below). */
   :focus-visible {
-    outline: 3px solid #7da24b;
+    outline: 3px solid #4f7a2f;
     outline-offset: 5px;
+  }
+  .closing-banner :focus-visible,
+  .compare-tray :focus-visible {
+    outline-color: #d7ef95;
+  }
+  /* Pills that sit edge to edge with dark active/pressed neighbours: draw the
+     ring inside the pill so it never lands on the neighbour, lime on dark. */
+  .site-header nav a:focus-visible,
+  .transport-filters [role="group"] button:focus-visible {
+    outline-offset: -5px;
+  }
+  .site-header nav a.active:focus-visible,
+  .transport-filters [role="group"] button[aria-pressed="true"]:focus-visible {
+    outline-color: #d7ef95;
   }
   main:focus,
   #main-content:focus,
@@ -245,11 +306,14 @@
   width: 1px;
   background: #ccd7c3;
 }
-.corridor-map {
-  position: relative;
+.corridor-map-wrap {
   min-width: 0;
   align-self: stretch;
   margin: 27px 22px 16px 0;
+}
+.corridor-map {
+  position: relative;
+  height: 100%;
   border-radius: 12px;
   mask-image: linear-gradient(
     to right,
@@ -318,6 +382,80 @@
   color: #758c7b;
   font-size: 8px;
 }
+.map-city-label--mobile,
+.map-city-legend {
+  display: none;
+}
+.nationwide-map-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.us-map-heading {
+  padding: 10px 12px;
+  color: #244d3e;
+}
+.us-map-heading p {
+  margin: 0;
+}
+.us-map-heading .us-map-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.us-map-heading .us-map-subtitle,
+.nationwide-map-wrap > .us-map-inset-note {
+  margin: 6px 0 0;
+  color: #405e50;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.nationwide-map-wrap > .us-map-inset-note {
+  padding: 0 8px;
+  text-align: center;
+}
+.nationwide-map {
+  height: auto;
+  min-height: 360px;
+  flex: 1 1 auto;
+  overflow: hidden;
+  background: #e2ece7;
+  mask-image: none;
+}
+.nationwide-map .map-art {
+  object-fit: contain;
+}
+.nationwide-map-wrap .map-city-legend {
+  display: block;
+  margin: 8px 0 0;
+  padding: 0 8px;
+  color: #405e50;
+  font-size: 11px;
+  line-height: 1.35;
+  text-align: center;
+}
+.us-map-inset-label {
+  fill: #244d3e;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+}
+.us-map-states path,
+.us-map-inset path {
+  fill: #f2f4e9;
+  stroke: #aebfaa;
+  stroke-width: 0.9;
+}
+.us-map-inset rect {
+  fill: #edf2e8;
+  stroke: #bdceb9;
+  stroke-width: 1;
+}
+.us-map-north {
+  fill: #526e5d;
+  font-size: 32px;
+  text-anchor: middle;
+}
 .content-wrap {
   max-width: 1188px;
   margin: auto;
@@ -371,6 +509,12 @@
 .location-field > svg {
   color: #7b926a;
 }
+.location-field .location-autocomplete {
+  flex: 1;
+}
+.location-autocomplete [role="option"] {
+  min-height: 44px;
+}
 .location-field label {
   display: flex;
   flex-direction: column;
@@ -389,13 +533,16 @@
   letter-spacing: -0.4px;
   color: #284538;
   width: 100%;
-  padding: 2px 0;
-  border-bottom: 1px solid transparent;
+  padding: 2px 0 1px;
+  border-bottom: 2px solid transparent;
   border-radius: 0;
 }
-.location-field input:focus {
-  border-bottom-color: #97b47e;
-  outline: none;
+/* Single source of truth for From/To focus: a 2px underline (5.05:1 on the
+   white card). The transparent outline only shows in forced-colors mode. */
+.location-field input:focus-visible {
+  border-bottom-color: #4f7a2f;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 .swap-button {
   width: 32px;
@@ -434,6 +581,55 @@
   font-size: 12px;
   font-weight: 550;
   white-space: nowrap;
+}
+.date-time-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.date-time-controls label {
+  display: flex;
+  /* Side by side only when each input gets >= 144px, enough for the full
+     date and time values; otherwise the fields wrap onto their own rows. */
+  flex: 1 1 144px;
+  min-width: 0;
+  flex-direction: column;
+  gap: 3px;
+  color: #52634e;
+  font-size: 11px;
+  font-weight: 650;
+}
+.date-time-controls input {
+  min-height: 44px;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #dfe5d9;
+  border-radius: 7px;
+  background: #fbfcf8;
+  color: #35483a;
+  font: inherit;
+  font-size: 16px;
+  padding: 4px 6px;
+}
+/* :focus as well as :focus-visible: WebKit never matches :focus-visible on
+   date/time inputs, and Chromium/Firefox already show it on click for them. */
+.date-time-controls input:focus,
+.date-time-controls input:focus-visible {
+  outline: 2px solid #4f7a2f;
+  outline-offset: 2px;
+}
+.date-field small {
+  display: block;
+  max-width: 260px;
+  color: #52634e;
+  font-size: 11px;
+  line-height: 1.4;
+}
+.date-field > div {
+  min-width: 0;
 }
 .search-button {
   display: inline-flex;
@@ -490,44 +686,36 @@
   font-weight: 500;
   color: #6d7b68;
 }
+/* Operator names are plain text badges, never copies of official logos. */
 .network-wordmark {
-  display: flex;
+  --wordmark-color: var(--agency-color, #5d6a59);
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #7b8977;
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.6px;
-  opacity: 0.8;
+  padding: 6px 11px;
+  border: 1px solid color-mix(in srgb, var(--wordmark-color) 24%, white);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--wordmark-color) 7%, white);
+  color: color-mix(in srgb, var(--wordmark-color) 72%, black);
+  font-size: 14px;
+  font-weight: 750;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
 }
-.njt {
-  font-size: 17px;
-  font-style: italic;
+.network-wordmark svg {
+  flex: none;
 }
-.njt > span {
-  font-size: 27px;
-}
-.amtrak {
-  font-size: 19px;
-  font-style: italic;
-  letter-spacing: 1.2px;
-}
-.amtrak small {
-  font-size: 8px;
-}
-.lirr {
-  font-size: 12px;
-  line-height: 1.1;
-  letter-spacing: -0.4px;
-}
-.lirr > span {
-  font-size: 10px;
-  padding: 8px 4px;
-  border-radius: 50%;
-  background: #7b8977;
-  color: #f8f9f3;
-  letter-spacing: -0.5px;
-  margin-right: 3px;
+.network-wordmark-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .results-section {
   scroll-margin-top: 28px;
@@ -752,11 +940,11 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-size: 8px;
-  font-weight: 650;
-  color: var(--agency-color);
+  font-size: 10px;
+  font-weight: 700;
+  color: color-mix(in srgb, var(--agency-color) 72%, black);
   background: color-mix(in srgb, var(--agency-color) 8%, white);
-  border: 1px solid color-mix(in srgb, var(--agency-color) 12%, white);
+  border: 1px solid color-mix(in srgb, var(--agency-color) 24%, white);
   border-radius: 4px;
   padding: 5px 7px;
 }
@@ -1061,10 +1249,8 @@
   font-size: 8px;
   color: #8e9a84;
 }
-.site-footer > a {
-  display: flex;
-  gap: 15px;
-  align-items: center;
+.site-footer > .footer-credit {
+  margin: 0;
   font-size: 10px;
 }
 .footer-line {
@@ -1323,18 +1509,13 @@
     min-width: 190px;
   }
   .network-strip {
+    justify-content: flex-start;
     gap: 15px;
     padding-left: 0;
     padding-right: 0;
   }
   .network-wordmark {
-    font-size: 17px;
-  }
-  .njt {
-    font-size: 14px;
-  }
-  .lirr {
-    font-size: 11px;
+    font-size: 13px;
   }
   .results-grid {
     grid-template-columns: minmax(0, 1fr) 240px;
@@ -1443,7 +1624,6 @@
   }
   .corridor-map {
     height: 276px;
-    margin: 0 10px 5px;
     mask-image: linear-gradient(
       to bottom,
       transparent,
@@ -1451,6 +1631,9 @@
       black 91%,
       transparent
     );
+  }
+  .corridor-map-wrap {
+    margin: 0 10px 13px;
   }
   .map-art {
     object-fit: contain;
@@ -1473,8 +1656,33 @@
     font-size: 7px;
   }
   .map-scale {
-    bottom: 10px;
-    font-size: 7px;
+    display: none;
+  }
+  .map-city-label--desktop {
+    display: none;
+  }
+  .map-city-label--mobile {
+    display: block;
+  }
+  .map-city-legend {
+    display: block;
+    margin: 6px 0 0;
+    padding: 0 8px;
+    color: #405e50;
+    font-size: 11px;
+    line-height: 1.35;
+    text-align: center;
+  }
+  .nationwide-map {
+    height: 220px;
+    min-height: 0;
+    flex: none;
+  }
+  .nationwide-map-wrap .map-city-legend {
+    margin-top: 8px;
+  }
+  .us-map-inset-label {
+    font-size: 32px;
   }
   .search-section {
     padding: 20px 18px 14px;
@@ -1557,30 +1765,13 @@
     padding-left: 4px;
   }
   .network-wordmark {
-    font-size: 15px;
-    gap: 3px;
+    font-size: 12px;
+    gap: 5px;
+    padding: 5px 9px;
   }
   .network-wordmark svg {
-    height: 18px;
-    width: 18px;
-  }
-  .njt {
-    font-size: 12px;
-  }
-  .njt > span {
-    font-size: 19px;
-  }
-  .amtrak {
-    font-size: 12px;
-    letter-spacing: 0.3px;
-  }
-  .lirr {
-    font-size: 8px;
-    line-height: 1.2;
-  }
-  .lirr > span {
-    font-size: 7px;
-    padding: 6px 3px;
+    height: 14px;
+    width: 14px;
   }
   .results-heading {
     flex-direction: column;
@@ -1650,9 +1841,6 @@
   }
   .agency-path {
     padding: 0 17px 19px;
-  }
-  .agency-badge {
-    font-size: 8px;
   }
   .route-card-bottom {
     padding-top: 12px;
@@ -1737,7 +1925,7 @@
   .site-footer > span small {
     font-size: 7px;
   }
-  .site-footer > a {
+  .site-footer > .footer-credit {
     font-size: 10px;
   }
   .footer-line {
@@ -2250,6 +2438,12 @@
     flex-wrap: wrap;
   }
 }
+@media (max-width: 380px) {
+  /* Keep whole values such as "Unavailable" on one line in the narrow columns. */
+  .comparison-table td strong {
+    font-size: 14px;
+  }
+}
 .share-feedback > span {
   display: block;
   padding-right: 16px;
@@ -2275,4 +2469,231 @@
   .comparison-header {
     top: -17px;
   }
+}
+
+/* East Coast exploration uses the same forest, paper and lime design tokens. */
+.coast-explorer {
+  margin: 44px 0 30px;
+}
+.explore-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 22px;
+}
+.explore-heading h2 {
+  font-size: clamp(24px, 3vw, 34px);
+  letter-spacing: -1.2px;
+  margin: 8px 0;
+}
+.explore-heading p {
+  color: #6b7769;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.coverage-tag {
+  flex-shrink: 0;
+  font-size: 8px;
+  letter-spacing: 1px;
+  border: 1px solid #cfdbc6;
+  border-radius: 40px;
+  padding: 10px 14px;
+  color: #64755e;
+}
+.corridor-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.corridor-pick {
+  text-align: left;
+  padding: 21px 17px;
+  border: 1px solid #dce3d3;
+  background: #f6f8ef;
+  border-radius: 15px;
+  min-width: 0;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.corridor-pick:hover {
+  background: #eaf0df;
+  transform: translateY(-2px);
+}
+.corridor-pick > span {
+  display: block;
+  color: #7a876b;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  margin-bottom: 13px;
+}
+.corridor-pick strong {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+}
+.corridor-pick small {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #6b7769;
+  font-size: 11px;
+  margin-top: 16px;
+  gap: 8px;
+}
+.coverage-details {
+  font-size: 12px;
+  color: #64725f;
+  margin-top: 18px;
+  line-height: 1.8;
+}
+.coverage-details summary {
+  cursor: pointer;
+  width: fit-content;
+  padding: 8px 0;
+}
+.coverage-details p {
+  margin-top: 8px;
+  max-width: 900px;
+}
+.transport-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.transport-filters [role="group"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.transport-filters button {
+  font-size: 11px;
+  padding: 10px 12px;
+  border: 1px solid #d5dfcb;
+  border-radius: 30px;
+  background: #fff;
+  min-height: 40px;
+}
+.transport-filters button[aria-pressed="true"] {
+  background: #244d3e;
+  border-color: #244d3e;
+  color: #fff;
+}
+.transport-filters label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 8px;
+  letter-spacing: 1px;
+  color: #71816c;
+}
+.transport-filters select {
+  font-size: 11px;
+  padding: 10px 6px;
+  max-width: 190px;
+  border: 1px solid #d5dfcb;
+  border-radius: 8px;
+  background: #fff;
+  color: #244d3e;
+}
+.concept-note {
+  margin: 14px 0 0;
+  padding: 0 24px;
+  color: #64725f;
+  font-size: 11px;
+  line-height: 1.7;
+}
+@media (max-width: 760px) {
+  .concept-note {
+    padding: 0 17px;
+  }
+}
+.network-strip {
+  flex-wrap: wrap;
+}
+.route-time strong {
+  display: block;
+}
+@media (max-width: 900px) {
+  .corridor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .explore-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .corridor-grid {
+    gap: 8px;
+  }
+  .corridor-pick {
+    padding: 16px 12px;
+  }
+  .corridor-pick strong {
+    font-size: 12px;
+  }
+  .transport-filters {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .transport-filters button {
+    padding: 9px 10px;
+    font-size: 10px;
+  }
+  .route-time strong {
+    font-size: 16px;
+  }
+  .network-strip {
+    justify-content: flex-start;
+    gap: 16px 22px;
+  }
+}
+
+/* Amtrak click-time handoff: stable booking page + copied trip details. */
+.amtrak-handoff {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 18rem;
+}
+.leg-detail > .amtrak-handoff > a,
+.handoff-leg > .amtrak-handoff > a {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #466342;
+}
+.leg-detail > .amtrak-handoff > a {
+  font-size: 9px;
+  padding-top: 3px;
+}
+.handoff-leg > .amtrak-handoff > a {
+  font-size: 11px;
+}
+.amtrak-handoff-note {
+  font-size: 10px;
+  line-height: 1.5;
+  color: #5c6b54;
+}
+.amtrak-handoff-status {
+  font-size: 10px;
+  font-weight: 600;
+  color: #3f5d36;
+}
+.amtrak-handoff-field input {
+  width: 100%;
+  font: inherit;
+  font-size: 11px;
+  padding: 4px 6px;
+  border: 1px solid #b8c4ad;
+  border-radius: 6px;
+  background: #fff;
 }

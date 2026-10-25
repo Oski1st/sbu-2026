@@ -1,49 +1,60 @@
 import { Suspense } from "react";
-import { NavLink, Link, Outlet } from "react-router-dom";
-import { ArrowUpRight, MoveRight, Search, Route, Wallet } from "lucide-react";
+import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
+import { MoveRight, Search, Route, Wallet } from "lucide-react";
 import { useSelectedTrip } from "./TripContext";
 import { Brand } from "./Brand";
+import { RouteErrorBoundary } from "./RouteErrorBoundary";
 export function AppLayout() {
   const { selectedTrip } = useSelectedTrip();
+  const { pathname } = useLocation();
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <header className="site-header">
-        <Link to="/" aria-label="OneLine home">
-          <Brand />
-        </Link>
-        <nav aria-label="Main navigation">
-          <NavLink to="/" end>
-            <Search size={15} />
-            Search
-          </NavLink>
-          <NavLink
-            to={selectedTrip ? `/journey/${selectedTrip.id}` : "/journey"}
-          >
-            <Route size={15} />
-            Journey
-          </NavLink>
-          <NavLink to={selectedTrip ? `/wallet/${selectedTrip.id}` : "/wallet"}>
-            <Wallet size={15} />
-            Wallet
-          </NavLink>
-        </nav>
-        <span className="header-note">
-          <span className="little-dot" />
-          Less switching. More going.
-        </span>
-      </header>
+      <div className="site-header-bar">
+        <header className="site-header">
+          <Link to="/" aria-label="OneLine home">
+            <Brand />
+          </Link>
+          <nav aria-label="Main navigation">
+            <NavLink to="/" end>
+              <Search size={15} />
+              Search
+            </NavLink>
+            <NavLink
+              to={selectedTrip ? `/journey/${selectedTrip.id}` : "/journey"}
+            >
+              <Route size={15} />
+              Journey
+            </NavLink>
+            <NavLink to={selectedTrip ? `/wallet/${selectedTrip.id}` : "/wallet"}>
+              <Wallet size={15} />
+              Wallet
+            </NavLink>
+          </nav>
+          <span className="header-note">
+            <span className="little-dot" />
+            Prototype · sample trips
+          </span>
+        </header>
+      </div>
       <div id="main-content" tabIndex={-1}>
         <Suspense
           fallback={
-            <main className="page-loading" role="status">
-              Connecting your journey…
+            // Reserve a viewport of height so the footer does not jump when a lazy page arrives.
+            <main
+              className="page-loading"
+              role="status"
+              style={{ minHeight: "100vh" }}
+            >
+              Loading…
             </main>
           }
         >
-          <Outlet />
+          <RouteErrorBoundary resetKey={pathname}>
+            <Outlet />
+          </RouteErrorBoundary>
         </Suspense>
       </div>
       <footer className="site-footer">
@@ -51,23 +62,17 @@ export function AppLayout() {
           <Link to="/" aria-label="OneLine home">
             <Brand />
           </Link>
-          <p>A better way there.</p>
+          <p>Trip planning across transit operators.</p>
         </div>
         <span>
-          Made for the in-between.
+          For trips with transfers.
           <br />
           <small>SBUHacks 2026 · Independent student project</small>
         </span>
-        <a
-          href="https://github.com/Oski1st/sbu-2026"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Built together <ArrowUpRight size={16} />
-        </a>
+        <p className="footer-credit">Built together</p>
         <div className="footer-line">
           <MoveRight size={19} />
-          <span>One journey. Many connections.</span>
+          <span>Not affiliated with any transit operator.</span>
           <small>Sample itineraries · Live data limited to labelled SEPTA snapshots</small>
         </div>
       </footer>

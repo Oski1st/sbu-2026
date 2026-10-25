@@ -112,7 +112,7 @@ Playwright is a locked devDependency. Run `pnpm exec playwright install chromium
 - [x] `/`, `/search`, `/journey/regional-connection`, `/wallet/amtrak-connection` and `/journey/bogus` return 200 with the SPA HTML.
 - [x] A missing `/assets/*.js` returns 404, not HTML.
 - [x] Unknown `/api/*` returns 404. The proxy rejects `POST` (405) and query strings.
-- [x] Malformed percent-encoding (`/journey/%E0%A4%A`) returns 400 and does not crash the server.
+- [x] Malformed percent-encoding (`/journey/%E0%A4%A`) serves the app shell ("Journey not found") to browsers, returns 400 `invalid_path` to non-HTML requests, and does not crash the server.
 
 ### Search → Compare → Journey → Wallet
 
@@ -144,7 +144,7 @@ Compare dialog ([desktop](qa-screenshots/compare-dialog-desktop.png), [320px](qa
 - [x] `/journey/bogus` and `/journey/regional-connection%20x` show "Journey not found" with **Back to search** ([screenshot](qa-screenshots/invalid-journey.png)).
 - [x] `/wallet/bogus` shows "Journey not found" with **Find a journey** ([screenshot](qa-screenshots/invalid-wallet.png)).
 - [x] `/journey` and `/wallet` with no saved selection show the choose-a-route state.
-- [x] `/nowhere` shows "A little off the line." with **Return to search**.
+- [x] `/nowhere` shows "Page not found" with **Return to search** (copy-humanize wording on the RC1 NotFoundPage).
 
 ### Mobile layouts and visible button text
 

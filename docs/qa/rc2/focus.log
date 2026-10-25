@@ -1,0 +1,35 @@
+
+== From (#origin): focused=true :focus-visible=true
+   computed: {"outline":"solid 2px rgba(0, 0, 0, 0)","borderBottom":"solid 2px rgb(79, 122, 47)","boxShadow":"none","ownBg":"rgba(0, 0, 0, 0)","adjacentBg":"rgb(255, 255, 255) (search-section)"}
+   indicator: {"kind":"outline 2px (offset 2px)","color":"rgba(0, 0, 0, 0)","vsAdjacent":1}
+   indicator: {"kind":"border-bottom 2px","color":"rgb(79, 122, 47)","vsAdjacent":5.05,"vsOwnBg":5.05}
+   pixel diff: {"changedPx":2888,"changedPxWith3to1Change":482,"required2pxPerimeterArea":1123,"maxChangeContrast":5.05}
+
+== To (#destination): focused=true :focus-visible=true
+   computed: {"outline":"solid 2px rgba(0, 0, 0, 0)","borderBottom":"solid 2px rgb(79, 122, 47)","boxShadow":"none","ownBg":"rgba(0, 0, 0, 0)","adjacentBg":"rgb(255, 255, 255) (search-section)"}
+   indicator: {"kind":"outline 2px (offset 2px)","color":"rgba(0, 0, 0, 0)","vsAdjacent":1}
+   indicator: {"kind":"border-bottom 2px","color":"rgb(79, 122, 47)","vsAdjacent":5.05,"vsOwnBg":5.05}
+   pixel diff: {"changedPx":2841,"changedPxWith3to1Change":476,"required2pxPerimeterArea":1115,"maxChangeContrast":5.05}
+
+== Date: focused=true :focus-visible=true
+   computed: {"outline":"solid 2px rgb(79, 122, 47)","borderBottom":"solid 1px rgb(223, 229, 217)","boxShadow":"none","ownBg":"rgb(251, 252, 248)","adjacentBg":"rgb(255, 255, 255) (search-section)"}
+   indicator: {"kind":"outline 2px (offset 2px)","color":"rgb(79, 122, 47)","vsAdjacent":5.05}
+   indicator: {"kind":"border-bottom 1px","color":"rgb(223, 229, 217)","vsAdjacent":1.28,"vsOwnBg":1.25}
+   pixel diff: {"changedPx":1902,"changedPxWith3to1Change":1308,"required2pxPerimeterArea":1291,"maxChangeContrast":5.05}
+
+== Time: focused=true :focus-visible=true
+   computed: {"outline":"solid 2px rgb(79, 122, 47)","borderBottom":"solid 1px rgb(223, 229, 217)","boxShadow":"none","ownBg":"rgb(251, 252, 248)","adjacentBg":"rgb(255, 255, 255) (search-section)"}
+   indicator: {"kind":"outline 2px (offset 2px)","color":"rgb(79, 122, 47)","vsAdjacent":5.05}
+   indicator: {"kind":"border-bottom 1px","color":"rgb(223, 229, 217)","vsAdjacent":1.28,"vsOwnBg":1.25}
+   pixel diff: {"changedPx":1331,"changedPxWith3to1Change":742,"required2pxPerimeterArea":1291,"maxChangeContrast":5.05}
+
+== Swap button (reference): focused=true :focus-visible=true
+   computed: {"outline":"solid 3px rgb(79, 122, 47)","borderBottom":"solid 1px rgb(226, 231, 218)","boxShadow":"none","ownBg":"rgb(250, 251, 247)","adjacentBg":"rgb(255, 255, 255) (search-section)"}
+   indicator: {"kind":"outline 3px (offset 5px)","color":"rgb(79, 122, 47)","vsAdjacent":5.05}
+   indicator: {"kind":"border-bottom 1px","color":"rgb(226, 231, 218)","vsAdjacent":1.26,"vsOwnBg":1.21}
+   pixel diff: {"changedPx":587,"changedPxWith3to1Change":382,"required2pxPerimeterArea":240,"maxChangeContrast":5.05}
+
+== Find my way (reference): focused=true :focus-visible=true
+   computed: {"outline":"solid 3px rgb(79, 122, 47)","borderBottom":"none 0px rgb(255, 255, 255)","boxShadow":"none","ownBg":"rgb(23, 63, 53)","adjacentBg":"rgb(255, 255, 255) (search-section)"}
+   indicator: {"kind":"outline 3px (offset 5px)","color":"rgb(79, 122, 47)","vsAdjacent":5.05}
+   pixel diff: {"changedPx":1427,"changedPxWith3to1Change":1312,"required2pxPerimeterArea":823,"maxChangeContrast":5.05}

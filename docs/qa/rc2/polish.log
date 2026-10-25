@@ -1,0 +1,18 @@
+PASS catalogue model parsed 24 cities — 24
+PASS S2a 'ch': Charlotte and Charleston rank before Richmond — Charlotte, Charleston, Richmond
+PASS S2b 'or': Orlando listed first (prefix) — Orlando, Portland, Hartford, New York, Baltimore, Norfolk, Fort Lauderdale
+PASS S2c 'ba': Baltimore (prefix) before Albany (substring) — Baltimore, Albany
+PASS S2d alias exact 'nyc' → New York first — New York
+PASS S2e alias prefix 'long' (Long Island) → Stony Brook first — Stony Brook
+PASS S2f limit after ranking: 'a' still lists prefix match Albany first within 8 — Albany, Portland, Boston, Hartford, New Haven, Stony Brook, Philadelphia, Baltimore
+PASS S2g stable tie: 'new' prefix matches keep catalogue order — New Haven, New York
+PASS S2h 24 queries match the independent ranking model exactly
+PASS S2i no-match 'zz' → empty list
+PASS S1 320px: date and time stacked, each ≥136px (values fully visible; 136px is the narrowest width seen unclipped), within viewport, no page overflow — date 210px time 210px
+PASS S1 360px: date and time stacked, each ≥136px (values fully visible; 136px is the narrowest width seen unclipped), within viewport, no page overflow — date 250px time 250px
+FAIL S1 361px: side-by-side layout retained with each input ≥136px (values fully visible), within viewport — date 251px time 251px
+FAIL S1 375px: side-by-side layout retained with each input ≥136px (values fully visible), within viewport — date 265px time 265px
+FAIL S1 390px: side-by-side layout retained with each input ≥136px (values fully visible), within viewport — date 280px time 280px
+PASS no page errors
+
+13/16 P4-27 checks passed

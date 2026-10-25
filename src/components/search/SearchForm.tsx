@@ -6,95 +6,151 @@ import {
   MapPin,
   Circle,
 } from "lucide-react";
+import { LocationAutocomplete } from "./LocationAutocomplete";
+import { sampleLocationCatalogue, type LocationCatalogue } from "./locationCatalogue";
+import { todayInNewYork } from "../../data/searchState";
+import { IconTooltip } from "../ui/icon-tooltip";
+
+const MAX_DATE = "9999-12-31";
+
 interface Props {
-  onSearch: (origin: string, destination: string) => void;
+  initialOrigin?: string;
+  initialDestination?: string;
+  /** Planning preferences are persisted for sharing, but never rewrite sample itinerary times. */
+  initialDepartureDate?: string;
+  initialDepartureTime?: string;
+  catalogue?: LocationCatalogue;
+  onSearch: (
+    origin: string,
+    destination: string,
+    preferences: { departureDate: string; departureTime: string },
+  ) => void;
 }
-export function SearchForm({ onSearch }: Props) {
-  const [origin, setOrigin] = useState("Philadelphia");
-  const [destination, setDestination] = useState("Stony Brook");
+export function SearchForm({
+  onSearch,
+  initialOrigin = "Philadelphia",
+  initialDestination = "Stony Brook",
+  initialDepartureDate = todayInNewYork(),
+  initialDepartureTime = "08:00",
+  catalogue = sampleLocationCatalogue,
+}: Props) {
+  const [origin, setOrigin] = useState(initialOrigin);
+  const [destination, setDestination] = useState(initialDestination);
+  const [departureDate, setDepartureDate] = useState(initialDepartureDate);
+  const [departureTime, setDepartureTime] = useState(initialDepartureTime);
   return (
     <section className="search-section" aria-label="Plan your journey">
       <div className="search-heading">
         <span>
           <i />
-          LET’S GET YOU THERE
+          PLAN A TRIP
         </span>
-        <small>One-way · Rail journeys</small>
+        <small>One-way · Rail + intercity bus</small>
       </div>
       <form
         onSubmit={(event) => {
           event.preventDefault();
-          onSearch(origin, destination);
+          const form = event.currentTarget;
+          const dateInput = form.elements.namedItem("departure-date");
+          const today = todayInNewYork();
+          // Chrome can roll a typed 5-digit year into e.g. 0270; never submit or share an out-of-range date.
+          if (dateInput instanceof HTMLInputElement) {
+            dateInput.setCustomValidity(
+              /^\d{4}-\d{2}-\d{2}$/.test(departureDate) && departureDate >= today && departureDate <= MAX_DATE
+                ? ""
+                : `Choose a date from ${today} to ${MAX_DATE}.`,
+            );
+          }
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+          onSearch(origin, destination, { departureDate, departureTime });
         }}
         className="search-form"
       >
         <div className="location-field">
           <Circle size={17} />
-          <label htmlFor="origin">
-            FROM
-            <input
-              id="origin"
-              name="origin"
-              value={origin}
-              onChange={(event) => setOrigin(event.target.value)}
-              list="station-options"
-              required
-              maxLength={100}
-              autoComplete="off"
-              placeholder="Departure city"
-            />
-          </label>
+          <LocationAutocomplete
+            id="origin"
+            name="origin"
+            label="From"
+            value={origin}
+            onChange={setOrigin}
+            required
+            placeholder="Departure city"
+            catalogue={catalogue}
+          />
         </div>
-        <button
-          type="button"
-          className="swap-button"
-          aria-label="Swap origin and destination"
-          onClick={() => {
-            setOrigin(destination);
-            setDestination(origin);
-          }}
-        >
-          <ArrowDownUp size={17} />
-        </button>
+        <IconTooltip label="Swap origin and destination">
+          <button
+            type="button"
+            className="swap-button"
+            aria-label="Swap origin and destination"
+            onClick={() => {
+              setOrigin(destination);
+              setDestination(origin);
+            }}
+          >
+            <ArrowDownUp size={17} />
+          </button>
+        </IconTooltip>
         <div className="location-field destination-field">
           <MapPin size={19} />
-          <label htmlFor="destination">
-            TO
-            <input
-              id="destination"
-              name="destination"
-              value={destination}
-              onChange={(event) => setDestination(event.target.value)}
-              list="station-options"
-              required
-              maxLength={100}
-              autoComplete="off"
-              placeholder="Where to?"
-            />
-          </label>
+          <LocationAutocomplete
+            id="destination"
+            name="destination"
+            label="To"
+            value={destination}
+            onChange={setDestination}
+            required
+            placeholder="Arrival city"
+            catalogue={catalogue}
+          />
         </div>
         <div className="date-field">
           <CalendarDays size={19} />
           <div>
-            <span>DEMO DEPARTURE</span>
-            <strong>Sat, Oct 24, 2026</strong>
+            <span>PLANNING PREFERENCE</span>
+            <div className="date-time-controls">
+              <label>
+                Date
+                <input
+                  name="departure-date"
+                  type="date"
+                  value={departureDate}
+                  onChange={(event) => {
+                    event.target.setCustomValidity("");
+                    setDepartureDate(event.target.value);
+                  }}
+                  min={todayInNewYork()}
+                  max={MAX_DATE}
+                  required
+                />
+              </label>
+              <label>
+                Time
+                <input
+                  name="departure-time"
+                  type="time"
+                  value={departureTime}
+                  onChange={(event) => setDepartureTime(event.target.value)}
+                  required
+                />
+              </label>
+            </div>
+            <small>Saved in this share link. Sample itinerary times do not change.</small>
           </div>
         </div>
         <button className="search-button" type="submit">
-          Find my way <ArrowRight size={18} />
+          Search trips <ArrowRight size={18} />
         </button>
-        <datalist id="station-options">
-          <option value="Philadelphia" />
-          <option value="Stony Brook" />
-          <option value="New York" />
-          <option value="Trenton" />
-        </datalist>
       </form>
       <div className="search-footnote">
         <span>
           Try our demo: Philadelphia <ArrowRight size={12} /> Stony Brook
         </span>
-        <span>Sample schedules & fares. No live arrivals.</span>
+        <span>Sample plans · Date/time are planning preferences, not live schedules.</span>
       </div>
     </section>
   );

@@ -1,135 +1,102 @@
-import { ArrowUpRight, TrainFront } from "lucide-react";
+import { useId } from "react";
+import geometry from "../../data/railMap/geometry.json";
+import audit from "../../data/railMap/serviceAudit.json";
+import "./PassengerRailMap.css";
+
+/**
+ * A few orienting labels, positioned from the bundled station coordinates (no new geometry).
+ * They are HTML so their text stays a fixed, legible size while the SVG scales. "place" sets
+ * the label offset from its dot (see PassengerRailMap.css) so labels sit in open space clear of
+ * neighbouring stations; "wideOnly" labels are hidden where the map is too narrow for them.
+ */
+const mapLabels = [
+  { code: "BOS", text: "Boston", place: "right", wideOnly: false },
+  { code: "NYP", text: "New York", place: "below-right", wideOnly: false },
+  { code: "WAS", text: "Washington", place: "far-right", wideOnly: true },
+  { code: "CLT", text: "Charlotte", place: "left", wideOnly: false },
+  { code: "SAV", text: "Savannah", place: "right-low", wideOnly: false },
+  { code: "TPA", text: "Tampa", place: "left", wideOnly: false },
+  { code: "MIA", text: "Miami", place: "right", wideOnly: false },
+] as const;
+const [, , viewWidth, viewHeight] = geometry.viewBox;
+
 export function CorridorMap() {
+  const id = useId();
+  const titleId = `${id}-rail-title`;
+  const descriptionId = `${id}-rail-description`;
   return (
-    <div
-      className="corridor-map"
-      aria-label="Illustrative rail corridor connecting Philadelphia, Trenton, New York, Huntington and Stony Brook. Not geographically to scale."
-      role="img"
-    >
-      <svg viewBox="0 0 640 430" className="map-art" aria-hidden="true">
-        <defs>
-          <pattern
-            id="map-grid"
-            width="25"
-            height="25"
-            patternUnits="userSpaceOnUse"
-          >
-            <circle cx="1" cy="1" r=".8" fill="#cad5c4" />
-          </pattern>
-        </defs>
-        <rect width="640" height="430" fill="url(#map-grid)" />
-        <path
-          d="M245-20C260 55 332 80 321 154S269 255 333 296 389 371 408 460H670V-20Z"
-          fill="#dce8e4"
-        />
-        <path
-          d="M396 149C436 132 502 109 650 92L664 172C558 165 480 182 423 196Z"
-          fill="#f0f2e6"
-          stroke="#cdd8c8"
-        />
-        <g fill="none" stroke="#cfd9c9" strokeWidth="1">
-          <path d="M-5 112C124 110 179 65 245 34" />
-          <path d="M-5 127C124 125 184 79 250 48" />
-          <path d="M-5 142C124 140 189 93 255 62" />
-          <path d="M50 430C110 327 215 347 254 243" />
-          <path d="M71 430C131 327 236 347 275 243" />
-          <path d="M92 430C152 327 257 347 296 243" />
-        </g>
-        <g
-          fontFamily="Arial,sans-serif"
-          fontSize="11"
-          fill="#87988a"
-          letterSpacing="2"
-        >
-          <text x="104" y="72">
-            PENNSYLVANIA
-          </text>
-          <text x="220" y="345">
-            NEW JERSEY
-          </text>
-          <text x="479" y="205" transform="rotate(-8 479 205)">
-            LONG ISLAND
-          </text>
-        </g>
-        <path
-          className="map-track-shadow"
-          d="M107 320L215 231Q227 220 241 220H327Q342 220 349 205L376 150H518"
-        />
-        <path
-          d="M107 320L215 231Q227 220 241 220"
-          fill="none"
-          stroke="#497dc5"
-          strokeWidth="7"
-          strokeLinecap="round"
-        />
-        <path
-          d="M241 220H327Q342 220 349 205L376 150"
-          fill="none"
-          stroke="#d8834b"
-          strokeWidth="7"
-          strokeLinecap="round"
-        />
-        <path
-          d="M376 150H518"
-          fill="none"
-          stroke="#5c7dc8"
-          strokeWidth="7"
-          strokeLinecap="round"
-        />
-        <path
-          d="M107 320Q155 170 376 150"
-          fill="none"
-          stroke="#2e7969"
-          strokeWidth="2"
-          strokeDasharray="5 7"
-        />
-        <g fill="#f7f8f0" stroke="#244d3e" strokeWidth="3">
-          <circle cx="107" cy="320" r="8" />
-          <circle cx="241" cy="220" r="6" />
-          <circle cx="376" cy="150" r="8" />
-          <circle cx="466" cy="150" r="5" />
-          <circle cx="518" cy="150" r="8" />
-        </g>
-        <g fontFamily="Arial,sans-serif" fill="#244d3e">
-          <text x="61" y="351" fontSize="16" fontWeight="700">
-            Philadelphia
-          </text>
-          <text x="219" y="247" fontSize="12">
-            Trenton
-          </text>
-          <text x="340" y="124" fontSize="14" fontWeight="700">
-            New York
-          </text>
-          <text x="439" y="177" fontSize="10">
-            Huntington
-          </text>
-          <text x="489" y="123" fontSize="15" fontWeight="700">
-            Stony Brook
-          </text>
-          <text
-            x="144"
-            y="204"
-            fontSize="10"
-            transform="rotate(-32 144 204)"
-            fill="#2e7969"
-          >
-            Amtrak connection
-          </text>
-        </g>
-      </svg>
-      <div className="map-stamp">
-        <span className="stamp-icon">
-          <TrainFront size={18} />
-        </span>
-        <div>
-          Four networks.<strong>One way forward.</strong>
-        </div>
-        <ArrowUpRight size={19} />
+    <section className="passenger-rail-map" aria-labelledby={titleId}>
+      <header className="prm-heading">
+        <p className="prm-eyebrow">CONTIGUOUS UNITED STATES</p>
+        <h2 id={titleId}>Amtrak corridors.</h2>
+        <p>Selected Amtrak corridors serving our sample cities.</p>
+      </header>
+      <div className="prm-frame">
+        <svg className="prm-art" viewBox={geometry.viewBox.join(" ")} role="img" aria-labelledby={`${titleId} ${descriptionId}`}>
+          <desc id={descriptionId}>North-up geographic map of the contiguous United States. Eight selected Amtrak route alignments from the federal NTAD snapshot are drawn over state boundaries. Dots mark 26 Amtrak train stations serving 23 of the 24 sample-catalogue cities. Stony Brook's LIRR alignment is missing. This is partial rail coverage, not a timetable or a guarantee of a direct connection. Read the corridor and city list below for boarding locations and gaps.</desc>
+          <rect className="prm-water" width="800" height="420" rx="16" />
+          <g className="prm-states">
+            {geometry.boundaries.map((state) => <path key={state.name} d={state.path} />)}
+          </g>
+          <g className="prm-routes">
+            {geometry.routes.map((route) => (
+              <g key={route.id} data-route-id={route.id}>
+                <title>{`${route.name}: generalized rail alignment`}</title>
+                {route.paths.map((path, index) => <path key={index} d={path} vectorEffect="non-scaling-stroke" />)}
+              </g>
+            ))}
+          </g>
+          <g className="prm-stations">
+            {geometry.stations.map((station) => (
+              <g key={station.code} className="prm-station" data-station-code={station.code}>
+                <title>{`${station.locality}: ${station.name} (${station.code})`}</title>
+                {/* Zero-length round-capped strokes keep markers a constant on-screen size at every width. */}
+                <path className="prm-station-halo" d={`M${station.x},${station.y}h0`} vectorEffect="non-scaling-stroke" />
+                <path className="prm-station-dot" d={`M${station.x},${station.y}h0`} vectorEffect="non-scaling-stroke" />
+              </g>
+            ))}
+          </g>
+        </svg>
+        <ul className="prm-labels" aria-hidden="true">
+          {mapLabels.map(({ code, text, place, wideOnly }) => {
+            const station = geometry.stations.find((item) => item.code === code)!;
+            return <li key={code} className={`prm-label prm-label-${place}${wideOnly ? " prm-label-wide-only" : ""}`} style={{ left: `${(station.x / viewWidth) * 100}%`, top: `${(station.y / viewHeight) * 100}%` }}>{text}</li>;
+          })}
+        </ul>
       </div>
-      <span className="map-caption">
-        THE NORTHEAST, CONNECTED <span>↗</span>
-      </span>
-      <span className="map-scale">Illustrative network map</span>
-    </div>
+      <ul className="prm-legend" aria-label="Rail map legend">
+        <li><span className="prm-line-key" aria-hidden="true" />Generalized Amtrak rail alignment</li>
+        <li><span className="prm-dot-key" aria-hidden="true" />Amtrak train station</li>
+        <li>North up · Albers equal-area</li>
+      </ul>
+      <p className="prm-note">Federal route snapshot: May 2026. Stations: October 2026. Partial coverage; confirm service and boarding details with the operator. These lines do not change the sample itineraries.</p>
+      <details className="prm-details">
+        <summary>Corridors, cities &amp; coverage gaps</summary>
+        <div className="prm-details-content" role="region" aria-label="Corridor, city and coverage-gap details" tabIndex={0}>
+          <h3>Documented passenger corridors</h3>
+          <p>Railway alignment comes from FRA/BTS NTAD. Passenger-service descriptions are checked against Amtrak's published route pages. Neither establishes a departure on your chosen date or a guaranteed transfer.</p>
+          <p>The Floridian description names Chicago, but its line here is drawn only as far as the mapped source extent. This map does not show the full Chicago corridor.</p>
+          <ul className="prm-route-list">
+            {audit.routes.map((route) => <li key={route.id}><a href={route.url} target="_blank" rel="noreferrer">{route.name}<span className="prm-sr-only"> (official source, opens in a new tab)</span> ↗</a><p>{route.description}</p></li>)}
+          </ul>
+          <h3>All 24 sample-catalogue cities</h3>
+          <p>Markers use train-station coordinates, not city centres. A nearby line alone is not proof that a particular train stops there.</p>
+          <ul className="prm-city-list">
+            {audit.cities.map((city) => <li key={city.id}>
+              <strong>{city.name.endsWith(`, ${city.state}`) ? city.name : `${city.name}, ${city.state}`}</strong>
+              <p>{city.note}</p>
+              {city.codes.length > 0 ? <ul>{city.codes.map((code) => {
+                const station = geometry.stations.find((item) => item.code === code)!;
+                return <li key={code}><a href={`https://www.amtrak.com/stations/${code.toLowerCase()}.html`} target="_blank" rel="noreferrer">{station.locality} · {station.name} ({code})<span className="prm-sr-only"> (official station, opens in a new tab)</span> ↗</a></li>;
+              })}</ul> : <a href={city.sourceUrl} target="_blank" rel="noreferrer">MTA station details · alignment not mapped<span className="prm-sr-only"> · {city.name} (opens in a new tab)</span> ↗</a>}
+            </li>)}
+          </ul>
+          <h3>What is missing</h3>
+          <ul className="prm-gap-list">{audit.operatorGaps.map((gap) => <li key={gap.operator}><strong>{gap.operator}:</strong> {gap.reason}{gap.url && <> <a href={gap.url} target="_blank" rel="noreferrer">Official source<span className="prm-sr-only"> · {gap.operator} (opens in a new tab)</span> ↗</a></>}</li>)}</ul>
+          <p>Downeaster trains use Boston North Station. Northeast Regional uses South Station/Back Bay; no through-rail connector is drawn between them. Albany boarding is in Rensselaer; Charleston-area boarding is in North Charleston.</p>
+          <p className="prm-sources">Sources: <a href="https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Routes/FeatureServer/0" target="_blank" rel="noreferrer">FRA/BTS alignments<span className="prm-sr-only"> (opens in a new tab)</span> ↗</a> · <a href="https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Stations/FeatureServer/0" target="_blank" rel="noreferrer">Amtrak station dataset<span className="prm-sr-only"> (opens in a new tab)</span> ↗</a> · <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth boundaries<span className="prm-sr-only"> (opens in a new tab)</span> ↗</a>. Public-domain geometry, checked {audit.checkedDate}, bundled offline. Shapes are generalized for this scale; they are not track-level navigation.</p>
+        </div>
+      </details>
+    </section>
   );
 }

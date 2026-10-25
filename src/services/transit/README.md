@@ -10,7 +10,7 @@ endpoint unchanged. No alternate proxy, router, shared dependency, or global sty
 changes are included here.
 
 Named `Trip`, `Leg`, and `Agency` exports come from `src/types/transit.ts`, and
-`demoTrips: Trip[]` comes from `src/data/demoTrips.ts`. No duplicate production
+`demoTrips: Trip[]` from `src/data/demoTrips.ts` retains the original two samples; expanded IDs are reconstructed by `getTripById` from `src/data/tripLookup.ts`. No duplicate production
 contracts or invented journeys are included here. The shared layout owns the main
 page landmark; WalletPage renders inside it.
 
@@ -29,7 +29,7 @@ https://www.amtrak.com/mobile
 
 ## What is simulated and what is real?
 
-- Shared `demoTrips` supplies every journey, leg, duration, and time. These are
+- Shared original samples and deterministic `getTripById` supply journey legs, durations and times. These are
   displayed as simulated itinerary data, never live departures or availability.
 - Checklist marks are in-memory demo UI state. They reset on wallet unmount or trip
   change, do not store personal information, and cannot establish payment or validity.
@@ -88,7 +88,7 @@ Do not scrape booking endpoints or present static schedules as live data.
 
 ## Official ticketing references
 
-- SEPTA payment options: https://wwww.septa.org/fares/ways-to-pay/
+- SEPTA payment options: https://www.septa.org/fares/ways-to-pay/
 - NJ TRANSIT official app and ticketing: https://www.njtransit.com/app
 - LIRR MTA TrainTime: https://www.mta.info/traintime
 - Amtrak official booking/app information: https://www.amtrak.com/mobile

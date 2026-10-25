@@ -9,6 +9,7 @@ import {
   Info,
 } from "lucide-react";
 import { useSelectedTrip } from "./TripContext";
+import { AmtrakHandoff } from "../AmtrakHandoff";
 import { agencies } from "../../data/agencies";
 import { formatDuration, formatTime } from "../../data/tripUtils";
 /** Owned by Person 1. Replaced automatically when teammate page modules are merged. */
@@ -25,22 +26,22 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
         <Icon size={27} />
       </span>
       <span className="eyebrow">
-        {kind === "journey" ? "YOUR NEXT CHAPTER" : "OFFICIAL TICKET OPTIONS"}
+        {kind === "journey" ? "JOURNEY" : "OFFICIAL TICKET OPTIONS"}
       </span>
       <h1>
         {kind === "journey"
-          ? "A clear path ahead."
-          : "Every ticket. One starting point."}
+          ? "Your journey"
+          : "Ticket links"}
       </h1>
       <p className="integration-intro">
         {kind === "journey"
-          ? "Your selected connection is ready to explore."
+          ? "The route you choose on Search appears here."
           : "Continue with each agency to check fares and buy valid tickets."}
       </p>
       <p className="integration-notice">
         <Info size={16} />
         {kind === "journey"
-          ? "Journey preview · The full Journey page is being built by our team."
+          ? "Journey preview · Choose this route on Search to open its full step-by-step journey."
           : "Wallet preview · No tickets have been issued or purchased."}
       </p>
       {selectedTrip ? (
@@ -77,9 +78,16 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
                       · Sample
                     </p>
                   </div>
-                  {kind === "wallet" && (
+                  {kind === "wallet" && leg.agency === "AMTRAK" && (
+                    <AmtrakHandoff details={leg}>
+                      Official tickets <ArrowUpRight size={14} />
+                      <span className="sr-only"> · Amtrak booking page, {leg.line}, {leg.from} to {leg.to}; copies trip details (opens in a new tab)</span>
+                    </AmtrakHandoff>
+                  )}
+                  {kind === "wallet" && leg.agency !== "AMTRAK" && (
                     <a target="_blank" rel="noreferrer" href={leg.purchaseUrl}>
                       Official tickets <ArrowUpRight size={14} />
+                      <span className="sr-only"> · {agencies[leg.agency].name}, {leg.line}, {leg.from} to {leg.to} (opens in a new tab)</span>
                     </a>
                   )}
                 </div>
@@ -102,10 +110,10 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
         </>
       ) : (
         <div className="empty-state">
-          <h2>Start with a connection.</h2>
-          <p>Choose a route from Search to bring your journey here.</p>
+          <h2>No route chosen yet.</h2>
+          <p>Choose a route on the Search page first.</p>
           <Link className="search-button handoff-cta" to="/">
-            Find my way <ArrowRight size={17} />
+            Go to search <ArrowRight size={17} />
           </Link>
         </div>
       )}

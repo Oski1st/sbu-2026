@@ -1,99 +1,173 @@
 # OneLine · SBUHacks 2026
 
-A unified journey planner across SEPTA, NJ TRANSIT, Amtrak and LIRR.
+One search, one journey timeline and one ticket-planning checklist across SEPTA,
+NJ TRANSIT, LIRR, Amtrak, Greyhound and FlixBus. The original demonstration is
+Philadelphia → Stony Brook; the East Coast catalogue adds clearly labelled
+city-level rail/coach concepts.
 
-## Start
+## Run locally
 
-Requires Node.js 22.12+ and pnpm 11.25 (`corepack enable` on installations that include Corepack).
+Use Node.js **22.12+** and **pnpm 11.25.0**. Run `corepack enable` if Corepack is
+available in your Node installation.
 
 ```sh
-pnpm install
-pnpm dev
+pnpm install --frozen-lockfile
+pnpm dev                     # http://127.0.0.1:5173
+```
+
+For the production server:
+
+```sh
+pnpm build
+pnpm start                   # http://127.0.0.1:3000
+```
+
+React + TypeScript + Vite, Tailwind CSS v4 and React Router are already configured.
+The UI uses daisyUI 5 (a Tailwind plugin, dev dependency) with a single custom light
+`oneline` theme declared at the top of `src/index.css`, plus a few shadcn/ui-style
+components copied into `src/components/ui/` (Sonner toast, Radix Tooltip) with a `cn()`
+helper in `src/lib/utils.ts` (clsx + tailwind-merge). These install with the normal
+`pnpm install --frozen-lockfile`; no extra setup, fonts or CDNs are needed.
+The Node host serves the built app, SPA deep links and the SEPTA proxy together.
+All UI/map assets are local, so a previously installed and built app works offline
+with the SEPTA panel showing its honest unavailable state.
+
+## Checks
+
+```sh
+pnpm typecheck
 pnpm build
 pnpm test
+pnpm test:proxy
 ```
 
-Vite serves the app locally. Production hosting must serve `index.html` for unknown paths so BrowserRouter deep links work.
-
-## Shared contract and team ownership
-
-`src/types/transit.ts` exports `Agency`, `Fare`, `Leg`, and `Trip`; `src/types/index.ts` re-exports them. Agency includes `AMTRAK`. `src/data/demoTrips.ts` exports `demoTrips: Trip[]`. ISO timestamps include their timezone offset. Optional fare metadata and display labels preserve the required contract.
-
-- Person 1: App.tsx, SearchPage.tsx, search/layout components, types/data, styling and configuration.
-- Person 2: JourneyPage.tsx and components/journey/.
-- Person 3: WalletPage.tsx, components/wallet/ and services/transit/.
-
-Use short feature branches and pull requests into main. Coordinate before editing shared files. Never commit credentials.
-
-## Data honesty
-
-The Philadelphia → Stony Brook itineraries use real agency and station names, but **all departure times, durations and dollar amounts are illustrative sample data**. They are not valid timetables or fare quotes. LIRR changes at Huntington are separate legs; a zero-dollar continuation leg means the previous sample LIRR fare covers it. No live arrival API is connected. Agency links lead to official planning/ticket information; OneLine does not issue tickets.
-
-Network references:
-
-- https://www.njtransit.com/getting-new-york-train
-- https://www.amtrak.com/stations/phl
-- https://www.mta.info/stations/stony-brook
-
-## Page integration for teammates
-
-`App.tsx` automatically loads `src/pages/JourneyPage.tsx` and `src/pages/WalletPage.tsx` after those files are merged. Export a default React component (or a named `JourneyPage` / `WalletPage`) with no required props. Until then, Person 1's `components/layout/IntegrationPage.tsx` supplies an explicitly labeled preview; no teammate-owned files are created.
-
-Selecting a route navigates to `/journey/<id>` and sets React Router location state `{tripId, trip}`. The chosen ID is also saved locally. Import `useSelectedTrip` from `src/components/layout/TripContext.tsx` for `{selectedTrip, selectTrip}`, or read the `tripId` route parameter and look up the ID in `demoTrips`. Route parameters survive reloads. Legacy `?trip=` links redirect to the canonical path and take precedence over stored selection. Invalid IDs show the choose-a-route state. Link to `/wallet/<id>` to preserve selection. Direct `/journey/:tripId` links are also supported.
-
-Keep these page contracts and the `AMTRAK` enum value when merging. No API keys or live API configuration are needed for this demo.
-
-## Design tokens
-
-`src/index.css` defines forest, lime, paper and sans tokens through Tailwind v4's `@theme`, with shared CSS for navigation, route cards, forms and responsive layouts. The network illustration is a local SVG and requires no third-party image service. Typography uses the system Avenir/Segoe UI stack. Keyboard focus, form labels, live results feedback, skip navigation and reduced-motion preferences are supported.
-
-## Integration status (October 24, 2026)
-
-Person 2's PR #1 expects `/journey/:tripId`; Person 3's PR #2 expects `/wallet/:tripId`. Both routes are wired. Header navigation preserves the selected trip. Missing selections show a choose-a-route preview, and legacy query links redirect to the canonical path.
-
-Journey now supports AMTRAK and shared ISO timestamp formatting. The updated Journey and Wallet PRs passed a combined production build and all 33 tests before integration. Both canonical trip routes, Journey delay/reset, Wallet checklist reset and SEPTA retrieval were checked in the browser. The shell keeps navigation visible during lazy page loads and assigns exactly one main landmark per page.
-
-Person 3's wallet is compatible with the four-agency contract. Its optional SEPTA feed uses the fixed-upstream same-origin backend proxy below. The host router supplies `septaEndpoint`; records are agency-wide observations and do not replace the sample itinerary. See `src/services/transit/README.md` for source references and adapter behavior.
-
-## SEPTA same-origin proxy
-
-`GET /api/transit/septa/trains` fetches only `https://api.septa.org/api/TrainView/index.php`. No API key is required. The endpoint accepts no query parameters, does not forward browser cookies or authorization, refuses redirects, caps responses at 1 MiB, and aborts after 4.5 seconds (before the wallet’s six-second timeout). Responses are not cached. Upstream failures/invalid data return 502; timeouts return 504. An empty valid feed stays an empty array. No sample trains are substituted.
-
-The same implementation runs in all supported modes:
+With a production server running, browser and smoke checks use its actual URL:
 
 ```sh
-pnpm dev                  # Vite + proxy at http://127.0.0.1:5173
-pnpm build
-pnpm preview              # Vite preview + proxy
-pnpm start                # Production Node host at http://127.0.0.1:3000
+pnpm exec playwright install chromium   # once, while online
+pnpm test:e2e http://127.0.0.1:3000
+pnpm test:smoke http://127.0.0.1:3000
+node qa/demo-rehearsal.cjs http://127.0.0.1:3000
+node qa/demo-rehearsal.cjs http://127.0.0.1:3000 --offline
 ```
 
-Deploy on a Node-capable host with build command `pnpm install --frozen-lockfile && pnpm build`, start command `pnpm start`, and environment `HOST=0.0.0.0` plus the host-provided `PORT`. The production server serves `dist/`, the API, and SPA deep links from one origin. It uses only Node built-ins; no new runtime package is required. A static-only upload of `dist/` does **not** provide the API; the wallet must retain its unavailable state there. No hosted deployment has been created by this change.
+Playwright is pinned as a devDependency. There is no configured lint script;
+TypeScript, build, unit tests and the relevant browser/proxy checks are the current
+validation commands. QA reports record the exact tested SHA and distinguish local,
+feature-branch and hosted results. See [QA checklist](docs/qa-checklist.md).
 
-`App.tsx` passes `septaEndpoint="/api/transit/septa/trains"` to `/wallet/:tripId`. The integrated Wallet consumes this endpoint. Person 3’s files are not modified by the host-shell integration.
+## Shared data and page contracts
 
-Validated the real endpoint through both Vite and the production host: HTTP 200 with an array of 22 observations at test time on October 24, 2026. The isolated combined checkout with PR #2 built successfully and passed 19 tests. Its browser Wallet displayed “Live feed fetched” with retrieval time, agency-wide observations, and the explicit statement that demo times remain simulated. This count is a test observation, not a fixed expected feed size.
+`src/types/transit.ts` exports the named types `Agency`, `Leg`, `Trip`, `Fare` and
+`TransportMode`; `src/types/index.ts` re-exports them. Required fields are:
 
-Official source: https://api.septa.org/
+- `Agency`: `SEPTA | NJ_TRANSIT | LIRR | AMTRAK | GREYHOUND | FLIXBUS`.
+- `Leg`: `id`, `agency`, `line`, `from`, `to`, `departure`, `arrival`, `purchaseUrl`.
+- `Trip`: `id`, `origin`, `destination`, `durationMinutes`, `legs`.
 
-## Compare and share routes
+ISO departure/arrival timestamps include a timezone offset. Fare metadata, mode,
+sample labels and concept-planning disclosures are optional extensions to the
+shared contract. `src/data/demoTrips.ts` exports `demoTrips: Trip[]`, preserving
+`regional-connection` and `amtrak-connection` and their original sample times.
 
-Search now includes “Compare both options” and per-route comparison checkboxes. The comparison dialog explains sample fare, total travel time, train changes, time on trains, time between trains and the shortest transfer interval. These intervals are derived from the itinerary, not live connection guarantees. Choosing either column opens its canonical Journey URL. The native modal supports Escape, focus containment and focus restoration.
+The integrated pages are:
 
-Each route also offers a copyable Journey link, with a manual-copy fallback if clipboard access is unavailable. On localhost it is explicitly labeled a preview link with a deployment reminder; links only become remotely shareable once the app is hosted. No agency booking or tracking service receives these links automatically.
+| URL | Behavior |
+| --- | --- |
+| `/` or `/search` | Search, filters, route comparison and route selection |
+| `/journey/:tripId` | Person 2's timeline, manual guided demo and labelled delay simulation |
+| `/wallet/:tripId` | Person 3's per-leg planning checklist and official ticket links |
+| `/journey` or `/wallet` | Use the selected trip, or show a choose-a-route state |
 
-QA: check comparison at 320px and desktop widths, choosing from each column, closing with Escape, clearing selections, filtering out Amtrak, and copying/reopening a Journey link. Invalid timestamps and missing fares must display unavailable metrics instead of invented values.
+Canonical path IDs take precedence over legacy `?trip=` parameters. Legacy
+`/journey?trip=<id>` and `/wallet?trip=<id>` links redirect to canonical paths.
+An unknown ID shows an explicit empty/not-found state; it never substitutes an
+unrelated trip. Route IDs survive a refresh. Selecting a route also retains its ID
+locally so header navigation can reopen it; checklist marks are in-memory only.
+`useSelectedTrip` in `src/components/layout/TripContext.tsx` exposes the shared
+selection. Search criteria/filter links persist in the URL.
 
-## Shared shell contract
+The layout owns global navigation and the focusable `#main-content` container.
+Search and Journey supply their own `main`; the host supplies Wallet's `main`
+wrapper because Wallet returns a div. Preserve exactly one main landmark per
+page. The initial Tab reaches the skip link; focus moves after route changes.
+Page-level lazy loading keeps the navigation shell available.
 
-The shell owns global navigation and the focusable `#main-content` container. Page-level Suspense keeps navigation visible while modules load. Search and Journey render their own `main`; Wallet intentionally returns a div and receives its `main` wrapper from the host route. Keep this contract when polishing the pages. Global element resets live in Tailwind's base layer so page utility classes (including white text on dark buttons) take precedence.
+## Sample data, live observations and ticket purchasing
 
-Integration was validated against Journey head `ff3488a` and Wallet head `930e1b5`, combined with the comparison and proxy features. No overflow was observed at 320px on the Amtrak Journey/Wallet pages. The original proxy-suite timeout reported on another machine did not reproduce locally; all 33 combined tests passed.
+**All provided itineraries, departure times, durations and fares are sample data.**
+They are not verified timetables, fare quotes, connection guarantees or available
+inventory. Expanded city-level concepts do not verify operator coverage, direct
+service, terminal changes or rail/road alignments. Unknown fares stay unknown.
+The original LIRR continuation legs can share the preceding sample fare; a
+zero-dollar continuation is not a separate free ticket.
 
-## Team QA and deployment handoff
+Only the explicitly labelled **agency-wide SEPTA Regional Rail snapshot** is live.
+It is not matched to a sample journey and never replaces itinerary times. It
+expires after 60 seconds and supports unavailable, empty, stale and refresh
+states. No live NJ TRANSIT, LIRR, Amtrak, Greyhound or FlixBus arrivals are connected.
 
-- [QA checklist and findings](docs/qa-checklist.md)
-- [Node deployment guide](docs/deployment.md)
-- [Two-minute demo script](docs/demo-script.md)
+Official links open agency booking/information sites. OneLine does not sell,
+issue, activate or validate tickets. Checklist marks do not prove purchase,
+payment or boarding eligibility. Confirm all real travel details with operators.
 
-Install the locked dev dependencies with `pnpm install --frozen-lockfile`, then install the browser once with `pnpm exec playwright install chromium`. Against a running production server, use `pnpm test:e2e http://127.0.0.1:4173 qa-results/screenshots`. The runner creates its screenshot directory and exits nonzero when a check fails. `pnpm test:proxy` exercises upstream failures; `pnpm test:smoke <url>` validates a local or deployed origin. Browser QA is an explicit step and is not added to the fast Vitest command.
+Network references: [NJ TRANSIT](https://www.njtransit.com/getting-new-york-train),
+[Amtrak Philadelphia](https://www.amtrak.com/stations/phl),
+[LIRR Stony Brook](https://www.mta.info/stations/stony-brook).
+Map boundaries use public-domain [Natural Earth](https://www.naturalearthdata.com/about/terms-of-use/)
+geography bundled with the app; concept lines are not actual service alignments.
+
+## SEPTA same-origin proxy and deployment
+
+The host passes `/api/transit/septa/trains` to Wallet. That endpoint fetches only
+`https://api.septa.org/api/TrainView/index.php`; it needs no API key. It rejects
+query parameters and redirects, forwards no browser cookies/authorization, caps
+responses at 1 MiB, times out after 4.5 seconds and sends `Cache-Control: no-store`.
+Upstream failures return 502, timeouts 504; no sample trains replace a failed feed.
+The same implementation runs in Vite development/preview and the Node host.
+
+The public demo is <https://oneline-sbu-2026.onrender.com>. Deployment evidence and
+exact revisions are tracked in [deployment notes](docs/deployment.md) and the
+team hub; a feature PR is not automatically the deployed version.
+
+Use a **Node-capable** host, build with
+`corepack enable && pnpm install --frozen-lockfile --prod=false && pnpm build`,
+start with `pnpm start`, and set `HOST=0.0.0.0` with the host-provided `PORT`.
+`render.yaml` specifies a free Node service. A static-only upload cannot provide
+the proxy and must preserve the labelled unavailable state. Do not start paid
+services or commit API keys, credentials or local environment files.
+
+See the [two-minute demo script](docs/demo-script.md),
+[QA checklist](docs/qa-checklist.md), [deployment guide](docs/deployment.md),
+[server notes](server/README.md) and
+[Wallet adapter handoff](src/services/transit/README.md).
+
+## UI credits / licenses
+
+All UI dependencies are MIT-licensed and bundled locally (no runtime third-party requests):
+
+| Package | Use | License |
+| --- | --- | --- |
+| [daisyUI](https://daisyui.com) 5 | Tailwind plugin; custom `oneline` theme, `btn`/`badge` | MIT |
+| [shadcn/ui](https://ui.shadcn.com) | Source pattern for `src/components/ui/{sonner,tooltip}.tsx` (copied, adapted) | MIT |
+| [sonner](https://sonner.emilkowal.ski) | Journey "Simulated delay" toast | MIT |
+| [@radix-ui/react-tooltip](https://www.radix-ui.com) | Tooltips on icon-only Search controls | MIT |
+| [clsx](https://github.com/lukeed/clsx), [tailwind-merge](https://github.com/dcastil/tailwind-merge) | `cn()` class helper | MIT |
+
+No paid, GPL or AGPL UI kits are used. See [docs/ui-refresh.md](docs/ui-refresh.md).
+
+## Team workflow
+
+Use separate feature branches and PRs; do not force-push or overwrite teammates'
+work. Coordinate shared changes in the private
+[team hub](https://github.com/Oski1st/oneline-team-hub).
+
+- Person 1: shared foundation, contracts, routing and integration.
+- Person 2: Journey plus explicitly delegated Search/date-time/location UI and map work.
+- Person 3: Wallet/transit services plus delegated catalogue and routing-performance work.
+- Person 4: docs/QA/demo and deployment verification.
+
+Keep the current release QA SHA stable while future feature PRs are in progress.
+Do not describe unmerged nationwide data, autocomplete or geolocation work as
+already deployed. Design tokens, responsive layout and reduced-motion styles live
+in `src/index.css`; page-specific Wallet CSS stays scoped under `.oneline-wallet`.

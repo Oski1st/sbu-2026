@@ -77,7 +77,9 @@ const pageNav = (page) =>
   const asset = await fetch(base + "/assets/missing.js");
   log("Missing asset is 404, not SPA HTML", asset.status === 404, String(asset.status));
   const bad = await fetch(base + "/journey/%E0%A4%A", { headers: { accept: "text/html" } });
-  log("Malformed percent-encoding returns 400 (not a crash)", bad.status === 400, String(bad.status));
+  log("Malformed percent-encoding document gets the app shell (not raw JSON)", bad.status === 200 && (bad.headers.get("content-type") || "").includes("text/html"), `${bad.status} ${bad.headers.get("content-type")}`);
+  const badApi = await fetch(base + "/journey/%E0%A4%A");
+  log("Malformed percent-encoding non-document returns 400 (not a crash)", badApi.status === 400, String(badApi.status));
   const unknownApi = await fetch(base + "/api/nope", { headers: { accept: "text/html" } });
   log("Unknown /api path is 404", unknownApi.status === 404, String(unknownApi.status));
 
