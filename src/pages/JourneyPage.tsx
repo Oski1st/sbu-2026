@@ -104,8 +104,8 @@ export default function JourneyPage() {
               hasConnection={Boolean(affectedConnection)}
               isActive={isDelaySimulated}
               onToggle={() => {
-                // The inline delay UI stays the source of truth; the toast is an extra, polite cue.
-                // Short, distinct wording: #41's live region already announces the full "Simulated delay" message once.
+                // The inline delay UI stays the source of truth; the toast is a visual-only cue (its Toaster
+                // is hidden below), so #41's live region is the one place the delay is announced.
                 if (!isDelaySimulated) toast("Delay simulation on", { id: "simulated-delay", description: `+${SIMULATED_DELAY_MINUTES} min on ${affectedLeg.line} · demo, not a live alert` });
                 else toast.dismiss("simulated-delay");
                 setIsDelaySimulated((active) => !active);
@@ -162,7 +162,11 @@ export default function JourneyPage() {
           <p className="mt-1">Platform, gate, and curbside boarding locations can change and are not included here. Always follow station or terminal signage, announcements, and official operator updates.</p>
         </aside>
       </div>
-      <Toaster />
+      {/* Sonner's region is always aria-live, so it would announce the delay a second time. Hide it
+          from assistive technology; inert keeps its tabbable toast out of the focus order too. */}
+      <div aria-hidden="true" inert>
+        <Toaster hotkey={[]} />
+      </div>
     </main>
   );
 }
