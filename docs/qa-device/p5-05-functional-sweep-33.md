@@ -44,3 +44,18 @@ Person 5 · QA docs only · automated run in installed Google Chrome 156.0.8078.
 **M1 (known, not new):** the opening map has no rail lines and still has the Alaska/Hawaii insets. Person 2's draft #36 replaces it, and Person 4 is auditing it (P4-37).
 
 Known findings F1 (focus contrast) and F2 (375px date clip) still reproduce. They are assigned to Person 3 and are not repeated here.
+
+## Parallel audits (automated, Chrome 156, #33 plus #38 working tree)
+
+Four audit agents ran alongside the sweep. These are automated runs, not human tests. Each key finding below was re-checked by Person 5 in the running app before it was assigned.
+
+| Audit | Result | Key findings → owner |
+| --- | --- | --- |
+| Route data (1,651 trips, run through the repo's own code) | Legs, totals and timestamps are internally consistent | **F1** Fastest/comparison ranked by duration, not arrival → **fixed in #38**. **F2** rail detours via Richmond (Raleigh→Fayetteville 8h 50m observed), **F3** Boston↔Albany via NYC, **F4** one-seat trains shown as transfers → Person 3. **F5** SEPTA `wwww` typo → **fixed in #38** |
+| Times and fares vs published sources | 22/23 rail segments within 25%; demo fares close (LIRR $16 exact) | NY–Stony Brook 180 vs ~110 min; Richmond–Raleigh bus; modelling errors above → Person 3, official-page confirmation → Person 4. Evidence: `research/p5-05-times-fares-evidence.md` |
+| Journey and Wallet UI (12 routes) | Disclosure, demo, links, overnight dates, SEPTA failure states pass | SEPTA 999, Wallet raw minutes, 320px "Unavailable" wrap, disclaimer space → **fixed in #38**. Delay always warns (observed), delayed-time alignment, Wallet back link, long coach legs, transfer-prompt date → Person 2 |
+| Every button and link (~210 activations, 15 page variants) | No errors; external links well-formed and on the right operator domains | Demo focus lost at the last step (observed) → Person 2. Header nav loses a shared trip (observed), filter count not announced, stale filters, silent third Compare tick → Person 3. Stale "being built" notice → **fixed in #38**. Search nav drops the last search → deferred (low) |
+| Map and page UI (5 widths, light and dark) | Map north-up, 49 shapes, no overlap or overflow | Small-text contrast 2.9–4.4:1 → Person 3. Alaska inset distortion → moot with Person 2's #36 |
+
+**Assignments posted (owner-delegated, issue threads):** Person 4 P5D-HUMAN33 (#2) and P5D-QA38 (#2); Person 3 P5D-DATA33 (#1); Person 2 P5D-JOURNEY33 (#4).
+**Person 5 fixes:** draft PR #38, branch `fix/p5-search-date-bounds`, head `b1d7e5970037e49ed1d745a627fee221256a8454`. Typecheck and build pass; 110/110 tests. Pending Person 4's independent QA.
