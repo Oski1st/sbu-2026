@@ -111,7 +111,7 @@ Line numbers refer to this branch (`feat/copy-humanize`).
 | src/data/eastCoast.ts:306 | Carolina calling | Sample trips |
 | src/data/eastCoast.ts:312 | Chase the sunshine | Sample trips |
 | src/data/originalDemoTrips.ts:40 | A little more time. A lot more possibility. | SEPTA, NJ TRANSIT, then LIRR. Lower sample fare, one more transfer. |
-| src/data/originalDemoTrips.ts:91 | Trade a transfer for a little more breathing room. | Amtrak to New York, then LIRR. 65 minutes faster, $15 more in sample fares. |
+| src/data/originalDemoTrips.ts:91 | Trade a transfer for a little more breathing room. | Amtrak to New York, then LIRR. 65 minutes less time on board, $15 more in sample fares. |
 
 The figures come from the sample data: 315 vs 250 minutes, $46 vs $61, 3 vs 2 transfers.
 
