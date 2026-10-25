@@ -18,7 +18,7 @@ export function todayInNewYork(now = new Date()): string {
 export const defaultSearch = {
   origin: "Philadelphia",
   destination: "Stony Brook",
-  /** Preferences only; sample route times stay tied to the demonstration data. */
+  /** Preferences only; when set in the URL they shift the sample timeline as a demo preview. */
   departureDate: todayInNewYork(),
   departureTime: "08:00",
   order: "recommended",
@@ -95,6 +95,13 @@ export function readSearchState(params: URLSearchParams): SearchState {
       : "recommended",
     includeAmtrak: params.get("amtrak") !== "0",
   };
+}
+
+/** `?date=…&time=…` for Journey/Wallet links when the URL carries a planning preference; "" keeps the fixed sample. */
+export function planningSearchFrom(params: URLSearchParams): string {
+  if (!params.has("date") && !params.has("time")) return "";
+  const { departureDate, departureTime } = readSearchState(params);
+  return `?${new URLSearchParams({ date: departureDate, time: departureTime })}`;
 }
 
 /** Persist the whole submitted search atomically, preserving unrelated query keys. */

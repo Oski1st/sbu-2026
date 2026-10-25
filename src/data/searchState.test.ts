@@ -2,12 +2,19 @@ import { describe, expect, it } from "vitest";
 import {
   defaultSearch,
   newSearchPatch,
+  planningSearchFrom,
   readSearchState,
   todayInNewYork,
   writeSearchState,
 } from "./searchState";
 
 describe("search URL state", () => {
+  it("carries only a URL planning preference into Journey/Wallet links, normalized", () => {
+    expect(planningSearchFrom(new URLSearchParams())).toBe("");
+    expect(planningSearchFrom(new URLSearchParams("from=Boston&sort=fastest"))).toBe("");
+    expect(planningSearchFrom(new URLSearchParams({ date: "2026-11-05", time: "11:30 PM" }))).toBe("?date=2026-11-05&time=23%3A30");
+  });
+
   it("restores the original demo for an empty URL", () => {
     expect(readSearchState(new URLSearchParams())).toEqual(defaultSearch);
     expect(writeSearchState(defaultSearch).toString()).toBe("");

@@ -2,11 +2,14 @@ import { Suspense } from "react";
 import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
 import { MoveRight, Search, Route, Wallet } from "lucide-react";
 import { useSelectedTrip } from "./TripContext";
+import { planningSearchFrom } from "../../data/searchState";
 import { Brand } from "./Brand";
 import { RouteErrorBoundary } from "./RouteErrorBoundary";
 export function AppLayout() {
   const { selectedTrip } = useSelectedTrip();
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
+  // Keep a shifted planning preview when moving between Journey and Wallet from the header.
+  const planningSearch = planningSearchFrom(new URLSearchParams(search));
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
@@ -23,12 +26,12 @@ export function AppLayout() {
               Search
             </NavLink>
             <NavLink
-              to={selectedTrip ? `/journey/${selectedTrip.id}` : "/journey"}
+              to={`${selectedTrip ? `/journey/${selectedTrip.id}` : "/journey"}${planningSearch}`}
             >
               <Route size={15} />
               Journey
             </NavLink>
-            <NavLink to={selectedTrip ? `/wallet/${selectedTrip.id}` : "/wallet"}>
+            <NavLink to={`${selectedTrip ? `/wallet/${selectedTrip.id}` : "/wallet"}${planningSearch}`}>
               <Wallet size={15} />
               Wallet
             </NavLink>

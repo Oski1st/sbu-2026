@@ -185,7 +185,9 @@ export function RouteCard({
           )}
           <p className="details-note">
             <Clock3 size={14} />
-            Demo timeline shifted to your planning preference · {previewDate}, {formatTime(first.departure)} Eastern Time. Not an actual schedule.
+            {planningPreferences
+              ? `Demo timeline shifted to your planning preference · ${previewDate}, ${formatTime(first.departure)} Eastern Time. Not an actual schedule.`
+              : `All times shown in Eastern Time · Sample departure ${previewDate}`}
           </p>
           {trip.legs.map((leg, i) => (
             <div key={leg.id} className="leg-detail">

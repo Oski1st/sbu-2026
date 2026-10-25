@@ -16,7 +16,7 @@ const MAX_DATE = "9999-12-31";
 interface Props {
   initialOrigin?: string;
   initialDestination?: string;
-  /** Planning preferences are persisted for sharing, but never rewrite sample itinerary times. */
+  /** Planning preferences are persisted for sharing and shift the sample timeline as a demo preview only. */
   initialDepartureDate?: string;
   initialDepartureTime?: string;
   catalogue?: LocationCatalogue;
