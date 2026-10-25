@@ -107,7 +107,7 @@ export default function JourneyPage() {
               <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-slate-500">Step by step</p>
               <h2 id="timeline-title" className="mt-1 text-2xl font-bold tracking-tight text-slate-950">Journey timeline</h2>
             </div>
-            <p className="text-xs text-slate-500">Sample itinerary times in Eastern Time</p>
+            <p className="text-xs text-slate-500">Fixed sample itinerary times (Eastern Time) · your search date and time are not applied</p>
           </div>
 
           <div className="space-y-3">

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   defaultSearch,
   readSearchState,
+  todayInNewYork,
   writeSearchState,
 } from "./searchState";
 
@@ -87,5 +88,16 @@ describe("search URL state", () => {
     const urls = [first, second].map((state) => writeSearchState(state).toString());
     expect(readSearchState(new URLSearchParams(urls[0]))).toEqual(first);
     expect(readSearchState(new URLSearchParams(urls[1]))).toEqual(second);
+  });
+
+  it("defaults the date preference to today in New York, not a fixed past date (W3)", () => {
+    // 03:30 UTC on Oct 25 is still Oct 24 in New York (EDT, UTC-4).
+    expect(todayInNewYork(new Date("2026-10-25T03:30:00Z"))).toBe("2026-10-24");
+    expect(todayInNewYork(new Date("2026-10-25T04:30:00Z"))).toBe("2026-10-25");
+    expect(todayInNewYork(new Date("2027-01-01T04:59:00Z"))).toBe("2026-12-31");
+    expect(defaultSearch.departureDate).toBe(todayInNewYork());
+    expect(readSearchState(new URLSearchParams()).departureDate).toBe(todayInNewYork());
+    // Explicit deep links still win.
+    expect(readSearchState(new URLSearchParams({ date: "2026-11-03" })).departureDate).toBe("2026-11-03");
   });
 });

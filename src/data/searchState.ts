@@ -1,10 +1,25 @@
 import { agencies } from "./agencies";
 
+/** Today's calendar date (YYYY-MM-DD) for the sample corridors' home time zone. */
+export function todayInNewYork(now = new Date()): string {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+      .formatToParts(now)
+      .map(({ type, value }) => [type, value]),
+  );
+  return `${parts.year}-${parts.month}-${parts.day}`;
+}
+
 export const defaultSearch = {
   origin: "Philadelphia",
   destination: "Stony Brook",
   /** Preferences only; sample route times stay tied to the demonstration data. */
-  departureDate: "2026-10-24",
+  departureDate: todayInNewYork(),
   departureTime: "08:00",
   order: "recommended",
   includeAmtrak: true,
