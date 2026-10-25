@@ -64,12 +64,17 @@ export async function copyTripText(text: string, field?: HTMLInputElement | null
       /* Permission denied or document unfocused: fall through to the visible field. */
     }
   }
-  if (!field) return false;
+  if (!field || typeof document === "undefined") return false;
+  const previous = document.activeElement;
   field.focus();
   field.select();
+  let copied = false;
   try {
-    return typeof document !== "undefined" && document.execCommand("copy");
+    copied = document.execCommand("copy");
   } catch {
-    return false;
+    copied = false;
   }
+  // Copied: return focus to the link. Not copied: keep it in the now-visible field so Ctrl+C works.
+  if (copied && previous instanceof HTMLElement) previous.focus();
+  return copied;
 }

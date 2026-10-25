@@ -34,6 +34,23 @@ describe('shared wallet integration', () => {
     expect(html).not.toContain('Live feed fetched');
   });
 
+  test.each(['regional-connection', 'amtrak-connection'])('%s gives every ticket link a distinct name with its own stations', id => {
+    const trip = getTripById(id)!;
+    const clean = (value: string) => value.replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/\s*·\s*/g, ', ').replace(/\s+/g, ' ').trim();
+    const names = [...markup(id).matchAll(/<a\b[^>]*data-purchase-kind="[^"]*"[^>]*>([\s\S]*?)<\/a>/g)].map(([, content]) => clean(content));
+    expect(names).toHaveLength(trip.legs.length);
+    expect(new Set(names).size).toBe(names.length);
+    trip.legs.forEach((leg, i) => {
+      expect(names[i]).toContain(clean(leg.from));
+      expect(names[i]).toContain(clean(leg.to));
+      expect(names[i]).toContain('(opens in a new tab)');
+    });
+    // The two LIRR legs used to share one name ("MTA TrainTime & tickets").
+    const lirr = names.filter((_, i) => trip.legs[i].agency === 'LIRR');
+    expect(lirr).toHaveLength(2);
+    expect(lirr[0]).not.toBe(lirr[1]);
+  });
+
   test('Amtrak wallet has no unrelated SEPTA feed panel', () => {
     expect(markup('amtrak-connection')).not.toContain('SEPTA service snapshot');
     expect(markup('regional-connection')).toContain('SEPTA service snapshot');

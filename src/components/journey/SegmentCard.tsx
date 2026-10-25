@@ -92,6 +92,17 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
 
           {leg.mode === "bus" && <p className="mt-3 rounded-xl bg-base-100 p-3 text-sm leading-6 text-sage"><strong>Sample coach corridor. </strong>This segment may merge several city-to-city sample stops. Intermediate stops, vehicle changes and rest breaks are not shown or verified. Confirm the full itinerary and breaks with the operator; this is not a claim of nonstop service.</p>}
 
+          {/* Exactly one ticket link per segment, always visible: never a hidden or inert copy inside the details. */}
+          <div className="mt-4 text-xs leading-5 text-sage">
+            <PurchaseLink
+              leg={leg}
+              tripStart={tripStart}
+              className={ticketButtonClass}
+              position={`segment ${index + 1}`}
+              icon={<span className="ml-2" aria-hidden="true">↗</span>}
+            />
+          </div>
+
           <button
             ref={toggleRef}
             type="button"
@@ -128,15 +139,6 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
                   <li>2. Keep this itinerary handy and follow terminal or station signage for your service.</li>
                   <li>3. Exit at {leg.to} and continue to the next connection if shown below.</li>
                 </ol>
-                <span className="mt-4 block">
-                  <PurchaseLink
-                    leg={leg}
-                    tripStart={tripStart}
-                    className={ticketButtonClass}
-                    position={`segment ${index + 1}`}
-                    icon={<span className="ml-2" aria-hidden="true">↗</span>}
-                  />
-                </span>
               </div>
             </div>
           </div>

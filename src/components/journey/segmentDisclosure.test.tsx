@@ -31,12 +31,23 @@ describe("SegmentCard details disclosure", () => {
     expect(html).toContain('aria-expanded="false"');
     expect(html).toContain(`aria-controls="segment-details-${leg.id}"`);
     expect(html).toContain("View trip details");
-    // The link is preserved for expansion; native inert removes it from focus/AT.
+    // The ticket link sits outside the disclosure, so it stays usable while collapsed.
     expect(html).toContain(ticketHref);
     expect(html).toContain("focus-visible:outline-3");
   });
 
-  it("restores link access only in the expanded state, then re-applies inert on collapse", () => {
+  it("renders exactly one ticket link per segment and never an inert or hidden copy inside the details", () => {
+    for (const expanded of [false, true]) {
+      const html = renderToStaticMarkup(card(expanded));
+      const anchors = [...html.matchAll(/<a\b[^>]*>/g)];
+      expect(anchors).toHaveLength(1);
+      expect(anchors[0][0]).toContain(ticketHref);
+      expect(anchors[0].index!).toBeLessThan(html.indexOf(`id="segment-details-${leg.id}"`));
+      expect(html.slice(html.indexOf(`id="segment-details-${leg.id}"`))).not.toContain("<a ");
+    }
+  });
+
+  it("toggles inert on the details in both directions while the ticket link stays put", () => {
     for (const expanded of [false, true, false]) {
       const html = renderToStaticMarkup(card(expanded));
       expect(disclosure(html).includes('inert=""')).toBe(!expanded);
