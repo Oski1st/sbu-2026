@@ -198,3 +198,19 @@ Assigned in hub issue #2 as **P4-20** (target `fc844f7`). Checklist: [qa-catalog
 - Browser, Search UI and production. There's no consumer of these exports in the app.
 - The 21 still-unresolved ledger rows beyond what the ledger records.
 - Records unchanged since P4-19, beyond the all-record mechanical checks.
+
+---
+
+# P4-24: #27 docs-only recheck (D1/D2)
+
+Self-assigned by the team lead in hub issue #2 (P4-24). Target: **`e607fb940d47ac903570e29a688c0b0995339cd2`** (PR #27, open draft). Its parent is `fc844f72088521c4d0f0dcd3084fc2caf032dda2`, with no history rewrite. This is a narrow documentation recheck: the unchanged data, runtime and live sources weren't rerun. The P4-20 section above stays the record for `fc844f7`.
+
+| Check | Result |
+| --- | --- |
+| Changed files `fc844f7..e607fb9` | `src/data/national/README.md` only (+32 / −14); `git diff --check` clean |
+| **D1** independence wording | **Fixed.** The README now says the brands "share directory/stop-list source provenance … **not independent corroboration**", with the actual carrier **pending** and a pointer to `independentCorroboration=false`. The phrase "independent evidence sources" no longer appears. |
+| **D2** overlay counts | **Fixed.** 1,550 rows / 1,374 qualified / 175 unresolved / 1 excluded, **three** sourced alias links, 1,371 choices. Raw 2,057 and canonical 2,053 associations are listed separately as neither independent-source nor verified-carrier counts. All match the P4-20 runtime verification. |
+| D3 / D4 guidance | Present. Jersey City evidence is "Hudson-Bergen Light Rail, not intercity rail or coach connectivity". `getVerifiedOperators` is the raw per-row view and `getVerifiedMarketEvidence` the canonical view, with the Lexington and Macon example. |
+| Historical content | The #20 operator table (1,370 / 179 / 2,047), the 2,792 / 1,891 / 901 bus-check figures and the 56-test validation are kept, under headings now labelled "Frozen PR20 operator evidence and gaps" and "Historical PR20 validation". |
+
+**Verdict: D1 and D2 resolved on `e607fb9`. No new findings.**
