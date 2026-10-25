@@ -10,8 +10,8 @@ export function NotFoundPage() {
   }, [pathname]);
   return (
     <main className="empty-state">
-      <h1>A little off the line.</h1>
-      <p>Let’s get you back on track.</p>
+      <h1>Page not found</h1>
+      <p>There’s no OneLine page at this address.</p>
       <Link to="/">Return to search</Link>
     </main>
   );
