@@ -3,6 +3,7 @@ import {
   defaultSearch,
   readSearchState,
   writeSearchState,
+  newSearchPatch,
   type SearchState,
 } from "../data/searchState";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
@@ -103,16 +104,9 @@ export default function SearchPage() {
     origin: string,
     destination: string,
     preferences: Pick<SearchState, "departureDate" | "departureTime">,
-    resetFilters = false,
   ) {
-    updateCriteria({
-      origin: origin.trim(),
-      destination: destination.trim(),
-      ...preferences,
-      ...(resetFilters
-        ? { mode: "all", operator: "all", includeAmtrak: true }
-        : {}),
-    });
+    // Form and corridor searches both start from unfiltered results.
+    updateCriteria(newSearchPatch(origin, destination, preferences));
     setFormVersion((version) => version + 1);
     setCompareIds([]);
     setCompareOpen(false);
@@ -241,7 +235,7 @@ export default function SearchPage() {
                   search(corridor.origin, corridor.destination, {
                     departureDate: criteria.departureDate,
                     departureTime: criteria.departureTime,
-                  }, true);
+                  });
                 }}
               >
                 <span>{corridor.region}</span>
