@@ -24,6 +24,7 @@ export type LocationAutocompleteProps = {
   maxSuggestions?: number;
   /** Indexed data input; catalogue membership alone never proves a route exists. */
   catalogue?: LocationCatalogue;
+  catalogueKind?: "sample" | "transit";
 };
 
 /** Returns cities from the local sample catalogue only; it never performs address lookup. */
@@ -45,7 +46,9 @@ export function LocationAutocomplete({
   disabled = false,
   maxSuggestions = 8,
   catalogue = sampleLocationCatalogue,
+  catalogueKind = "sample",
 }: LocationAutocompleteProps) {
+  const cityDescription = catalogueKind === "sample" ? "supported sample" : "listed transit";
   const generatedId = useId();
   const inputId = id ?? `location-${generatedId.replace(/:/g, "")}`;
   const listboxId = `${inputId}-listbox`;
@@ -151,9 +154,9 @@ export function LocationAutocomplete({
 
       <p id={statusId} className="sr-only" role="status" aria-live="polite">
         {hasNoMatches
-          ? "No supported sample cities match this text."
+          ? `No ${cityDescription} cities match this text.`
           : isOpen
-            ? `${suggestions.length} supported sample ${suggestions.length === 1 ? "city" : "cities"} available.`
+            ? `${suggestions.length} ${cityDescription} ${suggestions.length === 1 ? "city" : "cities"} available.`
             : ""}
       </p>
 
@@ -180,7 +183,7 @@ export function LocationAutocomplete({
             </ul>
           {suggestions.length === 0 && (
             <p className="px-3 py-3 text-sm text-slate-600">
-              No supported sample cities match “{value}”. Try a city from the OneLine sample catalogue.
+              No {cityDescription} cities match “{value}”. Try a city and state from the catalogue.
             </p>
           )}
         </div>
@@ -188,7 +191,7 @@ export function LocationAutocomplete({
 
       {hasTypedValue && !selectedIsSupported && !hasNoMatches && (
         <p className="mt-1 text-sm text-amber-800">
-          This is not yet a supported sample city. Choose a suggestion to use the sample catalogue.
+          {catalogueKind === "sample" ? "This is not yet a supported sample city. Choose a suggestion to use the sample catalogue." : "Choose a listed city and state. You can keep editing this text; a listing does not guarantee a scheduled route."}
         </p>
       )}
     </div>

@@ -2,6 +2,7 @@ import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { dirname, extname, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { createTimetableApi } from "./timetable-api.mjs";
 import { createSeptaProxy, sendJson } from "./septa-proxy.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../dist");
@@ -18,11 +19,12 @@ const mime = {
 
 /** Small production host for dist/ and the same-origin API. Bind publicly via HOST. */
 export function createAppServer({ distDir = root, fetchImpl, timeoutMs } = {}) {
+  const timetable = createTimetableApi();
   const proxy = createSeptaProxy({ fetchImpl, timeoutMs });
   return createServer((req, res) => {
-    void proxy(req, res, () => {
+    void timetable(req, res, () => proxy(req, res, () => {
       void serveStatic(req, res, distDir);
-    }).catch(() => sendJson(res, 500, { error: "internal_error" }));
+    })).catch(() => sendJson(res, 500, { error: "internal_error" }));
   });
 }
 

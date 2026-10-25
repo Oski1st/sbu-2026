@@ -3,6 +3,8 @@ import type { ComponentType } from "react";
 import { Navigate, Link, Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import SearchPage from "./pages/SearchPage";
+import TimetableSearchPage from "./pages/TimetableSearchPage";
+const ScheduledJourney = lazy(() => import("./pages/ScheduledJourneyPage"));
 import { AppLayout } from "./components/layout/AppLayout";
 import { TripProvider, useSelectedTrip } from "./components/layout/TripContext";
 import { IntegrationPage } from "./components/layout/IntegrationPage";
@@ -68,8 +70,10 @@ export default function App() {
       >
         <Routes>
           <Route element={<AppLayout />}>
-            <Route index element={<SearchPage />} />
-            <Route path="search" element={<SearchPage />} />
+            <Route index element={<TimetableSearchPage />} />
+            <Route path="demo" element={<SearchPage />} />
+            <Route path="itinerary/:id" element={<ScheduledJourney />} />
+            <Route path="search" element={<TimetableSearchPage />} />
             <Route path="journey" element={<SelectionEntry kind="journey" />} />
             <Route path="journey/:tripId" element={<Journey />} />
             <Route path="wallet" element={<SelectionEntry kind="wallet" />} />

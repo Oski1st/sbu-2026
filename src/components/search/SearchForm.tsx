@@ -16,6 +16,7 @@ interface Props {
   initialDepartureDate?: string;
   initialDepartureTime?: string;
   catalogue?: LocationCatalogue;
+  timetable?: boolean;
   onSearch: (
     origin: string,
     destination: string,
@@ -29,6 +30,7 @@ export function SearchForm({
   initialDepartureDate = "2026-10-24",
   initialDepartureTime = "08:00",
   catalogue = sampleLocationCatalogue,
+  timetable = false,
 }: Props) {
   const [origin, setOrigin] = useState(initialOrigin);
   const [destination, setDestination] = useState(initialDestination);
@@ -41,7 +43,7 @@ export function SearchForm({
           <i />
           LET’S GET YOU THERE
         </span>
-        <small>One-way · Rail + intercity bus</small>
+        <small>{timetable ? "One-way · Published timetables" : "One-way · Rail + intercity bus"}</small>
       </div>
       <form
         onSubmit={(event) => {
@@ -61,6 +63,7 @@ export function SearchForm({
             required
             placeholder="Departure city"
             catalogue={catalogue}
+            catalogueKind={timetable ? "transit" : "sample"}
           />
         </div>
         <button
@@ -85,12 +88,13 @@ export function SearchForm({
             required
             placeholder="Where to?"
             catalogue={catalogue}
+            catalogueKind={timetable ? "transit" : "sample"}
           />
         </div>
         <div className="date-field">
           <CalendarDays size={19} />
           <div>
-            <span>PLANNING PREFERENCE</span>
+            <span>{timetable ? "DEPART AFTER · STATION LOCAL TIME" : "PLANNING PREFERENCE"}</span>
             <div className="date-time-controls">
               <label>
                 Date
@@ -113,7 +117,7 @@ export function SearchForm({
                 />
               </label>
             </div>
-            <small>Saved in this share link. Sample itinerary times do not change.</small>
+            <small>{timetable ? "Date and time are used to find published departures. Fares and live disruption data are not included." : "Saved in this share link. Sample itinerary times do not change."}</small>
           </div>
         </div>
         <button className="search-button" type="submit">
@@ -122,9 +126,9 @@ export function SearchForm({
       </form>
       <div className="search-footnote">
         <span>
-          Try our demo: Philadelphia <ArrowRight size={12} /> Stony Brook
+          {timetable ? "Try Philadelphia, PA" : "Try our demo: Philadelphia"} <ArrowRight size={12} /> {timetable ? "Stony Brook, NY" : "Stony Brook"}
         </span>
-        <span>Sample plans · Date/time are planning preferences, not live schedules.</span>
+        <span>{timetable ? "Manual entry stays available. Choose a city and state to disambiguate names." : "Sample plans · Date/time are planning preferences, not live schedules."}</span>
       </div>
     </section>
   );

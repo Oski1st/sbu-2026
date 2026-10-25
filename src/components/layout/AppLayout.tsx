@@ -1,10 +1,12 @@
 import { Suspense } from "react";
-import { NavLink, Link, Outlet } from "react-router-dom";
+import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
 import { ArrowUpRight, MoveRight, Search, Route, Wallet } from "lucide-react";
 import { useSelectedTrip } from "./TripContext";
 import { Brand } from "./Brand";
 export function AppLayout() {
   const { selectedTrip } = useSelectedTrip();
+  const location = useLocation();
+  const scheduled = location.pathname.startsWith("/itinerary/");
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
@@ -20,14 +22,14 @@ export function AppLayout() {
             Search
           </NavLink>
           <NavLink
-            to={selectedTrip ? `/journey/${selectedTrip.id}` : "/journey"}
+            to={scheduled ? location.pathname : selectedTrip ? `/journey/${selectedTrip.id}` : "/journey"}
           >
             <Route size={15} />
             Journey
           </NavLink>
           <NavLink to={selectedTrip ? `/wallet/${selectedTrip.id}` : "/wallet"}>
             <Wallet size={15} />
-            Wallet
+            {scheduled ? "Sample wallet" : "Wallet"}
           </NavLink>
         </nav>
         <span className="header-note">
@@ -68,7 +70,7 @@ export function AppLayout() {
         <div className="footer-line">
           <MoveRight size={19} />
           <span>One journey. Many connections.</span>
-          <small>Sample itineraries · Live data limited to labelled SEPTA snapshots</small>
+          <small>Published timetables + separate sample journeys · Live data limited to labelled SEPTA snapshots</small>
         </div>
       </footer>
     </div>
