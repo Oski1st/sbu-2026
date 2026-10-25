@@ -1,0 +1,4467 @@
+{
+ "tag": "before",
+ "search": {
+  "320": {
+   "wordmarks": [
+    {
+     "text": "SEPTA",
+     "aria": null,
+     "role": null,
+     "fontSize": "15px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 22,
+      "y": 401,
+      "w": 66,
+      "h": 23
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    },
+    {
+     "text": "◢ NJ TRANSIT",
+     "aria": null,
+     "role": null,
+     "fontSize": "12px",
+     "fontStyle": "italic",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 110,
+      "y": 398,
+      "w": 87,
+      "h": 29
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": []
+    },
+    {
+     "text": "AMTRAK ®",
+     "aria": null,
+     "role": null,
+     "fontSize": "12px",
+     "fontStyle": "italic",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 22,
+      "y": 444,
+      "w": 86,
+      "h": 18
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    },
+    {
+     "text": "MTA Long Island Rail Road",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 130,
+      "y": 443,
+      "w": 70,
+      "h": 20
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": []
+    },
+    {
+     "text": "Greyhound",
+     "aria": null,
+     "role": null,
+     "fontSize": "15px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 22,
+      "y": 479,
+      "w": 103,
+      "h": 23
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    },
+    {
+     "text": "FlixBus",
+     "aria": null,
+     "role": null,
+     "fontSize": "15px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(96, 134, 41)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.9,
+     "box": {
+      "x": 147,
+      "y": 479,
+      "w": 74,
+      "h": 23
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    }
+   ],
+   "agencyBadges": [
+    {
+     "text": "SEPTA",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(66, 118, 199)",
+     "bg": "rgb(240,244,251)",
+     "opacity": 1,
+     "contrast": 4.1,
+     "box": {
+      "x": 40,
+      "y": 1227,
+      "w": 59,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "NJT",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(216, 120, 53)",
+     "bg": "rgb(252,244,239)",
+     "opacity": 1,
+     "contrast": 2.9,
+     "box": {
+      "x": 125,
+      "y": 1227,
+      "w": 49,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "LIRR",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(83, 114, 193)",
+     "bg": "rgb(241,244,250)",
+     "opacity": 1,
+     "contrast": 4.19,
+     "box": {
+      "x": 200,
+      "y": 1227,
+      "w": 51,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "Amtrak",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(36, 107, 99)",
+     "bg": "rgb(237,243,243)",
+     "opacity": 1,
+     "contrast": 5.57,
+     "box": {
+      "x": 40,
+      "y": 1601,
+      "w": 63,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "LIRR",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(83, 114, 193)",
+     "bg": "rgb(241,244,250)",
+     "opacity": 1,
+     "contrast": 4.19,
+     "box": {
+      "x": 129,
+      "y": 1601,
+      "w": 51,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    }
+   ],
+   "stripAria": "- region \"Transit networks\":\n  - text: REAL OPERATORS.\n  - strong: SAMPLE CONNECTIONS.\n  - img\n  - text: SEPTA ◢ NJ TRANSIT\n  - img\n  - text: AMTRAK ® MTA Long Island Rail Road\n  - img\n  - text: Greyhound\n  - img\n  - text: FlixBus",
+   "docOverflow": false
+  },
+  "375": {
+   "wordmarks": [
+    {
+     "text": "SEPTA",
+     "aria": null,
+     "role": null,
+     "fontSize": "15px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 22,
+      "y": 420,
+      "w": 66,
+      "h": 23
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    },
+    {
+     "text": "◢ NJ TRANSIT",
+     "aria": null,
+     "role": null,
+     "fontSize": "12px",
+     "fontStyle": "italic",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 110,
+      "y": 417,
+      "w": 87,
+      "h": 29
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": []
+    },
+    {
+     "text": "AMTRAK ®",
+     "aria": null,
+     "role": null,
+     "fontSize": "12px",
+     "fontStyle": "italic",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 219,
+      "y": 422,
+      "w": 86,
+      "h": 18
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    },
+    {
+     "text": "MTA Long Island Rail Road",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 22,
+      "y": 462,
+      "w": 70,
+      "h": 20
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": []
+    },
+    {
+     "text": "Greyhound",
+     "aria": null,
+     "role": null,
+     "fontSize": "15px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 114,
+      "y": 461,
+      "w": 103,
+      "h": 23
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    },
+    {
+     "text": "FlixBus",
+     "aria": null,
+     "role": null,
+     "fontSize": "15px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(96, 134, 41)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.9,
+     "box": {
+      "x": 239,
+      "y": 461,
+      "w": 74,
+      "h": 23
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    }
+   ],
+   "agencyBadges": [
+    {
+     "text": "SEPTA",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(66, 118, 199)",
+     "bg": "rgb(240,244,251)",
+     "opacity": 1,
+     "contrast": 4.1,
+     "box": {
+      "x": 40,
+      "y": 1126,
+      "w": 59,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "NJT",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(216, 120, 53)",
+     "bg": "rgb(252,244,239)",
+     "opacity": 1,
+     "contrast": 2.9,
+     "box": {
+      "x": 125,
+      "y": 1126,
+      "w": 49,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "LIRR",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(83, 114, 193)",
+     "bg": "rgb(241,244,250)",
+     "opacity": 1,
+     "contrast": 4.19,
+     "box": {
+      "x": 200,
+      "y": 1126,
+      "w": 51,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "Amtrak",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(36, 107, 99)",
+     "bg": "rgb(237,243,243)",
+     "opacity": 1,
+     "contrast": 5.57,
+     "box": {
+      "x": 40,
+      "y": 1499,
+      "w": 63,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "LIRR",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(83, 114, 193)",
+     "bg": "rgb(241,244,250)",
+     "opacity": 1,
+     "contrast": 4.19,
+     "box": {
+      "x": 129,
+      "y": 1499,
+      "w": 51,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    }
+   ],
+   "stripAria": "- region \"Transit networks\":\n  - text: REAL OPERATORS.\n  - strong: SAMPLE CONNECTIONS.\n  - img\n  - text: SEPTA ◢ NJ TRANSIT\n  - img\n  - text: AMTRAK ® MTA Long Island Rail Road\n  - img\n  - text: Greyhound\n  - img\n  - text: FlixBus",
+   "docOverflow": false
+  },
+  "390": {
+   "wordmarks": [
+    {
+     "text": "SEPTA",
+     "aria": null,
+     "role": null,
+     "fontSize": "15px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 22,
+      "y": 420,
+      "w": 66,
+      "h": 23
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    },
+    {
+     "text": "◢ NJ TRANSIT",
+     "aria": null,
+     "role": null,
+     "fontSize": "12px",
+     "fontStyle": "italic",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 110,
+      "y": 417,
+      "w": 87,
+      "h": 29
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": []
+    },
+    {
+     "text": "AMTRAK ®",
+     "aria": null,
+     "role": null,
+     "fontSize": "12px",
+     "fontStyle": "italic",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 219,
+      "y": 422,
+      "w": 86,
+      "h": 18
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    },
+    {
+     "text": "MTA Long Island Rail Road",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 22,
+      "y": 463,
+      "w": 70,
+      "h": 20
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": []
+    },
+    {
+     "text": "Greyhound",
+     "aria": null,
+     "role": null,
+     "fontSize": "15px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 114,
+      "y": 462,
+      "w": 103,
+      "h": 23
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    },
+    {
+     "text": "FlixBus",
+     "aria": null,
+     "role": null,
+     "fontSize": "15px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(96, 134, 41)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.9,
+     "box": {
+      "x": 239,
+      "y": 462,
+      "w": 74,
+      "h": 23
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 18
+      }
+     ]
+    }
+   ],
+   "agencyBadges": [
+    {
+     "text": "SEPTA",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(66, 118, 199)",
+     "bg": "rgb(240,244,251)",
+     "opacity": 1,
+     "contrast": 4.1,
+     "box": {
+      "x": 40,
+      "y": 1113,
+      "w": 59,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "NJT",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(216, 120, 53)",
+     "bg": "rgb(252,244,239)",
+     "opacity": 1,
+     "contrast": 2.9,
+     "box": {
+      "x": 125,
+      "y": 1113,
+      "w": 49,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "LIRR",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(83, 114, 193)",
+     "bg": "rgb(241,244,250)",
+     "opacity": 1,
+     "contrast": 4.19,
+     "box": {
+      "x": 200,
+      "y": 1113,
+      "w": 51,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "Amtrak",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(36, 107, 99)",
+     "bg": "rgb(237,243,243)",
+     "opacity": 1,
+     "contrast": 5.57,
+     "box": {
+      "x": 40,
+      "y": 1488,
+      "w": 63,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "LIRR",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(83, 114, 193)",
+     "bg": "rgb(241,244,250)",
+     "opacity": 1,
+     "contrast": 4.19,
+     "box": {
+      "x": 129,
+      "y": 1488,
+      "w": 51,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    }
+   ],
+   "stripAria": "- region \"Transit networks\":\n  - text: REAL OPERATORS.\n  - strong: SAMPLE CONNECTIONS.\n  - img\n  - text: SEPTA ◢ NJ TRANSIT\n  - img\n  - text: AMTRAK ® MTA Long Island Rail Road\n  - img\n  - text: Greyhound\n  - img\n  - text: FlixBus",
+   "docOverflow": false
+  },
+  "768": {
+   "wordmarks": [
+    {
+     "text": "SEPTA",
+     "aria": null,
+     "role": null,
+     "fontSize": "17px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 197,
+      "y": 402,
+      "w": 80,
+      "h": 26
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 22
+      }
+     ]
+    },
+    {
+     "text": "◢ NJ TRANSIT",
+     "aria": null,
+     "role": null,
+     "fontSize": "14px",
+     "fontStyle": "italic",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 314,
+      "y": 394,
+      "w": 110,
+      "h": 41
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": []
+    },
+    {
+     "text": "AMTRAK ®",
+     "aria": null,
+     "role": null,
+     "fontSize": "17px",
+     "fontStyle": "italic",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 462,
+      "y": 402,
+      "w": 128,
+      "h": 26
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 25
+      }
+     ]
+    },
+    {
+     "text": "MTA Long Island Rail Road",
+     "aria": null,
+     "role": null,
+     "fontSize": "11px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 628,
+      "y": 401,
+      "w": 100,
+      "h": 27
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": []
+    },
+    {
+     "text": "Greyhound",
+     "aria": null,
+     "role": null,
+     "fontSize": "17px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 40,
+      "y": 450,
+      "w": 121,
+      "h": 26
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 22
+      }
+     ]
+    },
+    {
+     "text": "FlixBus",
+     "aria": null,
+     "role": null,
+     "fontSize": "17px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(96, 134, 41)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.9,
+     "box": {
+      "x": 639,
+      "y": 450,
+      "w": 89,
+      "h": 26
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 22
+      }
+     ]
+    }
+   ],
+   "agencyBadges": [
+    {
+     "text": "SEPTA",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(66, 118, 199)",
+     "bg": "rgb(240,244,251)",
+     "opacity": 1,
+     "contrast": 4.1,
+     "box": {
+      "x": 59,
+      "y": 1077,
+      "w": 59,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "NJT",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(216, 120, 53)",
+     "bg": "rgb(252,244,239)",
+     "opacity": 1,
+     "contrast": 2.9,
+     "box": {
+      "x": 144,
+      "y": 1077,
+      "w": 49,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "LIRR",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(83, 114, 193)",
+     "bg": "rgb(241,244,250)",
+     "opacity": 1,
+     "contrast": 4.19,
+     "box": {
+      "x": 219,
+      "y": 1077,
+      "w": 51,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "Amtrak",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(36, 107, 99)",
+     "bg": "rgb(237,243,243)",
+     "opacity": 1,
+     "contrast": 5.57,
+     "box": {
+      "x": 59,
+      "y": 1456,
+      "w": 63,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "LIRR",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(83, 114, 193)",
+     "bg": "rgb(241,244,250)",
+     "opacity": 1,
+     "contrast": 4.19,
+     "box": {
+      "x": 148,
+      "y": 1456,
+      "w": 51,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    }
+   ],
+   "stripAria": "- region \"Transit networks\":\n  - text: REAL OPERATORS.\n  - strong: SAMPLE CONNECTIONS.\n  - img\n  - text: SEPTA ◢ NJ TRANSIT\n  - img\n  - text: AMTRAK ® MTA Long Island Rail Road\n  - img\n  - text: Greyhound\n  - img\n  - text: FlixBus",
+   "docOverflow": false
+  },
+  "1280": {
+   "wordmarks": [
+    {
+     "text": "SEPTA",
+     "aria": null,
+     "role": null,
+     "fontSize": "20px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 237,
+      "y": 419,
+      "w": 89,
+      "h": 30
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 22
+      }
+     ]
+    },
+    {
+     "text": "◢ NJ TRANSIT",
+     "aria": null,
+     "role": null,
+     "fontSize": "17px",
+     "fontStyle": "italic",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 383,
+      "y": 414,
+      "w": 128,
+      "h": 41
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": []
+    },
+    {
+     "text": "AMTRAK ®",
+     "aria": null,
+     "role": null,
+     "fontSize": "19px",
+     "fontStyle": "italic",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 567,
+      "y": 420,
+      "w": 137,
+      "h": 29
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 25
+      }
+     ]
+    },
+    {
+     "text": "MTA Long Island Rail Road",
+     "aria": null,
+     "role": null,
+     "fontSize": "12px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 761,
+      "y": 421,
+      "w": 106,
+      "h": 27
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": []
+    },
+    {
+     "text": "Greyhound",
+     "aria": null,
+     "role": null,
+     "fontSize": "20px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(123, 137, 119)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.59,
+     "box": {
+      "x": 923,
+      "y": 419,
+      "w": 139,
+      "h": 30
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 22
+      }
+     ]
+    },
+    {
+     "text": "FlixBus",
+     "aria": null,
+     "role": null,
+     "fontSize": "20px",
+     "fontStyle": "normal",
+     "fontWeight": "800",
+     "color": "rgb(96, 134, 41)",
+     "bg": "rgb(248,249,243)",
+     "opacity": 0.8,
+     "contrast": 2.9,
+     "box": {
+      "x": 1118,
+      "y": 419,
+      "w": 100,
+      "h": 30
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 22
+      }
+     ]
+    }
+   ],
+   "agencyBadges": [
+    {
+     "text": "SEPTA",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(66, 118, 199)",
+     "bg": "rgb(240,244,251)",
+     "opacity": 1,
+     "contrast": 4.1,
+     "box": {
+      "x": 71,
+      "y": 1009,
+      "w": 59,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "NJT",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(216, 120, 53)",
+     "bg": "rgb(252,244,239)",
+     "opacity": 1,
+     "contrast": 2.9,
+     "box": {
+      "x": 156,
+      "y": 1009,
+      "w": 49,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "LIRR",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(83, 114, 193)",
+     "bg": "rgb(241,244,250)",
+     "opacity": 1,
+     "contrast": 4.19,
+     "box": {
+      "x": 231,
+      "y": 1009,
+      "w": 51,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "Amtrak",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(36, 107, 99)",
+     "bg": "rgb(237,243,243)",
+     "opacity": 1,
+     "contrast": 5.57,
+     "box": {
+      "x": 71,
+      "y": 1379,
+      "w": 63,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    },
+    {
+     "text": "LIRR",
+     "aria": null,
+     "role": null,
+     "fontSize": "8px",
+     "fontStyle": "normal",
+     "fontWeight": "650",
+     "color": "rgb(83, 114, 193)",
+     "bg": "rgb(241,244,250)",
+     "opacity": 1,
+     "contrast": 4.19,
+     "box": {
+      "x": 160,
+      "y": 1379,
+      "w": 51,
+      "h": 25
+     },
+     "insideContainer": true,
+     "insideViewport": true,
+     "textOverflow": false,
+     "childOverflow": false,
+     "svgs": [
+      {
+       "ariaHidden": null,
+       "w": 13
+      }
+     ]
+    }
+   ],
+   "stripAria": "- region \"Transit networks\":\n  - text: REAL OPERATORS.\n  - strong: SAMPLE CONNECTIONS.\n  - img\n  - text: SEPTA ◢ NJ TRANSIT\n  - img\n  - text: AMTRAK ® MTA Long Island Rail Road\n  - img\n  - text: Greyhound\n  - img\n  - text: FlixBus",
+   "docOverflow": false
+  }
+ },
+ "journey": {
+  "320": [
+   {
+    "text": "5h 15m total",
+    "aria": null,
+    "role": null,
+    "fontSize": "14px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.279 0.041 260.031)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 13.34,
+    "box": {
+     "x": 20,
+     "y": 226,
+     "w": 111,
+     "h": 32
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "4 segments",
+    "aria": null,
+    "role": null,
+    "fontSize": "14px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.279 0.041 260.031)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 13.34,
+    "box": {
+     "x": 139,
+     "y": 226,
+     "w": 102,
+     "h": 32
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "SEPTA",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(14, 86, 141)",
+    "bg": "rgb(233,243,251)",
+    "opacity": 1,
+    "contrast": 6.83,
+    "box": {
+     "x": 20,
+     "y": 266,
+     "w": 63,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 91,
+     "y": 266,
+     "w": 97,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 195,
+     "y": 266,
+     "w": 52,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Ready to start",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.378 0.077 168.94)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 9.63,
+    "box": {
+     "x": 37,
+     "y": 588,
+     "w": 104,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "◷",
+    "aria": null,
+    "role": null,
+    "fontSize": "18px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 18.4,
+    "box": {
+     "x": 239,
+     "y": 954,
+     "w": 40,
+     "h": 40
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(23,105,170)",
+    "opacity": 1,
+    "contrast": 3.49,
+    "box": {
+     "x": 37,
+     "y": 1516,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "SEPTA",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(14, 86, 141)",
+    "bg": "rgb(233,243,251)",
+    "opacity": 1,
+    "contrast": 6.83,
+    "box": {
+     "x": 63,
+     "y": 1512,
+     "w": 60,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "15 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 1940,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 113,
+     "y": 2052,
+     "w": 114,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 2084,
+     "w": 170,
+     "h": 40
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(240,90,40)",
+    "opacity": 1,
+    "contrast": 5.95,
+    "box": {
+     "x": 37,
+     "y": 2174,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 63,
+     "y": 2170,
+     "w": 95,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "20 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 2597,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 113,
+     "y": 2709,
+     "w": 72,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 2741,
+     "w": 170,
+     "h": 40
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(38,99,164)",
+    "opacity": 1,
+    "contrast": 3.27,
+    "box": {
+     "x": 37,
+     "y": 2831,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 63,
+     "y": 2827,
+     "w": 49,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "15 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 3255,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 113,
+     "y": 3367,
+     "w": 72,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 3399,
+     "w": 170,
+     "h": 40
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(38,99,164)",
+    "opacity": 1,
+    "contrast": 3.27,
+    "box": {
+     "x": 37,
+     "y": 3489,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 63,
+     "y": 3485,
+     "w": 49,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   }
+  ],
+  "375": [
+   {
+    "text": "5h 15m total",
+    "aria": null,
+    "role": null,
+    "fontSize": "14px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.279 0.041 260.031)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 13.34,
+    "box": {
+     "x": 20,
+     "y": 226,
+     "w": 111,
+     "h": 32
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "4 segments",
+    "aria": null,
+    "role": null,
+    "fontSize": "14px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.279 0.041 260.031)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 13.34,
+    "box": {
+     "x": 139,
+     "y": 226,
+     "w": 102,
+     "h": 32
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "SEPTA",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(14, 86, 141)",
+    "bg": "rgb(233,243,251)",
+    "opacity": 1,
+    "contrast": 6.83,
+    "box": {
+     "x": 250,
+     "y": 228,
+     "w": 63,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 20,
+     "y": 266,
+     "w": 97,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 125,
+     "y": 266,
+     "w": 52,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Ready to start",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.378 0.077 168.94)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 9.63,
+    "box": {
+     "x": 37,
+     "y": 588,
+     "w": 104,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "◷",
+    "aria": null,
+    "role": null,
+    "fontSize": "18px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 18.4,
+    "box": {
+     "x": 294,
+     "y": 954,
+     "w": 40,
+     "h": 40
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(23,105,170)",
+    "opacity": 1,
+    "contrast": 3.49,
+    "box": {
+     "x": 37,
+     "y": 1431,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "SEPTA",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(14, 86, 141)",
+    "bg": "rgb(233,243,251)",
+    "opacity": 1,
+    "contrast": 6.83,
+    "box": {
+     "x": 63,
+     "y": 1427,
+     "w": 60,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "15 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 1835,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 113,
+     "y": 1923,
+     "w": 114,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 1955,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(240,90,40)",
+    "opacity": 1,
+    "contrast": 5.95,
+    "box": {
+     "x": 37,
+     "y": 2029,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 63,
+     "y": 2025,
+     "w": 95,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "20 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 2432,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 113,
+     "y": 2520,
+     "w": 72,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 2552,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(38,99,164)",
+    "opacity": 1,
+    "contrast": 3.27,
+    "box": {
+     "x": 37,
+     "y": 2626,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 63,
+     "y": 2622,
+     "w": 49,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "15 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 3026,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 113,
+     "y": 3114,
+     "w": 72,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 3146,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(38,99,164)",
+    "opacity": 1,
+    "contrast": 3.27,
+    "box": {
+     "x": 37,
+     "y": 3220,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 63,
+     "y": 3216,
+     "w": 49,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   }
+  ],
+  "390": [
+   {
+    "text": "5h 15m total",
+    "aria": null,
+    "role": null,
+    "fontSize": "14px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.279 0.041 260.031)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 13.34,
+    "box": {
+     "x": 20,
+     "y": 226,
+     "w": 111,
+     "h": 32
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "4 segments",
+    "aria": null,
+    "role": null,
+    "fontSize": "14px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.279 0.041 260.031)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 13.34,
+    "box": {
+     "x": 139,
+     "y": 226,
+     "w": 102,
+     "h": 32
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "SEPTA",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(14, 86, 141)",
+    "bg": "rgb(233,243,251)",
+    "opacity": 1,
+    "contrast": 6.83,
+    "box": {
+     "x": 250,
+     "y": 228,
+     "w": 63,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 20,
+     "y": 266,
+     "w": 97,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 125,
+     "y": 266,
+     "w": 52,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Ready to start",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.378 0.077 168.94)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 9.63,
+    "box": {
+     "x": 37,
+     "y": 564,
+     "w": 104,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "◷",
+    "aria": null,
+    "role": null,
+    "fontSize": "18px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 18.4,
+    "box": {
+     "x": 309,
+     "y": 930,
+     "w": 40,
+     "h": 40
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(23,105,170)",
+    "opacity": 1,
+    "contrast": 3.49,
+    "box": {
+     "x": 37,
+     "y": 1407,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "SEPTA",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(14, 86, 141)",
+    "bg": "rgb(233,243,251)",
+    "opacity": 1,
+    "contrast": 6.83,
+    "box": {
+     "x": 63,
+     "y": 1403,
+     "w": 60,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "15 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 1811,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 113,
+     "y": 1899,
+     "w": 114,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 1931,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(240,90,40)",
+    "opacity": 1,
+    "contrast": 5.95,
+    "box": {
+     "x": 37,
+     "y": 2005,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 63,
+     "y": 2001,
+     "w": 95,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "20 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 2408,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 113,
+     "y": 2496,
+     "w": 72,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 2528,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(38,99,164)",
+    "opacity": 1,
+    "contrast": 3.27,
+    "box": {
+     "x": 37,
+     "y": 2602,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 63,
+     "y": 2598,
+     "w": 49,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "15 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 2982,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 113,
+     "y": 3070,
+     "w": 72,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 113,
+     "y": 3102,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(38,99,164)",
+    "opacity": 1,
+    "contrast": 3.27,
+    "box": {
+     "x": 37,
+     "y": 3176,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 63,
+     "y": 3172,
+     "w": 49,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   }
+  ],
+  "768": [
+   {
+    "text": "5h 15m total",
+    "aria": null,
+    "role": null,
+    "fontSize": "14px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.279 0.041 260.031)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 13.34,
+    "box": {
+     "x": 24,
+     "y": 230,
+     "w": 111,
+     "h": 32
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "4 segments",
+    "aria": null,
+    "role": null,
+    "fontSize": "14px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.279 0.041 260.031)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 13.34,
+    "box": {
+     "x": 143,
+     "y": 230,
+     "w": 102,
+     "h": 32
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "SEPTA",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(14, 86, 141)",
+    "bg": "rgb(233,243,251)",
+    "opacity": 1,
+    "contrast": 6.83,
+    "box": {
+     "x": 254,
+     "y": 232,
+     "w": 63,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 324,
+     "y": 232,
+     "w": 97,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 429,
+     "y": 232,
+     "w": 52,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Ready to start",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.378 0.077 168.94)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 9.63,
+    "box": {
+     "x": 45,
+     "y": 483,
+     "w": 104,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "◷",
+    "aria": null,
+    "role": null,
+    "fontSize": "18px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 18.4,
+    "box": {
+     "x": 679,
+     "y": 741,
+     "w": 40,
+     "h": 40
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(23,105,170)",
+    "opacity": 1,
+    "contrast": 3.49,
+    "box": {
+     "x": 45,
+     "y": 1091,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "SEPTA",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(14, 86, 141)",
+    "bg": "rgb(233,243,251)",
+    "opacity": 1,
+    "contrast": 6.83,
+    "box": {
+     "x": 71,
+     "y": 1087,
+     "w": 60,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "15 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 388,
+     "y": 1389,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 125,
+     "y": 1455,
+     "w": 114,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 247,
+     "y": 1455,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(240,90,40)",
+    "opacity": 1,
+    "contrast": 5.95,
+    "box": {
+     "x": 45,
+     "y": 1533,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 71,
+     "y": 1529,
+     "w": 95,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "20 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 394,
+     "y": 1830,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 125,
+     "y": 1896,
+     "w": 72,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 205,
+     "y": 1896,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(38,99,164)",
+    "opacity": 1,
+    "contrast": 3.27,
+    "box": {
+     "x": 45,
+     "y": 1974,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 71,
+     "y": 1970,
+     "w": 49,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "15 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 307,
+     "y": 2272,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 125,
+     "y": 2338,
+     "w": 72,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 205,
+     "y": 2338,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(38,99,164)",
+    "opacity": 1,
+    "contrast": 3.27,
+    "box": {
+     "x": 45,
+     "y": 2416,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 71,
+     "y": 2412,
+     "w": 49,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   }
+  ],
+  "1280": [
+   {
+    "text": "5h 15m total",
+    "aria": null,
+    "role": null,
+    "fontSize": "14px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.279 0.041 260.031)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 13.34,
+    "box": {
+     "x": 280,
+     "y": 230,
+     "w": 111,
+     "h": 32
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "4 segments",
+    "aria": null,
+    "role": null,
+    "fontSize": "14px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.279 0.041 260.031)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 13.34,
+    "box": {
+     "x": 399,
+     "y": 230,
+     "w": 102,
+     "h": 32
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "SEPTA",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(14, 86, 141)",
+    "bg": "rgb(233,243,251)",
+    "opacity": 1,
+    "contrast": 6.83,
+    "box": {
+     "x": 510,
+     "y": 232,
+     "w": 63,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 580,
+     "y": 232,
+     "w": 97,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 685,
+     "y": 232,
+     "w": 52,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Ready to start",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.378 0.077 168.94)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 9.63,
+    "box": {
+     "x": 301,
+     "y": 483,
+     "w": 104,
+     "h": 28
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "◷",
+    "aria": null,
+    "role": null,
+    "fontSize": "18px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(241,245,249)",
+    "opacity": 1,
+    "contrast": 18.4,
+    "box": {
+     "x": 935,
+     "y": 741,
+     "w": 40,
+     "h": 40
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(23,105,170)",
+    "opacity": 1,
+    "contrast": 3.49,
+    "box": {
+     "x": 301,
+     "y": 1091,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "SEPTA",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(14, 86, 141)",
+    "bg": "rgb(233,243,251)",
+    "opacity": 1,
+    "contrast": 6.83,
+    "box": {
+     "x": 327,
+     "y": 1087,
+     "w": 60,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "15 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 644,
+     "y": 1389,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 381,
+     "y": 1455,
+     "w": 114,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 503,
+     "y": 1455,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(240,90,40)",
+    "opacity": 1,
+    "contrast": 5.95,
+    "box": {
+     "x": 301,
+     "y": 1533,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "NJ TRANSIT",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(184, 60, 20)",
+    "bg": "rgb(255,240,233)",
+    "opacity": 1,
+    "contrast": 5.11,
+    "box": {
+     "x": 327,
+     "y": 1529,
+     "w": 95,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "20 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 650,
+     "y": 1830,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 381,
+     "y": 1896,
+     "w": 72,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 461,
+     "y": 1896,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(38,99,164)",
+    "opacity": 1,
+    "contrast": 3.27,
+    "box": {
+     "x": 301,
+     "y": 1974,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 327,
+     "y": 1970,
+     "w": 49,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "15 min planned",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "700",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 563,
+     "y": 2272,
+     "w": 108,
+     "h": 20
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR next",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 381,
+     "y": 2338,
+     "w": 72,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "Platform: check live station boards",
+    "aria": null,
+    "role": null,
+    "fontSize": "12px",
+    "fontStyle": "normal",
+    "fontWeight": "600",
+    "color": "oklch(0.446 0.043 257.281)",
+    "bg": "rgb(255,255,255)",
+    "opacity": 1,
+    "contrast": 7.58,
+    "box": {
+     "x": 461,
+     "y": 2338,
+     "w": 211,
+     "h": 24
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "",
+    "aria": null,
+    "role": null,
+    "fontSize": "16px",
+    "fontStyle": "normal",
+    "fontWeight": "400",
+    "color": "oklch(0.129 0.042 264.695)",
+    "bg": "rgb(38,99,164)",
+    "opacity": 1,
+    "contrast": 3.27,
+    "box": {
+     "x": 301,
+     "y": 2416,
+     "w": 14,
+     "h": 12
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   },
+   {
+    "text": "LIRR",
+    "aria": null,
+    "role": null,
+    "fontSize": "11px",
+    "fontStyle": "normal",
+    "fontWeight": "800",
+    "color": "rgb(29, 77, 129)",
+    "bg": "rgb(237,243,251)",
+    "opacity": 1,
+    "contrast": 7.74,
+    "box": {
+     "x": 327,
+     "y": 2412,
+     "w": 49,
+     "h": 25
+    },
+    "insideContainer": true,
+    "insideViewport": true,
+    "textOverflow": false,
+    "childOverflow": false,
+    "svgs": []
+   }
+  ]
+ },
+ "forced": [
+  {
+   "text": "SEPTA",
+   "aria": null,
+   "role": null,
+   "fontSize": "20px",
+   "fontStyle": "normal",
+   "fontWeight": "800",
+   "color": "rgb(255, 255, 255)",
+   "bg": "rgb(0,0,0)",
+   "opacity": 0.8,
+   "contrast": 13.08,
+   "box": {
+    "x": 237,
+    "y": 419,
+    "w": 89,
+    "h": 30
+   },
+   "insideContainer": true,
+   "insideViewport": true,
+   "textOverflow": false,
+   "childOverflow": false,
+   "svgs": [
+    {
+     "ariaHidden": null,
+     "w": 22
+    }
+   ]
+  },
+  {
+   "text": "◢ NJ TRANSIT",
+   "aria": null,
+   "role": null,
+   "fontSize": "17px",
+   "fontStyle": "italic",
+   "fontWeight": "800",
+   "color": "rgb(255, 255, 255)",
+   "bg": "rgb(0,0,0)",
+   "opacity": 0.8,
+   "contrast": 13.08,
+   "box": {
+    "x": 383,
+    "y": 414,
+    "w": 128,
+    "h": 41
+   },
+   "insideContainer": true,
+   "insideViewport": true,
+   "textOverflow": false,
+   "childOverflow": false,
+   "svgs": []
+  },
+  {
+   "text": "AMTRAK ®",
+   "aria": null,
+   "role": null,
+   "fontSize": "19px",
+   "fontStyle": "italic",
+   "fontWeight": "800",
+   "color": "rgb(255, 255, 255)",
+   "bg": "rgb(0,0,0)",
+   "opacity": 0.8,
+   "contrast": 13.08,
+   "box": {
+    "x": 567,
+    "y": 420,
+    "w": 137,
+    "h": 29
+   },
+   "insideContainer": true,
+   "insideViewport": true,
+   "textOverflow": false,
+   "childOverflow": false,
+   "svgs": [
+    {
+     "ariaHidden": null,
+     "w": 25
+    }
+   ]
+  },
+  {
+   "text": "MTA Long Island Rail Road",
+   "aria": null,
+   "role": null,
+   "fontSize": "12px",
+   "fontStyle": "normal",
+   "fontWeight": "800",
+   "color": "rgb(255, 255, 255)",
+   "bg": "rgb(0,0,0)",
+   "opacity": 0.8,
+   "contrast": 13.08,
+   "box": {
+    "x": 761,
+    "y": 421,
+    "w": 106,
+    "h": 27
+   },
+   "insideContainer": true,
+   "insideViewport": true,
+   "textOverflow": false,
+   "childOverflow": false,
+   "svgs": []
+  },
+  {
+   "text": "Greyhound",
+   "aria": null,
+   "role": null,
+   "fontSize": "20px",
+   "fontStyle": "normal",
+   "fontWeight": "800",
+   "color": "rgb(255, 255, 255)",
+   "bg": "rgb(0,0,0)",
+   "opacity": 0.8,
+   "contrast": 13.08,
+   "box": {
+    "x": 923,
+    "y": 419,
+    "w": 139,
+    "h": 30
+   },
+   "insideContainer": true,
+   "insideViewport": true,
+   "textOverflow": false,
+   "childOverflow": false,
+   "svgs": [
+    {
+     "ariaHidden": null,
+     "w": 22
+    }
+   ]
+  },
+  {
+   "text": "FlixBus",
+   "aria": null,
+   "role": null,
+   "fontSize": "20px",
+   "fontStyle": "normal",
+   "fontWeight": "800",
+   "color": "rgb(255, 255, 255)",
+   "bg": "rgb(0,0,0)",
+   "opacity": 0.8,
+   "contrast": 13.08,
+   "box": {
+    "x": 1118,
+    "y": 419,
+    "w": 100,
+    "h": 30
+   },
+   "insideContainer": true,
+   "insideViewport": true,
+   "textOverflow": false,
+   "childOverflow": false,
+   "svgs": [
+    {
+     "ariaHidden": null,
+     "w": 22
+    }
+   ]
+  }
+ ]
+}
