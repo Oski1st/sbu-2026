@@ -36,8 +36,8 @@ Raw data: [`qa/p4-35/p4-35-focus.json`](qa/p4-35/p4-35-focus.json). Screenshots 
 | Find my way (reference) | same global rule | 3 px outline `rgb(125,162,75)` on `#ffffff` (button `#173f35`, not adjacent because of the offset) | **2.94:1** | 3 px | 2.94; **0** of 823 | **FAIL by 0.06 (F1b)** | Pass | Fail (advisory) |
 
 Independent check of the key numbers (sRGB relative luminance):
-- `#97b47e`: L = 0.4067, so contrast with white = 1.05 / 0.4567 = **2.30**.
-- `#7da24b`: L = 0.3070, so contrast with white = 1.05 / 0.3570 = **2.94**.
+- `#97b47e`: L = 0.4073, so contrast with white = 1.05 / 0.4573 = **2.30**.
+- `#7da24b`: L = 0.3071, so contrast with white = 1.05 / 0.3571 = **2.94**.
 
 Both are **below 3:1**.
 
