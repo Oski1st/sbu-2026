@@ -40,7 +40,7 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
       <p className="integration-notice">
         <Info size={16} />
         {kind === "journey"
-          ? "Journey preview · The full Journey page is being built by our team."
+          ? "Journey preview · Choose this route on Search to open its full step-by-step journey."
           : "Wallet preview · No tickets have been issued or purchased."}
       </p>
       {selectedTrip ? (

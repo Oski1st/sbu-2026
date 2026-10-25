@@ -2413,6 +2413,12 @@
     flex-wrap: wrap;
   }
 }
+@media (max-width: 380px) {
+  /* Keep whole values such as "Unavailable" on one line in the narrow columns. */
+  .comparison-table td strong {
+    font-size: 14px;
+  }
+}
 .share-feedback > span {
   display: block;
   padding-right: 16px;

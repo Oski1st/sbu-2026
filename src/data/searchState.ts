@@ -18,7 +18,9 @@ const date = (value: string | null) => {
   if (!value || !/^\d{4}-\d{2}-\d{2}$/.test(value))
     return defaultSearch.departureDate;
   const [year, month, day] = value.split("-").map(Number);
-  const candidate = new Date(Date.UTC(year, month - 1, day));
+  const candidate = new Date(0);
+  // setUTCFullYear keeps years 0001-0099 literal; Date.UTC would map them to 1900-1999.
+  candidate.setUTCFullYear(year, month - 1, day);
   return candidate.getUTCFullYear() === year &&
     candidate.getUTCMonth() === month - 1 &&
     candidate.getUTCDate() === day
