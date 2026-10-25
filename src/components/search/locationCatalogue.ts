@@ -18,23 +18,33 @@ const normalize = (value: string) =>
 export function createLocationCatalogue(entries: readonly LocationCity[]): LocationCatalogue {
   const names = new Map<string, number>();
   const exactCounts = new Map<string, number>();
-  const indexed = entries.map((city) => {
+  const indexed = entries.map((city, order) => {
     const name = normalize(city.name);
     names.set(name, (names.get(name) ?? 0) + 1);
     const exact = [city.id, city.name, `${city.name}, ${city.state}`, ...(city.aliases ?? [])].map(normalize);
     for (const key of new Set(exact)) exactCounts.set(key, (exactCounts.get(key) ?? 0) + 1);
-    return { city, exact, searchable: [...exact, city.state].map(normalize) };
+    return {
+      city, order, exact,
+      prefixes: [city.name, ...(city.aliases ?? [])].map(normalize),
+      searchable: [...exact, city.state].map(normalize),
+    };
   });
   return {
     suggest(value, limit = 8) {
       const query = normalize(value);
       const bound = Number.isFinite(limit) ? Math.max(1, Math.min(20, Math.floor(limit))) : 8;
-      const result: LocationCity[] = [];
-      for (const entry of indexed) {
-        if (!query || entry.searchable.some((text) => text.includes(query))) result.push(entry.city);
-        if (result.length === bound) break;
-      }
-      return result;
+      if (!query) return indexed.slice(0, bound).map((entry) => entry.city);
+      return indexed.map((entry) => {
+        const rank = entry.exact.includes(query) ? 0
+          : entry.prefixes.some((text) => text.startsWith(query)) ? 1
+          : entry.searchable.some((text) => (` ${text.replace(/-/g, " ")}`).includes(` ${query}`)) ? 2
+          : entry.searchable.some((text) => text.includes(query)) ? 3
+          : 4;
+        return { ...entry, rank };
+      }).filter((entry) => entry.rank < 4)
+        .sort((a, b) => a.rank - b.rank || a.order - b.order)
+        .slice(0, bound)
+        .map((entry) => entry.city);
     },
     isSupported(value) {
       const query = normalize(value);

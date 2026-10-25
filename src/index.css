@@ -562,6 +562,15 @@
 .date-field > div {
   min-width: 0;
 }
+@media (max-width: 360px) {
+  .date-time-controls {
+    flex-direction: column;
+  }
+  .date-time-controls label {
+    flex: none;
+    width: 100%;
+  }
+}
 .search-button {
   display: inline-flex;
   align-items: center;
