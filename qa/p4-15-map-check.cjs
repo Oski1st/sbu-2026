@@ -44,6 +44,18 @@ const TERRITORIES = /Puerto Rico|Guam|Virgin Islands|American Samoa|Northern Mar
         insets[k] = g ? { rect: box(g.querySelector("rect")), shape: box(g.querySelector("path")), text: [...g.querySelectorAll("text")].map((t) => t.textContent.trim()) } : null;
       }
       const texts = [...svg.querySelectorAll("text")].filter(vis).map((t) => ({ text: t.textContent.trim(), px: parseFloat(getComputedStyle(t).fontSize) * scale, ...box(t) }));
+      // Visible HTML map text (title, subtitle, shared inset note) also counts towards readability.
+      const wrap = m.parentElement;
+      const htmlTexts = [...wrap.querySelectorAll(".us-map-heading p, .us-map-title, .us-map-subtitle, .us-map-inset-note")]
+        .filter((e) => !(e instanceof SVGElement) && vis(e))
+        .map((e) => ({ text: e.textContent.trim(), px: parseFloat(getComputedStyle(e).fontSize), ...box(e) }));
+      // Path samples in SVG user units (y grows downward) for orientation checks.
+      const sample = (path, n = 600) => { const L = path.getTotalLength(); return Array.from({ length: n + 1 }, (_, i) => { const q = path.getPointAtLength((L * i) / n); return [q.x, q.y]; }); };
+      const insetPts = {};
+      for (const k of ["alaska", "hawaii"]) { const g = svg.querySelector(`.us-map-inset--${k}`); insetPts[k] = g ? [...g.querySelectorAll("path")].flatMap((p) => sample(p)) : []; }
+      const flIdx = names.indexOf("Florida");
+      const floridaPts = flIdx >= 0 ? sample(svg.querySelectorAll(".us-map-states path")[flIdx], 800) : [];
+      const focusables = m.querySelectorAll("a[href], button, input, select, textarea, [tabindex]:not([tabindex='-1'])").length;
       const legend = m.parentElement.querySelector(".map-city-legend");
       const maskInfo = (() => {
         const mask = getComputedStyle(m).maskImage || "none";
@@ -52,7 +64,7 @@ const TERRITORIES = /Puerto Rico|Guam|Virgin Islands|American Samoa|Northern Mar
         return { overlapsBox: lr.top < r.bottom && lr.bottom > r.top };
       })();
       return {
-        scale, states, insets, texts, mapBox: box(m),
+        scale, states, insets, texts, htmlTexts, insetPts, floridaPts, focusables, mapBox: box(m),
         role: m.getAttribute("role"), label: m.getAttribute("aria-label") ?? "", describedBy: m.getAttribute("aria-describedby"),
         svgHidden: svg.getAttribute("aria-hidden"),
         legend: legend && vis(legend) ? { id: legend.id, text: legend.textContent.trim(), px: parseFloat(getComputedStyle(legend).fontSize), ...box(legend) } : null,
@@ -79,8 +91,41 @@ const TERRITORIES = /Puerto Rico|Guam|Virgin Islands|American Samoa|Northern Mar
     const A = info.insets.alaska, H = info.insets.hawaii;
     log(`${width}px: Alaska and Hawaii insets present and labelled`, A && H && A.text.includes("ALASKA") && H.text.includes("HAWAII"), `${A?.text.join(" / ")} | ${H?.text.join(" / ")}`);
     const notToScale = (t) => t.some((x) => /not to scale/i.test(x));
-    log(`${width}px: Alaska inset says not to scale`, A && notToScale(A.text));
-    log(`${width}px: Hawaii inset says it is an inset (note: wording "geographic inset"; "not to scale" absent)`, H && H.text.some((x) => /inset/i.test(x)), H?.text.join(" / "));
+    // "Not to scale" may be a per-inset note or one visible shared note that covers that inset.
+    const shared = info.htmlTexts.map((t) => t.text).filter((t) => /not to scale/i.test(t));
+    const covers = (name) => shared.some((t) => new RegExp(name, "i").test(t) || /insets/i.test(t));
+    const akOk = A && (notToScale(A.text) || covers("Alaska"));
+    const hiOk = H && (notToScale(H.text) || covers("Hawaii"));
+    log(`${width}px: Alaska inset labelled not to scale (X9)`, akOk, [...(A?.text ?? []), ...shared].join(" / "));
+    log(`${width}px: Hawaii inset labelled not to scale (X9)`, hiOk, [...(H?.text ?? []), ...shared].join(" / "));
+    // AK / HI orientation from path samples (SVG units, y down).
+    const ext = (pts) => ({ minX: Math.min(...pts.map((p) => p[0])), maxX: Math.max(...pts.map((p) => p[0])), minY: Math.min(...pts.map((p) => p[1])), maxY: Math.max(...pts.map((p) => p[1])) });
+    const meanY = (pts) => pts.reduce((a, p) => a + p[1], 0) / pts.length;
+    const slice = (pts, frac, side) => { const e = ext(pts); const cut = e.minX + (e.maxX - e.minX) * (side === "west" ? frac : 1 - frac); return pts.filter((p) => (side === "west" ? p[0] <= cut : p[0] >= cut)); };
+    if (info.insetPts.alaska.length) {
+      const ak = info.insetPts.alaska, e = ext(ak);
+      const west = slice(ak, 0.15, "west"), midY = (e.minY + e.maxY) / 2;
+      // Aleutians (far west) sit in the southern half; the North Slope (top) is in the eastern half.
+      const top = ak.filter((p) => p[1] <= e.minY + (e.maxY - e.minY) * 0.05);
+      const topX = top.reduce((a, p) => a + p[0], 0) / top.length;
+      const xs = [...new Set(ak.map((p) => Math.round(p[0] * 10) / 10))].sort((a, b) => a - b);
+      let gap = 0; for (let i = 1; i < xs.length; i++) gap = Math.max(gap, xs[i] - xs[i - 1]);
+      const okOrient = meanY(west) > midY && topX > e.minX + (e.maxX - e.minX) * 0.45;
+      log(`${width}px: Alaska north-up (Aleutians south-west, North Slope north)`, okOrient, `Aleutian mean y ${meanY(west).toFixed(1)} vs mid ${midY.toFixed(1)}; north edge x at ${(((topX - e.minX) / (e.maxX - e.minX)) * 100).toFixed(0)}% of width`);
+      log(`${width}px: Aleutian chain continuous (no wrap-around gap > 15% of inset width)`, gap < (e.maxX - e.minX) * 0.15, `largest x gap ${gap.toFixed(1)} of ${(e.maxX - e.minX).toFixed(1)}`);
+    }
+    if (info.insetPts.hawaii.length) {
+      const hi = info.insetPts.hawaii;
+      const w = slice(hi, 0.2, "west"), east = slice(hi, 0.2, "east");
+      log(`${width}px: Hawaii chain runs north-west to south-east (Kauai above Big Island)`, meanY(w) < meanY(east), `west mean y ${meanY(w).toFixed(1)}, east mean y ${meanY(east).toFixed(1)}`);
+    }
+    if (info.floridaPts.length) {
+      const f = info.floridaPts, e = ext(f);
+      const tip = f.filter((p) => p[1] >= e.maxY - (e.maxY - e.minY) * 0.05);
+      const tipX = tip.reduce((a, p) => a + p[0], 0) / tip.length;
+      log(`${width}px: Florida peninsula points south (southern tip in the east half)`, tipX > e.minX + (e.maxX - e.minX) * 0.5, `tip x at ${(((tipX - e.minX) / (e.maxX - e.minX)) * 100).toFixed(0)}% of Florida width`);
+    }
+    log(`${width}px: no focusable elements inside the map image`, info.focusables === 0, String(info.focusables));
     const inside = (s, r) => s.l >= r.l - 1 && s.r <= r.r + 1 && s.t >= r.t - 1 && s.b <= r.b + 1;
     log(`${width}px: inset shapes sit inside their frames`, A && H && inside(A.shape, A.rect) && inside(H.shape, H.rect));
     const intrude = [];
@@ -90,8 +135,9 @@ const TERRITORIES = /Puerto Rico|Guam|Virgin Islands|American Samoa|Northern Mar
     log(`${width}px: insets don't overlap contiguous-state bounding boxes`, intrude.length === 0, intrude.join(", "));
 
     const floor = width < 500 ? 11 : 10;
-    const small = info.texts.filter((t) => t.px < floor);
-    log(`${width}px: every visible map text ≥${floor}px rendered`, small.length === 0, info.texts.map((t) => `${t.text.slice(0, 22)} ${t.px.toFixed(1)}px`).join("; "));
+    const allTexts = [...info.texts, ...info.htmlTexts];
+    const small = allTexts.filter((t) => t.px < floor);
+    log(`${width}px: every visible map text (SVG and HTML) ≥${floor}px rendered (X8)`, small.length === 0, allTexts.map((t) => `${t.text.slice(0, 22)} ${t.px.toFixed(1)}px`).join("; "));
     const clipped = info.texts.filter((t) => t.l < info.mapBox.l - 1 || t.r > info.mapBox.r + 1 || t.t < info.mapBox.t - 1 || t.b > info.mapBox.b + 1);
     log(`${width}px: map text inside the map box`, clipped.length === 0, clipped.map((t) => t.text).join(", "));
     const over = [];
