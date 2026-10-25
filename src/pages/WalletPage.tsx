@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import type { Trip } from '../types/transit';
 import { getTripById } from '../data/tripLookup';
-import { formatDuration } from '../data/tripUtils';
+import { formatDuration, shiftSampleTimeline } from '../data/tripUtils';
+import { readSearchState } from '../data/searchState';
 import { TicketCard } from '../components/wallet/TicketCard';
 import { TransitStatus } from '../components/wallet/TransitStatus';
 import { lirrThroughTicketNote } from '../components/wallet/ticketCoverage';
@@ -21,11 +22,11 @@ function tripIdFromLocation(): string | undefined {
   try { return match ? decodeURIComponent(match[1]) : undefined; } catch { return undefined; }
 }
 
-function TripWallet({ trip, septaEndpoint }: { trip: Trip; septaEndpoint?: string }) {
+function TripWallet({ trip, septaEndpoint, planningSearch = '' }: { trip: Trip; septaEndpoint?: string; planningSearch?: string }) {
   const [checked, setChecked] = useState<Set<string>>(() => new Set());
   const completed = trip.legs.filter(leg => checked.has(leg.id)).length;
   return <>
-    <Link className="ol-button" to={`/journey/${trip.id}`}>Back to journey</Link>
+    <Link className="ol-button" to={`/journey/${trip.id}${planningSearch}`}>Back to journey</Link>
     <header className="ol-header"><span className="ol-eyebrow">ONELINE / TRIP WALLET</span>
       <h1>Where to buy<br />each ticket</h1>
       <p className="ol-route">{trip.origin} <span aria-hidden="true">→</span> {trip.destination}</p>
@@ -46,9 +47,18 @@ function TripWallet({ trip, septaEndpoint }: { trip: Trip; septaEndpoint?: strin
 
 export default function WalletPage({ tripId, septaEndpoint }: WalletPageProps) {
   const { tripId: routeTripId } = useParams<{ tripId: string }>();
+  const [searchParams] = useSearchParams();
   const id = tripId ?? routeTripId ?? tripIdFromLocation();
-  const trip = getTripById(id);
+  const hasPlanningPreference = searchParams.has('date') || searchParams.has('time');
+  const preferences = readSearchState(searchParams);
+  const planningSearch = hasPlanningPreference
+    ? `?${new URLSearchParams({ date: preferences.departureDate, time: preferences.departureTime })}`
+    : '';
+  const baseTrip = getTripById(id);
+  const trip = baseTrip && hasPlanningPreference
+    ? shiftSampleTimeline(baseTrip, preferences.departureDate, preferences.departureTime)
+    : baseTrip;
   return <div className="oneline-wallet">
-    {trip ? <TripWallet key={trip.id} trip={trip} septaEndpoint={septaEndpoint} /> : <section className="ol-empty"><span className="ol-eyebrow">TRIP WALLET</span><h1>{id ? 'Journey not found' : 'Choose your journey first'}</h1><p>Open a wallet from the journey search results. No tickets or itinerary have been created.</p><Link className="ol-button" to="/">Find a journey</Link></section>}
+    {trip ? <TripWallet key={trip.id} trip={trip} septaEndpoint={septaEndpoint} planningSearch={planningSearch} /> : <section className="ol-empty"><span className="ol-eyebrow">TRIP WALLET</span><h1>{id ? 'Journey not found' : 'Choose your journey first'}</h1><p>Open a wallet from the journey search results. No tickets or itinerary have been created.</p><Link className="ol-button" to="/">Find a journey</Link></section>}
   </div>;
 }

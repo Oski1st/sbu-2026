@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { getTripById } from "../data/tripLookup";
-import { formatDuration } from "../data/tripUtils";
+import { formatDuration, shiftSampleTimeline } from "../data/tripUtils";
+import { readSearchState } from "../data/searchState";
 import type { Trip } from "../types/transit";
 import { DelaySimulation } from "../components/journey/DelaySimulation";
 import { JourneyDemoControls } from "../components/journey/JourneyDemoControls";
@@ -28,7 +29,19 @@ function JourneyNotFound() {
 
 export default function JourneyPage() {
   const { tripId } = useParams<{ tripId: string }>();
-  const trip = useMemo<Trip | undefined>(() => getTripById(tripId), [tripId]);
+  const [searchParams] = useSearchParams();
+  const preferenceKey = searchParams.toString();
+  const hasPlanningPreference = searchParams.has("date") || searchParams.has("time");
+  const planningPreferences = readSearchState(searchParams);
+  const planningSearch = hasPlanningPreference
+    ? `?${new URLSearchParams({ date: planningPreferences.departureDate, time: planningPreferences.departureTime })}`
+    : "";
+  const trip = useMemo<Trip | undefined>(() => {
+    const baseTrip = getTripById(tripId);
+    return baseTrip && hasPlanningPreference
+      ? shiftSampleTimeline(baseTrip, planningPreferences.departureDate, planningPreferences.departureTime)
+      : baseTrip;
+  }, [tripId, preferenceKey]);
   const [expandedLegId, setExpandedLegId] = useState<string | null>(null);
   const [isDelaySimulated, setIsDelaySimulated] = useState(false);
   const [demoState, setDemoState] = useState(initialJourneyDemoState);
@@ -77,7 +90,7 @@ export default function JourneyPage() {
           </div>
           {trip.planningNote && <p className="mt-5 rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-amber-950"><strong>Sample route concept. </strong>{trip.planningNote}</p>}
           <Link
-            to={`/wallet/${trip.id}`}
+            to={`/wallet/${trip.id}${planningSearch}`}
             className="btn btn-primary mt-5 min-h-11 gap-2 px-5 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#d7ef95] focus-visible:outline-offset-[-5px]"
           >
             View ticket wallet
@@ -124,7 +137,7 @@ export default function JourneyPage() {
               <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-sage">Step by step</p>
               <h2 id="timeline-title" className="mt-1 text-2xl font-bold tracking-tight text-primary">Journey timeline</h2>
             </div>
-            <p className="text-xs text-sage">Fixed sample itinerary times (Eastern Time) · your search date and time are not applied</p>
+            <p className="text-xs text-sage">{hasPlanningPreference ? "Sample timeline shifted to your planning preference (Eastern Time) · not a live schedule" : "Fixed sample itinerary times (Eastern Time)"}</p>
           </div>
 
           <ol className="journey-steps">

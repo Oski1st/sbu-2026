@@ -28,11 +28,13 @@ export function RouteCard({
   index,
   comparing,
   onCompare,
+  planningPreferences,
 }: {
   trip: Trip;
   index: number;
   comparing: boolean;
   onCompare: () => void;
+  planningPreferences?: { departureDate: string; departureTime: string };
 }) {
   const [expanded, setExpanded] = useState(false);
   const { selectTrip } = useSelectedTrip();
@@ -43,6 +45,15 @@ export function RouteCard({
   const unique = [...new Set(trip.legs.map((leg) => leg.agency))];
   const first = trip.legs[0],
     last = trip.legs.at(-1)!;
+  const planningSearch = planningPreferences
+    ? `?${new URLSearchParams({ date: planningPreferences.departureDate, time: planningPreferences.departureTime })}`
+    : "";
+  const previewDate = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(first.departure));
   return (
     <article
       className="route-card"
@@ -139,7 +150,7 @@ export function RouteCard({
           />
           Compare route
         </label>
-        <ShareTripButton trip={trip} />
+        <ShareTripButton trip={trip} search={planningSearch} />
       </div>
       <div className="route-card-bottom">
         <button
@@ -153,7 +164,7 @@ export function RouteCard({
         </button>
         <Link
           className="select-route"
-          to={`/journey/${trip.id}`}
+          to={`/journey/${trip.id}${planningSearch}`}
           state={{ tripId: trip.id, trip }}
           onClick={() => selectTrip(trip)}
         >
@@ -174,7 +185,7 @@ export function RouteCard({
           )}
           <p className="details-note">
             <Clock3 size={14} />
-            All times shown in Eastern Time · Sample departure Oct 24, 2026
+            Demo timeline shifted to your planning preference · {previewDate}, {formatTime(first.departure)} Eastern Time. Not an actual schedule.
           </p>
           {trip.legs.map((leg, i) => (
             <div key={leg.id} className="leg-detail">

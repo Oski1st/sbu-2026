@@ -11,6 +11,8 @@ import {
   tripMetrics,
   compareTrips,
   formatDuration,
+  formatTime,
+  shiftSampleTimeline,
 } from "./tripUtils";
 import { planTrips } from "./tripLookup";
 describe("arrival-based ranking for generated concepts", () => {
@@ -35,6 +37,15 @@ describe("arrival-based ranking for generated concepts", () => {
   });
 });
 describe("original Philadelphia demo route planning", () => {
+  it("shifts all displayed sample alternatives from one selected Eastern planning preference", () => {
+    const [regional, express] = demoTrips.map((trip) => shiftSampleTimeline(trip, "2026-11-03", "16:30"));
+    expect(formatTime(regional.legs[0].departure)).toBe("4:30 PM");
+    // Alternatives keep their sample stagger rather than pretending that both depart at the same instant.
+    expect(formatTime(express.legs[0].departure)).toBe("5:00 PM");
+    expect(regional.durationMinutes).toBe(demoTrips[0].durationMinutes);
+    expect(+new Date(regional.legs.at(-1)!.arrival) - +new Date(regional.legs[0].departure)).toBe(regional.durationMinutes * 60_000);
+    expect(demoTrips[0].legs[0].departure).toContain("2026-10-24");
+  });
   it("matches the demo corridor case-insensitively and trims whitespace", () => {
     expect(
       findTrips(demoTrips, "  PHILADELPHIA ", "stony   brook"),

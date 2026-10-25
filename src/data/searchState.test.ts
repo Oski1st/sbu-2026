@@ -83,6 +83,12 @@ describe("search URL state", () => {
     }
   });
 
+  it("normalizes familiar 12-hour share-link times to valid native time-input values", () => {
+    for (const [value, expected] of [["04:30 PM", "16:30"], ["4:30 pm", "16:30"], ["12:00 AM", "00:00"], ["12:00 PM", "12:00"]]) {
+      expect(readSearchState(new URLSearchParams({ time: value })).departureTime).toBe(expected);
+    }
+  });
+
   it("reconstructs different preferences for back/forward URLs even when cities match", () => {
     const first = { ...defaultSearch, departureDate: "2026-11-01", departureTime: "09:30" };
     const second = { ...first, departureDate: "2026-11-02", departureTime: "19:15" };
