@@ -22,25 +22,38 @@ import {
 } from "../../data/tripUtils";
 import { useSelectedTrip } from "../layout/TripContext";
 import { ShareTripButton } from "./ShareTripButton";
-import { AmtrakHandoff } from "../AmtrakHandoff";
+import { PurchaseLink, useSearchDate } from "../purchase/PurchaseLink";
 export function RouteCard({
   trip,
   index,
   comparing,
   onCompare,
+  planningPreferences,
 }: {
   trip: Trip;
   index: number;
   comparing: boolean;
   onCompare: () => void;
+  planningPreferences?: { departureDate: string; departureTime: string };
 }) {
   const [expanded, setExpanded] = useState(false);
   const { selectTrip } = useSelectedTrip();
+  // Remembers this Search date for Journey and Wallet ticket links, even while details are closed.
+  useSearchDate();
   const price = sampleTotal(trip);
   const metrics = tripMetrics(trip);
   const unique = [...new Set(trip.legs.map((leg) => leg.agency))];
   const first = trip.legs[0],
     last = trip.legs.at(-1)!;
+  const planningSearch = planningPreferences
+    ? `?${new URLSearchParams({ date: planningPreferences.departureDate, time: planningPreferences.departureTime })}`
+    : "";
+  const previewDate = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(first.departure));
   return (
     <article
       className="route-card"
@@ -137,7 +150,7 @@ export function RouteCard({
           />
           Compare route
         </label>
-        <ShareTripButton trip={trip} />
+        <ShareTripButton trip={trip} search={planningSearch} />
       </div>
       <div className="route-card-bottom">
         <button
@@ -151,7 +164,7 @@ export function RouteCard({
         </button>
         <Link
           className="select-route"
-          to={`/journey/${trip.id}`}
+          to={`/journey/${trip.id}${planningSearch}`}
           state={{ tripId: trip.id, trip }}
           onClick={() => selectTrip(trip)}
         >
@@ -172,7 +185,9 @@ export function RouteCard({
           )}
           <p className="details-note">
             <Clock3 size={14} />
-            All times shown in Eastern Time · Sample departure Oct 24, 2026
+            {planningPreferences
+              ? `Demo timeline shifted to your planning preference · ${previewDate}, ${formatTime(first.departure)} Eastern Time. Not an actual schedule.`
+              : `All times shown in Eastern Time · Sample departure ${previewDate}`}
           </p>
           {trip.legs.map((leg, i) => (
             <div key={leg.id} className="leg-detail">
@@ -197,25 +212,13 @@ export function RouteCard({
                     : "Fare unavailable"}
                 </small>
               </div>
-              {leg.agency === "AMTRAK" ? (
-                <AmtrakHandoff
-                  details={leg}
-                  aria-label={`Agency site · Amtrak booking page for segment ${i + 1}, ${leg.from} to ${leg.to}; copies trip details (opens in a new tab)`}
-                >
-                  Agency site <ArrowUpRight size={13} />
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </AmtrakHandoff>
-              ) : (
-                <a
-                  href={leg.purchaseUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={`Agency site · ${agencies[leg.agency].name} official ticket information for segment ${i + 1}, ${leg.from} to ${leg.to} (opens in a new tab)`}
-                >
-                  Agency site <ArrowUpRight size={13} />
-                  <span className="sr-only"> (opens in a new tab)</span>
-                </a>
-              )}
+              <PurchaseLink
+                leg={leg}
+                tripStart={first.departure}
+                shiftedTimeline={planningPreferences !== undefined}
+                position={`segment ${i + 1}`}
+                icon={<ArrowUpRight size={13} aria-hidden="true" />}
+              />
             </div>
           ))}
           <p className="fare-disclaimer">

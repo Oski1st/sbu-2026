@@ -2,12 +2,19 @@ import { describe, expect, it } from "vitest";
 import {
   defaultSearch,
   newSearchPatch,
+  planningSearchFrom,
   readSearchState,
   todayInNewYork,
   writeSearchState,
 } from "./searchState";
 
 describe("search URL state", () => {
+  it("carries only a URL planning preference into Journey/Wallet links, normalized", () => {
+    expect(planningSearchFrom(new URLSearchParams())).toBe("");
+    expect(planningSearchFrom(new URLSearchParams("from=Boston&sort=fastest"))).toBe("");
+    expect(planningSearchFrom(new URLSearchParams({ date: "2026-11-05", time: "11:30 PM" }))).toBe("?date=2026-11-05&time=23%3A30");
+  });
+
   it("restores the original demo for an empty URL", () => {
     expect(readSearchState(new URLSearchParams())).toEqual(defaultSearch);
     expect(writeSearchState(defaultSearch).toString()).toBe("");
@@ -80,6 +87,12 @@ describe("search URL state", () => {
     }
     for (const value of ["24:00", "23:60", "-1:00", "8:00"]) {
       expect(readSearchState(new URLSearchParams({ time: value })).departureTime).toBe(defaultSearch.departureTime);
+    }
+  });
+
+  it("normalizes familiar 12-hour share-link times to valid native time-input values", () => {
+    for (const [value, expected] of [["04:30 PM", "16:30"], ["4:30 pm", "16:30"], ["12:00 AM", "00:00"], ["12:00 PM", "12:00"]]) {
+      expect(readSearchState(new URLSearchParams({ time: value })).departureTime).toBe(expected);
     }
   });
 

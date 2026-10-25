@@ -49,7 +49,11 @@ pnpm test:e2e http://127.0.0.1:3000
 pnpm test:smoke http://127.0.0.1:3000
 node qa/demo-rehearsal.cjs http://127.0.0.1:3000
 node qa/demo-rehearsal.cjs http://127.0.0.1:3000 --offline
+node qa/purchase-links-click.cjs http://127.0.0.1:3000   # ticket links; operator sites are stubbed locally
 ```
+
+Ticket links for every operator come from one resolver. See
+[Purchase links](docs/purchase-links.md).
 
 Playwright is pinned as a devDependency. There is no configured lint script;
 TypeScript, build, unit tests and the relevant browser/proxy checks are the current
@@ -67,8 +71,10 @@ feature-branch and hosted results. See [QA checklist](docs/qa-checklist.md).
 
 ISO departure/arrival timestamps include a timezone offset. Fare metadata, mode,
 sample labels and concept-planning disclosures are optional extensions to the
-shared contract. `src/data/demoTrips.ts` exports `demoTrips: Trip[]`, preserving
-`regional-connection` and `amtrak-connection` and their original sample times.
+shared contract. `src/data/demoTrips.ts` exports `demoTrips: Trip[]`, preserving the
+`regional-connection` and `amtrak-connection` IDs. Their sample run times and fares
+were corrected against official sources on 2026-10-25; see
+[docs/sample-data-accuracy.md](docs/sample-data-accuracy.md).
 
 The integrated pages are:
 
@@ -100,7 +106,9 @@ They are not verified timetables, fare quotes, connection guarantees or availabl
 inventory. Expanded city-level concepts do not verify operator coverage, direct
 service, terminal changes or rail/road alignments. Unknown fares stay unknown.
 The original LIRR continuation legs can share the preceding sample fare; a
-zero-dollar continuation is not a separate free ticket.
+zero-dollar continuation is not a separate free ticket. Sample values that were
+checked against an official source, and those still unverified, are listed in
+[docs/sample-data-accuracy.md](docs/sample-data-accuracy.md).
 
 Only the explicitly labelled **agency-wide SEPTA Regional Rail snapshot** is live.
 It is not matched to a sample journey and never replaces itinerary times. It

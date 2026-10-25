@@ -37,10 +37,19 @@ describe("contiguous-U.S. passenger rail map", () => {
   test("provides native keyboard-accessible evidence and honest rail/coverage descriptions", () => {
     const html = renderToStaticMarkup(<CorridorMap />);
     expect(html).toContain("<summary>Corridors, cities &amp; coverage gaps</summary>");
-    expect(html).toContain("Generalized Amtrak rail alignment");
+    expect(html).toContain("Amtrak track between our cities");
+    expect(html).toContain("LIRR to Stony Brook (track not drawn)");
+    expect(html).toContain("track beyond our cities is not drawn");
+    expect(html).toContain(`data-station-code="${geometry.lirr.id}"`);
+    expect(html).toContain(`d="M${geometry.lirr.x},${geometry.lirr.y}h0"`);
+    expect(html).not.toContain("generalized rail alignment");
     expect(html).toContain("Stony Brook");
     expect(html).toContain("MTA station details · alignment not mapped");
     expect(html).toContain("These lines do not change the sample itineraries");
+    expect(html).toContain("Not shown on this map");
+    expect(html).toContain("This rail-only view includes only the corridors in the legend.");
+    expect(html).toContain("Coach services use roads, so they are outside this rail layer.");
+    expect(html).toContain("Boarding notes:");
     expect(html).toContain("North Station");
     expect(html).toContain("not a timetable");
     expect(html).not.toContain("us-map-inset");

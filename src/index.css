@@ -745,6 +745,16 @@
   color: #7b8577;
   margin-top: 12px;
 }
+/* Polite "Results updated for …" confirmation after a Date/Time change. */
+.results-heading p.results-update {
+  margin-top: 4px;
+  color: #3f5a31;
+  font-weight: 600;
+}
+/* Stays in the accessibility tree while empty so the first update is announced. */
+.results-heading p.results-update:empty {
+  margin: 0;
+}
 .sort-control {
   display: flex;
   flex-direction: column;
@@ -2657,28 +2667,35 @@
   }
 }
 
-/* Amtrak click-time handoff: stable booking page + copied trip details. */
-.amtrak-handoff {
+/* Ticket links (src/lib/purchase): the link plus a short note on what it opens.
+   Amtrak adds a click-time copy of the trip details. */
+.amtrak-handoff,
+.purchase-link {
   display: inline-flex;
   flex-direction: column;
   gap: 4px;
   max-width: 18rem;
 }
 .leg-detail > .amtrak-handoff > a,
-.handoff-leg > .amtrak-handoff > a {
+.handoff-leg > .amtrak-handoff > a,
+.leg-detail > .purchase-link > a,
+.handoff-leg > .purchase-link > a {
   display: flex;
   align-items: center;
   gap: 4px;
   color: #466342;
 }
-.leg-detail > .amtrak-handoff > a {
+.leg-detail > .amtrak-handoff > a,
+.leg-detail > .purchase-link > a {
   font-size: 9px;
   padding-top: 3px;
 }
-.handoff-leg > .amtrak-handoff > a {
+.handoff-leg > .amtrak-handoff > a,
+.handoff-leg > .purchase-link > a {
   font-size: 11px;
 }
-.amtrak-handoff-note {
+.amtrak-handoff-note,
+.purchase-link-note {
   font-size: 10px;
   line-height: 1.5;
   color: #5c6b54;

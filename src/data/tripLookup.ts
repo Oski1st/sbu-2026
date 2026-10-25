@@ -4,7 +4,7 @@ import { agencies } from './agencies';
 import type { Leg, Trip } from '../types';
 import { createGraph } from './routing/graph';
 
-export const ROUTING_DATASET_VERSION = 'east-coast-21d77dd-v1';
+export const ROUTING_DATASET_VERSION = 'east-coast-2026-10-25-v2'; // v2: official-source time fixes
 export const ROUTING_CACHE_VERSION = 'concept-trip-v1';
 export const ROUTING_CACHE_MAX_ENTRIES = 128;
 export const routingProfiles = ['AMTRAK', 'GREYHOUND', 'FLIXBUS'] as const;

@@ -5,6 +5,8 @@ import WalletPage from '../../pages/WalletPage';
 import { demoTrips } from '../../data/demoTrips';
 import { getTripById } from '../../data/tripLookup';
 import { officialPurchaseUrl, ticketing } from './ticketing';
+import { purchaseLinkForLeg } from '../../lib/purchase';
+import { defaultSearch } from '../../data/searchState';
 import { lirrThroughTicketNote } from './ticketCoverage';
 import { TicketCard } from './TicketCard';
 import { TransitSnapshot } from './TransitStatus';
@@ -22,12 +24,38 @@ describe('shared wallet integration', () => {
     for (const leg of trip.legs) {
       expect(html).toContain(leg.from.replaceAll('&', '&amp;'));
       expect(html).toContain(leg.to.replaceAll('&', '&amp;'));
-      expect(html).toContain(officialPurchaseUrl(leg.agency, leg.purchaseUrl));
-      expect(html).toContain(ticketing[leg.agency].label.replaceAll('&', '&amp;'));
+      // Every Wallet ticket link comes from the shared resolver (this MemoryRouter sits at "/", so the Search date is today's default).
+      const link = purchaseLinkForLeg(leg, defaultSearch.departureDate, trip.legs[0].departure);
+      expect(html).toContain(`href="${link.href.replaceAll('&', '&amp;')}"`);
+      expect(html).toContain(link.label.replaceAll('&', '&amp;'));
     }
     expect(html).toContain('Times are simulated itinerary data');
     expect(html).toContain('not confirm payment');
     expect(html).not.toContain('Live feed fetched');
+  });
+
+  test('a planning preference labels the shifted wallet timeline; the fixed sample does not', () => {
+    const shifted = renderToStaticMarkup(<MemoryRouter initialEntries={['/wallet/regional-connection?date=2026-11-03&time=16:30']}><WalletPage tripId="regional-connection" /></MemoryRouter>);
+    expect(shifted).toContain('Sample timeline shifted to your planning preference');
+    expect(shifted).toContain('Nov 3, 4:30 PM EST');
+    expect(markup('regional-connection')).not.toContain('shifted to your planning preference');
+  });
+
+  test.each(['regional-connection', 'amtrak-connection'])('%s gives every ticket link a distinct name with its own stations', id => {
+    const trip = getTripById(id)!;
+    const clean = (value: string) => value.replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/\s*·\s*/g, ', ').replace(/\s+/g, ' ').trim();
+    const names = [...markup(id).matchAll(/<a\b[^>]*data-purchase-kind="[^"]*"[^>]*>([\s\S]*?)<\/a>/g)].map(([, content]) => clean(content));
+    expect(names).toHaveLength(trip.legs.length);
+    expect(new Set(names).size).toBe(names.length);
+    trip.legs.forEach((leg, i) => {
+      expect(names[i]).toContain(clean(leg.from));
+      expect(names[i]).toContain(clean(leg.to));
+      expect(names[i]).toContain('(opens in a new tab)');
+    });
+    // The two LIRR legs used to share one name ("MTA TrainTime & tickets").
+    const lirr = names.filter((_, i) => trip.legs[i].agency === 'LIRR');
+    expect(lirr).toHaveLength(2);
+    expect(lirr[0]).not.toBe(lirr[1]);
   });
 
   test('Amtrak wallet has no unrelated SEPTA feed panel', () => {

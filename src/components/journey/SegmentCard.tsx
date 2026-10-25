@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import type { Leg } from "../../types/transit";
 import { addMinutes, agencyStyles, displaySegmentTime, legDuration } from "./journeyUtils";
 import { SIMULATED_DELAY_MINUTES } from "./journeySimulation";
-import { AmtrakHandoff } from "../AmtrakHandoff";
+import { PurchaseLink } from "../purchase/PurchaseLink";
 
 const ticketButtonClass = "inline-flex min-h-10 items-center rounded-lg bg-white px-3 font-bold text-base-content shadow-sm ring-1 ring-base-300 transition hover:bg-base-200 focus-visible:outline-3 focus-visible:outline-solid focus-visible:outline-[#4f7a2f] focus-visible:outline-offset-4";
 
@@ -13,9 +13,13 @@ type SegmentCardProps = {
   isDelayed: boolean;
   isCurrent: boolean;
   onToggle: () => void;
+  /** The trip's first departure, for the ticket link's travel date. */
+  tripStart?: string;
+  /** Leg times are shifted to the planning date and time, so the ticket link books the leg's own date. */
+  shiftedTimeline?: boolean;
 };
 
-export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onToggle }: SegmentCardProps) {
+export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onToggle, tripStart, shiftedTimeline }: SegmentCardProps) {
   const styles = agencyStyles[leg.agency];
   const duration = legDuration(leg);
   const detailId = `segment-details-${leg.id}`;
@@ -44,7 +48,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
       {isDelayed && (
         <p className="mb-3 inline-flex items-center gap-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-900">
           <span className="h-1.5 w-1.5 rounded-full bg-amber-600" aria-hidden="true" />
-          Simulated delay: +12 min
+          Simulated delay: +{SIMULATED_DELAY_MINUTES} min
         </p>
       )}
 
@@ -76,7 +80,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
               {simulatedArrival ? (
                 <span className="flex flex-col items-start sm:items-end">
                   <time dateTime={leg.arrival} aria-label={`Original sample arrival: ${displaySegmentTime(leg.arrival)}`} className="text-xs font-medium text-sage line-through">{displaySegmentTime(leg.arrival)}</time>
-                  <time dateTime={simulatedArrival} aria-label={`Simulated arrival (+12 minutes): ${displaySegmentTime(simulatedArrival)}`}>{displaySegmentTime(simulatedArrival)}</time>
+                  <time dateTime={simulatedArrival} aria-label={`Simulated arrival (+${SIMULATED_DELAY_MINUTES} minutes): ${displaySegmentTime(simulatedArrival)}`}>{displaySegmentTime(simulatedArrival)}</time>
                 </span>
               ) : <time dateTime={leg.arrival}>{displaySegmentTime(leg.arrival)}</time>}
             </div>
@@ -89,6 +93,18 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
           </p>
 
           {leg.mode === "bus" && <p className="mt-3 rounded-xl bg-base-100 p-3 text-sm leading-6 text-sage"><strong>Sample coach corridor. </strong>This segment may merge several city-to-city sample stops. Intermediate stops, vehicle changes and rest breaks are not shown or verified. Confirm the full itinerary and breaks with the operator; this is not a claim of nonstop service.</p>}
+
+          {/* Exactly one ticket link per segment, always visible: never a hidden or inert copy inside the details. */}
+          <div className="mt-4 text-xs leading-5 text-sage">
+            <PurchaseLink
+              leg={leg}
+              tripStart={tripStart}
+              shiftedTimeline={shiftedTimeline}
+              className={ticketButtonClass}
+              position={`segment ${index + 1}`}
+              icon={<span className="ml-2" aria-hidden="true">↗</span>}
+            />
+          </div>
 
           <button
             ref={toggleRef}
@@ -126,21 +142,6 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
                   <li>2. Keep this itinerary handy and follow terminal or station signage for your service.</li>
                   <li>3. Exit at {leg.to} and continue to the next connection if shown below.</li>
                 </ol>
-                {leg.agency === "AMTRAK" ? (
-                  <span className="mt-4 block">
-                    <AmtrakHandoff details={leg} className={ticketButtonClass}>
-                      Get tickets from {styles.label}
-                      <span className="sr-only"> for segment {index + 1}, {leg.from} to {leg.to}; copies trip details (opens in a new tab)</span>
-                      <span className="ml-2" aria-hidden="true">↗</span>
-                    </AmtrakHandoff>
-                  </span>
-                ) : (
-                  <a href={leg.purchaseUrl} target="_blank" rel="noreferrer" className={`mt-4 ${ticketButtonClass}`}>
-                    Get tickets from {styles.label}
-                    <span className="sr-only"> for segment {index + 1}, {leg.from} to {leg.to} (opens in a new tab)</span>
-                    <span className="ml-2" aria-hidden="true">↗</span>
-                  </a>
-                )}
               </div>
             </div>
           </div>

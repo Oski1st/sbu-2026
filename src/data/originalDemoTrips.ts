@@ -28,13 +28,16 @@ const leg = (
  * https://www.amtrak.com/stations/phl · https://www.mta.info/stations/stony-brook
  * Zero-dollar continuation legs share the preceding illustrative LIRR fare.
  * LIRR train changes are modeled as separate legs, including Huntington.
+ * SEPTA, NJ TRANSIT and LIRR ride times and fares, and the Huntington wait, follow official
+ * sources checked 2026-10-25 (docs/sample-data-accuracy.md). The Amtrak time and fare, the
+ * clock times and the other connection gaps remain illustrative.
  */
 export const originalDemoTrips: Trip[] = [
   {
     id: "regional-connection",
     origin: "Philadelphia",
     destination: "Stony Brook",
-    durationMinutes: 315,
+    durationMinutes: 297,
     dataStatus: "sample",
     label: "The scenic connection",
     description: "SEPTA, NJ TRANSIT, then LIRR. Lower sample fare, one more transfer.",
@@ -46,8 +49,8 @@ export const originalDemoTrips: Trip[] = [
         "Philadelphia · 30th Street",
         "Trenton Transit Center",
         "08:00",
-        "08:55",
-        10,
+        "08:52",
+        11,
       ),
       leg(
         "regional-2",
@@ -57,7 +60,7 @@ export const originalDemoTrips: Trip[] = [
         "New York Penn Station",
         "09:10",
         "10:40",
-        20,
+        20.35,
       ),
       leg(
         "regional-3",
@@ -66,7 +69,7 @@ export const originalDemoTrips: Trip[] = [
         "New York Penn Station",
         "Huntington",
         "11:00",
-        "12:10",
+        "12:13",
         16,
       ),
       leg(
@@ -75,8 +78,8 @@ export const originalDemoTrips: Trip[] = [
         "Port Jefferson Branch",
         "Huntington",
         "Stony Brook",
-        "12:25",
-        "13:15",
+        "12:22",
+        "12:57",
         0,
       ),
     ],
@@ -85,10 +88,10 @@ export const originalDemoTrips: Trip[] = [
     id: "amtrak-connection",
     origin: "Philadelphia",
     destination: "Stony Brook",
-    durationMinutes: 250,
+    durationMinutes: 217,
     dataStatus: "sample",
     label: "The express connection",
-    description: "Amtrak to New York, then LIRR. 65 minutes less time on board, $15 more in sample fares.",
+    description: "Amtrak to New York, then LIRR. 62 minutes less time on board, $14 more in sample fares.",
     legs: [
       leg(
         "express-1",
@@ -107,7 +110,7 @@ export const originalDemoTrips: Trip[] = [
         "New York Penn Station",
         "Huntington",
         "10:10",
-        "11:20",
+        "11:23",
         16,
       ),
       leg(
@@ -116,8 +119,8 @@ export const originalDemoTrips: Trip[] = [
         "Port Jefferson Branch",
         "Huntington",
         "Stony Brook",
-        "11:45",
-        "12:40",
+        "11:32",
+        "12:07",
         0,
       ),
     ],

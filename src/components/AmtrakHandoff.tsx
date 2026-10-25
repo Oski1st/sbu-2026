@@ -5,6 +5,14 @@ import type { AmtrakTripDetails } from "../lib/amtrakHandoff";
 
 interface AmtrakHandoffProps {
   details: AmtrakTripDetails;
+  /** Non-expiring Amtrak page to open; defaults to the stable booking homepage. */
+  href?: string;
+  /** Text to copy; defaults to amtrakTripText(details). */
+  copyText?: string;
+  /** Visible note; defaults to the homepage handoff note. */
+  note?: string;
+  /** Purchase-link kind from src/lib/purchase, exposed as data-purchase-kind. */
+  kind?: string;
   /** Visible label plus a screen-reader "(opens in a new tab)" span supplied by the call site. */
   children: ReactNode;
   className?: string;
@@ -12,24 +20,25 @@ interface AmtrakHandoffProps {
 }
 
 /**
- * Click-time Amtrak handoff: the link always opens the stable booking homepage
- * in a new tab (never a stored session URL) while the trip details are copied.
+ * Click-time Amtrak handoff: the link opens a non-expiring Amtrak page in a new tab
+ * (never a stored session URL) while the trip details are copied as a backup.
  */
-export function AmtrakHandoff({ details, children, className, "aria-label": ariaLabel }: AmtrakHandoffProps) {
+export function AmtrakHandoff({ details, href = AMTRAK_BOOKING_URL, copyText, note = AMTRAK_HANDOFF_NOTE, kind = "copy-handoff", children, className, "aria-label": ariaLabel }: AmtrakHandoffProps) {
   const id = useId();
   const field = useRef<HTMLInputElement>(null);
   const [status, setStatus] = useState<"idle" | "copied" | "manual">("idle");
-  const text = amtrakTripText(details);
+  const text = copyText ?? amtrakTripText(details);
   return (
     <span className="amtrak-handoff">
       <a
-        href={AMTRAK_BOOKING_URL}
+        href={href}
         target="_blank"
         rel="noreferrer"
         className={className}
         aria-label={ariaLabel}
         aria-describedby={`${id}-note`}
         data-amtrak-handoff=""
+        data-purchase-kind={kind}
         onClick={() => {
           // No preventDefault: the native new-tab navigation keeps popup blockers out of the way.
           void copyTripText(text, field.current).then((copied) => setStatus(copied ? "copied" : "manual"));
@@ -37,7 +46,7 @@ export function AmtrakHandoff({ details, children, className, "aria-label": aria
       >
         {children}
       </a>
-      <span id={`${id}-note`} className="amtrak-handoff-note">{AMTRAK_HANDOFF_NOTE}</span>
+      <span id={`${id}-note`} className="amtrak-handoff-note">{note}</span>
       <label className={status === "manual" ? "amtrak-handoff-field" : "sr-only"}>
         <span className="sr-only">Trip details for Amtrak</span>
         <input

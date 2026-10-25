@@ -24,8 +24,9 @@ interface Props {
   trips: Trip[];
   open: boolean;
   onClose: () => void;
+  planningPreferences?: { departureDate: string; departureTime: string };
 }
-export function RouteComparison({ trips, open, onClose }: Props) {
+export function RouteComparison({ trips, open, onClose, planningPreferences }: Props) {
   const dialog = useRef<HTMLDialogElement>(null);
   const { selectTrip } = useSelectedTrip();
   useEffect(() => {
@@ -43,6 +44,9 @@ export function RouteComparison({ trips, open, onClose }: Props) {
   }, [open]);
   const comparison =
     trips.length === 2 ? compareTrips(trips[0], trips[1]) : null;
+  const planningSearch = planningPreferences
+    ? `?${new URLSearchParams({ date: planningPreferences.departureDate, time: planningPreferences.departureTime })}`
+    : "";
   return (
     <dialog
       ref={dialog}
@@ -78,7 +82,9 @@ export function RouteComparison({ trips, open, onClose }: Props) {
       </div>
       <h2 id="comparison-title">Two routes, side by side.</h2>
       <p id="comparison-note">
-        All times and fares below are sample data.
+        {planningPreferences
+          ? "Times are a sample timeline shifted to your planning preference; they are not live schedules. Fares are sample data."
+          : "All times and fares below are sample data."}
       </p>
       {comparison && (
         <div className="comparison-insight">
@@ -203,7 +209,7 @@ export function RouteComparison({ trips, open, onClose }: Props) {
               {trips.map((trip) => (
                 <td key={trip.id}>
                   <Link
-                    to={`/journey/${trip.id}`}
+                    to={`/journey/${trip.id}${planningSearch}`}
                     onClick={() => {
                       selectTrip(trip);
                       onClose();

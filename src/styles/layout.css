@@ -57,6 +57,7 @@
   line-height: 1.7;
 }
 .site-footer small,
+.site-footer > span small, /* outranks index.css's 7px phone rule */
 .footer-line {
   font-size: 11px;
   color: var(--ui-muted);

@@ -6,10 +6,11 @@ test('cold production App/data imports perform zero routing and retain only orig
   const { demoTrips } = await import('../demoTrips');
   const { getRoutingDiagnostics } = await import('../tripLookup');
   expect(demoTrips.map(trip => trip.id)).toEqual(['regional-connection', 'amtrak-connection']);
-  expect(demoTrips.map(trip => trip.durationMinutes)).toEqual([315, 250]);
+  // Corrected 2026-10-25 against official run times (docs/sample-data-accuracy.md).
+  expect(demoTrips.map(trip => trip.durationMinutes)).toEqual([297, 217]);
   const golden = [
-    [['08:00','08:55'],['09:10','10:40'],['11:00','12:10'],['12:25','13:15']],
-    [['08:30','09:50'],['10:10','11:20'],['11:45','12:40']],
+    [['08:00','08:52'],['09:10','10:40'],['11:00','12:13'],['12:22','12:57']],
+    [['08:30','09:50'],['10:10','11:23'],['11:32','12:07']],
   ].map(trip => trip.map(pair => pair.map(time => `2026-10-24T${time}:00-04:00`)));
   expect(demoTrips.map(trip => trip.legs.map(leg => [leg.departure, leg.arrival]))).toEqual(golden);
   expect(getRoutingDiagnostics()).toMatchObject({ startupRouteComputations: 0,

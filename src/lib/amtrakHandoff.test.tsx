@@ -9,6 +9,8 @@ import { IntegrationPage } from "../components/layout/IntegrationPage";
 import { RouteCard } from "../components/search/RouteCard";
 import { officialPurchaseUrl } from "../components/wallet/ticketing";
 import { AMTRAK_BOOKING_URL, AMTRAK_HANDOFF_NOTE, amtrakTripText, copyTripText } from "./amtrakHandoff";
+import { AMTRAK_DEEP_LINK_NOTE } from "./purchase";
+import { SegmentCard } from "../components/journey/SegmentCard";
 
 // SSR cannot click disclosures; open RouteCard details through their initial state only.
 const fixture = vi.hoisted(() => ({ expand: false }));
@@ -37,30 +39,45 @@ function page(url: string) {
 }
 
 describe("Amtrak booking handoff", () => {
-  it("renders every Amtrak booking href as exactly the stable homepage, with the visible note", () => {
+  it("renders every Amtrak booking href as the non-expiring From/To/Date search for the Search date, with the backup note", () => {
     fixture.expand = true;
+    const date = "2026-11-12";
     const screens = [
-      page(`/journey/${trip.id}`),
-      page(`/wallet/${trip.id}`),
-      renderToStaticMarkup(<MemoryRouter initialEntries={[`/wallet?trip=${trip.id}`]}><IntegrationPage kind="wallet" /></MemoryRouter>),
-      renderToStaticMarkup(<MemoryRouter><RouteCard trip={trip} index={0} comparing={false} onCompare={() => {}} /></MemoryRouter>),
+      page(`/journey/${trip.id}?date=${date}`),
+      page(`/wallet/${trip.id}?date=${date}`),
+      renderToStaticMarkup(<MemoryRouter initialEntries={[`/wallet?trip=${trip.id}&date=${date}`]}><IntegrationPage kind="wallet" /></MemoryRouter>),
+      renderToStaticMarkup(<MemoryRouter initialEntries={[`/?date=${date}`]}><RouteCard trip={trip} index={0} comparing={false} onCompare={() => {}} /></MemoryRouter>),
     ];
     for (const html of screens) {
       const hrefs = amtrakBookingHrefs(html);
       expect(hrefs.length).toBeGreaterThanOrEqual(1);
       for (const href of hrefs) {
-        expect(href).toBe("https://www.amtrak.com/");
+        // Each value is a URL-encoded single-item JSON array; no session, cmp= or channel= parameters.
+        expect(href).toBe("https://www.amtrak.com/tickets/departure.html?from_ticketing_stop_time_id=%5B%22PHL%22%5D&to_ticketing_stop_time_id=%5B%22NYP%22%5D&service_date=%5B%222026-11-12%22%5D");
         const url = new URL(href);
-        expect(url.search + url.hash).toBe("");
+        expect([...url.searchParams.keys()]).toEqual(["from_ticketing_stop_time_id", "to_ticketing_stop_time_id", "service_date"]);
+        expect([...url.searchParams.values()].map((value) => JSON.parse(value))).toEqual([["PHL"], ["NYP"], [date]]);
+        expect(url.hash).toBe("");
+        expect(href).not.toMatch(/cmp=|channel=|session|token/i);
       }
       expect(html).toContain('data-amtrak-handoff=""');
       expect(html).toContain('target="_blank"');
       expect(html).toContain("opens in a new tab");
-      expect(html).toContain(AMTRAK_HANDOFF_NOTE.replace(/'/g, "&#x27;"));
+      expect(html).toContain("Open Philadelphia, 30th Street → New York Penn Station on Amtrak (Nov 12)");
+      expect(html).toContain(AMTRAK_DEEP_LINK_NOTE.replace(/'/g, "&#x27;"));
+      // The copied backup carries the Search date, not the sample Oct 24 date.
+      expect(html).toContain("Thu, Nov 12, 2026");
       expect(html).toContain('role="status"');
       expect(html).not.toContain("amtrak.com/mobile");
     }
     expect(AMTRAK_BOOKING_URL).toBe("https://www.amtrak.com/");
+  });
+
+  it("falls back to the stable homepage with the copy handoff when a station code is missing", () => {
+    const html = renderToStaticMarkup(<SegmentCard leg={{ ...amtrakLeg, from: "Stony Brook" }} index={0} isExpanded isDelayed={false} isCurrent={false} onToggle={() => {}} />);
+    expect(amtrakBookingHrefs(html)).toEqual(["https://www.amtrak.com/"]);
+    expect(html).toContain("Copy details &amp; open Amtrak");
+    expect(html).toContain(AMTRAK_HANDOFF_NOTE.replace(/'/g, "&#x27;"));
   });
 
   it("never passes an expiring Amtrak session URL through", () => {
@@ -77,6 +94,9 @@ describe("Amtrak booking handoff", () => {
     expect(amtrakTripText({ from: "PHL", to: "NYP", departure: "2026-10-26T13:42:00-04:00", train: "1135" }))
       .toBe("Amtrak · PHL → NYP · Mon, Oct 26, 2026 · dep 1:42 PM · Train 1135");
     expect(amtrakTripText({ from: "PHL", to: "NYP", departure: "08:30" })).toBe("Amtrak · PHL → NYP");
+    // The Search date replaces the sample date; the sample departure time stays.
+    expect(amtrakTripText({ from: "PHL", to: "NYP", departure: "2026-10-24T08:30:00-04:00", date: "2026-11-12" }))
+      .toBe("Amtrak · PHL → NYP · Thu, Nov 12, 2026 · dep 8:30 AM");
   });
 
   it("uses navigator.clipboard and reports failure so the visible field can be used", async () => {

@@ -1,18 +1,24 @@
 import type { Leg } from "../types/transit";
 
 /**
- * Amtrak booking/search result URLs are session-tokenized and expire after
- * about five minutes, so OneLine never stores or builds an Amtrak deep link.
- * Booking actions open this stable page and copy the trip details instead.
+ * Amtrak session booking URLs expire after about five minutes, so OneLine never
+ * stores one. src/lib/purchase builds Amtrak's non-expiring From/To/Date search
+ * link when it can; otherwise booking actions open this stable page. Either way
+ * the trip details are copied at click time.
  */
 export const AMTRAK_BOOKING_URL = "https://www.amtrak.com/";
 
 export const AMTRAK_HANDOFF_NOTE =
   "Amtrak booking links expire after a few minutes, so OneLine opens Amtrak's booking page. Your trip details are copied — enter them in From, To and Date.";
 
-export type AmtrakTripDetails = Partial<Pick<Leg, "from" | "to" | "departure" | "line">> & { train?: string };
+export type AmtrakTripDetails = Partial<Pick<Leg, "from" | "to" | "departure" | "line">> & {
+  train?: string;
+  /** YYYY-MM-DD travel date (the Search date); replaces the sample departure's date. */
+  date?: string;
+};
 
 const zone = "America/New_York";
+const calendarFormat = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", weekday: "short", month: "short", day: "numeric", year: "numeric" });
 const dateFormat = new Intl.DateTimeFormat("en-US", { timeZone: zone, weekday: "short", month: "short", day: "numeric", year: "numeric" });
 const timeFormat = new Intl.DateTimeFormat("en-US", { timeZone: zone, hour: "numeric", minute: "2-digit" });
 
@@ -28,9 +34,13 @@ export function amtrakTripText(details: AmtrakTripDetails): string {
   else if (from) parts.push(`From ${from}`);
   else if (to) parts.push(`To ${to}`);
   const departure = details.departure ?? "";
-  const date = /^\d{4}-\d{2}-\d{2}T/.test(departure) ? new Date(departure) : null;
-  if (date && Number.isFinite(date.getTime())) {
-    parts.push(dateFormat.format(date));
+  const parsed = /^\d{4}-\d{2}-\d{2}T/.test(departure) ? new Date(departure) : null;
+  const date = parsed && Number.isFinite(parsed.getTime()) ? parsed : null;
+  // The Search date (YYYY-MM-DD) replaces the sample date; the sample departure time stays.
+  const travel = details.date && /^\d{4}-\d{2}-\d{2}$/.test(details.date) ? new Date(`${details.date}T12:00:00Z`) : null;
+  if (travel && Number.isFinite(travel.getTime())) parts.push(calendarFormat.format(travel));
+  else if (date) parts.push(dateFormat.format(date));
+  if (date) {
     parts.push(`dep ${timeFormat.format(date).replace(/ /g, " ")}`);
   }
   const train = clean(details.train);
@@ -54,12 +64,17 @@ export async function copyTripText(text: string, field?: HTMLInputElement | null
       /* Permission denied or document unfocused: fall through to the visible field. */
     }
   }
-  if (!field) return false;
+  if (!field || typeof document === "undefined") return false;
+  const previous = document.activeElement;
   field.focus();
   field.select();
+  let copied = false;
   try {
-    return typeof document !== "undefined" && document.execCommand("copy");
+    copied = document.execCommand("copy");
   } catch {
-    return false;
+    copied = false;
   }
+  // Copied: return focus to the link. Not copied: keep it in the now-visible field so Ctrl+C works.
+  if (copied && previous instanceof HTMLElement) previous.focus();
+  return copied;
 }

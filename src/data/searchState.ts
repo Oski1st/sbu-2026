@@ -18,7 +18,7 @@ export function todayInNewYork(now = new Date()): string {
 export const defaultSearch = {
   origin: "Philadelphia",
   destination: "Stony Brook",
-  /** Preferences only; sample route times stay tied to the demonstration data. */
+  /** Preferences only; when set in the URL they shift the sample timeline as a demo preview. */
   departureDate: todayInNewYork(),
   departureTime: "08:00",
   order: "recommended",
@@ -42,11 +42,41 @@ const date = (value: string | null) => {
     ? value
     : defaultSearch.departureDate;
 };
-const time = (value: string | null) => {
-  if (!value || !/^\d{2}:\d{2}$/.test(value)) return defaultSearch.departureTime;
-  const [hours, minutes] = value.split(":").map(Number);
-  return hours < 24 && minutes < 60 ? value : defaultSearch.departureTime;
-};
+/**
+ * The HH:mm value of a planning time, or null when it is not a complete, valid time.
+ * Native time fields serialize as 24-hour values, even on systems that display
+ * “04:30 PM”. Accept that familiar display form (shared links, text-field fallbacks)
+ * too, then always return the valid HH:mm value required by <input type="time">.
+ */
+export function parsePlanningTime(value: string | null | undefined): string | null {
+  if (!value) return null;
+  const trimmed = value.trim();
+  const twelveHour = trimmed.match(/^(\d{1,2}):(\d{2})\s*([AP]M)$/i);
+  if (twelveHour) {
+    const hours = Number(twelveHour[1]);
+    const minutes = Number(twelveHour[2]);
+    if (hours >= 1 && hours <= 12 && minutes < 60) {
+      const clockHours = (hours % 12) + (twelveHour[3].toUpperCase() === "PM" ? 12 : 0);
+      return `${String(clockHours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+    }
+    return null;
+  }
+  if (!/^\d{2}:\d{2}$/.test(trimmed)) return null;
+  const [hours, minutes] = trimmed.split(":").map(Number);
+  return hours < 24 && minutes < 60 ? trimmed : null;
+}
+const time = (value: string | null) => parsePlanningTime(value) ?? defaultSearch.departureTime;
+
+/** Latest date the Search form accepts; also the date input's max. */
+export const MAX_PLANNING_DATE = "9999-12-31";
+
+/**
+ * True for a real YYYY-MM-DD date from today (New York) through MAX_PLANNING_DATE.
+ * Chrome can roll a typed 5-digit year into e.g. 0270, or keep 20270; neither is applied.
+ */
+export function isPlanningDate(value: string, today = todayInNewYork()): boolean {
+  return /^\d{4}-\d{2}-\d{2}$/.test(value) && date(value) === value && value >= today && value <= MAX_PLANNING_DATE;
+}
 
 /** A new search (form or corridor shortcut) clears mode/operator filters so they cannot hide every route. */
 export function newSearchPatch(
@@ -81,6 +111,50 @@ export function readSearchState(params: URLSearchParams): SearchState {
       : "recommended",
     includeAmtrak: params.get("amtrak") !== "0",
   };
+}
+
+/** True when the URL carries a planning date or time; Search, Journey and Wallet then shift the sample timeline to it. */
+export function hasPlanningPreference(params: URLSearchParams): boolean {
+  return params.has("date") || params.has("time");
+}
+
+/** `?date=…&time=…` for Journey/Wallet links when the URL carries a planning preference; "" keeps the fixed sample. */
+export function planningSearchFrom(params: URLSearchParams): string {
+  if (!hasPlanningPreference(params)) return "";
+  const { departureDate, departureTime } = readSearchState(params);
+  return `?${new URLSearchParams({ date: departureDate, time: departureTime })}`;
+}
+
+const preferenceDateFormat = new Intl.DateTimeFormat("en-US", {
+  timeZone: "UTC",
+  weekday: "short",
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+});
+
+/** "Tue, Nov 3, 2026 4:30 PM" for a YYYY-MM-DD date and HH:mm time, independent of the viewer's zone. */
+export function describePlanningPreference(departureDate: string, departureTime: string): string {
+  const [year, month, day] = departureDate.split("-").map(Number);
+  const noon = new Date(0);
+  noon.setUTCFullYear(year, month - 1, day);
+  noon.setUTCHours(12);
+  const [hours, minutes] = departureTime.split(":").map(Number);
+  return `${preferenceDateFormat.format(noon)} ${hours % 12 || 12}:${String(minutes).padStart(2, "0")} ${hours < 12 ? "AM" : "PM"}`;
+}
+
+/**
+ * Write a chosen planning date and time into the URL. Both are always explicit, even when
+ * they equal today and 08:00, so the shifted results never fall back to the fixed sample.
+ */
+export function writePlanningPreference(
+  preferences: Pick<SearchState, "departureDate" | "departureTime">,
+  current = new URLSearchParams(),
+): URLSearchParams {
+  const params = writeSearchState({ ...readSearchState(current), ...preferences }, current);
+  params.set("date", preferences.departureDate);
+  params.set("time", preferences.departureTime);
+  return params;
 }
 
 /** Persist the whole submitted search atomically, preserving unrelated query keys. */

@@ -9,7 +9,7 @@ import {
   Info,
 } from "lucide-react";
 import { useSelectedTrip } from "./TripContext";
-import { AmtrakHandoff } from "../AmtrakHandoff";
+import { PurchaseLink } from "../purchase/PurchaseLink";
 import { agencies } from "../../data/agencies";
 import { formatDuration, formatTime } from "../../data/tripUtils";
 /** Owned by Person 1. Replaced automatically when teammate page modules are merged. */
@@ -78,17 +78,13 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
                       · Sample
                     </p>
                   </div>
-                  {kind === "wallet" && leg.agency === "AMTRAK" && (
-                    <AmtrakHandoff details={leg}>
-                      Official tickets <ArrowUpRight size={14} />
-                      <span className="sr-only"> · Amtrak booking page, {leg.line}, {leg.from} to {leg.to}; copies trip details (opens in a new tab)</span>
-                    </AmtrakHandoff>
-                  )}
-                  {kind === "wallet" && leg.agency !== "AMTRAK" && (
-                    <a target="_blank" rel="noreferrer" href={leg.purchaseUrl}>
-                      Official tickets <ArrowUpRight size={14} />
-                      <span className="sr-only"> · {agencies[leg.agency].name}, {leg.line}, {leg.from} to {leg.to} (opens in a new tab)</span>
-                    </a>
+                  {kind === "wallet" && (
+                    <PurchaseLink
+                      leg={leg}
+                      tripStart={selectedTrip.legs[0]?.departure}
+                      position={leg.line}
+                      icon={<ArrowUpRight size={14} aria-hidden="true" />}
+                    />
                   )}
                 </div>
               ))}
