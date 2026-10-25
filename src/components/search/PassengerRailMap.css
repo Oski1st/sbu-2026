@@ -45,9 +45,19 @@
 .passenger-rail-map .prm-details-content > h3:first-child { margin-top: 12px; }
 .passenger-rail-map .prm-details-content h3 { font-size: 14px; margin: 18px 0 6px; }
 .passenger-rail-map .prm-details-content p { margin: 5px 0 10px; }
-.passenger-rail-map .prm-route-list, .passenger-rail-map .prm-city-list, .passenger-rail-map .prm-gap-list { padding-left: 18px; margin: 8px 0; }
-.passenger-rail-map .prm-route-list > li, .passenger-rail-map .prm-city-list > li, .passenger-rail-map .prm-gap-list > li { margin: 10px 0; }
+.passenger-rail-map .prm-route-list, .passenger-rail-map .prm-city-list { padding-left: 18px; margin: 8px 0; }
+.passenger-rail-map .prm-route-list > li, .passenger-rail-map .prm-city-list > li { margin: 10px 0; }
 .passenger-rail-map .prm-city-list ul { padding-left: 14px; }
+.passenger-rail-map .prm-coverage { margin: 20px 0 12px; padding: 12px; border: 1px solid #d4dfcf; border-radius: 10px; background: #f1f5eb; }
+.passenger-rail-map .prm-coverage-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+.passenger-rail-map .prm-details-content .prm-coverage h3 { margin: 0; }
+.passenger-rail-map .prm-coverage-heading p { margin: 0; font-size: 11px; color: #40594b; }
+.passenger-rail-map .prm-coverage-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 12px 0 0; padding: 0; list-style: none; }
+.passenger-rail-map .prm-coverage-list li { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; min-width: 0; padding: 9px 10px; border-radius: 7px; background: #fff; }
+.passenger-rail-map .prm-coverage-list strong { font-size: 12px; }
+.passenger-rail-map .prm-coverage-list span { grid-column: 1; color: #40594b; font-size: 11px; line-height: 1.45; }
+.passenger-rail-map .prm-coverage-list a { grid-column: 2; grid-row: 1 / span 2; align-self: center; font-size: 11px; white-space: nowrap; }
+.passenger-rail-map .prm-boarding-note { padding: 9px 11px; border-left: 3px solid #aabdaa; color: #40594b; font-size: 11px; line-height: 1.55; }
 .passenger-rail-map a { color: #245d48; text-decoration: underline; text-underline-offset: 3px; }
 .passenger-rail-map .prm-sources { padding-top: 10px; border-top: 1px solid #d4dfcf; font-size: 11px; }
 .passenger-rail-map .prm-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
@@ -55,4 +65,7 @@
   .passenger-rail-map { margin: 16px 14px 20px; }
   .passenger-rail-map .prm-heading h2 { font-size: 24px; }
   .passenger-rail-map .prm-legend { flex-direction: column; gap: 6px; }
+  .passenger-rail-map .prm-coverage-heading { display: block; }
+  .passenger-rail-map .prm-coverage-heading p { margin-top: 3px; }
+  .passenger-rail-map .prm-coverage-list { grid-template-columns: 1fr; }
 }

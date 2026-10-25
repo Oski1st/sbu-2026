@@ -65,10 +65,10 @@ describe("P2-NEWTAB-K5 declared accessible names", () => {
     expect(newTabLinks('<a target="_blank">Visible<span aria-hidden="true"> (opens in a new tab)</span></a>')[0].name).toBe("Visible");
   });
 
-  it("warns on every map-details link and disambiguates generic operator sources", () => {
+  it("warns on every map-details link and gives operator details distinct names", () => {
     const html = renderToStaticMarkup(<CorridorMap />);
     const links = assertWarnings(html, 41);
-    const sources = links.filter((link) => link.name.startsWith("Official source"));
+    const sources = links.filter((link) => link.name.startsWith("Details about"));
     expect(sources).toHaveLength(3);
     expect(new Set(sources.map((link) => link.name)).size).toBe(sources.length);
     for (const operator of ["SEPTA", "NJ TRANSIT", "LIRR"]) expect(sources.some((link) => link.name.includes(operator))).toBe(true);
