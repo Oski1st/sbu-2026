@@ -48,6 +48,22 @@ const time = (value: string | null) => {
   return hours < 24 && minutes < 60 ? value : defaultSearch.departureTime;
 };
 
+/** A new search (form or corridor shortcut) clears mode/operator filters so they cannot hide every route. */
+export function newSearchPatch(
+  origin: string,
+  destination: string,
+  preferences: Pick<SearchState, "departureDate" | "departureTime">,
+): Partial<SearchState> {
+  return {
+    origin: origin.trim(),
+    destination: destination.trim(),
+    ...preferences,
+    mode: defaultSearch.mode,
+    operator: defaultSearch.operator,
+    includeAmtrak: defaultSearch.includeAmtrak,
+  };
+}
+
 /** Read only supported values; malformed links retain a usable search. */
 export function readSearchState(params: URLSearchParams): SearchState {
   const mode = params.get("mode") ?? "all";

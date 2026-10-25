@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   defaultSearch,
+  newSearchPatch,
   readSearchState,
   todayInNewYork,
   writeSearchState,
@@ -99,5 +100,14 @@ describe("search URL state", () => {
     expect(readSearchState(new URLSearchParams()).departureDate).toBe(todayInNewYork());
     // Explicit deep links still win.
     expect(readSearchState(new URLSearchParams({ date: "2026-11-03" })).departureDate).toBe("2026-11-03");
+  });
+
+  it("clears mode/operator filters on a new search but keeps sort and preferences (W10)", () => {
+    const filtered = readSearchState(
+      new URLSearchParams("from=Boston&to=New+York&mode=mixed&operator=AMTRAK&amtrak=0&sort=fastest"),
+    );
+    const next = { ...filtered, ...newSearchPatch(" New York ", "Washington, DC", { departureDate: "2026-11-03", departureTime: "14:30" }) };
+    expect(next).toMatchObject({ origin: "New York", destination: "Washington, DC", mode: "all", operator: "all", includeAmtrak: true, order: "fastest" });
+    expect(writeSearchState(next).toString()).toBe("from=New+York&to=Washington%2C+DC&date=2026-11-03&time=14%3A30&sort=fastest");
   });
 });
