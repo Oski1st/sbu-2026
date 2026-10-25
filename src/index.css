@@ -1,4 +1,47 @@
 @import "tailwindcss";
+/* daisyUI 5 (MIT). Only the custom OneLine theme ships, and only the components
+   the app uses are included: Tailwind scans every word in the sources, so a broad
+   include would emit unused `.input`, `.tab`, `.collapse`… rules (and `.hero`,
+   which the Search page already owns). Modal scroll helpers are omitted because
+   the Compare dialog is a native <dialog>. */
+@plugin "daisyui" {
+  themes: false;
+  include: properties, rootcolor, scrollbar, svg, btn, badge, card, stat, timeline;
+}
+@plugin "daisyui/theme" {
+  name: "oneline";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+  --color-base-100: #f8f9f3;
+  --color-base-200: #eef1e6;
+  --color-base-300: #dfe5d6;
+  --color-base-content: #1f3a30;
+  --color-primary: #173f35;
+  --color-primary-content: #f8f9f3;
+  --color-secondary: #234f3e;
+  --color-secondary-content: #ffffff;
+  --color-accent: #d7ef95;
+  --color-accent-content: #173f35;
+  --color-neutral: #1b2a24;
+  --color-neutral-content: #f8f9f3;
+  --color-info: #1f5c8c;
+  --color-info-content: #ffffff;
+  --color-success: #2c6a3f;
+  --color-success-content: #ffffff;
+  --color-warning: #f3c552;
+  --color-warning-content: #3d2a00;
+  --color-error: #a8321f;
+  --color-error-content: #ffffff;
+  --radius-selector: 2rem;
+  --radius-field: 0.625rem;
+  --radius-box: 1.125rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
+}
 @theme {
   --color-forest: #173f35;
   --color-lime: #d7ef95;
