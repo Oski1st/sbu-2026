@@ -144,7 +144,7 @@ Compare dialog ([desktop](qa-screenshots/compare-dialog-desktop.png), [320px](qa
 - [x] `/journey/bogus` and `/journey/regional-connection%20x` show "Journey not found" with **Back to search** ([screenshot](qa-screenshots/invalid-journey.png)).
 - [x] `/wallet/bogus` shows "Journey not found" with **Find a journey** ([screenshot](qa-screenshots/invalid-wallet.png)).
 - [x] `/journey` and `/wallet` with no saved selection show the choose-a-route state.
-- [x] `/nowhere` shows "A little off the line." with **Return to search**.
+- [x] `/nowhere` shows "Page not found" with **Return to search** (copy-humanize wording on the RC1 NotFoundPage).
 
 ### Mobile layouts and visible button text
 

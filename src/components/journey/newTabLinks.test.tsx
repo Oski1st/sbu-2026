@@ -78,8 +78,9 @@ describe("P2-NEWTAB-K5 declared accessible names", () => {
   });
 
   it("covers Search plus its shared footer, including closed map details", () => {
-    const links = assertWarnings(pageMarkup("/?from=Philadelphia&to=Stony%20Brook"), 42);
-    expect(links.some((link) => link.name.startsWith("Built together"))).toBe(true);
+    const links = assertWarnings(pageMarkup("/?from=Philadelphia&to=Stony%20Brook"), 41);
+    // W2 removed the footer GitHub link (dead for logged-out visitors); the footer has no new-tab link.
+    expect(links.some((link) => link.name.startsWith("Built together"))).toBe(false);
   });
 
   it("covers the expandable Search card links, including their overriding aria-labels", () => {
@@ -96,11 +97,11 @@ describe("P2-NEWTAB-K5 declared accessible names", () => {
 
   it.each(["regional-connection", "amtrak-connection", "east-portland--miami--flixbus"])("covers Journey and Wallet links for %s", (id) => {
     const trip = getTripById(id)!;
-    const journey = assertWarnings(pageMarkup(`/journey/${id}`), trip.legs.length + 1);
-    const wallet = assertWarnings(pageMarkup(`/wallet/${id}`), trip.legs.length + 1);
+    const journey = assertWarnings(pageMarkup(`/journey/${id}`), trip.legs.length);
+    const wallet = assertWarnings(pageMarkup(`/wallet/${id}`), trip.legs.length);
     const ticketLinks = journey.filter((link) => link.name.startsWith("Get tickets from"));
     expect(new Set(ticketLinks.map((link) => link.name)).size).toBe(ticketLinks.length);
-    expect(wallet.some((link) => link.name.startsWith("Built together"))).toBe(true);
+    expect(wallet.some((link) => link.name.startsWith("Built together"))).toBe(false);
   });
 
   it("covers the fallback integration Wallet with distinct per-leg names", () => {
