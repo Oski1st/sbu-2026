@@ -1,10 +1,12 @@
 import { Suspense } from "react";
-import { NavLink, Link, Outlet } from "react-router-dom";
+import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
 import { MoveRight, Search, Route, Wallet } from "lucide-react";
 import { useSelectedTrip } from "./TripContext";
 import { Brand } from "./Brand";
+import { RouteErrorBoundary } from "./RouteErrorBoundary";
 export function AppLayout() {
   const { selectedTrip } = useSelectedTrip();
+  const { pathname } = useLocation();
   return (
     <div className="app-shell">
       <a className="skip-link" href="#main-content">
@@ -38,12 +40,19 @@ export function AppLayout() {
       <div id="main-content" tabIndex={-1}>
         <Suspense
           fallback={
-            <main className="page-loading" role="status">
+            // Reserve a viewport of height so the footer does not jump when a lazy page arrives.
+            <main
+              className="page-loading"
+              role="status"
+              style={{ minHeight: "100vh" }}
+            >
               Connecting your journey…
             </main>
           }
         >
-          <Outlet />
+          <RouteErrorBoundary resetKey={pathname}>
+            <Outlet />
+          </RouteErrorBoundary>
         </Suspense>
       </div>
       <footer className="site-footer">
