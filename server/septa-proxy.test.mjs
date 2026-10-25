@@ -127,4 +127,17 @@ describe("same-origin SEPTA proxy", () => {
       ).toBe(404);
     }
   });
+  it("serves the app shell, not raw JSON, for malformed percent-encoding (W11)", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "oneline-proxy-test-"));
+    cleanups.push(() => rm(dir, { recursive: true, force: true }));
+    await writeFile(join(dir, "index.html"), "<!doctype html><title>OneLine test</title>");
+    const base = await start({ distDir: dir });
+    const page = await fetch(base + "/journey/%E0%A4%A", { headers: { Accept: "text/html" } });
+    expect(page.status).toBe(200);
+    expect(page.headers.get("content-type")).toContain("text/html");
+    expect(await page.text()).toContain("OneLine test");
+    const api = await fetch(base + "/journey/%E0%A4%A");
+    expect(api.status).toBe(400);
+    expect(await api.json()).toEqual({ error: "invalid_path" });
+  });
 });

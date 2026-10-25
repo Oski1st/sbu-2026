@@ -39,7 +39,10 @@ async function serveStatic(req, res, distDir) {
     try {
       pathname = decodeURIComponent(url.pathname);
     } catch {
-      return sendJson(res, 400, { error: "invalid_path" });
+      // Malformed percent-encoding: documents get the app shell (its not-found page), not raw JSON.
+      if (!req.headers.accept?.includes("text/html"))
+        return sendJson(res, 400, { error: "invalid_path" });
+      pathname = "/";
     }
     if (pathname.split("/").some((part) => part.startsWith(".") && part !== ""))
       return sendJson(res, 404, { error: "not_found" });
