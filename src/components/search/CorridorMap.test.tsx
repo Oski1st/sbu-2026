@@ -41,6 +41,10 @@ describe("contiguous-U.S. passenger rail map", () => {
     expect(html).toContain("Stony Brook");
     expect(html).toContain("MTA station details · alignment not mapped");
     expect(html).toContain("These lines do not change the sample itineraries");
+    expect(html).toContain("Not shown on this map");
+    expect(html).toContain("This rail-only view includes only the corridors in the legend.");
+    expect(html).toContain("Coach services use roads, so they are outside this rail layer.");
+    expect(html).toContain("Boarding notes:");
     expect(html).toContain("North Station");
     expect(html).toContain("not a timetable");
     expect(html).not.toContain("us-map-inset");

@@ -20,6 +20,15 @@ const mapLabels = [
 ] as const;
 const [, , viewWidth, viewHeight] = geometry.viewBox;
 
+// This is deliberately a rail map, rather than a complete operator map. Keep the
+// explanation brief here; the linked operator pages carry the implementation detail.
+const coverageSummaries: Record<string, string> = {
+  SEPTA: "Commuter-rail alignment is not mapped.",
+  "NJ TRANSIT": "Commuter-rail alignment is not mapped.",
+  LIRR: "Stony Brook is in the sample trips; its alignment is not mapped.",
+  "Greyhound / FlixBus": "Coach services use roads, so they are outside this rail layer.",
+};
+
 export function CorridorMap() {
   const id = useId();
   const titleId = `${id}-rail-title`;
@@ -91,9 +100,20 @@ export function CorridorMap() {
               })}</ul> : <a href={city.sourceUrl} target="_blank" rel="noreferrer">MTA station details · alignment not mapped<span className="prm-sr-only"> · {city.name} (opens in a new tab)</span> ↗</a>}
             </li>)}
           </ul>
-          <h3>What is missing</h3>
-          <ul className="prm-gap-list">{audit.operatorGaps.map((gap) => <li key={gap.operator}><strong>{gap.operator}:</strong> {gap.reason}{gap.url && <> <a href={gap.url} target="_blank" rel="noreferrer">Official source<span className="prm-sr-only"> · {gap.operator} (opens in a new tab)</span> ↗</a></>}</li>)}</ul>
-          <p>Downeaster trains use Boston North Station. Northeast Regional uses South Station/Back Bay; no through-rail connector is drawn between them. Albany boarding is in Rensselaer; Charleston-area boarding is in North Charleston.</p>
+          <section className="prm-coverage" aria-labelledby={`${id}-coverage-title`}>
+            <div className="prm-coverage-heading">
+              <h3 id={`${id}-coverage-title`}>Not shown on this map</h3>
+              <p>This rail-only view includes only the corridors in the legend.</p>
+            </div>
+            <ul className="prm-coverage-list">
+              {audit.operatorGaps.map((gap) => <li key={gap.operator}>
+                <strong>{gap.operator}</strong>
+                <span>{coverageSummaries[gap.operator] ?? gap.reason}</span>
+                {gap.url && <a href={gap.url} target="_blank" rel="noreferrer">Details<span className="prm-sr-only"> about {gap.operator} (opens in a new tab)</span> ↗</a>}
+              </li>)}
+            </ul>
+          </section>
+          <p className="prm-boarding-note"><strong>Boarding notes:</strong> Downeaster uses Boston North Station; Northeast Regional uses South Station or Back Bay. Albany boarding is in Rensselaer, and the Charleston-area station is in North Charleston.</p>
           <p className="prm-sources">Sources: <a href="https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Routes/FeatureServer/0" target="_blank" rel="noreferrer">FRA/BTS alignments<span className="prm-sr-only"> (opens in a new tab)</span> ↗</a> · <a href="https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Stations/FeatureServer/0" target="_blank" rel="noreferrer">Amtrak station dataset<span className="prm-sr-only"> (opens in a new tab)</span> ↗</a> · <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth boundaries<span className="prm-sr-only"> (opens in a new tab)</span> ↗</a>. Public-domain geometry, checked {audit.checkedDate}, bundled offline. Shapes are generalized for this scale; they are not track-level navigation.</p>
         </div>
       </details>
