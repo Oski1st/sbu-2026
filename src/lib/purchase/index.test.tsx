@@ -134,8 +134,8 @@ describe("Amtrak link format", () => {
     expect(JSON.parse(url.searchParams.get("service_date")!)).toEqual(["2026-11-12"]);
     expect(url.hash).toBe("");
     expect(url.href).not.toMatch(/cmp=|channel=|session/i);
-    for (const bad of [["PHL", "PHL", "2026-11-12"], ["phl", "NYP", "2026-11-12"], ["PHL", "NYP", "11/12/2026"], ["PHL", "NYP", "2026-02-30"]] as const) {
-      expect(amtrakPurchaseUrl(...bad)).toBeNull();
+    for (const [from, to, date] of [["PHL", "PHL", "2026-11-12"], ["phl", "NYP", "2026-11-12"], ["PHL", "NYP", "11/12/2026"], ["PHL", "NYP", "2026-02-30"]]) {
+      expect(amtrakPurchaseUrl(from, to, date)).toBeNull();
     }
   });
 

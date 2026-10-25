@@ -202,7 +202,7 @@ export function RouteCard({
               <PurchaseLink
                 leg={leg}
                 tripStart={first.departure}
-                context={`segment ${i + 1}, ${leg.from} to ${leg.to}`}
+                position={`segment ${i + 1}`}
                 icon={<ArrowUpRight size={13} aria-hidden="true" />}
               />
             </div>

@@ -133,7 +133,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
                     leg={leg}
                     tripStart={tripStart}
                     className={ticketButtonClass}
-                    context={`segment ${index + 1}, ${leg.from} to ${leg.to}`}
+                    position={`segment ${index + 1}`}
                     icon={<span className="ml-2" aria-hidden="true">↗</span>}
                   />
                 </span>

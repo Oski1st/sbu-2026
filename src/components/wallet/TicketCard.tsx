@@ -42,7 +42,7 @@ export function TicketCard({ leg, index, checked, onToggle, throughTicketNote, t
       <p>{agency?.help ?? 'This agency is outside the current shared integration contract. Confirm ticketing with the agency.'}</p>
       {throughTicketNote && <p className="ol-coverage" id={`ol-coverage-${index}`}>{throughTicketNote}</p>}
       <div className="ol-ticket-actions">
-        {agency && <PurchaseLink leg={leg} tripStart={tripStart} className="ol-button" srOnlyClass="ol-sr-only" context={`leg ${index + 1}, ${leg.from} to ${leg.to}`} icon={<span aria-hidden="true"> ↗</span>} />}
+        {agency && <PurchaseLink leg={leg} tripStart={tripStart} className="ol-button" srOnlyClass="ol-sr-only" position={`leg ${index + 1}`} icon={<span aria-hidden="true"> ↗</span>} />}
         <label className="ol-check"><input type="checkbox" checked={checked} onChange={onToggle} aria-describedby={`ol-check-help-${index}${throughTicketNote ? ` ol-coverage-${index}` : ''}`} />Mark leg {index + 1} planning note as checked</label>
       </div>
       <p className="ol-fine" id={`ol-check-help-${index}`}>Demo planning note only. Checking this box does not purchase a ticket, confirm payment, or establish ticket validity. Actual tickets stay with the agency.</p>

@@ -82,7 +82,7 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
                     <PurchaseLink
                       leg={leg}
                       tripStart={selectedTrip.legs[0]?.departure}
-                      context={`${leg.line}, ${leg.from} to ${leg.to}`}
+                      position={leg.line}
                       icon={<ArrowUpRight size={14} aria-hidden="true" />}
                     />
                   )}

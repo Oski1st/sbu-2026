@@ -9,6 +9,7 @@ import { AppLayout } from "../layout/AppLayout";
 import { IntegrationPage } from "../layout/IntegrationPage";
 import { CorridorMap } from "../search/CorridorMap";
 import { RouteCard } from "../search/RouteCard";
+import { purchaseLinkForLeg } from "../../lib/purchase";
 
 // SSR cannot click disclosure buttons. Expand only this isolated RouteCard fixture
 // through its initial state; production props/state and dependencies stay unchanged.
@@ -91,15 +92,19 @@ describe("P2-NEWTAB-K5 declared accessible names", () => {
     const links = assertWarnings(html, trip.legs.length);
     expect(links).toHaveLength(trip.legs.length);
     expect(new Set(links.map((link) => link.name)).size).toBe(links.length);
-    expect(links[0].name).toContain("SEPTA official ticket information for segment 1");
-    for (const link of links) expect(link.name).toContain("Agency site");
+    // Visible labels now say what each link opens (src/lib/purchase); the name starts with that label.
+    expect(links[0].name).toBe("Open SEPTA trip planner: Philadelphia, 30th Street → Trenton Transit Center for segment 1 (opens in a new tab)");
+    expect(links[2].name).toBe("Open LIRR ticket page for segment 3, New York Penn Station to Huntington (opens in a new tab)");
+    trip.legs.forEach((leg, i) => expect(links[i].name.startsWith(purchaseLinkForLeg(leg).label)).toBe(true));
   });
 
   it.each(["regional-connection", "amtrak-connection", "east-portland--miami--flixbus"])("covers Journey and Wallet links for %s", (id) => {
     const trip = getTripById(id)!;
     const journey = assertWarnings(pageMarkup(`/journey/${id}`), trip.legs.length);
     const wallet = assertWarnings(pageMarkup(`/wallet/${id}`), trip.legs.length);
-    const ticketLinks = journey.filter((link) => link.name.startsWith("Get tickets from"));
+    // One resolver ticket link per segment, each with a distinct name.
+    const ticketLinks = journey.filter((link) => /data-purchase-kind=/.test(link.attributes));
+    expect(ticketLinks).toHaveLength(trip.legs.length);
     expect(new Set(ticketLinks.map((link) => link.name)).size).toBe(ticketLinks.length);
     expect(wallet.some((link) => link.name.startsWith("Built together"))).toBe(false);
   });

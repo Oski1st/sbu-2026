@@ -27,20 +27,22 @@ interface PurchaseLinkProps {
   leg: Leg;
   /** The trip's first departure, so later legs keep their day offset from the Search date. */
   tripStart?: string;
-  /** Screen-reader context that keeps each link's name unique, e.g. "segment 2, Trenton to New York". */
-  context?: string;
+  /** Screen-reader position that keeps each link's name unique, e.g. "segment 2". */
+  position?: string;
   className?: string;
   srOnlyClass?: string;
   icon?: ReactNode;
 }
 
-function PurchaseAnchor({ leg, tripStart, context, className, srOnlyClass = "sr-only", icon, searchDate }: PurchaseLinkProps & { searchDate?: string }) {
+function PurchaseAnchor({ leg, tripStart, position, className, srOnlyClass = "sr-only", icon, searchDate }: PurchaseLinkProps & { searchDate?: string }) {
   const id = useId();
   const link = purchaseLinkForLeg(leg, searchDate, tripStart);
+  // Labels of generic pages do not name the stations, so the screen-reader text does.
+  const generic = link.kind === "official-ticket-page" || link.kind === "copy-handoff";
+  const context = [position, generic ? `${leg.from} to ${leg.to}` : ""].filter(Boolean).join(", ");
   const suffix = (
     <span className={srOnlyClass}>
-      {context ? ` for ${context}` : ""}
-      {link.copyText ? "; copies trip details" : ""} (opens in a new tab)
+      {`${context ? ` for ${context}` : ""}${link.copyText ? "; copies trip details" : ""} (opens in a new tab)`}
     </span>
   );
   if (link.copyText !== undefined) {
