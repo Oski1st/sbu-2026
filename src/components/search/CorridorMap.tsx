@@ -1,54 +1,73 @@
-import overview from "../../data/usOverviewMap.json";
+import { useId } from "react";
+import geometry from "../../data/railMap/geometry.json";
+import audit from "../../data/railMap/serviceAudit.json";
+import "./PassengerRailMap.css";
 
-// Natural Earth 1:50m Admin 1 state boundaries are public domain. The bundled
-// paths use an Albers equal-area projection for the contiguous U.S.; Alaska and
-// Hawaii are explicitly labelled geographic insets. See usOverviewMap.json.
 export function CorridorMap() {
+  const id = useId();
+  const titleId = `${id}-rail-title`;
+  const descriptionId = `${id}-rail-description`;
   return (
-    <div className="corridor-map-wrap nationwide-map-wrap">
-      <div className="us-map-heading">
-        <p className="us-map-title">United States geographic overview</p>
-        <p className="us-map-subtitle">State boundaries · no nationwide service lines shown</p>
-      </div>
-      <div
-        className="corridor-map nationwide-map"
-        role="img"
-        aria-describedby="us-map-note"
-        aria-label="Geographic overview of the United States, showing state boundaries in the contiguous United States and labelled Alaska and Hawaii insets. It is not a route, schedule, or service-coverage map."
-      >
-        <svg viewBox="0 0 800 580" className="map-art" aria-hidden="true">
-          <defs>
-            <pattern id="us-grid" width="28" height="28" patternUnits="userSpaceOnUse">
-              <circle cx="1" cy="1" r="0.8" fill="#cbd9c9" />
-            </pattern>
-          </defs>
-          <rect width="800" height="580" fill="#e2ece7" />
-          <rect width="800" height="580" fill="url(#us-grid)" opacity="0.5" />
-          <g className="us-map-states">
-            {overview.contiguous.map((state) => (
-              <path key={state.name} d={state.path} />
-            ))}
-          </g>
-          <g className="us-map-inset us-map-inset--alaska">
-            <rect x="30" y="394" width="300" height="170" rx="10" />
-            {overview.alaska.map((state) => <path key={state.name} d={state.path} />)}
-            <text className="us-map-inset-label" x="48" y="430">ALASKA</text>
-          </g>
-          <g className="us-map-inset us-map-inset--hawaii">
-            <rect x="360" y="394" width="240" height="170" rx="10" />
-            {overview.hawaii.map((state) => <path key={state.name} d={state.path} />)}
-            <text className="us-map-inset-label" x="380" y="430">HAWAII</text>
-          </g>
-          <g className="us-map-north" transform="translate(748 62)">
-            <text y="-9">N</text>
-            <path d="M0 0L-5 14H5Z" />
-          </g>
-        </svg>
-      </div>
-      <p className="us-map-inset-note">Alaska and Hawaii: geographic insets, not to scale.</p>
-      <p className="map-city-legend" id="us-map-note">
-        Geographic overview only. State boundaries are bundled for offline display; listed service areas and sample journeys are shown separately, and no nationwide connections are implied.
-      </p>
-    </div>
+    <section className="passenger-rail-map" aria-labelledby={titleId}>
+      <header className="prm-heading">
+        <p className="prm-eyebrow">CONTIGUOUS UNITED STATES</p>
+        <h2 id={titleId}>Follow the rails.</h2>
+        <p>Selected Amtrak corridors serving our sample cities.</p>
+      </header>
+      <svg className="prm-art" viewBox={geometry.viewBox.join(" ")} role="img" aria-labelledby={`${titleId} ${descriptionId}`}>
+        <desc id={descriptionId}>North-up geographic map of the contiguous United States. Eight selected Amtrak route alignments from the federal NTAD snapshot are drawn over state boundaries. Dots mark 26 Amtrak train stations serving 23 of the 24 sample-catalogue cities. Stony Brook's LIRR alignment is missing. This is partial rail coverage, not a timetable or a guarantee of a direct connection. Read the corridor and city list below for boarding locations and gaps.</desc>
+        <rect className="prm-water" width="800" height="420" rx="16" />
+        <g className="prm-states">
+          {geometry.boundaries.map((state) => <path key={state.name} d={state.path} />)}
+        </g>
+        <g className="prm-routes">
+          {geometry.routes.map((route) => (
+            <g key={route.id} data-route-id={route.id}>
+              <title>{route.name}: generalized rail alignment</title>
+              {route.paths.map((path, index) => <path key={index} d={path} vectorEffect="non-scaling-stroke" />)}
+            </g>
+          ))}
+        </g>
+        <g className="prm-stations">
+          {geometry.stations.map((station) => (
+            <circle key={station.code} cx={station.x} cy={station.y} r="2.8" vectorEffect="non-scaling-stroke">
+              <title>{station.locality}: {station.name} ({station.code})</title>
+            </circle>
+          ))}
+        </g>
+      </svg>
+      <ul className="prm-legend" aria-label="Rail map legend">
+        <li><span className="prm-line-key" aria-hidden="true" />Generalized Amtrak rail alignment</li>
+        <li><span className="prm-dot-key" aria-hidden="true" />Amtrak train station</li>
+        <li>North up · Albers equal-area</li>
+      </ul>
+      <p className="prm-note">Federal route snapshot: May 2026. Stations: October 2026. Partial coverage; confirm service and boarding details with the operator. These lines do not change the sample itineraries.</p>
+      <details className="prm-details">
+        <summary>Corridors, cities &amp; coverage gaps</summary>
+        <div className="prm-details-content">
+          <h3>Documented passenger corridors</h3>
+          <p>Railway alignment comes from FRA/BTS NTAD. Passenger-service descriptions are checked against Amtrak's published route pages. Neither establishes a departure on your chosen date or a guaranteed transfer.</p>
+          <ul className="prm-route-list">
+            {audit.routes.map((route) => <li key={route.id}><a href={route.url} target="_blank" rel="noreferrer">{route.name}<span className="prm-sr-only"> (official source, opens in a new tab)</span> ↗</a><p>{route.description}</p></li>)}
+          </ul>
+          <h3>All 24 sample-catalogue cities</h3>
+          <p>Markers use train-station coordinates, not city centres. A nearby line alone is not proof that a particular train stops there.</p>
+          <ul className="prm-city-list">
+            {audit.cities.map((city) => <li key={city.id}>
+              <strong>{city.name}, {city.state}</strong>
+              <p>{city.note}</p>
+              {city.codes.length > 0 ? <ul>{city.codes.map((code) => {
+                const station = geometry.stations.find((item) => item.code === code)!;
+                return <li key={code}><a href={`https://www.amtrak.com/stations/${code.toLowerCase()}.html`} target="_blank" rel="noreferrer">{station.locality} · {station.name} ({code})<span className="prm-sr-only"> (official station, opens in a new tab)</span> ↗</a></li>;
+              })}</ul> : <a href={city.sourceUrl} target="_blank" rel="noreferrer">MTA station details · alignment not mapped ↗</a>}
+            </li>)}
+          </ul>
+          <h3>What is missing</h3>
+          <ul className="prm-gap-list">{audit.operatorGaps.map((gap) => <li key={gap.operator}><strong>{gap.operator}:</strong> {gap.reason}{gap.url && <> <a href={gap.url} target="_blank" rel="noreferrer">Official source ↗</a></>}</li>)}</ul>
+          <p>Downeaster trains use Boston North Station. Northeast Regional uses South Station/Back Bay; no through-rail connector is drawn between them. Albany boarding is in Rensselaer; Charleston-area boarding is in North Charleston.</p>
+          <p className="prm-sources">Sources: <a href="https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Routes/FeatureServer/0" target="_blank" rel="noreferrer">FRA/BTS alignments ↗</a> · <a href="https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Stations/FeatureServer/0" target="_blank" rel="noreferrer">Amtrak station dataset ↗</a> · <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noreferrer">Natural Earth boundaries ↗</a>. Public-domain geometry, checked {audit.checkedDate}, bundled offline. Shapes are generalized for this scale; they are not track-level navigation.</p>
+        </div>
+      </details>
+    </section>
   );
 }
