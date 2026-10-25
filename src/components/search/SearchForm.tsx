@@ -10,6 +10,8 @@ import { LocationAutocomplete } from "./LocationAutocomplete";
 import { sampleLocationCatalogue, type LocationCatalogue } from "./locationCatalogue";
 import { todayInNewYork } from "../../data/searchState";
 
+const MAX_DATE = "9999-12-31";
+
 interface Props {
   initialOrigin?: string;
   initialDestination?: string;
@@ -47,6 +49,21 @@ export function SearchForm({
       <form
         onSubmit={(event) => {
           event.preventDefault();
+          const form = event.currentTarget;
+          const dateInput = form.elements.namedItem("departure-date");
+          const today = todayInNewYork();
+          // Chrome can roll a typed 5-digit year into e.g. 0270; never submit or share an out-of-range date.
+          if (dateInput instanceof HTMLInputElement) {
+            dateInput.setCustomValidity(
+              /^\d{4}-\d{2}-\d{2}$/.test(departureDate) && departureDate >= today && departureDate <= MAX_DATE
+                ? ""
+                : `Choose a date from ${today} to ${MAX_DATE}.`,
+            );
+          }
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
           onSearch(origin, destination, { departureDate, departureTime });
         }}
         className="search-form"
@@ -99,9 +116,12 @@ export function SearchForm({
                   name="departure-date"
                   type="date"
                   value={departureDate}
-                  onChange={(event) => setDepartureDate(event.target.value)}
+                  onChange={(event) => {
+                    event.target.setCustomValidity("");
+                    setDepartureDate(event.target.value);
+                  }}
                   min={todayInNewYork()}
-                  max="9999-12-31"
+                  max={MAX_DATE}
                   required
                 />
               </label>
