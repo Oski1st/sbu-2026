@@ -1,0 +1,112 @@
+{
+  "portland": {
+    "flixbus": "99c4f90d-3ecb-11ea-8017-02437075395e",
+    "greyhound": "99c4f90d-3ecb-11ea-8017-02437075395e",
+    "name": "Portland, ME"
+  },
+  "boston": {
+    "flixbus": "eeff627f-2fda-4e75-8468-783d47955b3a",
+    "greyhound": "eeff627f-2fda-4e75-8468-783d47955b3a",
+    "name": "Boston, MA"
+  },
+  "providence": {
+    "flixbus": "fbf9bb67-ac0f-44b2-abce-36e4db26d3f1",
+    "greyhound": "fbf9bb67-ac0f-44b2-abce-36e4db26d3f1",
+    "name": "Providence, RI"
+  },
+  "hartford": {
+    "flixbus": "67b7338d-e71e-4ca8-a27b-063bd5627eb6",
+    "greyhound": "67b7338d-e71e-4ca8-a27b-063bd5627eb6",
+    "name": "Hartford, CT"
+  },
+  "new-haven": {
+    "flixbus": "193c0a59-90e7-494e-b196-fe387b385a22",
+    "greyhound": "193c0a59-90e7-494e-b196-fe387b385a22",
+    "name": "New Haven, CT"
+  },
+  "albany": {
+    "flixbus": "c9968a8a-e5be-422b-b7f3-32851e4dc823",
+    "greyhound": "c9968a8a-e5be-422b-b7f3-32851e4dc823",
+    "name": "Albany, NY"
+  },
+  "new-york": {
+    "flixbus": "c0a47c54-53ea-46dc-984b-b764fc0b2fa9",
+    "greyhound": "c0a47c54-53ea-46dc-984b-b764fc0b2fa9",
+    "name": "New York, NY"
+  },
+  "philadelphia": {
+    "flixbus": "fd509c08-0a3e-4a44-b933-79f4a9db13da",
+    "greyhound": "fd509c08-0a3e-4a44-b933-79f4a9db13da",
+    "name": "Philadelphia, PA"
+  },
+  "baltimore": {
+    "flixbus": "ff6921c7-4746-4553-8ef8-3bb7f19fc2bd",
+    "greyhound": "ff6921c7-4746-4553-8ef8-3bb7f19fc2bd",
+    "name": "Baltimore, MD"
+  },
+  "washington": {
+    "flixbus": "adcc1f7d-3bfe-471d-9946-28253814a09b",
+    "greyhound": "adcc1f7d-3bfe-471d-9946-28253814a09b",
+    "name": "Washington, D.C."
+  },
+  "richmond": {
+    "flixbus": "fefedffb-19fe-4ff5-ada8-47d715705a5a",
+    "greyhound": "fefedffb-19fe-4ff5-ada8-47d715705a5a",
+    "name": "Richmond, VA"
+  },
+  "norfolk": {
+    "flixbus": "eaa78666-c4aa-44aa-acce-764b1b826ed8",
+    "greyhound": "eaa78666-c4aa-44aa-acce-764b1b826ed8",
+    "name": "Norfolk-Virginia Beach, VA"
+  },
+  "raleigh": {
+    "flixbus": "2d9a832f-9159-41ef-b3bf-0255802ddf14",
+    "greyhound": "2d9a832f-9159-41ef-b3bf-0255802ddf14",
+    "name": "Raleigh, NC"
+  },
+  "charlotte": {
+    "flixbus": "bc2809c3-0b63-47af-aab0-3cc2efd3b0d8",
+    "greyhound": "bc2809c3-0b63-47af-aab0-3cc2efd3b0d8",
+    "name": "Charlotte, NC"
+  },
+  "fayetteville": {
+    "flixbus": "a20b54d1-3039-4772-8f81-0263db1e2ab9",
+    "greyhound": "a20b54d1-3039-4772-8f81-0263db1e2ab9",
+    "name": "Fayetteville, NC"
+  },
+  "charleston": {
+    "flixbus": "76531ada-2f35-4604-accd-a3ab23efd6ca",
+    "greyhound": "76531ada-2f35-4604-accd-a3ab23efd6ca",
+    "name": "North Charleston, SC"
+  },
+  "savannah": {
+    "flixbus": "f297706b-49c5-4ccc-9831-bd2331f42ba1",
+    "greyhound": "f297706b-49c5-4ccc-9831-bd2331f42ba1",
+    "name": "Savannah, GA"
+  },
+  "jacksonville": {
+    "flixbus": "d56606e1-f71f-4855-9839-d2b474fcf4d0",
+    "greyhound": "d56606e1-f71f-4855-9839-d2b474fcf4d0",
+    "name": "Jacksonville, FL"
+  },
+  "orlando": {
+    "flixbus": "54712d5f-3a01-4a41-8468-bece9ec172d5",
+    "greyhound": "54712d5f-3a01-4a41-8468-bece9ec172d5",
+    "name": "Orlando, FL"
+  },
+  "tampa": {
+    "flixbus": "77808b28-5212-45d0-8f45-cf6fb3b25f34",
+    "greyhound": "77808b28-5212-45d0-8f45-cf6fb3b25f34",
+    "name": "Tampa, FL"
+  },
+  "fort-lauderdale": {
+    "flixbus": "22928a23-60f2-458f-ba0c-f71bb398346b",
+    "greyhound": "22928a23-60f2-458f-ba0c-f71bb398346b",
+    "name": "Fort Lauderdale, FL"
+  },
+  "miami": {
+    "flixbus": "7e3222bd-1bd2-4bd1-b22d-886c709fe095",
+    "greyhound": "7e3222bd-1bd2-4bd1-b22d-886c709fe095",
+    "name": "Miami, FL"
+  }
+}

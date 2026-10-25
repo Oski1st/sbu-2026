@@ -1,0 +1,77 @@
+{
+  "browser": "Playwright 1.64.1 Chromium (headless), locale en-US, fresh context per run",
+  "rideDate": "2026-11-06 (1 adult)",
+  "firstRunFinishedAt": "2026-10-25T12:40:15.412Z",
+  "reopenRunFinishedAt": "2026-10-25T12:47:55.256Z",
+  "minutesBetweenRuns": 7.7,
+  "checks": [
+    {
+      "key": "flixbus-philadelphia-new-york",
+      "url": "https://shop.flixbus.com/search?departureCity=fd509c08-0a3e-4a44-b933-79f4a9db13da&arrivalCity=c0a47c54-53ea-46dc-984b-b764fc0b2fa9&rideDate=06.11.2026&adult=1",
+      "title": "Travel by bus from Philadelphia, PA to New York, NY on Fri, Nov 6",
+      "first": {
+        "httpStatus": 200,
+        "blocked": false,
+        "sameUrl": true,
+        "results": 47
+      },
+      "reopen": {
+        "httpStatus": 200,
+        "blocked": false,
+        "sameUrl": true,
+        "results": 47
+      }
+    },
+    {
+      "key": "flixbus-boston-new-york",
+      "url": "https://shop.flixbus.com/search?departureCity=eeff627f-2fda-4e75-8468-783d47955b3a&arrivalCity=c0a47c54-53ea-46dc-984b-b764fc0b2fa9&rideDate=06.11.2026&adult=1",
+      "title": "Travel by bus from Boston, MA to New York, NY on Fri, Nov 6",
+      "first": {
+        "httpStatus": 200,
+        "blocked": false,
+        "sameUrl": true,
+        "results": 69
+      },
+      "reopen": {
+        "httpStatus": 200,
+        "blocked": false,
+        "sameUrl": true,
+        "results": 69
+      }
+    },
+    {
+      "key": "greyhound-philadelphia-new-york",
+      "url": "https://shop.greyhound.com/search?departureCity=fd509c08-0a3e-4a44-b933-79f4a9db13da&arrivalCity=c0a47c54-53ea-46dc-984b-b764fc0b2fa9&rideDate=06.11.2026&adult=1",
+      "title": "Travel by bus from Philadelphia, PA to New York, NY on Fri, Nov 6",
+      "first": {
+        "httpStatus": 200,
+        "blocked": false,
+        "sameUrl": true,
+        "results": 47
+      },
+      "reopen": {
+        "httpStatus": 200,
+        "blocked": false,
+        "sameUrl": true,
+        "results": 47
+      }
+    },
+    {
+      "key": "greyhound-boston-new-york",
+      "url": "https://shop.greyhound.com/search?departureCity=eeff627f-2fda-4e75-8468-783d47955b3a&arrivalCity=c0a47c54-53ea-46dc-984b-b764fc0b2fa9&rideDate=06.11.2026&adult=1",
+      "title": "Travel by bus from Boston, MA to New York, NY on Fri, Nov 6",
+      "first": {
+        "httpStatus": 200,
+        "blocked": false,
+        "sameUrl": true,
+        "results": 69
+      },
+      "reopen": {
+        "httpStatus": 200,
+        "blocked": false,
+        "sameUrl": true,
+        "results": 69
+      }
+    }
+  ]
+}
