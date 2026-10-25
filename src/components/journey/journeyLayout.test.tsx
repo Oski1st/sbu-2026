@@ -38,7 +38,7 @@ describe("Journey layout for expanded concept routes", () => {
 
     expect(html).toContain("grid-cols-1");
     expect(html).toContain("sm:grid-cols-[minmax(0,1fr)_auto]");
-    expect(html).toContain("text-left text-base font-bold tabular-nums text-slate-900 sm:text-right");
+    expect(html).toContain("text-left text-lg font-extrabold tabular-nums text-primary sm:text-right");
     expect(html).toContain("Washington, DC");
     expect(html).toContain("· Oct");
   });

@@ -6,7 +6,7 @@
    the Compare dialog is a native <dialog>. */
 @plugin "daisyui" {
   themes: false;
-  include: properties, rootcolor, scrollbar, svg, btn, badge, card, stat, timeline;
+  include: properties, rootcolor, scrollbar, svg, button, badge;
 }
 @plugin "daisyui/theme" {
   name: "oneline";
@@ -46,6 +46,8 @@
   --color-forest: #173f35;
   --color-lime: #d7ef95;
   --color-paper: #f8f9f3;
+  /* Muted UI text: 6.0:1 on white, 5.7:1 on paper. */
+  --color-sage: #55675b;
   --font-sans:
     "OneLine Sans", "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
