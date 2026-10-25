@@ -648,7 +648,7 @@ export function createTimetableEngine(
           purchaseUrl:
             l.operator === "LIRR"
               ? "https://www.mta.info/fares/lirr-metro-north"
-              : "https://www.amtrak.com/tickets.html",
+              : "https://www.amtrak.com/",
         })),
       };
     });

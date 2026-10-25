@@ -5,6 +5,7 @@ import {
   localInstants,
   serviceEpoch,
 } from "./timetable-engine.mjs";
+import { AMTRAK_BOOKING_URL } from "../src/lib/amtrakHandoff";
 const date = "2026-10-26",
   now = () => Date.parse("2026-10-25T12:00:00Z");
 const time = (h, m = 0) => h * 3600 + m * 60;
@@ -136,6 +137,10 @@ describe("dated routing and exact transfers", () => {
       "second",
     ]);
     expect(r.itineraries[0].arrival).toBe("2026-10-26T14:00:00.000Z");
+    // Amtrak legs hand off to the stable booking page (session URLs expire).
+    expect(r.itineraries[0].legs[0].purchaseUrl).toBe(AMTRAK_BOOKING_URL);
+    expect(r.itineraries[0].legs[0].purchaseUrl).toBe("https://www.amtrak.com/");
+    expect(r.itineraries[0].legs[0].number).toBeTruthy();
     expect(
       engine(d)
         .plan({ ...query, order: "transfers" })

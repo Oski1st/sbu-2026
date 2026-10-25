@@ -81,7 +81,7 @@ it("scheduled cards show actual dated stations, no invented fares, and a reconst
         departure: "2026-10-26T12:25:00Z",
         arrival: "2026-10-26T18:41:00Z",
         sourceUrl: "https://content.amtrak.com/content/gtfs/GTFS.zip",
-        purchaseUrl: "https://www.amtrak.com/tickets.html",
+        purchaseUrl: "https://www.amtrak.com/",
       },
     ],
   };

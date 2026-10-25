@@ -1,4 +1,5 @@
-import {expect, it} from "vitest";
+import {expect, it, vi} from "vitest";
+import {AMTRAK_BOOKING_URL, AMTRAK_HANDOFF_NOTE, amtrakTripText, copyTripText} from "../../lib/amtrakHandoff";
 import {renderToStaticMarkup} from "react-dom/server";
 import {BookingHandoff, bookingFields} from "./BookingHandoff";
 import type {ScheduledLeg} from "../../services/transit/timetables";
@@ -9,7 +10,7 @@ const leg: ScheduledLeg = {
   from:{id:"BBY",feed:"amtrak",name:"Back Bay",timezone:"America/New_York",url:"https://www.amtrak.com/stations/bby"},
   to:{id:"PHL",feed:"amtrak",name:"Philadelphia",timezone:"America/New_York",url:"https://www.amtrak.com/stations/phl"},
   departure:"2026-10-26T04:25:00Z",arrival:"2026-10-26T10:00:00Z",
-  sourceUrl:"https://content.amtrak.com/content/gtfs/GTFS.zip",purchaseUrl:"https://www.amtrak.com/tickets.html"
+  sourceUrl:"https://content.amtrak.com/content/gtfs/GTFS.zip",purchaseUrl:"https://www.amtrak.com/"
 };
 it("copies operator fields using local boarding date, not the previous GTFS service day",()=>{
   expect(bookingFields(leg)).toEqual([
@@ -33,4 +34,17 @@ it("LIRR directs to TrainTime with through-ticket guidance, not an Amtrak or res
  const h=renderToStaticMarkup(<BookingHandoff leg={{...leg,operator:"LIRR"}}/>);
  expect(h).toContain('href="https://www.mta.info/traintime"');expect(h).toContain("station/zone pairs");
  expect(h).toContain("one through ticket");expect(h).not.toContain("Copy Amtrak");
+});
+it("Amtrak handoff copies the real train number, date and time and opens the stable Amtrak page",()=>{
+ const text=amtrakTripText({from:leg.from.name,to:leg.to.name,departure:leg.departure,line:leg.route,train:leg.number});
+ expect(text).toContain("Train 99");expect(text).toContain("Oct 26, 2026");expect(text).toContain("12:25");
+ const h=renderToStaticMarkup(<BookingHandoff leg={leg}/>);
+ expect(h).toContain(`href="${AMTRAK_BOOKING_URL}"`);expect(AMTRAK_BOOKING_URL).toBe("https://www.amtrak.com/");
+ expect(h).toContain('rel="noreferrer"');expect(h).toContain("(opens in a new tab)");
+ expect(h).toContain(AMTRAK_HANDOFF_NOTE.split(",")[0]);expect(h).not.toContain("home.html");
+ expect(h).toContain("Trip details (copy manually)");expect(h).toContain(`value="${text.replace(/&/g,"&amp;")}"`);
+});
+it("falls back to the visible manual-copy field when the clipboard is unavailable",async()=>{
+ vi.stubGlobal("navigator",{clipboard:{writeText:()=>Promise.reject(new Error("denied"))}});
+ try{expect(await copyTripText("Amtrak · Train 99",null)).toBe(false);}finally{vi.unstubAllGlobals();}
 });
