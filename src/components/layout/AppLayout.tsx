@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { NavLink, Link, Outlet } from "react-router-dom";
-import { ArrowUpRight, MoveRight, Search, Route, Wallet } from "lucide-react";
+import { MoveRight, Search, Route, Wallet } from "lucide-react";
 import { useSelectedTrip } from "./TripContext";
 import { Brand } from "./Brand";
 export function AppLayout() {
@@ -58,13 +58,7 @@ export function AppLayout() {
           <br />
           <small>SBUHacks 2026 · Independent student project</small>
         </span>
-        <a
-          href="https://github.com/Oski1st/sbu-2026"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Built together <ArrowUpRight size={16} />
-        </a>
+        <p className="footer-credit">Built together</p>
         <div className="footer-line">
           <MoveRight size={19} />
           <span>One journey. Many connections.</span>
