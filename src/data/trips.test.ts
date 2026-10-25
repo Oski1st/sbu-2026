@@ -5,6 +5,7 @@ const demoTrips = allDemoTrips.filter((trip) =>
 );
 import {
   findTrips,
+  formatMoney,
   sampleTotal,
   sortTrips,
   transferCount,
@@ -18,12 +19,14 @@ import { planTrips } from "./tripLookup";
 describe("arrival-based ranking for generated concepts", () => {
   it("ranks Fastest and the comparison by final arrival, not ride length", () => {
     // Coach concepts start 30-60 minutes later, so a slightly shorter ride can still arrive later.
-    const trips = planTrips("Albany", "Boston");
+    // Portland-Boston: coach 135 min from 8:30 vs Downeaster 150 min from 8:00.
+    const trips = planTrips("Portland, ME", "Boston");
     const fastest = sortTrips(trips, "fastest");
     const arrivals = fastest.map((trip) => +new Date(trip.legs.at(-1)!.arrival));
     expect(arrivals).toEqual([...arrivals].sort((a, b) => a - b));
     const rail = trips.find((trip) => trip.id.endsWith("--amtrak"))!;
     const coach = trips.find((trip) => trip.id.endsWith("--greyhound"))!;
+    expect(coach.durationMinutes).toBeLessThan(rail.durationMinutes);
     const result = compareTrips(coach, rail);
     expect(result.faster.id).toBe(rail.id);
     expect(result.minutesSaved).toBe(
@@ -101,15 +104,16 @@ describe("route comparison", () => {
   it("separates time on trains from connection intervals", () => {
     const regional = tripMetrics(demoTrips[0])!;
     const express = tripMetrics(demoTrips[1])!;
+    // Official run times: SEPTA 52, NJ TRANSIT 90, LIRR 73 + 9-minute Huntington change + 35.
     expect(regional).toEqual({
-      rideMinutes: 265,
-      transferMinutes: 50,
-      shortestTransferMinutes: 15,
+      rideMinutes: 250,
+      transferMinutes: 47,
+      shortestTransferMinutes: 9,
     });
     expect(express).toEqual({
-      rideMinutes: 205,
-      transferMinutes: 45,
-      shortestTransferMinutes: 20,
+      rideMinutes: 188,
+      transferMinutes: 29,
+      shortestTransferMinutes: 9,
     });
     for (const trip of demoTrips) {
       const metrics = tripMetrics(trip)!;
@@ -125,11 +129,20 @@ describe("route comparison", () => {
     ]) {
       const result = compareTrips(pair[0], pair[1]);
       expect(result.faster.id).toBe("amtrak-connection");
-      // Express arrives 12:40 PM vs 1:15 PM: 35 minutes sooner (ride is 65 minutes shorter).
-      expect(result.minutesSaved).toBe(35);
-      expect(result.fareDifference).toBe(15);
+      // Express arrives 12:07 PM vs 12:57 PM: 50 minutes sooner. That is arrival, not ride time:
+      // the express is 62 minutes shorter on board and its whole journey is 80 minutes shorter.
+      expect(result.minutesSaved).toBe(50);
+      expect(result.slower.durationMinutes - result.faster.durationMinutes).toBe(80);
+      // $61 vs $47.35 ($11 SEPTA + $20.35 NJ TRANSIT + $16 LIRR off-peak).
+      expect(result.fareDifference).toBeCloseTo(13.65, 2);
       expect(result.transfersSaved).toBe(1);
     }
+    // The express card's copy must match the data it summarises.
+    const onBoardGap = tripMetrics(demoTrips[0])!.rideMinutes - tripMetrics(demoTrips[1])!.rideMinutes;
+    const fareGap = compareTrips(demoTrips[0], demoTrips[1]).fareDifference!;
+    expect(demoTrips[1].description).toBe(
+      `Amtrak to New York, then LIRR. ${onBoardGap} minutes less time on board, ${formatMoney(fareGap)} more in sample fares.`,
+    );
     const unknownFare = {
       ...demoTrips[1],
       legs: demoTrips[1].legs.map((leg) => ({ ...leg, fare: undefined })),

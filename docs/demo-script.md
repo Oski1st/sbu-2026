@@ -15,7 +15,7 @@
 | Time | Screen | Action | Say |
 | --- | --- | --- | --- |
 | 0:00–0:15 | Search (`/`) | Show the hero and the two route cards. | "Getting from Philly to Stony Brook means SEPTA, NJ TRANSIT, maybe Amtrak, and the LIRR: four apps, four ticket systems. OneLine puts the whole trip on one line." |
-| 0:15–0:40 | Compare dialog | Tick **Compare route** on both cards, then click **Compare routes**. | "Two ways there, side by side. The express is about an hour faster but costs $15 more. Every transfer and every trade-off is in the open. These times and fares are clearly labelled sample data, not a timetable." |
+| 0:15–0:40 | Compare dialog | Tick **Compare route** on both cards, then click **Compare routes**. | "Two ways there, side by side. The express gets you there 50 minutes sooner but costs $14 more. Every transfer and every trade-off is in the open. These times and fares are clearly labelled sample data, not a timetable." |
 | 0:40–1:10 | Journey (`/journey/regional-connection`) | Click **Choose route** under *Scenic Connection*. Scroll the timeline. Click **Simulate delay**. | "Now it's a journey: each train, each transfer, and what comes next. Watch what happens if SEPTA runs late. OneLine flags the at-risk connection and suggests a recovery plan. It's labelled as a simulation, never a live alert." |
 | 1:10–1:45 | Wallet (`/wallet/regional-connection`) | Click **View ticket wallet →** at the end of the Journey. Tick the first checklist item. Point to an official ticket link. Scroll to **SEPTA service snapshot**. | "The wallet collects every ticket you need, with official links for each agency. OneLine doesn't sell tickets and never fakes a boarding pass. And this is real: a live SEPTA Regional Rail snapshot fetched through our own server. It's agency-wide, it expires after a minute, and it never overwrites the sample itinerary." |
 | 1:45–2:00 | Wallet | Refresh the page to show the deep link survives. | "One journey, many connections. That's OneLine. Thanks!" |
@@ -42,10 +42,12 @@ If you have extra time, choose the **Express Connection** (Amtrak + LIRR) instea
 | Oct 24 | `main` `93c0408` | 8 / 8 steps; panel live | 8 / 8 steps; panel unavailable |
 | Oct 24 | `93c0408` + open PRs #8 and #9 (local merge, not pushed) | 8 / 8 steps; panel live | 8 / 8 steps; panel unavailable |
 | Oct 24 | `main` `ea6c065` (PRs #8 and #9 merged) | 8 / 8 steps; panel live | 8 / 8 steps; panel unavailable |
+| Oct 25 | `fix/sample-data-accuracy` (local build, corrected sample data) | 8 / 8 steps; panel live | 8 / 8 steps; panel unavailable |
 
-The clicks take about 3 seconds in total, so the two minutes are speaking time. The Compare insight read "The express connection gets you there 65 minutes sooner for $15 more in sample fares", which matches the script's line.
+The clicks take about 3 seconds in total, so the two minutes are speaking time. Since the Oct 25 sample-data correction, the Compare insight reads "The express connection gets you there 50 minutes sooner for $14 more in sample fares", which matches the script's line. The cards show the scenic route arriving at 12:57 PM ($47) and the express at 12:07 PM ($61).
 
 ## Avoid on stage
 
 - Don't claim live arrivals for NJ TRANSIT, Amtrak or LIRR. Only the SEPTA snapshot is live.
 - Don't present the sample times or fares as real quotes.
+- If asked where the numbers come from: the SEPTA, NJ TRANSIT and LIRR run times and fares were checked against the operators' published timetables and fare tables on Oct 25 (`docs/sample-data-accuracy.md`). The departure times are still samples, and the Amtrak time and fare are unverified.

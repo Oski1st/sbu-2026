@@ -27,8 +27,27 @@ describe("East Coast sample planning", () => {
       findTrips(demoTrips, "Philadelphia", "Stony Brook").map((t) => t.id),
     ).toEqual(["regional-connection", "amtrak-connection"]);
     expect(demoTrips.slice(0, 2).map((t) => t.durationMinutes)).toEqual([
-      315, 250,
+      297, 217,
     ]);
+  });
+  it("uses the official-source times checked on 2026-10-25, per direction", () => {
+    const minutes = (from: string, to: string, profile: string) => {
+      const trip = findTrips(demoTrips, from, to).find((t) => t.id.endsWith(`--${profile}`))!;
+      return [trip.durationMinutes, trip.legs.length];
+    };
+    // LIRR Penn Station to Stony Brook, including the Huntington change.
+    expect(minutes("New York", "Stony Brook", "amtrak")).toEqual([117, 1]);
+    expect(minutes("Stony Brook", "New York", "amtrak")).toEqual([117, 1]);
+    // Greyhound's fastest listed trip differs by direction on these pairs.
+    expect(minutes("Richmond", "Raleigh", "greyhound")).toEqual([130, 1]);
+    expect(minutes("Raleigh", "Richmond", "greyhound")).toEqual([150, 1]);
+    expect(minutes("Charleston", "Savannah", "greyhound")).toEqual([190, 1]);
+    expect(minutes("Savannah", "Charleston", "greyhound")).toEqual([180, 1]);
+    // New city-pair edges: no detour via New York (Albany-Boston) or Charleston (Fayetteville-Savannah).
+    expect(minutes("Albany", "Boston", "greyhound")).toEqual([220, 1]);
+    expect(minutes("Boston", "Albany", "flixbus")).toEqual([200, 1]);
+    expect(minutes("Fayetteville", "Savannah", "greyhound")).toEqual([265, 1]);
+    expect(minutes("Savannah", "Fayetteville", "greyhound")).toEqual([265, 1]);
   });
   it("offers bidirectional Maine-to-Florida concepts and genuine bus operator identities", () => {
     for (const [from, to] of [
