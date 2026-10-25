@@ -1,0 +1,37 @@
+.passenger-rail-map {
+  min-width: 0;
+  margin: 28px 22px 20px 12px;
+  align-self: center;
+  color: #244d3e;
+}
+.passenger-rail-map .prm-heading { padding: 0 8px 14px; }
+.passenger-rail-map .prm-eyebrow { font-size: 11px; letter-spacing: 1.4px; font-weight: 700; }
+.passenger-rail-map .prm-heading h2 { margin: 7px 0; font-size: 26px; line-height: 1.2; letter-spacing: -0.8px; }
+.passenger-rail-map .prm-heading p:last-child { margin: 0; font-size: 12px; line-height: 1.5; color: #4b6457; }
+.passenger-rail-map .prm-art { display: block; width: 100%; height: auto; aspect-ratio: 800 / 420; }
+.passenger-rail-map .prm-water { fill: #e2ece7; }
+.passenger-rail-map .prm-states path { fill: #f3f5ec; stroke: #aabdaa; stroke-width: 0.7; }
+.passenger-rail-map .prm-routes path { fill: none; stroke: #895314; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.passenger-rail-map .prm-stations circle { fill: #153f32; stroke: #fff; stroke-width: 0.7; }
+.passenger-rail-map .prm-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; list-style: none; margin: 12px 0 8px; padding: 0 8px; font-size: 11px; line-height: 1.5; }
+.passenger-rail-map .prm-legend li { display: flex; align-items: center; gap: 7px; }
+.passenger-rail-map .prm-line-key { width: 22px; height: 3px; background: #895314; flex: none; }
+.passenger-rail-map .prm-dot-key { width: 8px; height: 8px; border-radius: 50%; background: #153f32; flex: none; }
+.passenger-rail-map .prm-note { margin: 8px; font-size: 11px; line-height: 1.6; color: #40594b; }
+.passenger-rail-map .prm-details { margin-top: 12px; border: 1px solid #cfdbce; border-radius: 12px; background: #f7f9f1; font-size: 12px; line-height: 1.6; }
+.passenger-rail-map summary { cursor: pointer; padding: 12px; min-height: 44px; box-sizing: border-box; font-weight: 700; }
+.passenger-rail-map summary:focus-visible, .passenger-rail-map a:focus-visible { outline: 3px solid #244d3e; outline-offset: 3px; border-radius: 3px; }
+.passenger-rail-map .prm-details-content { padding: 0 14px 14px; overflow-wrap: anywhere; }
+.passenger-rail-map .prm-details-content h3 { font-size: 14px; margin: 18px 0 6px; }
+.passenger-rail-map .prm-details-content p { margin: 5px 0 10px; }
+.passenger-rail-map .prm-route-list, .passenger-rail-map .prm-city-list, .passenger-rail-map .prm-gap-list { padding-left: 18px; margin: 8px 0; }
+.passenger-rail-map .prm-route-list > li, .passenger-rail-map .prm-city-list > li, .passenger-rail-map .prm-gap-list > li { margin: 10px 0; }
+.passenger-rail-map .prm-city-list ul { padding-left: 14px; }
+.passenger-rail-map a { color: #245d48; text-decoration: underline; text-underline-offset: 3px; }
+.passenger-rail-map .prm-sources { padding-top: 10px; border-top: 1px solid #d4dfcf; font-size: 11px; }
+.passenger-rail-map .prm-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+@media (max-width: 760px) {
+  .passenger-rail-map { margin: 16px 14px 20px; }
+  .passenger-rail-map .prm-heading h2 { font-size: 24px; }
+  .passenger-rail-map .prm-legend { flex-direction: column; gap: 6px; }
+}
