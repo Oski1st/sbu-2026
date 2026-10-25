@@ -132,14 +132,14 @@ export default function SearchPage() {
         <div className="hero-copy">
           <span className="eyebrow">
             <span className="little-dot" />
-            ALL YOUR CONNECTIONS. ONE CLEAR PATH.
+            EAST COAST RAIL AND BUS TRIP PLANNER
           </span>
           <h1>
-            Different lines.
+            Plan trips that
             <br />
-            Same{" "}
+            cross{" "}
             <span>
-              direction.
+              operators.
               <svg
                 viewBox="0 0 420 24"
                 preserveAspectRatio="none"
@@ -150,19 +150,19 @@ export default function SearchPage() {
             </span>
           </h1>
           <p>
-            From your first departure to your last stop.
-            <br className="desktop-break" /> A simpler way to travel across the
-            East Coast.
+            See each leg of a multi-operator trip on one page,
+            <br className="desktop-break" /> then buy tickets on each operator’s
+            own site.
           </p>
           <div className="hero-meta">
             <span>
               <Route size={16} />
-              {cities.length} cities, one bigger idea
+              {cities.length} sample cities
             </span>
             <i />
             <span>
               <Leaf size={16} />
-              Trains + coaches. More possibility.
+              Rail and intercity bus
             </span>
           </div>
         </div>
@@ -186,7 +186,7 @@ export default function SearchPage() {
               <small>
                 {comparedTrips.length < 2
                   ? "Select one more route to compare."
-                  : "A clearer view of your options."}
+                  : "Ready to compare."}
               </small>
             </span>
           </div>
@@ -221,11 +221,11 @@ export default function SearchPage() {
         <section className="coast-explorer" aria-labelledby="explore-title">
           <div className="explore-heading">
             <div>
-              <span className="eyebrow">A BIGGER PICTURE</span>
-              <h2 id="explore-title">A whole coast of possibilities.</h2>
+              <span className="eyebrow">SAMPLE CORRIDORS</span>
+              <h2 id="explore-title">Try another corridor.</h2>
               <p>
-                {cities.length} cities, Maine to Florida. Explore sample rail
-                and coach corridors.
+                {cities.length} cities from Maine to Florida. Pick a corridor to
+                load its sample rail and bus trips.
               </p>
             </div>
             <span className="coverage-tag">
@@ -307,14 +307,14 @@ export default function SearchPage() {
         >
           <div className="results-heading">
             <div>
-              <span className="eyebrow">THE JOURNEY STARTS HERE</span>
+              <span className="eyebrow">RESULTS</span>
               <h2 id="results-title">
-                A few ways to get there<span>.</span>
+                Sample routes<span>.</span>
               </h2>
               <p aria-live="polite" role="status">
                 {searched
                   ? `${trips.length} sample ${trips.length === 1 ? "connection" : "connections"} for ${query.origin} → ${query.destination}`
-                  : "Philadelphia to Stony Brook. Every connection, considered."}
+                  : "Showing the demo search: Philadelphia to Stony Brook."}
               </p>
             </div>
             <div className="sort-control">
@@ -402,7 +402,7 @@ export default function SearchPage() {
                   }}
                 >
                   <GitCompareArrows size={15} />
-                  Compare two options <ArrowRight size={14} />
+                  Compare the first two <ArrowRight size={14} />
                 </button>
               )}
               {trips.length > 0 ? (
@@ -426,7 +426,7 @@ export default function SearchPage() {
                       : resolveCity(query.origin)?.id ===
                           resolveCity(query.destination)?.id
                         ? "Choose two different cities to plan a journey."
-                        : "Try another mode or operator. No matching sample is not evidence that real service is unavailable."}
+                        : "Try another mode or operator. A missing sample doesn’t mean there’s no real service."}
                   </p>
                   <button
                     onClick={() => {
@@ -441,10 +441,10 @@ export default function SearchPage() {
               <p className="results-disclaimer">
                 <ShieldCheck size={15} />
                 <span>
-                  Designed for clarity, not guesswork. All displayed times and
-                  fares are illustrative. Confirm your trip with the agencies
-                  before traveling. Bus and expanded rail routes are city-level
-                  concepts, not verified services.
+                  All times and fares shown are illustrative. Confirm your trip
+                  with each agency before you travel. Bus routes and the
+                  expanded rail routes are city-level concepts, not verified
+                  services.
                 </span>
               </p>
             </div>
@@ -453,28 +453,29 @@ export default function SearchPage() {
                 <span className="aside-icon">
                   <Layers3 size={23} />
                 </span>
-                <span className="eyebrow">LESS TAB-HOPPING.</span>
+                <span className="eyebrow">WHY WE BUILT IT</span>
                 <h3>
-                  Your whole trip.
+                  Every leg
                   <br />
-                  Finally together.
+                  on one page.
                 </h3>
                 <p>
-                  More operators shouldn’t mean more scattered plans. See the
-                  connections, compare your options, and know what comes next.
+                  Philadelphia to Stony Brook by train can mean SEPTA, NJ
+                  TRANSIT and LIRR, each with its own app. OneLine lists the
+                  legs, the transfers, and where to buy each ticket.
                 </p>
                 <ul>
                   <li>
                     <Check size={15} />
-                    Every leg in one place
+                    Times for each leg
                   </li>
                   <li>
                     <Check size={15} />
-                    Clear transfer points
+                    Where you change services
                   </li>
                   <li>
                     <Check size={15} />
-                    Official ticket links
+                    Links to official ticket sites
                   </li>
                 </ul>
                 <div className="aside-mini-line">
@@ -486,18 +487,18 @@ export default function SearchPage() {
                   <ArrowRight size={15} />
                 </div>
                 <span className="aside-signoff">
-                  A little less friction.
+                  You still buy tickets
                   <br />
-                  <strong>A lot more adventure.</strong>
+                  <strong>from each operator.</strong>
                 </span>
               </div>
               <div className="demo-note">
                 <Sparkles size={18} />
                 <div>
-                  <strong>A glimpse of what’s next</strong>
+                  <strong>Hackathon prototype</strong>
                   <p>
-                    Built at SBUHacks 2026. Real networks, sample journeys, one
-                    connected idea.
+                    Built by a student team at SBUHacks 2026. The operators are
+                    real; the trips are samples.
                   </p>
                 </div>
               </div>
@@ -506,15 +507,15 @@ export default function SearchPage() {
         </section>
         <section className="closing-banner">
           <div>
-            <span className="eyebrow">TAKE THE CONNECTED ROUTE</span>
+            <span className="eyebrow">ANOTHER TRIP?</span>
             <h2>
-              The best part?
+              Planning something else?
               <br />
-              You’re already on your way.
+              Start a new search.
             </h2>
           </div>
           <a href="#main-content" aria-label="Back to search">
-            Let’s go somewhere <ArrowUpRight size={22} />
+            Back to search <ArrowUpRight size={22} />
           </a>
           <div className="banner-rails" aria-hidden="true">
             <i />

@@ -39,7 +39,7 @@ export function SearchForm({
       <div className="search-heading">
         <span>
           <i />
-          LET’S GET YOU THERE
+          PLAN A TRIP
         </span>
         <small>One-way · Rail + intercity bus</small>
       </div>
@@ -83,7 +83,7 @@ export function SearchForm({
             value={destination}
             onChange={setDestination}
             required
-            placeholder="Where to?"
+            placeholder="Arrival city"
             catalogue={catalogue}
           />
         </div>
@@ -119,7 +119,7 @@ export function SearchForm({
           </div>
         </div>
         <button className="search-button" type="submit">
-          Find my way <ArrowRight size={18} />
+          Search trips <ArrowRight size={18} />
         </button>
       </form>
       <div className="search-footnote">
