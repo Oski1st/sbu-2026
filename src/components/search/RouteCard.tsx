@@ -207,7 +207,7 @@ export function RouteCard({
             </div>
           ))}
           <p className="fare-disclaimer">
-            {trip.planningNote}
+            {trip.planningNote}{" "}
             Sample fares are for the demo only. Final prices, connections and
             availability must be confirmed with each agency. Tickets are
             purchased separately.
