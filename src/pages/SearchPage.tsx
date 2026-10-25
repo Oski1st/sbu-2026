@@ -5,7 +5,7 @@ import {
   writeSearchState,
   type SearchState,
 } from "../data/searchState";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -13,7 +13,6 @@ import {
   Compass,
   Layers3,
   Leaf,
-  MoveUpRight,
   Route,
   ShieldCheck,
   Sparkles,
@@ -24,12 +23,27 @@ import {
 } from "lucide-react";
 import { cities, featuredCorridors, resolveCity } from "../data/eastCoast";
 import { agencies } from "../data/agencies";
+import type { Agency } from "../types";
 import { planTrips } from "../data/tripLookup";
 import { sortTrips } from "../data/tripUtils";
 import { CorridorMap } from "../components/search/CorridorMap";
 import { SearchForm } from "../components/search/SearchForm";
 import { RouteCard } from "../components/search/RouteCard";
 import { RouteComparison } from "../components/search/RouteComparison";
+
+/**
+ * Operators named in the sample routes, shown as plain text badges. These are
+ * not official logos; OneLine is not affiliated with any operator.
+ */
+const networkOperators: { id: Agency; label: string }[] = [
+  { id: "SEPTA", label: "SEPTA" },
+  { id: "NJ_TRANSIT", label: "NJ TRANSIT" },
+  { id: "AMTRAK", label: "Amtrak" },
+  { id: "LIRR", label: "LIRR" },
+  { id: "GREYHOUND", label: "Greyhound" },
+  { id: "FLIXBUS", label: "FlixBus" },
+];
+
 export default function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const criteria = readSearchState(searchParams);
@@ -262,28 +276,27 @@ export default function SearchPage() {
             <br />
             <strong>SAMPLE CONNECTIONS.</strong>
           </span>
-          <div className="network-wordmark septa">
-            <TrainFront size={22} />
-            SEPTA
-          </div>
-          <div className="network-wordmark njt">
-            <span>◢</span>NJ TRANSIT
-          </div>
-          <div className="network-wordmark amtrak">
-            <MoveUpRight size={25} />
-            AMTRAK<small>®</small>
-          </div>
-          <div className="network-wordmark lirr">
-            <span>MTA</span>Long Island
-            <br />
-            Rail Road
-          </div>
-          <div className="network-wordmark">
-            <Bus size={22} /> Greyhound
-          </div>
-          <div className="network-wordmark flixbus">
-            <Bus size={22} /> FlixBus
-          </div>
+          {networkOperators.map(({ id, label }) => {
+            const operator = agencies[id];
+            const Icon = operator.mode === "bus" ? Bus : TrainFront;
+            return (
+              <div
+                key={id}
+                className="network-wordmark"
+                style={{ "--agency-color": operator.color } as CSSProperties}
+              >
+                <Icon size={16} aria-hidden="true" focusable="false" />
+                {label === operator.name ? (
+                  label
+                ) : (
+                  <>
+                    <span aria-hidden="true">{label}</span>
+                    <span className="network-wordmark-sr">{operator.name}</span>
+                  </>
+                )}
+              </div>
+            );
+          })}
         </section>
         <section
           className="results-section"
