@@ -17,7 +17,7 @@ export function DelaySimulation({ affectedLeg, isActive, onToggle }: DelaySimula
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.13em] text-slate-500">Demo</p>
             <h2 id="delay-simulator-title" className="mt-1 text-xl font-bold tracking-tight text-slate-950">Simulate a delay</h2>
-            <p className="mt-2 max-w-lg text-sm leading-6 text-slate-600">Add a pretend 12-minute delay to the first leg to see what OneLine suggests for your connection. This is a demo, not a live alert.</p>
+            <p className="mt-2 max-w-lg text-sm leading-6 text-slate-600">Add a simulated 12-minute delay to the first leg to see what OneLine suggests for your connection. This is a demo, not a live alert.</p>
           </div>
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-lg" aria-hidden="true">◷</span>
         </div>

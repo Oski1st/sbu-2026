@@ -81,7 +81,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
           <p className="mt-4 text-sm font-medium text-slate-700">
             {leg.line}
             <span className="mx-2 text-slate-300" aria-hidden="true">•</span>
-            Journey segment {index + 1}
+            Leg {index + 1}
           </p>
 
           <button
