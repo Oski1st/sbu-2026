@@ -18,11 +18,11 @@ export function DelaySimulation({ affectedLeg, isActive, onToggle, hasConnection
       <div className="p-5 sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <p className="text-xs font-extrabold uppercase tracking-[0.13em] text-slate-500">Journey lab</p>
+            <p className="text-xs font-extrabold uppercase tracking-[0.13em] text-slate-500">Demo</p>
             <h2 id="delay-simulator-title" className="mt-1 text-xl font-bold tracking-tight text-slate-950">Simulate a delay</h2>
             <p className="mt-2 max-w-lg text-sm leading-6 text-slate-600">{hasConnection
-                ? "See how OneLine helps when a connection is at risk."
-                : "This trip has no connection, so a delay only moves your sample arrival time."} This is a demo scenario, never a live alert.</p>
+                ? "Add a pretend 12-minute delay to the first leg to see what OneLine suggests when a connection is at risk."
+                : "This trip has no connection, so a delay only moves your sample arrival time."} This is a demo, not a live alert.</p>
           </div>
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-lg" aria-hidden="true">◷</span>
         </div>

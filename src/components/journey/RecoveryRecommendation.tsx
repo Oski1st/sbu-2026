@@ -16,7 +16,7 @@ export function RecoveryRecommendation({ missedLeg, finalDestination }: Recovery
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-amber-200 text-amber-900" aria-hidden="true">!</span>
         <div>
           <p className="text-xs font-extrabold uppercase tracking-[0.13em] text-amber-800">Simulated recovery plan</p>
-          <h2 id="recovery-title" className="mt-1 text-xl font-bold tracking-tight text-amber-950">Your connection may no longer be comfortable.</h2>
+          <h2 id="recovery-title" className="mt-1 text-xl font-bold tracking-tight text-amber-950">You might miss your connection.</h2>
           <p className="mt-2 text-sm leading-6 text-amber-950">
             At {missedLeg.from}, check {isCoach ? "official operator details or terminal information" : "live departure boards"} for the next <strong>{missedLeg.line}</strong> service toward {missedLeg.to}. If the planned departure has passed, ask an on-site {agency.label} representative for the next available option to continue to {finalDestination}.
           </p>
