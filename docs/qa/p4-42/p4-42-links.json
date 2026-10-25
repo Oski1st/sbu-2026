@@ -1,0 +1,1056 @@
+{
+ "search": {
+  "cand": [
+   {
+    "visible": "Downeaster ↗",
+    "href": "https://www.amtrak.com/downeaster-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Downeaster (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Northeast Regional ↗",
+    "href": "https://www.amtrak.com/northeast-regional-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Northeast Regional (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Amtrak Hartford Line ↗",
+    "href": "https://www.amtrak.com/amtrak-hartford-line-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Amtrak Hartford Line (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Empire Service ↗",
+    "href": "https://www.amtrak.com/empire-service-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Empire Service (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Carolinian ↗",
+    "href": "https://www.amtrak.com/routes",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Carolinian (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Palmetto ↗",
+    "href": "https://www.amtrak.com/silver-service-palmetto-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Palmetto (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Silver Meteor ↗",
+    "href": "https://www.amtrak.com/silver-service-palmetto-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Silver Meteor (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Floridian ↗",
+    "href": "https://www.amtrak.com/floridian-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Floridian (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Portland · Portland (POR) ↗",
+    "href": "https://www.amtrak.com/stations/por.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Portland · Portland (POR) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Boston · North Station (BON) ↗",
+    "href": "https://www.amtrak.com/stations/bon.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Boston · North Station (BON) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Boston · South Station (BOS) ↗",
+    "href": "https://www.amtrak.com/stations/bos.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Boston · South Station (BOS) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Boston · Back Bay Station (BBY) ↗",
+    "href": "https://www.amtrak.com/stations/bby.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Boston · Back Bay Station (BBY) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Providence · Amtrak/MBTA Station (PVD) ↗",
+    "href": "https://www.amtrak.com/stations/pvd.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Providence · Amtrak/MBTA Station (PVD) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Hartford · Hartford (HFD) ↗",
+    "href": "https://www.amtrak.com/stations/hfd.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Hartford · Hartford (HFD) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "New Haven · Union Station (NHV) ↗",
+    "href": "https://www.amtrak.com/stations/nhv.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "New Haven · Union Station (NHV) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Rensselaer · Albany (ALB) ↗",
+    "href": "https://www.amtrak.com/stations/alb.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Rensselaer · Albany (ALB) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "New York · Moynihan Train Hall at Penn Sta. (NYP) ↗",
+    "href": "https://www.amtrak.com/stations/nyp.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "New York · Moynihan Train Hall at Penn Sta. (NYP) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "MTA station details · alignment not mapped ↗",
+    "href": "https://www.mta.info/stations/stony-brook",
+    "rendered": true,
+    "inClosed": false,
+    "name": "MTA station details · alignment not mapped · Stony Brook (opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Trenton · Trenton (TRE) ↗",
+    "href": "https://www.amtrak.com/stations/tre.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Trenton · Trenton (TRE) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Philadelphia · William H Gray III 30th St. Sta. (PHL) ↗",
+    "href": "https://www.amtrak.com/stations/phl.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Philadelphia · William H Gray III 30th St. Sta. (PHL) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Baltimore · Penn Station (BAL) ↗",
+    "href": "https://www.amtrak.com/stations/bal.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Baltimore · Penn Station (BAL) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Washington · Union Station (WAS) ↗",
+    "href": "https://www.amtrak.com/stations/was.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Washington · Union Station (WAS) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Richmond · Main Street Station (RVM) ↗",
+    "href": "https://www.amtrak.com/stations/rvm.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Richmond · Main Street Station (RVM) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Richmond · Staples Mill Road Station (RVR) ↗",
+    "href": "https://www.amtrak.com/stations/rvr.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Richmond · Staples Mill Road Station (RVR) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Norfolk · Norfolk (NFK) ↗",
+    "href": "https://www.amtrak.com/stations/nfk.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Norfolk · Norfolk (NFK) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Raleigh · Union Station (RGH) ↗",
+    "href": "https://www.amtrak.com/stations/rgh.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Raleigh · Union Station (RGH) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Charlotte · Charlotte (CLT) ↗",
+    "href": "https://www.amtrak.com/stations/clt.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Charlotte · Charlotte (CLT) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Fayetteville · Fayetteville (FAY) ↗",
+    "href": "https://www.amtrak.com/stations/fay.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Fayetteville · Fayetteville (FAY) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "North Charleston · Charleston (CHS) ↗",
+    "href": "https://www.amtrak.com/stations/chs.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "North Charleston · Charleston (CHS) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Savannah · Savannah (SAV) ↗",
+    "href": "https://www.amtrak.com/stations/sav.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Savannah · Savannah (SAV) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Jacksonville · Jacksonville (JAX) ↗",
+    "href": "https://www.amtrak.com/stations/jax.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Jacksonville · Jacksonville (JAX) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Orlando · Orlando (ORL) ↗",
+    "href": "https://www.amtrak.com/stations/orl.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Orlando · Orlando (ORL) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Tampa · Union Station (TPA) ↗",
+    "href": "https://www.amtrak.com/stations/tpa.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Tampa · Union Station (TPA) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Fort Lauderdale · Fort Lauderdale (FTL) ↗",
+    "href": "https://www.amtrak.com/stations/ftl.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Fort Lauderdale · Fort Lauderdale (FTL) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Miami · Miami (MIA) ↗",
+    "href": "https://www.amtrak.com/stations/mia.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Miami · Miami (MIA) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Official source ↗",
+    "href": "https://www3.septa.org/developer/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Official source · SEPTA (opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Official source ↗",
+    "href": "https://developer.njtransit.com/registration/appdoc?app=GTFS-RAIL",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Official source · NJ TRANSIT (opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Official source ↗",
+    "href": "https://www.mta.info/stations/stony-brook",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Official source · LIRR (opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "FRA/BTS alignments ↗",
+    "href": "https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Routes/FeatureServer/0",
+    "rendered": true,
+    "inClosed": false,
+    "name": "FRA/BTS alignments (opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Amtrak station dataset ↗",
+    "href": "https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Stations/FeatureServer/0",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Amtrak station dataset (opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Natural Earth boundaries ↗",
+    "href": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Natural Earth boundaries (opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.septa.org/fares/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Agency site · SEPTA official ticket information for segment 1, Philadelphia · 30th Street to Trenton Transit Center (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.njtransit.com/tickets/train-tickets",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Agency site · NJ TRANSIT official ticket information for segment 2, Trenton Transit Center to New York Penn Station (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Agency site · Long Island Rail Road official ticket information for segment 3, New York Penn Station to Huntington (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Agency site · Long Island Rail Road official ticket information for segment 4, Huntington to Stony Brook (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.amtrak.com/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Agency site · Amtrak official ticket information for segment 1, Philadelphia · 30th Street to New York Penn Station (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Agency site · Long Island Rail Road official ticket information for segment 2, New York Penn Station to Huntington (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Agency site · Long Island Rail Road official ticket information for segment 3, Huntington to Stony Brook (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Built together",
+    "href": "https://github.com/Oski1st/sbu-2026",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Built together (opens in a new tab)",
+    "role": "link"
+   }
+  ],
+  "base": [
+   {
+    "visible": "Downeaster ↗",
+    "href": "https://www.amtrak.com/downeaster-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Downeaster (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Northeast Regional ↗",
+    "href": "https://www.amtrak.com/northeast-regional-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Northeast Regional (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Amtrak Hartford Line ↗",
+    "href": "https://www.amtrak.com/amtrak-hartford-line-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Amtrak Hartford Line (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Empire Service ↗",
+    "href": "https://www.amtrak.com/empire-service-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Empire Service (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Carolinian ↗",
+    "href": "https://www.amtrak.com/routes",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Carolinian (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Palmetto ↗",
+    "href": "https://www.amtrak.com/silver-service-palmetto-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Palmetto (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Silver Meteor ↗",
+    "href": "https://www.amtrak.com/silver-service-palmetto-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Silver Meteor (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Floridian ↗",
+    "href": "https://www.amtrak.com/floridian-train",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Floridian (official source, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Portland · Portland (POR) ↗",
+    "href": "https://www.amtrak.com/stations/por.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Portland · Portland (POR) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Boston · North Station (BON) ↗",
+    "href": "https://www.amtrak.com/stations/bon.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Boston · North Station (BON) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Boston · South Station (BOS) ↗",
+    "href": "https://www.amtrak.com/stations/bos.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Boston · South Station (BOS) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Boston · Back Bay Station (BBY) ↗",
+    "href": "https://www.amtrak.com/stations/bby.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Boston · Back Bay Station (BBY) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Providence · Amtrak/MBTA Station (PVD) ↗",
+    "href": "https://www.amtrak.com/stations/pvd.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Providence · Amtrak/MBTA Station (PVD) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Hartford · Hartford (HFD) ↗",
+    "href": "https://www.amtrak.com/stations/hfd.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Hartford · Hartford (HFD) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "New Haven · Union Station (NHV) ↗",
+    "href": "https://www.amtrak.com/stations/nhv.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "New Haven · Union Station (NHV) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Rensselaer · Albany (ALB) ↗",
+    "href": "https://www.amtrak.com/stations/alb.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Rensselaer · Albany (ALB) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "New York · Moynihan Train Hall at Penn Sta. (NYP) ↗",
+    "href": "https://www.amtrak.com/stations/nyp.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "New York · Moynihan Train Hall at Penn Sta. (NYP) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "MTA station details · alignment not mapped ↗",
+    "href": "https://www.mta.info/stations/stony-brook",
+    "rendered": true,
+    "inClosed": false,
+    "name": "MTA station details · alignment not mapped ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Trenton · Trenton (TRE) ↗",
+    "href": "https://www.amtrak.com/stations/tre.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Trenton · Trenton (TRE) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Philadelphia · William H Gray III 30th St. Sta. (PHL) ↗",
+    "href": "https://www.amtrak.com/stations/phl.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Philadelphia · William H Gray III 30th St. Sta. (PHL) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Baltimore · Penn Station (BAL) ↗",
+    "href": "https://www.amtrak.com/stations/bal.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Baltimore · Penn Station (BAL) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Washington · Union Station (WAS) ↗",
+    "href": "https://www.amtrak.com/stations/was.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Washington · Union Station (WAS) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Richmond · Main Street Station (RVM) ↗",
+    "href": "https://www.amtrak.com/stations/rvm.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Richmond · Main Street Station (RVM) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Richmond · Staples Mill Road Station (RVR) ↗",
+    "href": "https://www.amtrak.com/stations/rvr.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Richmond · Staples Mill Road Station (RVR) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Norfolk · Norfolk (NFK) ↗",
+    "href": "https://www.amtrak.com/stations/nfk.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Norfolk · Norfolk (NFK) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Raleigh · Union Station (RGH) ↗",
+    "href": "https://www.amtrak.com/stations/rgh.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Raleigh · Union Station (RGH) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Charlotte · Charlotte (CLT) ↗",
+    "href": "https://www.amtrak.com/stations/clt.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Charlotte · Charlotte (CLT) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Fayetteville · Fayetteville (FAY) ↗",
+    "href": "https://www.amtrak.com/stations/fay.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Fayetteville · Fayetteville (FAY) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "North Charleston · Charleston (CHS) ↗",
+    "href": "https://www.amtrak.com/stations/chs.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "North Charleston · Charleston (CHS) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Savannah · Savannah (SAV) ↗",
+    "href": "https://www.amtrak.com/stations/sav.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Savannah · Savannah (SAV) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Jacksonville · Jacksonville (JAX) ↗",
+    "href": "https://www.amtrak.com/stations/jax.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Jacksonville · Jacksonville (JAX) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Orlando · Orlando (ORL) ↗",
+    "href": "https://www.amtrak.com/stations/orl.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Orlando · Orlando (ORL) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Tampa · Union Station (TPA) ↗",
+    "href": "https://www.amtrak.com/stations/tpa.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Tampa · Union Station (TPA) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Fort Lauderdale · Fort Lauderdale (FTL) ↗",
+    "href": "https://www.amtrak.com/stations/ftl.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Fort Lauderdale · Fort Lauderdale (FTL) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Miami · Miami (MIA) ↗",
+    "href": "https://www.amtrak.com/stations/mia.html",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Miami · Miami (MIA) (official station, opens in a new tab) ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Official source ↗",
+    "href": "https://www3.septa.org/developer/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Official source ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Official source ↗",
+    "href": "https://developer.njtransit.com/registration/appdoc?app=GTFS-RAIL",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Official source ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Official source ↗",
+    "href": "https://www.mta.info/stations/stony-brook",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Official source ↗",
+    "role": "link"
+   },
+   {
+    "visible": "FRA/BTS alignments ↗",
+    "href": "https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Routes/FeatureServer/0",
+    "rendered": true,
+    "inClosed": false,
+    "name": "FRA/BTS alignments ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Amtrak station dataset ↗",
+    "href": "https://services.arcgis.com/xOi1kZaI0eWDREZv/ArcGIS/rest/services/NTAD_Amtrak_Stations/FeatureServer/0",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Amtrak station dataset ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Natural Earth boundaries ↗",
+    "href": "https://www.naturalearthdata.com/about/terms-of-use/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Natural Earth boundaries ↗",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.septa.org/fares/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "SEPTA official ticket information",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.njtransit.com/tickets/train-tickets",
+    "rendered": true,
+    "inClosed": false,
+    "name": "NJ TRANSIT official ticket information",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Long Island Rail Road official ticket information",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Long Island Rail Road official ticket information",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.amtrak.com/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Amtrak official ticket information",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Long Island Rail Road official ticket information",
+    "role": "link"
+   },
+   {
+    "visible": "Agency site",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Long Island Rail Road official ticket information",
+    "role": "link"
+   },
+   {
+    "visible": "Built together",
+    "href": "https://github.com/Oski1st/sbu-2026",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Built together",
+    "role": "link"
+   }
+  ]
+ },
+ "journey-regional": {
+  "cand": [
+   {
+    "visible": "Get tickets from SEPTA↗",
+    "href": "https://www.septa.org/fares/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from SEPTA for segment 1, Philadelphia · 30th Street to Trenton Transit Center (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Built together",
+    "href": "https://github.com/Oski1st/sbu-2026",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Built together (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Get tickets from NJ TRANSIT↗",
+    "href": "https://www.njtransit.com/tickets/train-tickets",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from NJ TRANSIT for segment 2, Trenton Transit Center to New York Penn Station (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Get tickets from LIRR↗",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from LIRR for segment 3, New York Penn Station to Huntington (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Get tickets from LIRR↗",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from LIRR for segment 4, Huntington to Stony Brook (opens in a new tab)",
+    "role": "link"
+   }
+  ],
+  "base": [
+   {
+    "visible": "Get tickets from SEPTA↗",
+    "href": "https://www.septa.org/fares/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from SEPTA",
+    "role": "link"
+   },
+   {
+    "visible": "Built together",
+    "href": "https://github.com/Oski1st/sbu-2026",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Built together",
+    "role": "link"
+   },
+   {
+    "visible": "Get tickets from NJ TRANSIT↗",
+    "href": "https://www.njtransit.com/tickets/train-tickets",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from NJ TRANSIT",
+    "role": "link"
+   },
+   {
+    "visible": "Get tickets from LIRR↗",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from LIRR",
+    "role": "link"
+   },
+   {
+    "visible": "Get tickets from LIRR↗",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from LIRR",
+    "role": "link"
+   }
+  ]
+ },
+ "journey-greyhound": {
+  "cand": [
+   {
+    "visible": "Get tickets from Greyhound↗",
+    "href": "https://www.greyhound.com/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from Greyhound for segment 1, Boston to New York (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Built together",
+    "href": "https://github.com/Oski1st/sbu-2026",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Built together (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Get tickets from LIRR↗",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from LIRR for segment 2, New York to Stony Brook (opens in a new tab)",
+    "role": "link"
+   }
+  ],
+  "base": [
+   {
+    "visible": "Get tickets from Greyhound↗",
+    "href": "https://www.greyhound.com/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from Greyhound",
+    "role": "link"
+   },
+   {
+    "visible": "Built together",
+    "href": "https://github.com/Oski1st/sbu-2026",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Built together",
+    "role": "link"
+   },
+   {
+    "visible": "Get tickets from LIRR↗",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Get tickets from LIRR",
+    "role": "link"
+   }
+  ]
+ },
+ "wallet-regional": {
+  "cand": [
+   {
+    "visible": "SEPTA payment options ↗ (opens in a new tab)",
+    "href": "https://www.septa.org/fares/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "SEPTA payment options (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "NJ TRANSIT app & tickets ↗ (opens in a new tab)",
+    "href": "https://www.njtransit.com/tickets/train-tickets",
+    "rendered": true,
+    "inClosed": false,
+    "name": "NJ TRANSIT app & tickets (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "MTA TrainTime & tickets ↗ (opens in a new tab)",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "MTA TrainTime & tickets (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "MTA TrainTime & tickets ↗ (opens in a new tab)",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "MTA TrainTime & tickets (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Check SEPTA feed information ↗ (opens in a new tab)",
+    "href": "https://api.septa.org/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Check SEPTA feed information ↗ (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Built together",
+    "href": "https://github.com/Oski1st/sbu-2026",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Built together (opens in a new tab)",
+    "role": "link"
+   }
+  ],
+  "base": [
+   {
+    "visible": "SEPTA payment options ↗ (opens in a new tab)",
+    "href": "https://www.septa.org/fares/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "SEPTA payment options (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "NJ TRANSIT app & tickets ↗ (opens in a new tab)",
+    "href": "https://www.njtransit.com/tickets/train-tickets",
+    "rendered": true,
+    "inClosed": false,
+    "name": "NJ TRANSIT app & tickets (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "MTA TrainTime & tickets ↗ (opens in a new tab)",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "MTA TrainTime & tickets (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "MTA TrainTime & tickets ↗ (opens in a new tab)",
+    "href": "https://www.mta.info/traintime",
+    "rendered": true,
+    "inClosed": false,
+    "name": "MTA TrainTime & tickets (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Check SEPTA feed information ↗ (opens in a new tab)",
+    "href": "https://api.septa.org/",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Check SEPTA feed information ↗ (opens in a new tab)",
+    "role": "link"
+   },
+   {
+    "visible": "Built together",
+    "href": "https://github.com/Oski1st/sbu-2026",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Built together",
+    "role": "link"
+   }
+  ]
+ },
+ "wallet-integration": {
+  "cand": [
+   {
+    "visible": "Built together",
+    "href": "https://github.com/Oski1st/sbu-2026",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Built together (opens in a new tab)",
+    "role": "link"
+   }
+  ],
+  "base": [
+   {
+    "visible": "Built together",
+    "href": "https://github.com/Oski1st/sbu-2026",
+    "rendered": true,
+    "inClosed": false,
+    "name": "Built together",
+    "role": "link"
+   }
+  ]
+ }
+}
