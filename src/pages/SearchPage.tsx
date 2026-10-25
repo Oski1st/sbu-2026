@@ -75,7 +75,16 @@ export default function SearchPage() {
   const shownPreferenceKey = JSON.stringify([formKey, criteria.departureDate, criteria.departureTime]);
   const [invalidDraftFor, setInvalidDraftFor] = useState<string | null>(null);
   const draftInvalid = invalidDraftFor === shownPreferenceKey;
-  const [announcement, setAnnouncement] = useState("");
+  // The preference the last auto-refresh applied; announced only while the results still show it
+  // (Back/Forward, a new search or "Show demo routes" make it stale).
+  const [refreshed, setRefreshed] = useState<Pick<SearchState, "departureDate" | "departureTime"> | null>(null);
+  const announcement =
+    refreshed &&
+    hasPlanningPreference &&
+    refreshed.departureDate === criteria.departureDate &&
+    refreshed.departureTime === criteria.departureTime
+      ? `Results updated for ${describePlanningPreference(refreshed.departureDate, refreshed.departureTime)}`
+      : "";
   /** A chosen Date or Time re-runs the current search; replace, so typing never fills Back. */
   function applyPreferences(preferences: Pick<SearchState, "departureDate" | "departureTime"> | null) {
     if (!preferences) {
@@ -86,7 +95,7 @@ export default function SearchPage() {
     const current = new URLSearchParams(window.location.search);
     const next = writePlanningPreference(preferences, current);
     if (next.toString() !== current.toString()) setSearchParams(next, { replace: true });
-    setAnnouncement(`Results updated for ${describePlanningPreference(preferences.departureDate, preferences.departureTime)}`);
+    setRefreshed(preferences);
   }
   const setOrder = (order: string) => updateCriteria({ order });
   const setMode = (mode: string) => updateCriteria({ mode });
@@ -151,7 +160,7 @@ export default function SearchPage() {
         ? writePlanningPreference(preferences, next)
         : next,
     );
-    setAnnouncement("");
+    setRefreshed(null);
     setFormVersion((version) => version + 1);
     setCompareIds([]);
     setCompareOpen(false);

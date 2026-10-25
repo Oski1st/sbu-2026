@@ -16,10 +16,14 @@ new tab, and the user confirms times and fares there.
    uses the leg's own sample date.
 
 The Search date applies to the trip's first departure. A later leg keeps its day offset,
-so a leg that departs the next morning gets the next day. When draft #49 (planning
-date/time) lands, it carries `?date=` through Search, Journey and Wallet links and shifts
-the sample legs. Because the day offset is measured from the trip's first leg, both
-approaches give the same date.
+so a leg that departs the next morning gets the next day.
+
+Since RC4 (#49 plus the Search auto-refresh), a URL with `?date` and/or `?time` shifts the
+sample legs to that planning date and time on Search, Journey and Wallet. Those pages pass
+`shiftedTimeline` to `PurchaseLink`, so each link books its leg's own shifted date, exactly
+as the timeline shows it. Example: `?date=2026-11-12&time=23:45` moves the Amtrak express
+(sample start 8:30 AM) to 12:15 AM on Nov 13, and its link, label and copied details all say
+Nov 13 (`qa/purchase-links-click.cjs` step 4b). Without `?date`/`?time`, the list above applies.
 
 ## Operators
 
