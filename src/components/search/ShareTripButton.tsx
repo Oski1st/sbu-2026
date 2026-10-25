@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { Check, Copy, Share2, X } from "lucide-react";
 import type { Trip } from "../../types";
-export function ShareTripButton({ trip }: { trip: Trip }) {
+export function ShareTripButton({ trip, search = "" }: { trip: Trip; search?: string }) {
   const [status, setStatus] = useState<"idle" | "copied" | "manual">("idle");
   const [url, setUrl] = useState("");
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -12,7 +12,7 @@ export function ShareTripButton({ trip }: { trip: Trip }) {
 
   async function share() {
     const link = new URL(
-      `/journey/${encodeURIComponent(trip.id)}`,
+      `/journey/${encodeURIComponent(trip.id)}${search}`,
       window.location.origin,
     ).href;
     setUrl(link);

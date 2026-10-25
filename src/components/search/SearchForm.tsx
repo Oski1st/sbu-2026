@@ -139,7 +139,7 @@ export function SearchForm({
                 />
               </label>
             </div>
-            <small>Saved in this share link. Sample itinerary times do not change.</small>
+            <small>Saved in this share link. Sample timelines shift to your planning preference; they are not live schedules.</small>
           </div>
         </div>
         <button className="search-button" type="submit">
