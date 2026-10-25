@@ -5,9 +5,11 @@ type DelaySimulationProps = {
   affectedLeg: Leg;
   isActive: boolean;
   onToggle: () => void;
+  /** False for one-leg trips: there is no connection to protect, only the arrival moves. */
+  hasConnection?: boolean;
 };
 
-export function DelaySimulation({ affectedLeg, isActive, onToggle }: DelaySimulationProps) {
+export function DelaySimulation({ affectedLeg, isActive, onToggle, hasConnection = true }: DelaySimulationProps) {
   const agency = agencyStyles[affectedLeg.agency];
 
   return (
@@ -17,7 +19,9 @@ export function DelaySimulation({ affectedLeg, isActive, onToggle }: DelaySimula
           <div>
             <p className="text-xs font-extrabold uppercase tracking-[0.13em] text-slate-500">Journey lab</p>
             <h2 id="delay-simulator-title" className="mt-1 text-xl font-bold tracking-tight text-slate-950">Simulate a delay</h2>
-            <p className="mt-2 max-w-lg text-sm leading-6 text-slate-600">See how OneLine helps when a connection is at risk. This is a demo scenario, never a live alert.</p>
+            <p className="mt-2 max-w-lg text-sm leading-6 text-slate-600">{hasConnection
+                ? "See how OneLine helps when a connection is at risk."
+                : "This trip has no connection, so a delay only moves your sample arrival time."} This is a demo scenario, never a live alert.</p>
           </div>
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-lg" aria-hidden="true">◷</span>
         </div>
