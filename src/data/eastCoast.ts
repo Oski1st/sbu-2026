@@ -291,25 +291,25 @@ export const featuredCorridors = [
   {
     origin: "Boston",
     destination: "New York",
-    label: "Show sample trips",
+    label: "Sample trips",
     region: "NEW ENGLAND",
   },
   {
     origin: "New York",
     destination: "Washington, DC",
-    label: "Show sample trips",
+    label: "Sample trips",
     region: "MID-ATLANTIC",
   },
   {
     origin: "Raleigh",
     destination: "Charlotte",
-    label: "Show sample trips",
+    label: "Sample trips",
     region: "THE CAROLINAS",
   },
   {
     origin: "Orlando",
     destination: "Miami",
-    label: "Show sample trips",
+    label: "Sample trips",
     region: "FLORIDA",
   },
 ];

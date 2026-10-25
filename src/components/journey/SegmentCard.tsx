@@ -82,7 +82,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
           <p className="mt-4 text-sm font-medium text-slate-700">
             {leg.line}
             <span className="mx-2 text-slate-300" aria-hidden="true">•</span>
-            Journey segment {index + 1}
+            Leg {index + 1}
           </p>
 
           {leg.mode === "bus" && <p className="mt-3 rounded-xl bg-slate-50 p-3 text-sm leading-6 text-slate-600"><strong>Sample coach corridor. </strong>This segment may merge several city-to-city sample stops. Intermediate stops, vehicle changes and rest breaks are not shown or verified. Confirm the full itinerary and breaks with the operator; this is not a claim of nonstop service.</p>}

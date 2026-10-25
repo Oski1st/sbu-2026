@@ -68,7 +68,7 @@ export function JourneyDemoControls({ destination, legs, state, step, stepCount,
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="text-xs font-extrabold uppercase tracking-[0.13em] text-emerald-800">Manual demo</p>
-          <h2 id="demo-journey-title" className="mt-1 text-xl font-bold tracking-tight text-emerald-950">Step through the trip to {destination}</h2>
+          <h2 id="demo-journey-title" className="mt-1 text-xl font-bold tracking-tight text-emerald-950">Steps to {destination}</h2>
           <p className="mt-1 max-w-xl text-sm leading-6 text-emerald-950/80">You tap through each step yourself. It doesn’t use GPS, confirm boarding, or show live arrivals.</p>
         </div>
         <span className="rounded-full bg-white px-3 py-1.5 text-xs font-bold text-emerald-900 ring-1 ring-emerald-200">{state.isActive ? `Step ${currentPosition} of ${stepCount}` : "Ready to start"}</span>

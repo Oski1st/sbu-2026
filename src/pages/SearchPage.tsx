@@ -144,9 +144,9 @@ export default function SearchPage() {
             </span>
           </h1>
           <p>
-            See each leg of a multi-operator trip on one page,
-            <br className="desktop-break" /> then buy tickets on each operator’s
-            own site.
+            Every leg of your trip on one page.
+            <br className="desktop-break" /> You buy tickets from each operator
+            directly.
           </p>
           <div className="hero-meta">
             <span>
@@ -454,7 +454,7 @@ export default function SearchPage() {
                 </span>
                 <span className="eyebrow">WHY WE BUILT IT</span>
                 <h3>
-                  Every leg
+                  Every leg{" "}
                   <br />
                   on one page.
                 </h3>
