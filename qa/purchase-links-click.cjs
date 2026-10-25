@@ -38,6 +38,9 @@ const CITY = { philadelphia: "fd509c08-0a3e-4a44-b933-79f4a9db13da", newYork: "c
     return anchor;
   }
   const routeCard = (title) => page.locator(".route-card").filter({ has: page.getByRole("heading", { name: title }) });
+  // With #49 a Search ?date= also shifts the sample timeline, so Journey/Wallet URLs carry ?date&time.
+  const journeyUrl = (id) => new RegExp(`/journey/${id}(\\?|$)`);
+  const walletUrl = (id) => new RegExp(`/wallet/${id}(\\?|$)`);
 
   // 1. Search (?date=) → RouteCard details: SEPTA trip planner, NJ TRANSIT, LIRR, Amtrak.
   await page.goto(`${base}/?from=Philadelphia&to=Stony%20Brook&date=${DATE}`);
@@ -55,7 +58,7 @@ const CITY = { philadelphia: "fd509c08-0a3e-4a44-b933-79f4a9db13da", newYork: "c
 
   // 2. Choose the Amtrak route → Journey keeps the Search date (remembered in this tab).
   await card.getByRole("link", { name: /Choose this route/ }).click();
-  await page.waitForURL("**/journey/amtrak-connection");
+  await page.waitForURL(journeyUrl("amtrak-connection"));
   await page.getByRole("heading", { name: "Journey timeline" }).waitFor();
   const journeyLinks = page.locator("main a[data-purchase-kind]");
   log("Journey · one visible ticket link per segment, none inert or hidden", await journeyLinks.count() === 3 &&
@@ -103,13 +106,34 @@ const CITY = { philadelphia: "fd509c08-0a3e-4a44-b933-79f4a9db13da", newYork: "c
   await open(wallet.nth(1), "Wallet · LIRR → official TrainTime page", "https://www.mta.info/traintime");
   if (shots) await page.screenshot({ path: path.join(shots, "wallet-amtrak-1280.png"), fullPage: true });
 
+  // 4b. #49 + RC4: a Search date AND time shift the Journey timeline, and each ticket link books the
+  //     same shifted leg date (23:45 moves the Amtrak express to 12:15 AM on the next day).
+  const NEXT_DAY = "2026-11-13";
+  await page.goto(`${base}/?from=Philadelphia&to=Stony%20Brook&date=${DATE}&time=23:45`);
+  card = routeCard("The express connection");
+  await card.getByRole("link", { name: /Choose this route/ }).click();
+  await page.waitForURL(journeyUrl("amtrak-connection"));
+  await page.getByRole("heading", { name: "Journey timeline" }).waitFor();
+  const shiftedDeparture = (await page.locator(".journey-steps time").first().textContent()).replace(/\s+/g, " ").trim();
+  const shiftedAmtrak = await open(page.locator("main a[data-purchase-kind]").nth(0), "Journey (date+time) · Amtrak link books the shifted leg date", amtrak("PHL", "NYP", NEXT_DAY));
+  const shiftedCopy = await page.locator(".amtrak-handoff input").first().inputValue();
+  log("Journey (date+time) · timeline, link label and copied details all say 12:15 AM, Nov 13",
+    shiftedDeparture === "12:15 AM · Nov 13" && shiftedAmtrak.name.includes("on Amtrak (Nov 13)") && /Fri, Nov 13, 2026 · dep 12:15\sAM/.test(shiftedCopy),
+    `${shiftedDeparture} | ${shiftedAmtrak.name} | ${shiftedCopy}`);
+  await page.locator('#main-content a[href^="/wallet/amtrak-connection?"]').first().click();
+  await page.waitForURL(walletUrl("amtrak-connection"));
+  await page.locator(".ol-ticket-list").waitFor();
+  const walletSchedule = (await page.locator(".ol-ticket-list .ol-schedule").first().textContent()).replace(/\s+/g, " ");
+  await open(page.locator(".ol-ticket-list a[data-purchase-kind]").nth(0), "Wallet (date+time) · Amtrak link books the shifted leg date", amtrak("PHL", "NYP", NEXT_DAY));
+  log("Wallet (date+time) · ticket time matches the Journey timeline", /Nov 13, 12:15 AM/.test(walletSchedule), walletSchedule);
+
   // 5. FlixBus and Greyhound from Search, then Journey and Wallet.
   await page.goto(`${base}/?from=Philadelphia&to=New%20York&date=${DATE}`);
   card = routeCard("FlixBus coach concept");
   await card.getByRole("button", { name: "View route details" }).click();
   await open(card.locator("a[data-purchase-kind]").nth(0), "Search · FlixBus → exact shop search", flix("shop.flixbus.com", CITY.philadelphia, CITY.newYork, DATE));
   await card.getByRole("link", { name: /Choose this route/ }).click();
-  await page.waitForURL("**/journey/east-philadelphia--new-york--flixbus");
+  await page.waitForURL(journeyUrl("east-philadelphia--new-york--flixbus"));
   await page.getByRole("heading", { name: "Journey timeline" }).waitFor();
   await open(page.locator("main a[data-purchase-kind]").nth(0), "Journey · FlixBus uses the Search date", flix("shop.flixbus.com", CITY.philadelphia, CITY.newYork, DATE));
   await page.goto(`${base}/?from=Boston&to=New%20York&date=${DATE}`);
@@ -117,9 +141,9 @@ const CITY = { philadelphia: "fd509c08-0a3e-4a44-b933-79f4a9db13da", newYork: "c
   await card.getByRole("button", { name: "View route details" }).click();
   await open(card.locator("a[data-purchase-kind]").nth(0), "Search · Greyhound → exact shop search", flix("shop.greyhound.com", CITY.boston, CITY.newYork, DATE));
   await card.getByRole("link", { name: /Choose this route/ }).click();
-  await page.waitForURL("**/journey/east-boston--new-york--greyhound");
-  await page.locator('#main-content a[href="/wallet/east-boston--new-york--greyhound"]').first().click();
-  await page.waitForURL("**/wallet/east-boston--new-york--greyhound");
+  await page.waitForURL(journeyUrl("east-boston--new-york--greyhound"));
+  await page.locator('#main-content a[href^="/wallet/east-boston--new-york--greyhound"]').first().click();
+  await page.waitForURL(walletUrl("east-boston--new-york--greyhound"));
   await page.locator(".ol-ticket-list").waitFor();
   await open(page.locator(".ol-ticket-list a[data-purchase-kind]").nth(0), "Wallet · Greyhound uses the Search date", flix("shop.greyhound.com", CITY.boston, CITY.newYork, DATE));
 
