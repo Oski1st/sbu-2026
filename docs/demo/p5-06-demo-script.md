@@ -10,7 +10,7 @@ Person 5 · docs only.
 | Browser check | Every step below was clicked through in Google Chrome 156.0.8078.47 (installed, Playwright-driven) at 1440×900 on macOS 26.6. **8/8 steps PASS**, no page or console errors. Click-through: `p5-06/verify-demo.mjs`; results: `p5-06/demo-steps-rc1-2d0b5ef.json` |
 | Screenshots | `docs/demo/p5-06/01-…10-*.png` (local app only; no personal data) |
 
-**RC2 update:** the same click-through also passes **8/8** on RC2 `39de4ba0d104f53b56cdb817b03bbe63c3aa924f` (`docs/qa-device/results/p5-final-rc2-demo.json`). RC2 fixes **F1** (Search focus now 5.05:1) and **F2** (date no longer clipped at ~375px). If you present RC2, drop the first row of the known-limits table; every step and line below is unchanged.
+**RC2 update (P5-07):** the same click-through passes **8/8** on RC2 `39de4ba0d104f53b56cdb817b03bbe63c3aa924f` (screenshots in `docs/qa-device/p5-07/demo-rc2/`, write-up in `docs/qa-device/p5-07-rc2.md`). RC2 fixes **F1** (every Search, nav and filter focus ring ≥ 4.51:1) and **F2** (Date and Time stack, nothing clipped at 361–430px). **Present RC2.** The only visible difference is in step 2: Date and Time now sit one above the other at desktop width. The known-limits table below reflects RC2.
 
 **Before you start:** serve RC1 locally as above, open `http://127.0.0.1:<port>/` in a **desktop-width** window (≥1280px wide, 100% zoom), and close other tabs. Don't present the Render URL; it is not this build and it cold-starts.
 
@@ -25,7 +25,7 @@ Spoken lines total **219 words**, about 1:30 at ~150 wpm. The rest of each slot 
 
 ### 2 · Search with autocomplete — 0:20–0:50
 - **Click:** **From**, select all, type `phil`, press **↓**, press **Enter**. Then **To**, type `stony`, and **click** "Stony Brook". In **Date**, click the month and type `11152026`. Click **Find my way**.
-- **Expected screen:** the suggestion list while typing (`02-autocomplete.png`), then **2 sample connections**: the scenic SEPTA + NJ TRANSIT + LIRR route and the express Amtrak + LIRR route. The URL ends `?date=2026-11-15` (`03-results.png`).
+- **Expected screen:** the suggestion list while typing (`02-autocomplete.png`), then **2 sample connections**: the scenic SEPTA + NJ TRANSIT + LIRR route and the express Amtrak + LIRR route. The URL ends `?date=2026-11-15` (`03-results.png`). On RC2 the **Date and Time fields are stacked** (Date above Time) beside **Find my way**; type the date into the upper field.
 - **Say:** "Autocomplete works with the keyboard or the mouse, and it only offers cities in our 24-city sample catalogue. The date is saved in the share link. It's a planning preference: these are sample itineraries, not a live timetable."
 
 ### 3 · Rail map — 0:50–1:20
@@ -65,15 +65,16 @@ If the feed returns **"The feed returned no active trains. This does not confirm
 
 | Avoid | Why | Status |
 | --- | --- | --- |
-| Narrow windows (<400px) or a phone | **F2:** around 375px the date year is clipped. **F1:** the Search field focus line is faint (2.3:1) | Known; Person 3 |
+| A real phone, real zoom or a screen reader | F1/F2 are fixed on RC2 by measurement (focus ≥ 4.51:1, no date clipping 361–430px), but no person has confirmed them on hardware yet | Person 4 (P5D-RC2-HUMAN) |
+| Pointing at the small grey footnotes | Results disclaimer 3.20:1, hackathon note 2.93:1, region labels 3.56:1, all below 4.5:1 | Person 3 |
 | Claiming the date changes the trip | Itinerary times always start 8:00 AM on Oct 24. The date is a saved preference only (dated timetables, #37, are not in RC1) | Disclosed in the UI |
 | Non-demo city pairs when talking about prices | Only the Philadelphia→Stony Brook demo has sample fares; other routes say "Check fares with the operator" | Product gap; Person 3 adding sourced ranges |
 | Raleigh→Fayetteville, Charlotte→Charleston, Boston↔Albany, New York→Stony Brook | Sample rail routes detour (e.g. Raleigh→Fayetteville 8h 50m via Richmond); NY–Stony Brook is 180 min vs ~110 published | Person 3 (P5D-DATA33) |
 | Simulate delay on long-transfer routes | It always warns, even with plenty of slack. On the demo route the warning is genuinely right | Person 2 (P5D-JOURNEY33) |
 | Keyboard-only through the final demo step | Focus drops to the page when Next disables at the last step. Use the mouse for steps | Person 2 |
 | Header **Journey/Wallet** after opening a shared Journey link | Can land on the empty "/journey" page. Navigate with the in-page buttons | Person 3 |
-| Opening `/journey` directly | Shows an old "being built by our team" notice; the fix in #38 `b1d7e59` isn't in RC1 | Fixed on #38, not in RC1 |
-| The map's Floridian line | Drawn only to western Pennsylvania though the route runs to Chicago; 7 source links don't announce "new tab" | Person 2 |
+| Opening `/journey` directly | Shows an old "being built by our team" notice; the fix in #38 `b1d7e59` isn't in RC1 or RC2 | Fixed on #38, not in RC2 |
+| The map's Floridian line | Drawn only to western Pennsylvania though the route runs to Chicago. On RC2, 26 new-tab link instances (map sources, "Agency site", "Get tickets from…", footer) don't announce "new tab" | Person 2 (P2-NEWTAB-K5) |
 | "It's live on Render" | RC1 is a local build; the Render site's identity is unverified | Never claim deployment |
 
 Human checks (real phone, VoiceOver, real 200% zoom) are still pending in P5D-HUMAN33; don't claim them.

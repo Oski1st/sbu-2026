@@ -1,0 +1,355 @@
+{
+  "base": "http://127.0.0.1:5181",
+  "chrome": "156.0.8078.47",
+  "results": [
+    {
+      "id": "F1-origin",
+      "check": "focus ring: origin",
+      "result": "PASS",
+      "detail": {
+        "name": "origin",
+        "tag": "INPUT",
+        "cls": "mt-1 min-h-11 w-full rounded-xl border b",
+        "fv": true,
+        "kind": "border-bottom",
+        "width": "2px",
+        "color": "rgb(79,122,47)",
+        "against": "rgb(255,255,255) (search-section)",
+        "ratio": 5.05,
+        "active": false
+      }
+    },
+    {
+      "id": "F1-swap",
+      "check": "focus ring: swap origin and destination",
+      "result": "PASS",
+      "detail": {
+        "name": "Swap origin and destination",
+        "tag": "BUTTON",
+        "cls": "swap-button",
+        "fv": true,
+        "kind": "outline",
+        "width": "3px",
+        "color": "rgb(79,122,47)",
+        "against": "rgb(255,255,255) (search-section)",
+        "ratio": 5.05,
+        "active": false
+      }
+    },
+    {
+      "id": "F1-destination",
+      "check": "focus ring: destination",
+      "result": "PASS",
+      "detail": {
+        "name": "destination",
+        "tag": "INPUT",
+        "cls": "mt-1 min-h-11 w-full rounded-xl border b",
+        "fv": true,
+        "kind": "border-bottom",
+        "width": "2px",
+        "color": "rgb(79,122,47)",
+        "against": "rgb(255,255,255) (search-section)",
+        "ratio": 5.05,
+        "active": false
+      }
+    },
+    {
+      "id": "F1-departure-date",
+      "check": "focus ring: departure-date",
+      "result": "PASS",
+      "detail": {
+        "name": "departure-date",
+        "tag": "INPUT",
+        "cls": "",
+        "fv": true,
+        "kind": "outline",
+        "width": "2px",
+        "color": "rgb(79,122,47)",
+        "against": "rgb(255,255,255) (search-section)",
+        "ratio": 5.05,
+        "active": false
+      }
+    },
+    {
+      "id": "F1-departure-time",
+      "check": "focus ring: departure-time",
+      "result": "PASS",
+      "detail": {
+        "name": "departure-time",
+        "tag": "INPUT",
+        "cls": "",
+        "fv": true,
+        "kind": "outline",
+        "width": "2px",
+        "color": "rgb(79,122,47)",
+        "against": "rgb(255,255,255) (search-section)",
+        "ratio": 5.05,
+        "active": false
+      }
+    },
+    {
+      "id": "F1-find",
+      "check": "focus ring: find my way",
+      "result": "PASS",
+      "detail": {
+        "name": "Find my way",
+        "tag": "BUTTON",
+        "cls": "search-button",
+        "fv": true,
+        "kind": "outline",
+        "width": "3px",
+        "color": "rgb(79,122,47)",
+        "against": "rgb(255,255,255) (search-section)",
+        "ratio": 5.05,
+        "active": false
+      }
+    },
+    {
+      "id": "F1-nav",
+      "check": "nav pill rings visible (>= 3:1, incl. active pill)",
+      "result": "PASS",
+      "detail": [
+        {
+          "name": "Search",
+          "tag": "A",
+          "cls": "active",
+          "fv": true,
+          "kind": "outline-inset",
+          "width": "3px",
+          "color": "rgb(215,239,149)",
+          "against": "rgb(23,63,53) (active)",
+          "ratio": 9.27,
+          "active": true
+        },
+        {
+          "name": "Journey",
+          "tag": "A",
+          "cls": "",
+          "fv": true,
+          "kind": "outline-inset",
+          "width": "3px",
+          "color": "rgb(79,122,47)",
+          "against": "rgb(241,243,233) (NAV)",
+          "ratio": 4.51,
+          "active": false
+        },
+        {
+          "name": "Wallet",
+          "tag": "A",
+          "cls": "",
+          "fv": true,
+          "kind": "outline-inset",
+          "width": "3px",
+          "color": "rgb(79,122,47)",
+          "against": "rgb(241,243,233) (NAV)",
+          "ratio": 4.51,
+          "active": false
+        }
+      ]
+    },
+    {
+      "id": "F1-filters",
+      "check": "filter pill rings visible (>= 3:1, incl. pressed pill)",
+      "result": "PASS",
+      "detail": [
+        {
+          "name": "All transport",
+          "tag": "BUTTON",
+          "cls": "",
+          "fv": true,
+          "kind": "outline-inset",
+          "width": "3px",
+          "color": "rgb(215,239,149)",
+          "against": "rgb(36,77,62) (BUTTON)",
+          "ratio": 7.56,
+          "active": true
+        },
+        {
+          "name": "Rail only",
+          "tag": "BUTTON",
+          "cls": "",
+          "fv": true,
+          "kind": "outline-inset",
+          "width": "3px",
+          "color": "rgb(79,122,47)",
+          "against": "rgb(255,255,255) (BUTTON)",
+          "ratio": 5.05,
+          "active": false
+        },
+        {
+          "name": "Bus only",
+          "tag": "BUTTON",
+          "cls": "",
+          "fv": true,
+          "kind": "outline-inset",
+          "width": "3px",
+          "color": "rgb(79,122,47)",
+          "against": "rgb(255,255,255) (BUTTON)",
+          "ratio": 5.05,
+          "active": false
+        },
+        {
+          "name": "Rail + bus",
+          "tag": "BUTTON",
+          "cls": "",
+          "fv": true,
+          "kind": "outline-inset",
+          "width": "3px",
+          "color": "rgb(79,122,47)",
+          "against": "rgb(255,255,255) (BUTTON)",
+          "ratio": 5.05,
+          "active": false
+        }
+      ]
+    },
+    {
+      "id": "F1-all",
+      "check": "every keyboard stop in the first 30 has a >= 3:1 indicator",
+      "result": "PASS",
+      "detail": {
+        "stops": 30,
+        "weak": []
+      }
+    },
+    {
+      "id": "F2-361",
+      "check": "date/time fully visible at 361px",
+      "result": "PASS",
+      "detail": {
+        "stacked": true,
+        "dateW": 251,
+        "timeW": 251,
+        "docScrollW": 361,
+        "vw": 361
+      }
+    },
+    {
+      "id": "F2-375",
+      "check": "date/time fully visible at 375px",
+      "result": "PASS",
+      "detail": {
+        "stacked": true,
+        "dateW": 265,
+        "timeW": 265,
+        "docScrollW": 375,
+        "vw": 375
+      }
+    },
+    {
+      "id": "F2-389",
+      "check": "date/time fully visible at 389px",
+      "result": "PASS",
+      "detail": {
+        "stacked": true,
+        "dateW": 279,
+        "timeW": 279,
+        "docScrollW": 389,
+        "vw": 389
+      }
+    },
+    {
+      "id": "F2-390",
+      "check": "date/time fully visible at 390px",
+      "result": "PASS",
+      "detail": {
+        "stacked": true,
+        "dateW": 280,
+        "timeW": 280,
+        "docScrollW": 390,
+        "vw": 390
+      }
+    },
+    {
+      "id": "F2-400",
+      "check": "date/time fully visible at 400px",
+      "result": "PASS",
+      "detail": {
+        "stacked": true,
+        "dateW": 283,
+        "timeW": 283,
+        "docScrollW": 400,
+        "vw": 400
+      }
+    },
+    {
+      "id": "F2-413",
+      "check": "date/time fully visible at 413px",
+      "result": "PASS",
+      "detail": {
+        "stacked": true,
+        "dateW": 283,
+        "timeW": 283,
+        "docScrollW": 413,
+        "vw": 413
+      }
+    },
+    {
+      "id": "F2-414",
+      "check": "date/time fully visible at 414px",
+      "result": "PASS",
+      "detail": {
+        "stacked": true,
+        "dateW": 283,
+        "timeW": 283,
+        "docScrollW": 414,
+        "vw": 414
+      }
+    },
+    {
+      "id": "F2-430",
+      "check": "date/time fully visible at 430px",
+      "result": "PASS",
+      "detail": {
+        "stacked": true,
+        "dateW": 283,
+        "timeW": 283,
+        "docScrollW": 430,
+        "vw": 430
+      }
+    },
+    {
+      "id": "K5",
+      "check": "every visible new-tab link announces \"new tab\"",
+      "result": "FAIL (expected; P2-NEWTAB-K5)",
+      "detail": {
+        "total": 26,
+        "missing": {
+          "search+map": [
+            "MTA station details · alignment not mapped ↗",
+            "Official source ↗",
+            "Official source ↗",
+            "Official source ↗",
+            "FRA/BTS alignments ↗",
+            "Amtrak station dataset ↗",
+            "Natural Earth boundaries ↗",
+            "Built together"
+          ],
+          "search results": [
+            "MTA station details · alignment not mapped ↗",
+            "Official source ↗",
+            "Official source ↗",
+            "Official source ↗",
+            "FRA/BTS alignments ↗",
+            "Amtrak station dataset ↗",
+            "Natural Earth boundaries ↗",
+            "Agency site",
+            "Agency site",
+            "Agency site",
+            "Agency site",
+            "Built together"
+          ],
+          "journey": [
+            "Get tickets from SEPTA↗",
+            "Get tickets from NJ TRANSIT↗",
+            "Get tickets from LIRR↗",
+            "Get tickets from LIRR↗",
+            "Built together"
+          ],
+          "wallet": [
+            "Built together"
+          ]
+        }
+      }
+    }
+  ]
+}
