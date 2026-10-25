@@ -56,9 +56,25 @@
   select {
     outline-offset: 5px;
   }
+  /* Keyboard focus ring: #4f7a2f is >= 4.5:1 on every light surface (#fff,
+     #fbfcf8, #f8f9f3, #f1f3e9). Dark containers switch to lime (below). */
   :focus-visible {
-    outline: 3px solid #7da24b;
+    outline: 3px solid #4f7a2f;
     outline-offset: 5px;
+  }
+  .closing-banner :focus-visible,
+  .compare-tray :focus-visible {
+    outline-color: #d7ef95;
+  }
+  /* Pills that sit edge to edge with dark active/pressed neighbours: draw the
+     ring inside the pill so it never lands on the neighbour, lime on dark. */
+  .site-header nav a:focus-visible,
+  .transport-filters [role="group"] button:focus-visible {
+    outline-offset: -5px;
+  }
+  .site-header nav a.active:focus-visible,
+  .transport-filters [role="group"] button[aria-pressed="true"]:focus-visible {
+    outline-color: #d7ef95;
   }
   main:focus,
   #main-content:focus,
@@ -472,13 +488,16 @@
   letter-spacing: -0.4px;
   color: #284538;
   width: 100%;
-  padding: 2px 0;
-  border-bottom: 1px solid transparent;
+  padding: 2px 0 1px;
+  border-bottom: 2px solid transparent;
   border-radius: 0;
 }
-.location-field input:focus {
-  border-bottom-color: #97b47e;
-  outline: none;
+/* Single source of truth for From/To focus: a 2px underline (5.05:1 on the
+   white card). The transparent outline only shows in forced-colors mode. */
+.location-field input:focus-visible {
+  border-bottom-color: #4f7a2f;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
 }
 .swap-button {
   width: 32px;
@@ -526,7 +545,9 @@
 }
 .date-time-controls label {
   display: flex;
-  flex: 1 1 100px;
+  /* Side by side only when each input gets >= 144px, enough for the full
+     date and time values; otherwise the fields wrap onto their own rows. */
+  flex: 1 1 144px;
   min-width: 0;
   flex-direction: column;
   gap: 3px;
@@ -549,7 +570,7 @@
   padding: 4px 6px;
 }
 .date-time-controls input:focus-visible {
-  outline: 2px solid #97b47e;
+  outline: 2px solid #4f7a2f;
   outline-offset: 2px;
 }
 .date-field small {
@@ -561,15 +582,6 @@
 }
 .date-field > div {
   min-width: 0;
-}
-@media (max-width: 360px) {
-  .date-time-controls {
-    flex-direction: column;
-  }
-  .date-time-controls label {
-    flex: none;
-    width: 100%;
-  }
 }
 .search-button {
   display: inline-flex;

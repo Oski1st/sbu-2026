@@ -146,7 +146,7 @@ export function LocationAutocomplete({
             }
           }
         }}
-        className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-base text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-slate-950 focus:ring-2 focus:ring-slate-950/15 disabled:cursor-not-allowed disabled:bg-slate-100"
+        className="mt-1 min-h-11 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-base text-slate-950 placeholder:text-slate-400 disabled:cursor-not-allowed disabled:bg-slate-100"
       />
 
       <p id={statusId} className="sr-only" role="status" aria-live="polite">
