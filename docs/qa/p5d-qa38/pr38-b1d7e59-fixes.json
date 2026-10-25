@@ -1,0 +1,138 @@
+{
+  "base": "http://127.0.0.1:4187",
+  "label": "pr38-b1d7e59",
+  "at": "2026-10-25T06:32:35.013Z",
+  "results": [
+    {
+      "id": "F1",
+      "name": "typing 01/01/20270 is blocked",
+      "result": "FAIL",
+      "observed": {
+        "value": "0270-01-01",
+        "max": "9999-12-31",
+        "min": "0001-01-01",
+        "rangeOverflow": false,
+        "valid": true,
+        "msg": "",
+        "urlBefore": "/?from=Boston&to=Miami",
+        "urlAfter": "/?from=Boston&to=Miami&date=0270-01-01",
+        "urlDate": "0270-01-01",
+        "shownAfterSubmit": "0270-01-01",
+        "msgAfterSubmit": "",
+        "urlAndFormAgree": true
+      }
+    },
+    {
+      "id": "F2",
+      "name": "?date=0050-06-01 keeps the year",
+      "result": "PASS",
+      "observed": {
+        "shown": "0050-06-01"
+      }
+    },
+    {
+      "id": "F3",
+      "name": "no /favicon.ico 404",
+      "result": "PASS",
+      "observed": {
+        "faviconResponses": [],
+        "iconHref": "data:image/svg+xml,%3Csvg xmlns='http://",
+        "consoleErrors": []
+      }
+    },
+    {
+      "id": "F4",
+      "name": "SEPTA links go to www.septa.org",
+      "result": "PASS",
+      "observed": {
+        "count": 3,
+        "unique": [
+          "/journey/regional-connection -> https://www.septa.org/fares/",
+          "/wallet/regional-connection -> https://www.septa.org/fares/",
+          "/wallet/regional-connection -> https://api.septa.org/"
+        ],
+        "bad": []
+      }
+    },
+    {
+      "id": "F5",
+      "name": "Albany->Boston fastest lists Amtrak (arrives 3:30 PM) first",
+      "result": "PASS",
+      "observed": {
+        "first": "EXPLORE THIS CORRIDOR SAMPLE ITINERARY Amtrak rail concept Explore the corridor. Check actual services and fares with the operator. Check fares with the operator 8:00 AM Albany 7h 30m · Connections unverified 3:30 PM Boston Amtrak Concept route · Actual servic",
+        "second": "EXPLORE THIS CORRIDOR SAMPLE ITINERARY Greyhound coach concept Explore the corridor. Check actual services and fares with the operator. Check fares with the operator 8:30 AM Albany 7h 25m · Connections unverified 3:55 PM Boston Greyhound Concept route · Actual",
+        "third": "EXPLORE THIS CORRIDOR SAMPLE ITINERARY FlixBus coach concept Explore the corridor. Check actual services and fares with the operator. Check fares with the operator 9:00 AM Albany 7h 25m · Connections unverified 4:25 PM Boston FlixBus Concept route · Actual ser"
+      }
+    },
+    {
+      "id": "F6",
+      "name": "demo comparison says \"35 minutes sooner\"",
+      "result": "PASS",
+      "observed": {
+        "sentence": "The express connection gets you there 35 minutes sooner for $15 more in sample fares"
+      }
+    },
+    {
+      "id": "F7",
+      "name": "Wallet SEPTA panel never shows \"999 min\"",
+      "result": "PASS",
+      "observed": {
+        "lines": [
+          "Trenton · Train 9001",
+          "Delay not reported",
+          "Trenton · Train 9002",
+          "Delay not reported",
+          "Paoli/Thorndale · Train 9003",
+          "Reported delay: 4 min"
+        ]
+      }
+    },
+    {
+      "id": "F8",
+      "name": "Wallet header reads \"5h 15m\"",
+      "result": "PASS",
+      "observed": {
+        "header": "4 travel legs · Demo itinerary · 5h 15m"
+      }
+    },
+    {
+      "id": "F9",
+      "name": "\"booking. Sample\" has its space",
+      "result": "PASS",
+      "observed": {
+        "count": 1,
+        "sample": "s, schedules, fares and availability with each operator before booking. Sample fares are f"
+      }
+    },
+    {
+      "id": "F10",
+      "name": "at 320px comparison shows \"Unavailable\" on one line",
+      "result": "PASS",
+      "observed": {
+        "cells": [
+          {
+            "text": "Unavailable",
+            "lines": 1,
+            "width": 71,
+            "fontSize": "14px"
+          },
+          {
+            "text": "Unavailable",
+            "lines": 1,
+            "width": 71,
+            "fontSize": "14px"
+          }
+        ],
+        "dialogHorizontalOverflowPx": 0
+      }
+    },
+    {
+      "id": "F11",
+      "name": "/journey (no trip) shows \"Journey preview · Choose this route on Search…\" and not \"being built\"",
+      "result": "PASS",
+      "observed": {
+        "notice": "Journey preview · Choose this route on Search to open its full step-by-step journey."
+      }
+    }
+  ]
+}

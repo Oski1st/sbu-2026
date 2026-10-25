@@ -1,0 +1,52 @@
+===== pnpm tc (base33) =====
+$ tsc -b
+
+===== pnpm build (base33) =====
+$ tsc -b && vite build
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 1628 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                        0.60 kB │ gzip:   0.38 kB
+dist/assets/WalletPage-DZXjDvwT.css    4.46 kB │ gzip:   1.40 kB
+dist/assets/index-aY2gwvKe.css        63.02 kB │ gzip:  13.88 kB
+dist/assets/WalletPage-5BuYr5FC.js    11.67 kB │ gzip:   4.45 kB
+dist/assets/JourneyPage-BFkDHtCi.js   22.69 kB │ gzip:   6.59 kB
+dist/assets/index-sWwrd8Ot.js        452.50 kB │ gzip: 148.28 kB
+✓ built in 996ms
+
+===== pnpm test (base33) =====
+$ vitest run
+
+ RUN  v3.2.7 /private/tmp/claude-501/-Users-oscarlopez-sbu-2026/c9756a10-ad03-4cfa-b0b2-d4c2b5311959/scratchpad/p5dqa/base33
+
+ ✓ src/data/searchState.test.ts (7 tests) 5ms
+ ✓ src/data/trips.test.ts (7 tests) 8ms
+ ✓ server/septa-proxy.test.mjs (10 tests) 103ms
+ ✓ src/components/journey/segmentArrivalTime.test.tsx (3 tests) 73ms
+ ✓ src/components/search/CorridorMap.test.tsx (5 tests) 132ms
+ ✓ src/components/wallet/wallet.test.tsx (14 tests) 62ms
+ ✓ src/components/search/LocationAutocomplete.test.tsx (6 tests) 22ms
+ ✓ src/components/journey/segmentDisclosure.test.tsx (3 tests) 38ms
+ ✓ src/data/tripLookup.test.ts (4 tests) 112ms
+ ✓ src/data/eastCoast.test.ts (8 tests) 291ms
+ ✓ src/components/journey/coachGuidance.test.tsx (3 tests) 21ms
+ ✓ src/components/search/locationCatalogue.test.ts (3 tests) 4ms
+ ✓ src/components/wallet/snapshotFreshness.test.ts (5 tests) 8ms
+ ✓ src/components/layout/TripContext.test.tsx (8 tests) 91ms
+ ✓ src/components/search/searchIntegration.test.tsx (4 tests) 307ms
+ ✓ src/components/journey/journeyLayout.test.tsx (2 tests) 39ms
+ ✓ src/data/routing/graph.test.ts (2 tests) 82ms
+ ✓ src/data/routing/startup.test.ts (2 tests) 274ms
+ ✓ src/components/journey/journeyProgress.test.ts (3 tests) 5ms
+ ✓ src/components/journey/journeyLookup.test.tsx (2 tests) 24ms
+ ✓ src/services/transit/septa.test.ts (6 tests) 6008ms
+   ✓ a stalled request times out instead of keeping the wallet loading  6001ms
+
+ Test Files  21 passed (21)
+      Tests  107 passed (107)
+   Start at  02:19:41
+   Duration  6.35s (transform 905ms, setup 0ms, collect 2.51s, tests 7.71s, environment 3ms, prepare 1.49s)
+
+

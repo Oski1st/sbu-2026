@@ -1,0 +1,12 @@
+URL https://www.mta.info/fares/lirr
+FETCHED 2026-10-25T06:25:12.689Z
+STATUS 403
+TITLE Access Denied
+ERR null
+
+Access Denied
+You don't have permission to access "http://www.mta.info/fares/lirr" on this server.
+
+Reference #18.c102c417.1792909509.d2c5a0c
+
+https://errors.edgesuite.net/18.c102c417.1792909509.d2c5a0c

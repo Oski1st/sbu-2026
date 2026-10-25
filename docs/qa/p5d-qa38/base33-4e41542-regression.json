@@ -1,0 +1,411 @@
+{
+  "base": "http://127.0.0.1:4191",
+  "label": "base33-4e41542",
+  "at": "2026-10-25T06:38:01.809Z",
+  "results": [
+    {
+      "id": "J2",
+      "kind": "P2",
+      "name": "Simulate delay always warns (12-min delay vs 60-min transfer)",
+      "status": "REPRODUCES",
+      "observed": {
+        "plannedTransferMinutes": [
+          60
+        ],
+        "warningShown": true
+      }
+    },
+    {
+      "id": "J3",
+      "kind": "P2",
+      "name": "Delayed arrival right-aligned at 320px while other times left-aligned",
+      "status": "REPRODUCES",
+      "observed": {
+        "delayedTimesLeft": [
+          191,
+          152
+        ],
+        "departTimeLeft": 63,
+        "alignItems": "flex-end"
+      }
+    },
+    {
+      "id": "W3",
+      "kind": "P2",
+      "name": "Wallet has no link back to /journey/<id>",
+      "status": "REPRODUCES",
+      "observed": {
+        "journeyLinksInMain": []
+      }
+    },
+    {
+      "id": "F8",
+      "kind": "P2",
+      "name": "Very long coach leg rendered as one unbroken leg (Portland->Miami)",
+      "status": "REPRODUCES",
+      "observed": {
+        "cards": [
+          "EXPLORE THIS CORRIDOR SAMPLE ITINERARY Amtrak rail concept Explore the corridor. Check actual services and fares with th",
+          "EXPLORE THIS CORRIDOR SAMPLE ITINERARY Greyhound coach concept Explore the corridor. Check actual services and fares wit",
+          "EXPLORE THIS CORRIDOR SAMPLE ITINERARY FlixBus coach concept Explore the corridor. Check actual services and fares with "
+        ],
+        "id": "east-portland--miami--greyhound",
+        "legCount": 1,
+        "legs": [
+          "Greyhound 33h 10m Portland Depart 8:30 AM · Oct 24 Miami Arrive 5:40 PM · Oct 25 Intercity coach corridor · sample•Journey segment 1 View trip details On this segment 1. Be ready to board the Intercit"
+        ]
+      }
+    },
+    {
+      "id": "S4",
+      "kind": "P2",
+      "name": "Transfer prompt shows next departure without a date on multi-day trip",
+      "status": "REPRODUCES",
+      "observed": {
+        "timelineHasOct25": true,
+        "nexts": [
+          "Next: Silver Meteor corridor · sample toward Miami at 4:05 PM."
+        ]
+      }
+    },
+    {
+      "id": "P2-F1",
+      "kind": "P2",
+      "name": "Demo focus drops to <body> at last step (keyboard Enter on Next)",
+      "status": "REPRODUCES",
+      "observed": {
+        "keyboardActivations": 4,
+        "nextDisabled": true,
+        "activeElement": "BODY:Skip to contentoneline®SearchJ"
+      }
+    },
+    {
+      "id": "P2-F6",
+      "kind": "P2",
+      "name": "Single-leg delay: +12 badge but live region empty",
+      "status": "REPRODUCES",
+      "observed": {
+        "simulateButton": 1,
+        "plus12Badge": true,
+        "liveRegions": "Choose Start demo journey to begin the manual walkthrough. | "
+      }
+    },
+    {
+      "id": "P3-detours",
+      "kind": "P3",
+      "name": "Rail detours via Richmond / New York",
+      "status": "REPRODUCES",
+      "observed": [
+        {
+          "id": "east-raleigh--fayetteville--amtrak",
+          "dur": "8h 50m",
+          "viaRichmondOrNY": true,
+          "stops": [
+            "Raleigh",
+            "Richmond",
+            "Richmond",
+            "Fayetteville"
+          ]
+        },
+        {
+          "id": "east-charlotte--charleston--amtrak",
+          "dur": "15h 10m",
+          "viaRichmondOrNY": true,
+          "stops": [
+            "Charlotte",
+            "Richmond",
+            "Richmond",
+            "Charleston"
+          ]
+        },
+        {
+          "id": "east-boston--albany--amtrak",
+          "dur": "7h 30m",
+          "viaRichmondOrNY": true,
+          "stops": [
+            "Boston",
+            "New York",
+            "New York",
+            "Albany"
+          ]
+        },
+        {
+          "id": "east-albany--boston--amtrak",
+          "dur": "7h 30m",
+          "viaRichmondOrNY": true,
+          "stops": [
+            "Albany",
+            "New York",
+            "New York",
+            "Boston"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P3-oneseat",
+      "kind": "P3",
+      "name": "One-seat rides shown as transfers",
+      "status": "REPRODUCES",
+      "observed": [
+        {
+          "id": "east-new-york--raleigh--amtrak",
+          "segments": [
+            "Northeast Regional · sample•Journey segment 1",
+            "Silver Meteor corridor · sample•Journey segment 2",
+            "Carolinian · sample•Journey segment 3"
+          ]
+        },
+        {
+          "id": "east-new-york--miami--amtrak",
+          "segments": [
+            "Northeast Regional · sample•Journey segment 1",
+            "Silver Meteor corridor · sample•Journey segment 2"
+          ]
+        },
+        {
+          "id": "east-new-york--norfolk--amtrak",
+          "segments": [
+            "Northeast Regional · sample•Journey segment 1",
+            "Silver Meteor corridor · sample•Journey segment 2",
+            "Northeast Regional · sample•Journey segment 3"
+          ]
+        },
+        {
+          "id": "east-hartford--new-york--amtrak",
+          "segments": [
+            "Hartford Line · sample•Journey segment 1",
+            "Northeast Regional · sample•Journey segment 2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "P3-times",
+      "kind": "P3",
+      "name": "Segment times: NY-Stony Brook 180, Richmond-Raleigh bus 180, demo Huntington-Stony Brook 50/55",
+      "status": "REPRODUCES",
+      "observed": {
+        "nyStonyBrook": {
+          "id": "east-new-york--stony-brook--amtrak",
+          "segments": [
+            "LIRR connection concept · changes to confirm•Journey segment 1"
+          ],
+          "stops": [
+            "New York",
+            "Stony Brook"
+          ],
+          "firstDuration": "3h 0m"
+        },
+        "richmondRaleighBus": {
+          "id": "east-richmond--raleigh--greyhound",
+          "segments": [
+            "Intercity coach corridor · sample•Journey segment 1"
+          ],
+          "stops": [
+            "Richmond",
+            "Raleigh"
+          ],
+          "firstDuration": "3h 0m"
+        },
+        "demoSnippet": "Huntington and continue to the next connection if shown below. Get tickets from LIRR ↗ ⇄ Transfer at Huntington 15 min planned Next: Port Jefferson Branch toward Stony Brook at 12:25 PM. LIRR next Platform: check live station boards LIRR 50 min Huntingt"
+      }
+    },
+    {
+      "id": "P3-fares",
+      "kind": "P3",
+      "name": "Fares not shown as sourced \"as of\" ranges; generated routes have no fares",
+      "status": "REPRODUCES",
+      "observed": {
+        "demoCardFares": [
+          "$46",
+          "$61"
+        ],
+        "demoLegFares": [
+          "8:00 AM – 8:55 AM · $10 sample fare",
+          "9:10 AM – 10:40 AM · $20 sample fare",
+          "11:00 AM – 12:10 PM · $16 sample fare",
+          "12:25 PM – 1:15 PM · Included in preceding sample LIRR fare"
+        ],
+        "asOfLabel": false,
+        "generatedCheckFaresCount": 0
+      }
+    },
+    {
+      "id": "P3-contrast",
+      "kind": "P3",
+      "name": "Small text below 4.5:1",
+      "status": "REPRODUCES",
+      "observed": {
+        "resultsDisclaimer": {
+          "contrast": 3.2,
+          "fontSize": "9px"
+        },
+        "hackathonNote": null,
+        "realOperators": {
+          "contrast": 3.11,
+          "fontSize": "8px",
+          "text": "REAL OPERATORS.SAMPLE CONNECTIONS."
+        }
+      }
+    },
+    {
+      "id": "P3-nav-trip",
+      "kind": "P3",
+      "name": "Header nav loses a shared trip (shared link -> Search -> Journey)",
+      "status": "REPRODUCES",
+      "observed": {
+        "landedOn": "/journey"
+      }
+    },
+    {
+      "id": "P3-filter-live",
+      "kind": "P3",
+      "name": "Filter result count not announced",
+      "status": "REPRODUCES",
+      "observed": {
+        "before": "",
+        "after": "",
+        "emptyMessageShown": true
+      }
+    },
+    {
+      "id": "P3-third-tick",
+      "kind": "P3",
+      "name": "Third Compare tick silently unticks the first",
+      "status": "REPRODUCES",
+      "observed": {
+        "count": 3,
+        "states": [
+          false,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "P3-letsgo",
+      "kind": "P3",
+      "name": "\"Let's go somewhere\" accessible name mismatch",
+      "status": "REPRODUCES",
+      "observed": {
+        "name": "Back to search",
+        "href": "#main-content",
+        "text": "Let’s go somewhere"
+      }
+    },
+    {
+      "id": "R-nav",
+      "kind": "regression",
+      "name": "Header nav Search/Journey/Wallet navigates",
+      "status": "PASS",
+      "observed": {
+        "j": "/journey",
+        "w": "/wallet",
+        "s": "/"
+      }
+    },
+    {
+      "id": "R-compare",
+      "kind": "regression",
+      "name": "Compare dialog opens and closes with Escape",
+      "status": "PASS",
+      "observed": {
+        "openNow": true,
+        "closed": true
+      }
+    },
+    {
+      "id": "R-copy",
+      "kind": "regression",
+      "name": "Copy preview link copies a /journey link",
+      "status": "PASS",
+      "observed": {
+        "clipboard": "http://127.0.0.1:4191/journey/regional-connection",
+        "feedback": "Journey link copied. This preview URL works only on this computer. Deploy the app before sharing with friends."
+      }
+    },
+    {
+      "id": "R-filters",
+      "kind": "regression",
+      "name": "Mode filters change result counts and restore",
+      "status": "PASS",
+      "observed": {
+        "all": 3,
+        "rail": 1,
+        "bus": 2,
+        "back": 3
+      }
+    },
+    {
+      "id": "R-septa-states",
+      "kind": "regression",
+      "name": "SEPTA panel states (500 / empty / bad shape) render a message",
+      "status": "PASS",
+      "observed": {
+        "unavailable500": "Live SEPTA data is unavailable. Check the agency for current service; your demo itinerary has not been updated. Agency-wide Regional Rail observations, not matched to your journey. Demo departure and arrival times remai",
+        "emptyList": "Skip to content one line ® Search Journey Wallet Less switching. More going. ONELINE / TRIP WALLET One journey. Every ticket, together. Philadelphia → Stony Brook 4 travel legs · Demo itinerary · 315 minutes Plan her",
+        "badShape": "Live SEPTA data is unavailable. Check the agency for current service; your demo itinerary has not been updated. Agency-wide Regional Rail observations, not matched to your journey. Demo departure and arrival times remai"
+      }
+    },
+    {
+      "id": "R-back",
+      "kind": "regression",
+      "name": "Back from Journey returns to the same search",
+      "status": "PASS",
+      "observed": {
+        "journeyUrl": "/journey/east-boston--miami--amtrak",
+        "backUrl": "/?from=Boston&to=Miami",
+        "originField": "Boston"
+      }
+    },
+    {
+      "id": "R-sweep8",
+      "kind": "regression",
+      "name": "Sweep B near-empty pages re-checked with a longer wait",
+      "status": "PASS",
+      "observed": [
+        {
+          "path": "/journey/east-portland--boston--amtrak",
+          "len": 1588,
+          "h1": "Portland → Boston"
+        },
+        {
+          "path": "/wallet/east-portland--boston--amtrak",
+          "len": 1144,
+          "h1": "One journey.Every ticket, together."
+        },
+        {
+          "path": "/journey/east-portland--boston--greyhound",
+          "len": 1642,
+          "h1": "Portland → Boston"
+        },
+        {
+          "path": "/wallet/east-portland--boston--greyhound",
+          "len": 1216,
+          "h1": "One journey.Every ticket, together."
+        },
+        {
+          "path": "/journey/east-portland--boston--flixbus",
+          "len": 1634,
+          "h1": "Portland → Boston"
+        },
+        {
+          "path": "/wallet/east-portland--boston--flixbus",
+          "len": 1210,
+          "h1": "One journey.Every ticket, together."
+        },
+        {
+          "path": "/journey/east-portland--providence--amtrak",
+          "len": 2172,
+          "h1": "Portland → Providence"
+        },
+        {
+          "path": "/wallet/east-portland--providence--amtrak",
+          "len": 1642,
+          "h1": "One journey.Every ticket, together."
+        }
+      ]
+    }
+  ]
+}

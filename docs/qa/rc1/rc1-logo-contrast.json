@@ -1,0 +1,290 @@
+[
+  {
+    "scheme": "light",
+    "width": 320,
+    "rows": [
+      {
+        "label": "SEPTA",
+        "accessibleText": "SEPTA",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.186353 0.333176 0.561882)",
+        "bg": "rgb(242,245,251)",
+        "textContrast": 6.81,
+        "iconContrast": 6.81,
+        "border": "color(srgb 0.822118 0.871059 0.947294)"
+      },
+      {
+        "label": "NJ TRANSIT",
+        "accessibleText": "NJ TRANSIT",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.609882 0.338824 0.149647)",
+        "bg": "rgb(252,246,241)",
+        "textContrast": 5.19,
+        "iconContrast": 5.19,
+        "border": "color(srgb 0.963294 0.872941 0.809882)"
+      },
+      {
+        "label": "Amtrak",
+        "accessibleText": "Amtrak",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.101647 0.302118 0.279529)",
+        "bg": "rgb(240,245,244)",
+        "textContrast": 8.68,
+        "iconContrast": 8.68,
+        "border": "color(srgb 0.793882 0.860706 0.853176)"
+      },
+      {
+        "label": "LIRR",
+        "accessibleText": "LIRRLong Island Rail Road",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.234353 0.321882 0.544941)",
+        "bg": "rgb(243,245,251)",
+        "textContrast": 6.95,
+        "iconContrast": 6.95,
+        "border": "color(srgb 0.838118 0.867294 0.941647)"
+      },
+      {
+        "label": "Greyhound",
+        "accessibleText": "Greyhound",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.112941 0.24 0.389647)",
+        "bg": "rgb(240,243,247)",
+        "textContrast": 9.93,
+        "iconContrast": 9.93,
+        "border": "color(srgb 0.797647 0.84 0.889882)"
+      },
+      {
+        "label": "FlixBus",
+        "accessibleText": "FlixBus",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.211765 0.327529 0.0621176)",
+        "bg": "rgb(242,245,239)",
+        "textContrast": 7.85,
+        "iconContrast": 7.85,
+        "border": "color(srgb 0.830588 0.869177 0.780706)"
+      }
+    ]
+  },
+  {
+    "scheme": "light",
+    "width": 1280,
+    "rows": [
+      {
+        "label": "SEPTA",
+        "accessibleText": "SEPTA",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.186353 0.333176 0.561882)",
+        "bg": "rgb(242,245,251)",
+        "textContrast": 6.81,
+        "iconContrast": 6.81,
+        "border": "color(srgb 0.822118 0.871059 0.947294)"
+      },
+      {
+        "label": "NJ TRANSIT",
+        "accessibleText": "NJ TRANSIT",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.609882 0.338824 0.149647)",
+        "bg": "rgb(252,246,241)",
+        "textContrast": 5.19,
+        "iconContrast": 5.19,
+        "border": "color(srgb 0.963294 0.872941 0.809882)"
+      },
+      {
+        "label": "Amtrak",
+        "accessibleText": "Amtrak",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.101647 0.302118 0.279529)",
+        "bg": "rgb(240,245,244)",
+        "textContrast": 8.68,
+        "iconContrast": 8.68,
+        "border": "color(srgb 0.793882 0.860706 0.853176)"
+      },
+      {
+        "label": "LIRR",
+        "accessibleText": "LIRRLong Island Rail Road",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.234353 0.321882 0.544941)",
+        "bg": "rgb(243,245,251)",
+        "textContrast": 6.95,
+        "iconContrast": 6.95,
+        "border": "color(srgb 0.838118 0.867294 0.941647)"
+      },
+      {
+        "label": "Greyhound",
+        "accessibleText": "Greyhound",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.112941 0.24 0.389647)",
+        "bg": "rgb(240,243,247)",
+        "textContrast": 9.93,
+        "iconContrast": 9.93,
+        "border": "color(srgb 0.797647 0.84 0.889882)"
+      },
+      {
+        "label": "FlixBus",
+        "accessibleText": "FlixBus",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.211765 0.327529 0.0621176)",
+        "bg": "rgb(242,245,239)",
+        "textContrast": 7.85,
+        "iconContrast": 7.85,
+        "border": "color(srgb 0.830588 0.869177 0.780706)"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "width": 320,
+    "rows": [
+      {
+        "label": "SEPTA",
+        "accessibleText": "SEPTA",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.186353 0.333176 0.561882)",
+        "bg": "rgb(242,245,251)",
+        "textContrast": 6.81,
+        "iconContrast": 6.81,
+        "border": "color(srgb 0.822118 0.871059 0.947294)"
+      },
+      {
+        "label": "NJ TRANSIT",
+        "accessibleText": "NJ TRANSIT",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.609882 0.338824 0.149647)",
+        "bg": "rgb(252,246,241)",
+        "textContrast": 5.19,
+        "iconContrast": 5.19,
+        "border": "color(srgb 0.963294 0.872941 0.809882)"
+      },
+      {
+        "label": "Amtrak",
+        "accessibleText": "Amtrak",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.101647 0.302118 0.279529)",
+        "bg": "rgb(240,245,244)",
+        "textContrast": 8.68,
+        "iconContrast": 8.68,
+        "border": "color(srgb 0.793882 0.860706 0.853176)"
+      },
+      {
+        "label": "LIRR",
+        "accessibleText": "LIRRLong Island Rail Road",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.234353 0.321882 0.544941)",
+        "bg": "rgb(243,245,251)",
+        "textContrast": 6.95,
+        "iconContrast": 6.95,
+        "border": "color(srgb 0.838118 0.867294 0.941647)"
+      },
+      {
+        "label": "Greyhound",
+        "accessibleText": "Greyhound",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.112941 0.24 0.389647)",
+        "bg": "rgb(240,243,247)",
+        "textContrast": 9.93,
+        "iconContrast": 9.93,
+        "border": "color(srgb 0.797647 0.84 0.889882)"
+      },
+      {
+        "label": "FlixBus",
+        "accessibleText": "FlixBus",
+        "fontSize": "12px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.211765 0.327529 0.0621176)",
+        "bg": "rgb(242,245,239)",
+        "textContrast": 7.85,
+        "iconContrast": 7.85,
+        "border": "color(srgb 0.830588 0.869177 0.780706)"
+      }
+    ]
+  },
+  {
+    "scheme": "dark",
+    "width": 1280,
+    "rows": [
+      {
+        "label": "SEPTA",
+        "accessibleText": "SEPTA",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.186353 0.333176 0.561882)",
+        "bg": "rgb(242,245,251)",
+        "textContrast": 6.81,
+        "iconContrast": 6.81,
+        "border": "color(srgb 0.822118 0.871059 0.947294)"
+      },
+      {
+        "label": "NJ TRANSIT",
+        "accessibleText": "NJ TRANSIT",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.609882 0.338824 0.149647)",
+        "bg": "rgb(252,246,241)",
+        "textContrast": 5.19,
+        "iconContrast": 5.19,
+        "border": "color(srgb 0.963294 0.872941 0.809882)"
+      },
+      {
+        "label": "Amtrak",
+        "accessibleText": "Amtrak",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.101647 0.302118 0.279529)",
+        "bg": "rgb(240,245,244)",
+        "textContrast": 8.68,
+        "iconContrast": 8.68,
+        "border": "color(srgb 0.793882 0.860706 0.853176)"
+      },
+      {
+        "label": "LIRR",
+        "accessibleText": "LIRRLong Island Rail Road",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.234353 0.321882 0.544941)",
+        "bg": "rgb(243,245,251)",
+        "textContrast": 6.95,
+        "iconContrast": 6.95,
+        "border": "color(srgb 0.838118 0.867294 0.941647)"
+      },
+      {
+        "label": "Greyhound",
+        "accessibleText": "Greyhound",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.112941 0.24 0.389647)",
+        "bg": "rgb(240,243,247)",
+        "textContrast": 9.93,
+        "iconContrast": 9.93,
+        "border": "color(srgb 0.797647 0.84 0.889882)"
+      },
+      {
+        "label": "FlixBus",
+        "accessibleText": "FlixBus",
+        "fontSize": "14px",
+        "fontWeight": "750",
+        "text": "color(srgb 0.211765 0.327529 0.0621176)",
+        "bg": "rgb(242,245,239)",
+        "textContrast": 7.85,
+        "iconContrast": 7.85,
+        "border": "color(srgb 0.830588 0.869177 0.780706)"
+      }
+    ]
+  }
+]

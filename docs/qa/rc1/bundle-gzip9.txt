@@ -1,0 +1,14 @@
+== base36 entry: ['index-BtW9lAmv.css', 'index-C9-5lHl1.js']
+    JourneyPage-CcPWbM7q.js                          raw=   22688 gz9=   6575
+    WalletPage-DZXjDvwT.css                          raw=    4455 gz9=   1399
+    WalletPage-Dt_weETb.js                           raw=   11670 gz9=   4463
+  * index-BtW9lAmv.css                               raw=   65822 gz9=  14447
+  * index-C9-5lHl1.js                                raw=  411135 gz9= 135355
+  totals {'js': [445493, 146393], 'css': [70277, 15846]}
+== rc1 entry: ['index-BgJ2zc5e.css', 'index-iXTIY80o.js']
+    JourneyPage-ByRDoPvD.js                          raw=   22688 gz9=   6575
+    WalletPage-CWOgkNtF.js                           raw=   11642 gz9=   4463
+    WalletPage-DZXjDvwT.css                          raw=    4455 gz9=   1399
+  * index-BgJ2zc5e.css                               raw=   67643 gz9=  14723
+  * index-iXTIY80o.js                                raw=  412292 gz9= 135781
+  totals {'js': [446622, 146819], 'css': [72098, 16122]}

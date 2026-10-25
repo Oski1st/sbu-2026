@@ -1,0 +1,12 @@
+FAIL F1 typing 01/01/20270 is blocked :: {"value":"20270-01-01","max":"","min":"","rangeOverflow":false,"valid":true,"msg":"","urlBefore":"/?from=Boston&to=Miami","urlAfter":"/?from=Boston&to=Miami&date=20270-01-01","urlDate":"20270-01-01","shownAfterSubmit":"2026-10-24","msgAfterSubmit":"","urlAndFormAgree":false}
+FAIL F2 ?date=0050-06-01 keeps the year :: {"shown":"2026-10-24"}
+PASS F3 no /favicon.ico 404 :: {"faviconResponses":[],"iconHref":null,"consoleErrors":[]}
+FAIL F4 SEPTA links go to www.septa.org :: {"count":3,"unique":["/journey/regional-connection -> https://wwww.septa.org/fares/","/wallet/regional-connection -> https://wwww.septa.org/fares/","/wallet/regional-connection -> https://api.septa.org/"],"bad":["/journey/regional-connection -> https://wwww.septa.org/fares/","/wallet/regional-connec
+FAIL F5 Albany->Boston fastest lists Amtrak (arrives 3:30 PM) first :: {"first":"EXPLORE THIS CORRIDOR SAMPLE ITINERARY Greyhound coach concept Explore the corridor. Check actual services and fares with the operator. Check fares with the operator 8:30 AM Albany 7h 25m · Connections unverified 3:55 PM Boston Greyhound Concept route · Actual","second":"EXPLORE THIS CORRI
+FAIL F6 demo comparison says "35 minutes sooner" :: {"sentence":"The express connection gets you there 65 minutes sooner for $15 more in sample fares"}
+FAIL F7 Wallet SEPTA panel never shows "999 min" :: {"lines":["Trenton · Train 9001","Reported delay: 999 min","Trenton · Train 9002","Reported delay: 999 min","Paoli/Thorndale · Train 9003","Reported delay: 4 min"]}
+FAIL F8 Wallet header reads "5h 15m" :: {"header":"4 travel legs · Demo itinerary · 315 minutes"}
+FAIL F9 "booking. Sample" has its space :: {"count":1,"sample":"s, schedules, fares and availability with each operator before booking.Sample fares are fo"}
+FAIL F10 at 320px comparison shows "Unavailable" on one line :: {"cells":[{"text":"Unavailable","lines":2,"width":73,"fontSize":"16px"},{"text":"Unavailable","lines":2,"width":73,"fontSize":"16px"}],"dialogHorizontalOverflowPx":0}
+FAIL F11 /journey (no trip) shows "Journey preview · Choose this route on Search…" and not "being built" :: {"notice":"Journey preview · The full Journey page is being built by our team."}
+TOTAL 1/11 PASS

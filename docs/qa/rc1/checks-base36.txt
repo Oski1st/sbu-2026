@@ -1,0 +1,56 @@
+===== pnpm tc (base36) =====
+$ tsc -b
+
+===== pnpm build (base36) =====
+$ tsc -b && vite build
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 1630 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                        0.60 kB │ gzip:   0.38 kB
+dist/assets/WalletPage-DZXjDvwT.css    4.46 kB │ gzip:   1.40 kB
+dist/assets/index-BtW9lAmv.css        65.82 kB │ gzip:  14.53 kB
+dist/assets/WalletPage-Dt_weETb.js    11.67 kB │ gzip:   4.46 kB
+dist/assets/JourneyPage-CcPWbM7q.js   22.69 kB │ gzip:   6.59 kB
+dist/assets/index-C9-5lHl1.js        411.14 kB │ gzip: 134.75 kB
+✓ built in 1.11s
+
+===== pnpm test (base36) =====
+$ vitest run
+
+ RUN  v3.2.7 /private/tmp/claude-501/-Users-oscarlopez-sbu-2026/c9756a10-ad03-4cfa-b0b2-d4c2b5311959/scratchpad/p5dqa/base36
+
+ ✓ src/data/searchState.test.ts (7 tests) 4ms
+ ✓ src/data/trips.test.ts (7 tests) 5ms
+ ✓ src/components/journey/segmentArrivalTime.test.tsx (3 tests) 29ms
+ ✓ src/components/search/CorridorMap.test.tsx (4 tests) 39ms
+ ✓ server/septa-proxy.test.mjs (10 tests) 110ms
+ ✓ src/components/wallet/wallet.test.tsx (14 tests) 107ms
+ ✓ src/components/search/LocationAutocomplete.test.tsx (6 tests) 30ms
+ ✓ src/components/journey/segmentDisclosure.test.tsx (3 tests) 44ms
+ ✓ src/components/layout/TripContext.test.tsx (8 tests) 65ms
+ ✓ src/data/tripLookup.test.ts (4 tests) 130ms
+ ✓ src/components/journey/coachGuidance.test.tsx (3 tests) 32ms
+ ✓ src/data/eastCoast.test.ts (8 tests) 672ms
+ ✓ src/components/journey/journeyLayout.test.tsx (2 tests) 79ms
+ ✓ src/components/search/searchIntegration.test.tsx (4 tests) 347ms
+ ✓ src/components/wallet/snapshotFreshness.test.ts (5 tests) 4ms
+ ✓ src/components/search/locationCatalogue.test.ts (3 tests) 2ms
+ ✓ src/data/routing/startup.test.ts (2 tests) 419ms
+   ✓ cold production App/data imports perform zero routing and retain only original demo exports  408ms
+ ✓ src/components/journey/journeyProgress.test.ts (3 tests) 4ms
+ ✓ src/data/routing/graph.test.ts (2 tests) 97ms
+ ✓ src/components/journey/journeyLookup.test.tsx (2 tests) 31ms
+ ✓ src/data/railMap/geometry.test.mjs (5 tests) 1333ms
+   ✓ rail geometry provenance and coverage > reproduces the committed geometry offline from hashed public-domain snapshots  473ms
+   ✓ rail geometry provenance and coverage > preserves source route names, multipart breaks, endpoints and simplification error bound  646ms
+ ✓ src/services/transit/septa.test.ts (6 tests) 6017ms
+   ✓ a stalled request times out instead of keeping the wallet loading  6002ms
+
+ Test Files  22 passed (22)
+      Tests  111 passed (111)
+   Start at  02:20:09
+   Duration  6.36s (transform 858ms, setup 0ms, collect 3.01s, tests 9.60s, environment 4ms, prepare 1.94s)
+
+
