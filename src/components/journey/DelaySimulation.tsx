@@ -1,5 +1,6 @@
 import type { Leg } from "../../types/transit";
 import { agencyStyles } from "./journeyUtils";
+import { SIMULATED_DELAY_MINUTES } from "./journeySimulation";
 
 type DelaySimulationProps = {
   affectedLeg: Leg;
@@ -24,7 +25,7 @@ export function DelaySimulation({ affectedLeg, isActive, onToggle }: DelaySimula
 
         <div className="mt-5 flex flex-col gap-3 rounded-2xl bg-slate-50 p-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-bold text-slate-900">Add 12 minutes to {affectedLeg.line}</p>
+            <p className="text-sm font-bold text-slate-900">Add {SIMULATED_DELAY_MINUTES} minutes to {affectedLeg.line}</p>
             <p className="mt-1 text-xs text-slate-500">{agency.label} · {affectedLeg.from} to {affectedLeg.to}</p>
           </div>
           <button

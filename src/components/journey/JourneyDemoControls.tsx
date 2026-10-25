@@ -1,6 +1,7 @@
-import type { KeyboardEvent } from "react";
+import { useLayoutEffect, useRef, type KeyboardEvent } from "react";
 import type { Leg } from "../../types/transit";
 import type { JourneyDemoState, JourneyStep } from "./journeyProgress";
+import { restoreJourneyControlFocus } from "./journeyControlFocus";
 
 type JourneyDemoControlsProps = {
   destination: string;
@@ -27,6 +28,15 @@ export function JourneyDemoControls({ destination, legs, state, step, stepCount,
   const currentPosition = state.isActive ? state.currentStep + 1 : 0;
   const atFirstStep = !state.isActive || state.currentStep === 0;
   const atLastStep = !state.isActive || state.currentStep >= stepCount - 1;
+  const startRef = useRef<HTMLButtonElement>(null);
+  const previousRef = useRef<HTMLButtonElement>(null);
+  const nextRef = useRef<HTMLButtonElement>(null);
+  const focusedRef = useRef<HTMLButtonElement | null>(null);
+
+  useLayoutEffect(() => {
+    restoreJourneyControlFocus(focusedRef.current, document.activeElement, document.body,
+      [previousRef.current, nextRef.current, startRef.current]);
+  }, [atFirstStep, atLastStep]);
 
   function handleKeyDown(event: KeyboardEvent<HTMLElement>) {
     if (event.key === "ArrowRight" && !atLastStep) {
@@ -44,6 +54,16 @@ export function JourneyDemoControls({ destination, legs, state, step, stepCount,
       className="mt-6 rounded-3xl border border-emerald-200 bg-emerald-50 p-4 shadow-[0_12px_32px_-26px_rgba(6,78,59,0.5)] sm:p-5"
       aria-labelledby="demo-journey-title"
       onKeyDown={handleKeyDown}
+      onFocusCapture={(event) => {
+        focusedRef.current = event.target instanceof HTMLButtonElement ? event.target : null;
+      }}
+      onBlurCapture={(event) => {
+        if (!event.relatedTarget || !event.currentTarget.contains(event.relatedTarget)) {
+          // Keep a reference only for blur caused by disabling the focused button.
+          // Ordinary Tab/click-away must not make a later reset steal focus back.
+          if (!(event.target instanceof HTMLButtonElement) || !event.target.disabled) focusedRef.current = null;
+        }
+      }}
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
@@ -70,13 +90,13 @@ export function JourneyDemoControls({ destination, legs, state, step, stepCount,
       </div>
 
       <div className="mt-4 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
-        <button type="button" onClick={onStart} className="min-h-11 rounded-xl bg-emerald-700 px-3 text-sm font-extrabold text-white transition hover:bg-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2">
+        <button ref={startRef} type="button" onClick={onStart} className="min-h-11 rounded-xl bg-emerald-700 px-3 text-sm font-extrabold text-white transition hover:bg-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2">
           Start demo journey
         </button>
-        <button type="button" onClick={onPrevious} disabled={atFirstStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-emerald-950 ring-1 ring-emerald-200 transition hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45">
+        <button ref={previousRef} type="button" onClick={onPrevious} disabled={atFirstStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-emerald-950 ring-1 ring-emerald-200 transition hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45">
           Previous step
         </button>
-        <button type="button" onClick={onNext} disabled={atLastStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-emerald-950 ring-1 ring-emerald-200 transition hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45">
+        <button ref={nextRef} type="button" onClick={onNext} disabled={atLastStep} className="min-h-11 rounded-xl bg-white px-3 text-sm font-extrabold text-emerald-950 ring-1 ring-emerald-200 transition hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-45">
           Next step
         </button>
         <button type="button" onClick={onReset} className="min-h-11 rounded-xl px-3 text-sm font-extrabold text-emerald-950 transition hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-950 focus-visible:ring-offset-2">
