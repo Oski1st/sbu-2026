@@ -1,0 +1,539 @@
+{
+  "tag": "chromium-phone",
+  "results": [
+    {
+      "area": "Search",
+      "name": "typing 'Bos' lists Boston first",
+      "ok": true,
+      "detail": "Boston MA"
+    },
+    {
+      "area": "Search",
+      "name": "ArrowDown sets aria-activedescendant and highlights an option",
+      "ok": true,
+      "detail": "origin-option-boston"
+    },
+    {
+      "area": "Search",
+      "name": "Enter picks highlighted city and closes list",
+      "ok": true,
+      "detail": "value=Boston expanded=false"
+    },
+    {
+      "area": "Search",
+      "name": "Enter on option does not submit the form",
+      "ok": true,
+      "detail": "http://127.0.0.1:4188/"
+    },
+    {
+      "area": "Search",
+      "name": "ArrowUp from input wraps to last option",
+      "ok": true,
+      "detail": "2 options"
+    },
+    {
+      "area": "Search",
+      "name": "Escape closes list and keeps typed text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Search",
+      "name": "tap pick fills the field and closes list",
+      "ok": true,
+      "detail": "value=New York"
+    },
+    {
+      "area": "Search",
+      "name": "alias 'Philly' suggests Philadelphia",
+      "ok": true,
+      "detail": "Philadelphia PA"
+    },
+    {
+      "area": "Search",
+      "name": "alias 'NYC' suggests New York",
+      "ok": true,
+      "detail": "New York NY"
+    },
+    {
+      "area": "Search",
+      "name": "alias 'DC' suggests Washington",
+      "ok": true,
+      "detail": "Washington, DC DC"
+    },
+    {
+      "area": "Search",
+      "name": "alias 'Long Island' suggests Stony Brook",
+      "ok": true,
+      "detail": "Stony Brook NY"
+    },
+    {
+      "area": "Search",
+      "name": "date input default value reads back",
+      "ok": true,
+      "detail": "2026-10-24"
+    },
+    {
+      "area": "Search",
+      "name": "date fill() reads back",
+      "ok": true,
+      "detail": "2026-11-03"
+    },
+    {
+      "area": "Search",
+      "name": "time fill() reads back",
+      "ok": true,
+      "detail": "14:30"
+    },
+    {
+      "area": "Search",
+      "name": "date/time inputs stay inside their field",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Search",
+      "name": "submit persists date and time in URL",
+      "ok": true,
+      "detail": "?date=2026-11-03&time=14%3A30"
+    },
+    {
+      "area": "Search",
+      "name": "results status present after submit",
+      "ok": true,
+      "detail": "Philadelphia to Stony Brook. Every connection, considered."
+    },
+    {
+      "area": "Search",
+      "name": "focus moves to results after submit",
+      "ok": true,
+      "detail": "routes"
+    },
+    {
+      "area": "Search",
+      "name": "refresh keeps date/time in inputs",
+      "ok": true,
+      "detail": "2026-11-03 14:30"
+    },
+    {
+      "area": "Search",
+      "name": "second search Boston -> New York",
+      "ok": true,
+      "detail": "3 sample connections for Boston → New York"
+    },
+    {
+      "area": "Search",
+      "name": "Back restores previous search inputs",
+      "ok": true,
+      "detail": "Philadelphia 2026-11-03"
+    },
+    {
+      "area": "Search",
+      "name": "Back again returns to default form",
+      "ok": true,
+      "detail": "http://127.0.0.1:4188/"
+    },
+    {
+      "area": "Search",
+      "name": "Forward re-applies date/time",
+      "ok": true,
+      "detail": "http://127.0.0.1:4188/?date=2026-11-03&time=14%3A30"
+    },
+    {
+      "area": "Search",
+      "name": "Rail only filter pressed + URL",
+      "ok": true,
+      "detail": "http://127.0.0.1:4188/?mode=rail"
+    },
+    {
+      "area": "Search",
+      "name": "filters compose in URL",
+      "ok": true,
+      "detail": "?mode=rail&sort=fastest&operator=LIRR&amtrak=0 → 2 cards"
+    },
+    {
+      "area": "Search",
+      "name": "refresh keeps sort/filter controls",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Search",
+      "name": "Back undoes last filter (Amtrak toggle)",
+      "ok": true,
+      "detail": "http://127.0.0.1:4188/?mode=rail&sort=fastest&operator=LIRR"
+    },
+    {
+      "area": "Search",
+      "name": "Compare dialog opens (showModal)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Search",
+      "name": "focus moves into dialog",
+      "ok": true,
+      "detail": "comparison-close"
+    },
+    {
+      "area": "Search",
+      "name": "dialog fits viewport width",
+      "ok": true,
+      "detail": "{\"x\":19,\"w\":352,\"vw\":390}"
+    },
+    {
+      "area": "Search",
+      "name": "Escape closes dialog",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Search",
+      "name": "focus returns to Compare button after Escape",
+      "ok": true,
+      "detail": "compare-tray-action"
+    },
+    {
+      "area": "Search",
+      "name": "Close button closes dialog and returns focus",
+      "ok": true,
+      "detail": "compare-tray-action"
+    },
+    {
+      "area": "Search",
+      "name": "Tab while dialog open never focuses page content behind it",
+      "ok": true,
+      "detail": "in,in,BODY,in,in,in"
+    },
+    {
+      "area": "Map",
+      "name": "SVG renders with size",
+      "ok": true,
+      "detail": "{\"w\":362,\"h\":190}"
+    },
+    {
+      "area": "Map",
+      "name": "8 routes, 26 stations, 49 state outlines",
+      "ok": true,
+      "detail": "{\"routes\":8,\"stations\":26,\"states\":49}"
+    },
+    {
+      "area": "Map",
+      "name": "labels visible, no overlap, inside frame",
+      "ok": true,
+      "detail": "{\"visible\":[\"Boston\",\"New York\",\"Charlotte\",\"Savannah\",\"Tampa\",\"Miami\"],\"overlaps\":[],\"outside\":[]}"
+    },
+    {
+      "area": "Map",
+      "name": "details opens on click/tap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Map",
+      "name": "details panel is a bounded scrolling region and scrolls",
+      "ok": true,
+      "detail": "{\"sh\":3756,\"ch\":383,\"oy\":\"auto\"} scrollTop=400"
+    },
+    {
+      "area": "Map",
+      "name": "no horizontal overflow with details open",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "area": "Map",
+      "name": "details closes on second click/tap",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Map",
+      "name": "summary toggles with Enter then Space",
+      "ok": true,
+      "detail": "enter→open=true space→closed=true"
+    },
+    {
+      "area": "Map",
+      "name": "links inside closed details are not rendered",
+      "ok": true,
+      "detail": "0 rendered"
+    },
+    {
+      "area": "Map",
+      "name": "320px: no horizontal overflow (details closed/open)",
+      "ok": true,
+      "detail": "closed 0px, open 0px "
+    },
+    {
+      "area": "Map",
+      "name": "375px: no horizontal overflow (details closed/open)",
+      "ok": true,
+      "detail": "closed 0px, open 0px "
+    },
+    {
+      "area": "Map",
+      "name": "390px: no horizontal overflow (details closed/open)",
+      "ok": true,
+      "detail": "closed 0px, open 0px "
+    },
+    {
+      "area": "Journey",
+      "name": "timeline times identical in New York and Los Angeles time zones",
+      "ok": true,
+      "detail": "8:00 AM · Oct 24 8:55 AM · Oct 24 9:10 AM · Oct 24 10:40 AM · Oct 24 11:00 AM · Oct 24 12:10 PM · Oct 24 12:25 PM · Oct 24 1:15 PM · Oct 24"
+    },
+    {
+      "area": "Journey",
+      "name": "Simulate delay shows struck original arrival and Reset label",
+      "ok": true,
+      "detail": "1 struck times"
+    },
+    {
+      "area": "Journey",
+      "name": "Reset simulation clears delay",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Journey",
+      "name": "collapsed details are inert and take no height",
+      "ok": true,
+      "detail": "{\"inert\":true,\"h\":0,\"linkH\":40,\"visible\":false}"
+    },
+    {
+      "area": "Journey",
+      "name": "Tab from collapsed toggle skips hidden 'Get tickets' link",
+      "ok": true,
+      "detail": "View trip details"
+    },
+    {
+      "area": "Journey",
+      "name": "programmatic focus() on collapsed link is refused (inert)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Journey",
+      "name": "Enter expands details (aria-expanded, not inert, has height)",
+      "ok": true,
+      "detail": "{\"inert\":false,\"h\":336}"
+    },
+    {
+      "area": "Journey",
+      "name": "focus stays on toggle after Enter",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Journey",
+      "name": "toggle shows visible keyboard focus ring",
+      "ok": true,
+      "detail": "{\"outline\":\"none\",\"shadow\":\"rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 2px, oklch(0.129 0.042 264.695) 0px 0px 0px 4px, rgba(0, 0, 0, 0) 0px 0px 0px 0px\"}"
+    },
+    {
+      "area": "Journey",
+      "name": "Tab from expanded toggle reaches 'Get tickets' link",
+      "ok": true,
+      "detail": "Get tickets from SEPTA\n↗"
+    },
+    {
+      "area": "Journey",
+      "name": "Space collapses; focus remains on toggle",
+      "ok": true,
+      "detail": "segment-details-regional-1"
+    },
+    {
+      "area": "Journey",
+      "name": "details height returns to 0 after collapse animation",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "area": "Journey",
+      "name": "demo Start → Next → ArrowLeft → Reset",
+      "ok": true,
+      "detail": "start=true next=true arrowLeft=true currentCards=1 reset=true"
+    },
+    {
+      "area": "Journey",
+      "name": "View ticket wallet link navigates",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Wallet",
+      "name": "4 tickets for regional-connection",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "area": "Wallet",
+      "name": "real SEPTA panel settles to live or unavailable",
+      "ok": true,
+      "detail": "SEPTA service snapshot Refresh feed SEPTA observations retrieved. This snapshot expires af"
+    },
+    {
+      "area": "Wallet",
+      "name": "checklist checkbox updates progress",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Wallet",
+      "name": "no horizontal overflow",
+      "ok": true,
+      "detail": "0px"
+    },
+    {
+      "area": "Wallet",
+      "name": "Back returns to Journey",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Wallet",
+      "name": "Back again returns to Search",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Wallet",
+      "name": "Forward twice returns to Wallet",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Wallet",
+      "name": "SEPTA 502 state renders",
+      "ok": true,
+      "detail": "SEPTA service snapshot Refresh feed SEPTA observations unavailable. Try Refresh feed or ch"
+    },
+    {
+      "area": "Wallet",
+      "name": "SEPTA success state renders",
+      "ok": true,
+      "detail": "SEPTA service snapshot Refresh feed SEPTA observations retrieved. This snapshot expires af"
+    },
+    {
+      "area": "Keyboard",
+      "name": "first Tab focuses Skip to content",
+      "ok": true,
+      "detail": "a \"Skip to content\""
+    },
+    {
+      "area": "Keyboard",
+      "name": "every focused control in first 40 stops has a visible outline/box-shadow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "area": "Keyboard",
+      "name": "skip link moves focus to main content",
+      "ok": true,
+      "detail": "main-content"
+    },
+    {
+      "area": "Keyboard",
+      "name": "Journey in-page 'View ticket wallet' reachable from page top",
+      "ok": true,
+      "detail": "stop 6"
+    },
+    {
+      "area": "Console",
+      "name": "no page errors, console errors, failed or 4xx/5xx same-origin requests",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "info": {
+    "browserVersion": "chromium 156.0.8078.4",
+    "tab key used for link walks": "Tab",
+    "dateInputType": "date",
+    "timeInputType": "time",
+    "dateTimeBoxes": {
+      "date": {
+        "w": 136,
+        "h": 44
+      },
+      "time": {
+        "w": 136,
+        "h": 44
+      }
+    },
+    "Tab into date input": {
+      "name": "departure-date",
+      "outline": "solid 2px",
+      "focusVisible": true
+    },
+    "keyboardTimeEntry '0945' -> value": "14:30",
+    "Tab sequence inside open dialog": "in,in,BODY,in,in,in",
+    "station dot computed style": {
+      "strokeWidth": "5.5px",
+      "linecap": "round",
+      "vector": "non-scaling-stroke"
+    },
+    "timeline times (New York tz)": "8:00 AM · Oct 24 8:55 AM · Oct 24 9:10 AM · Oct 24 10:40 AM · Oct 24 11:00 AM · Oct 24 12:10 PM · Oct 24 12:25 PM · Oct 24 1:15 PM · Oct 24",
+    "HTMLElement.inert supported": true,
+    "plain Tab after expanded toggle lands on": "Get tickets from SEPTA\n↗",
+    "plain Tab sequence (first 14)": [
+      "a \"Skip to content\"",
+      "a \"OneLine home\"",
+      "a \"Search\"",
+      "a \"Journey\"",
+      "a \"Wallet\"",
+      "summary \"Corridors, cities & coverage gap\"",
+      "input[text origin]#origin \"Departure city\"",
+      "button \"Swap origin and destination\"",
+      "input[text destination]#destination \"Where to?\"",
+      "input[date departure-date] \"\"",
+      "input[time departure-time] \"\"",
+      "button \"Find my way\"",
+      "button \"NEW ENGLAND Boston New York City\"",
+      "button \"MID-ATLANTIC New York Washington\""
+    ],
+    "plain Tab reaches links": true,
+    "Tab sequence (first 40)": [
+      "a \"Skip to content\"",
+      "a \"OneLine home\"",
+      "a \"Search\"",
+      "a \"Journey\"",
+      "a \"Wallet\"",
+      "summary \"Corridors, cities & coverage gap\"",
+      "input[text origin]#origin \"Departure city\"",
+      "button \"Swap origin and destination\"",
+      "input[text destination]#destination \"Where to?\"",
+      "input[date departure-date] \"\"",
+      "input[time departure-time] \"\"",
+      "button \"Find my way\"",
+      "button \"NEW ENGLAND Boston New York City\"",
+      "button \"MID-ATLANTIC New York Washington\"",
+      "button \"THE CAROLINAS Raleigh Charlotte \"",
+      "button \"FLORIDA Orlando Miami Chase the \"",
+      "summary \"See all 24 cities and coverage l\"",
+      "select#sort \"Recommended Fastest Lowest sampl\"",
+      "button \"All transport\"",
+      "button \"Rail only\"",
+      "button \"Bus only\"",
+      "button \"Rail + bus\"",
+      "select \"All operators SEPTA NJ TRANSIT L\"",
+      "input[checkbox] \"\"",
+      "button \"Compare two options\"",
+      "input[checkbox] \"Compare The scenic connection\"",
+      "button \"Copy preview link for The scenic\"",
+      "button \"View route details\"",
+      "a \"Choose this route\"",
+      "input[checkbox] \"Compare The express connection\"",
+      "button \"Copy preview link for The expres\"",
+      "button \"View route details\"",
+      "a \"Choose this route\"",
+      "a \"Back to search\"",
+      "a \"OneLine home\"",
+      "a \"Built together\"",
+      "BODY",
+      "a \"Skip to content\"",
+      "a \"OneLine home\"",
+      "a \"Search\""
+    ]
+  }
+}

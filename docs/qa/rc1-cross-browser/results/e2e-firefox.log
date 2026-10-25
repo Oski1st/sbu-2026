@@ -1,0 +1,123 @@
+PASS HTTP deep link / — 200
+PASS HTTP deep link /search — 200
+PASS HTTP deep link /journey/regional-connection — 200
+PASS HTTP deep link /wallet/amtrak-connection — 200
+PASS HTTP deep link /journey/bogus — 200
+PASS SEPTA proxy GET — status 200, cache-control no-store, records 4
+PASS SEPTA proxy rejects query string — 400
+PASS SEPTA proxy rejects POST — 405
+PASS Missing asset is 404, not SPA HTML — 404
+PASS Malformed percent-encoding returns 400 (not a crash) — 400
+PASS Unknown /api path is 404 — 404
+PASS [regional-connection] Search: exactly one <main>, none nested — {"mains":1,"nested":0}
+PASS [regional-connection] route card on Search
+PASS [regional-connection] Compare tray shows 2 of 2
+PASS [regional-connection] Compare dialog labels sample data — A LITTLE PERSPECTIVE Find your kind of journey. Side by side. Every trade-off in the open. All times and fares
+PASS [regional-connection] Compare dialog buttons named
+PASS [regional-connection] Compare dialog closes after choosing
+PASS [regional-connection] Journey renders
+PASS [regional-connection] Journey: exactly one <main>, none nested — {"mains":1,"nested":0}
+PASS [regional-connection] Journey: no duplicate page navigation
+PASS [regional-connection] Journey survives refresh
+PASS [regional-connection] Journey has in-page Wallet link — View ticket wallet →
+PASS [regional-connection] Wallet: exactly one <main>, none nested — {"mains":1,"nested":0}
+PASS [regional-connection] Wallet: no duplicate page navigation
+PASS [regional-connection] Wallet leg count — 4 (expected 4)
+PASS [regional-connection] Wallet agencies — SEPTA, NJ TRANSIT, LIRR
+PASS [regional-connection] Footer does not deny live data —  connections. Sample itineraries · Live data limited to labelled SEPTA snapshots
+PASS [regional-connection] SEPTA panel only when trip has SEPTA
+PASS [regional-connection] real SEPTA panel state — SEPTA service snapshot Refresh feed SEPTA observations retrieved. This snapshot expires after 60 seconds. Last retrieved: Oct 25, 2:31:16 AM EDT. This is our re
+PASS [regional-connection] Wallet survives refresh
+PASS [amtrak-connection] Search: exactly one <main>, none nested — {"mains":1,"nested":0}
+PASS [amtrak-connection] route card on Search
+PASS [amtrak-connection] Compare tray shows 2 of 2
+PASS [amtrak-connection] Compare dialog labels sample data — A LITTLE PERSPECTIVE Find your kind of journey. Side by side. Every trade-off in the open. All times and fares
+PASS [amtrak-connection] Compare dialog buttons named
+PASS [amtrak-connection] Compare dialog closes after choosing
+PASS [amtrak-connection] Journey renders
+PASS [amtrak-connection] Journey: exactly one <main>, none nested — {"mains":1,"nested":0}
+PASS [amtrak-connection] Journey: no duplicate page navigation
+PASS [amtrak-connection] Journey survives refresh
+PASS [amtrak-connection] Journey has in-page Wallet link — View ticket wallet →
+PASS [amtrak-connection] Wallet: exactly one <main>, none nested — {"mains":1,"nested":0}
+PASS [amtrak-connection] Wallet: no duplicate page navigation
+PASS [amtrak-connection] Wallet leg count — 3 (expected 3)
+PASS [amtrak-connection] Wallet agencies — Amtrak, LIRR
+PASS [amtrak-connection] Footer does not deny live data —  connections. Sample itineraries · Live data limited to labelled SEPTA snapshots
+PASS [amtrak-connection] SEPTA panel only when trip has SEPTA
+PASS [amtrak-connection] Wallet survives refresh
+PASS Compare: checkbox toggles with Space
+PASS Compare: tray asks for a second route
+PASS Compare: action disabled with 1 route
+PASS Compare: focus moves into dialog
+PASS Compare: Escape closes dialog
+PASS Compare: focus returns to Compare button — compare-tray-action
+PASS Compare: refresh resets dialog and tray without errors
+PASS Invalid/missing ID /journey/bogus — ONELINE
+PASS Invalid/missing ID /journey/bogus: exactly one <main> — {"mains":1,"nested":0}
+PASS Invalid/missing ID /journey/bogus survives refresh
+PASS Invalid/missing ID /wallet/bogus — TRIP WALLET
+PASS Invalid/missing ID /wallet/bogus: exactly one <main> — {"mains":1,"nested":0}
+PASS Invalid/missing ID /wallet/bogus survives refresh
+PASS Invalid/missing ID /wallet — Back to search
+PASS Invalid/missing ID /wallet: exactly one <main> — {"mains":1,"nested":0}
+PASS Invalid/missing ID /wallet survives refresh
+PASS Invalid/missing ID /journey — Back to search
+PASS Invalid/missing ID /journey: exactly one <main> — {"mains":1,"nested":0}
+PASS Invalid/missing ID /journey survives refresh
+PASS Invalid/missing ID /journey/regional-connection%20x — ONELINE
+PASS Invalid/missing ID /journey/regional-connection%20x: exactly one <main> — {"mains":1,"nested":0}
+PASS Invalid/missing ID /journey/regional-connection%20x survives refresh
+PASS Invalid/missing ID /nowhere — A little off the line.
+PASS Invalid/missing ID /nowhere: exactly one <main> — {"mains":1,"nested":0}
+PASS Invalid/missing ID /nowhere survives refresh
+PASS Mobile 390px / no horizontal overflow — overflow 0px
+FAIL Mobile 390px / buttons/links named and unclipped — unnamed <a> <a href="https://www.amtrak.com/downeaster-train" target="_blank" rel="noreferre; unnamed <a> <a href="https://www.amtrak.com/northeast-regional-train" target="_blank" rel="n; unnamed <a> <a href="https://www.amtrak.com/amtrak-hartford-line-train" target="_blank" rel=; unnamed <a> <a href="https://www.amtrak.com/empire-service-train" target="_blank" rel="noref
+PASS Mobile 390px /journey/regional-connection no horizontal overflow — overflow 0px
+PASS Mobile 390px /journey/regional-connection buttons/links named and unclipped
+PASS Mobile 390px /wallet/regional-connection no horizontal overflow — overflow 0px
+PASS Mobile 390px /wallet/regional-connection buttons/links named and unclipped
+PASS Mobile 390px /journey/amtrak-connection no horizontal overflow — overflow 0px
+PASS Mobile 390px /journey/amtrak-connection buttons/links named and unclipped
+PASS Mobile 390px /wallet/amtrak-connection no horizontal overflow — overflow 0px
+PASS Mobile 390px /wallet/amtrak-connection buttons/links named and unclipped
+PASS Mobile 390px Compare dialog fits viewport — {"left":19,"right":371,"vw":390}
+PASS Mobile 390px Compare dialog buttons named and unclipped
+PASS Mobile 320px / no horizontal overflow — overflow 0px
+FAIL Mobile 320px / buttons/links named and unclipped — unnamed <a> <a href="https://www.amtrak.com/downeaster-train" target="_blank" rel="noreferre; unnamed <a> <a href="https://www.amtrak.com/northeast-regional-train" target="_blank" rel="n; unnamed <a> <a href="https://www.amtrak.com/amtrak-hartford-line-train" target="_blank" rel=; unnamed <a> <a href="https://www.amtrak.com/empire-service-train" target="_blank" rel="noref
+PASS Mobile 320px /journey/regional-connection no horizontal overflow — overflow 0px
+PASS Mobile 320px /journey/regional-connection buttons/links named and unclipped
+PASS Mobile 320px /wallet/regional-connection no horizontal overflow — overflow 0px
+PASS Mobile 320px /wallet/regional-connection buttons/links named and unclipped
+PASS Mobile 320px /journey/amtrak-connection no horizontal overflow — overflow 0px
+PASS Mobile 320px /journey/amtrak-connection buttons/links named and unclipped
+PASS Mobile 320px /wallet/amtrak-connection no horizontal overflow — overflow 0px
+PASS Mobile 320px /wallet/amtrak-connection buttons/links named and unclipped
+PASS Mobile 320px Compare dialog fits viewport — {"left":19,"right":301,"vw":320}
+PASS Mobile 320px Compare dialog buttons named and unclipped
+PASS Keyboard: first Tab is skip link — Skip to content
+PASS Keyboard: reach 'Choose this route' by Tab
+PASS Keyboard: visible focus outline on route CTA — solid
+PASS Keyboard: focus moves to main after navigation — main-content
+PASS Keyboard: Journey segment expands with Enter (aria-expanded)
+FAIL Keyboard: reach in-page Wallet link by Tab
+PASS Keyboard: Wallet checklist toggles with Space — progress 1
+PASS SEPTA browser state: 502 upstream failure — SEPTA service snapshot Refresh feed SEPTA observations unavailable. Try Refresh feed or check SEPTA directly. Live SEPTA data is unavailable
+PASS SEPTA 502 upstream failure: sample itinerary times unchanged — 8:00 AM,8:55 AM,9:10 AM,10:40 AM,11:00 AM,12:10 PM,12:25 PM,1:15 PM
+PASS SEPTA browser state: 504 timeout — SEPTA service snapshot Refresh feed SEPTA observations unavailable. Try Refresh feed or check SEPTA directly. Live SEPTA data is unavailable
+PASS SEPTA 504 timeout: sample itinerary times unchanged — 8:00 AM,8:55 AM,9:10 AM,10:40 AM,11:00 AM,12:10 PM,12:25 PM,1:15 PM
+PASS SEPTA browser state: network error — SEPTA service snapshot Refresh feed SEPTA observations unavailable. Try Refresh feed or check SEPTA directly. Live SEPTA data is unavailable
+PASS SEPTA network error: sample itinerary times unchanged — 8:00 AM,8:55 AM,9:10 AM,10:40 AM,11:00 AM,12:10 PM,12:25 PM,1:15 PM
+PASS SEPTA browser state: malformed rows — SEPTA service snapshot Refresh feed SEPTA observations unavailable. Try Refresh feed or check SEPTA directly. Live SEPTA data is unavailable
+PASS SEPTA malformed rows: sample itinerary times unchanged — 8:00 AM,8:55 AM,9:10 AM,10:40 AM,11:00 AM,12:10 PM,12:25 PM,1:15 PM
+PASS SEPTA browser state: empty feed — SEPTA service snapshot Refresh feed The feed returned no active trains. This does not confirm that service has stopped. Last retrieved: Oct 
+PASS SEPTA empty feed: sample itinerary times unchanged — 8:00 AM,8:55 AM,9:10 AM,10:40 AM,11:00 AM,12:10 PM,12:25 PM,1:15 PM
+PASS SEPTA browser state: success — SEPTA service snapshot Refresh feed SEPTA observations retrieved. This snapshot expires after 60 seconds. Last retrieved: Oct 25, 2:31:56 AM
+PASS SEPTA success: sample itinerary times unchanged — 8:00 AM,8:55 AM,9:10 AM,10:40 AM,11:00 AM,12:10 PM,12:25 PM,1:15 PM
+PASS SEPTA success: labelled agency-wide, not matched to journey
+PASS SEPTA stale: fresh snapshot lists trains
+PASS SEPTA stale: expires after 60 s and hides trains — SEPTA service snapshot Refresh feed Snapshot expired. Observations are hidden. Refresh feed to check again. Last retrieved: Oct 25, 2:31:57 
+PASS SEPTA stale: Refresh restores a fresh snapshot — SEPTA service snapshot Refresh feed SEPTA observations retrieved. This snapshot expires after 60 sec
+PASS No page errors / console errors
+
+118/121 checks passed

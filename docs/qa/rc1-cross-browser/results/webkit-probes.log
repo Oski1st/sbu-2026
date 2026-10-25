@@ -1,0 +1,15 @@
+probe1 chromium tap li#a (pointerdown prevented): ["click a"]
+probe1 chromium tap li#b (mousedown prevented): ["click b"]
+probe1 chromium tap li#c (no prevent): ["blur","click c"]
+probe2 chromium collapsed links: [{"h":40,"w":198,"innerText":"Get tickets from SEP","inert":true,"visible":false},{"h":40,"w":236,"innerText":"Get tickets from NJ ","inert":true,"visible":false}]
+probe3 chromium focus after close: mouse-opened → BUTTON.compare-tray-action; keyboard-opened → BUTTON.compare-tray-action
+probe1 firefox tap li#a (pointerdown prevented): ["click a"]
+probe1 firefox tap li#b (mousedown prevented): ["click b"]
+probe1 firefox tap li#c (no prevent): ["blur","click c"]
+probe2 firefox collapsed links: [{"h":40,"w":198,"innerText":"Get tickets from SEP","inert":true,"visible":false},{"h":40,"w":236,"innerText":"Get tickets from NJ ","inert":true,"visible":false}]
+probe3 firefox focus after close: mouse-opened → BUTTON.compare-tray-action; keyboard-opened → BUTTON.compare-tray-action
+probe1 webkit tap li#a (pointerdown prevented): []
+probe1 webkit tap li#b (mousedown prevented): ["click b"]
+probe1 webkit tap li#c (no prevent): ["blur","click c"]
+probe2 webkit collapsed links: [{"h":40,"w":198,"innerText":"","inert":true,"visible":false},{"h":40,"w":236,"innerText":"","inert":true,"visible":false}]
+probe3 webkit focus after close: mouse-opened → DIV.; keyboard-opened → BUTTON.compare-tray-action

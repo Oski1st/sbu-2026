@@ -1,0 +1,93 @@
+INFO [firefox-phone] browserVersion: firefox 157.0
+INFO [firefox-phone] tab key used for link walks: Tab
+PASS [firefox-phone] Search: typing 'Bos' lists Boston first — Boston MA
+PASS [firefox-phone] Search: ArrowDown sets aria-activedescendant and highlights an option — origin-option-boston
+PASS [firefox-phone] Search: Enter picks highlighted city and closes list — value=Boston expanded=false
+PASS [firefox-phone] Search: Enter on option does not submit the form — http://127.0.0.1:4188/
+PASS [firefox-phone] Search: ArrowUp from input wraps to last option — 2 options
+PASS [firefox-phone] Search: Escape closes list and keeps typed text
+PASS [firefox-phone] Search: mouse pick fills the field and closes list — value=New York
+PASS [firefox-phone] Search: alias 'Philly' suggests Philadelphia — Philadelphia PA
+PASS [firefox-phone] Search: alias 'NYC' suggests New York — New York NY
+PASS [firefox-phone] Search: alias 'DC' suggests Washington — Washington, DC DC
+PASS [firefox-phone] Search: alias 'Long Island' suggests Stony Brook — Stony Brook NY
+INFO [firefox-phone] dateInputType: date
+INFO [firefox-phone] timeInputType: time
+PASS [firefox-phone] Search: date input default value reads back — 2026-10-24
+PASS [firefox-phone] Search: date fill() reads back — 2026-11-03
+PASS [firefox-phone] Search: time fill() reads back — 14:30
+INFO [firefox-phone] dateTimeBoxes: {"date":{"w":136,"h":44},"time":{"w":136,"h":44}}
+PASS [firefox-phone] Search: date/time inputs stay inside their field
+INFO [firefox-phone] Tab into date input: {"name":"departure-date","outline":"solid 2px","focusVisible":true}
+INFO [firefox-phone] keyboardTimeEntry '0945' -> value: 09:45
+PASS [firefox-phone] Search: submit persists date and time in URL — ?date=2026-11-03&time=14%3A30
+PASS [firefox-phone] Search: results status present after submit — Philadelphia to Stony Brook. Every connection, considered.
+PASS [firefox-phone] Search: focus moves to results after submit — routes
+PASS [firefox-phone] Search: refresh keeps date/time in inputs — 2026-11-03 14:30
+PASS [firefox-phone] Search: second search Boston -> New York — 3 sample connections for Boston → New York
+PASS [firefox-phone] Search: Back restores previous search inputs — Philadelphia 2026-11-03
+PASS [firefox-phone] Search: Back again returns to default form — http://127.0.0.1:4188/
+PASS [firefox-phone] Search: Forward re-applies date/time — http://127.0.0.1:4188/?date=2026-11-03&time=14%3A30
+PASS [firefox-phone] Search: Rail only filter pressed + URL — http://127.0.0.1:4188/?mode=rail
+PASS [firefox-phone] Search: filters compose in URL — ?mode=rail&sort=fastest&operator=LIRR&amtrak=0 → 1 cards
+PASS [firefox-phone] Search: refresh keeps sort/filter controls
+PASS [firefox-phone] Search: Back undoes last filter (Amtrak toggle) — http://127.0.0.1:4188/?mode=rail&sort=fastest&operator=LIRR
+PASS [firefox-phone] Search: Compare dialog opens (showModal)
+PASS [firefox-phone] Search: focus moves into dialog — comparison-close
+PASS [firefox-phone] Search: dialog fits viewport width — {"x":19,"w":352,"vw":390}
+PASS [firefox-phone] Search: Escape closes dialog
+PASS [firefox-phone] Search: focus returns to Compare button after Escape — compare-tray-action
+PASS [firefox-phone] Search: Close button closes dialog and returns focus — compare-tray-action
+INFO [firefox-phone] Tab sequence inside open dialog: in,in,in,in,in,in
+PASS [firefox-phone] Search: Tab while dialog open never focuses page content behind it — in,in,in,in,in,in
+PASS [firefox-phone] Map: SVG renders with size — {"w":362,"h":190}
+PASS [firefox-phone] Map: 8 routes, 26 stations, 49 state outlines — {"routes":8,"stations":26,"states":49}
+INFO [firefox-phone] station dot computed style: {"strokeWidth":"5.5px","linecap":"round","vector":"non-scaling-stroke"}
+PASS [firefox-phone] Map: labels visible, no overlap, inside frame — {"visible":["Boston","New York","Charlotte","Savannah","Tampa","Miami"],"overlaps":[],"outside":[]}
+PASS [firefox-phone] Map: details opens on click/tap
+PASS [firefox-phone] Map: details panel is a bounded scrolling region and scrolls — {"sh":3758,"ch":383,"oy":"auto"} scrollTop=400
+PASS [firefox-phone] Map: no horizontal overflow with details open — 0px
+PASS [firefox-phone] Map: details closes on second click/tap
+PASS [firefox-phone] Map: summary toggles with Enter then Space — enter→open=true space→closed=true
+PASS [firefox-phone] Map: links inside closed details are not rendered — 0 rendered
+PASS [firefox-phone] Map: 320px: no horizontal overflow (details closed/open) — closed 0px, open 0px 
+PASS [firefox-phone] Map: 375px: no horizontal overflow (details closed/open) — closed 0px, open 0px 
+PASS [firefox-phone] Map: 390px: no horizontal overflow (details closed/open) — closed 0px, open 0px 
+INFO [firefox-phone] timeline times (New York tz): 8:00 AM · Oct 24 8:55 AM · Oct 24 9:10 AM · Oct 24 10:40 AM · Oct 24 11:00 AM · Oct 24 12:10 PM · Oct 24 12:25 PM · Oct 24 1:15 PM · Oct 24
+PASS [firefox-phone] Journey: timeline times identical in New York and Los Angeles time zones — 8:00 AM · Oct 24 8:55 AM · Oct 24 9:10 AM · Oct 24 10:40 AM · Oct 24 11:00 AM · Oct 24 12:10 PM · Oct 24 12:25 PM · Oct 24 1:15 PM · Oct 24
+PASS [firefox-phone] Journey: Simulate delay shows struck original arrival and Reset label — 1 struck times
+PASS [firefox-phone] Journey: Reset simulation clears delay
+INFO [firefox-phone] HTMLElement.inert supported: true
+PASS [firefox-phone] Journey: collapsed details are inert and take no height — {"inert":true,"h":0,"linkH":40,"visible":false}
+PASS [firefox-phone] Journey: Tab from collapsed toggle skips hidden 'Get tickets' link — View trip details
+PASS [firefox-phone] Journey: programmatic focus() on collapsed link is refused (inert)
+PASS [firefox-phone] Journey: Enter expands details (aria-expanded, not inert, has height) — {"inert":false,"h":336}
+PASS [firefox-phone] Journey: focus stays on toggle after Enter
+PASS [firefox-phone] Journey: toggle shows visible keyboard focus ring — {"outline":"none","shadow":"rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(255, 255, 255) 0px 0px 0px 2px, oklch(0.129 0.042 264.695) 0px 0px 0px 4px, rgba(0, 0, 0, 0) 0px 0px 0px 0px"}
+INFO [firefox-phone] plain Tab after expanded toggle lands on: Get tickets from SEPTA
+↗
+PASS [firefox-phone] Journey: Tab from expanded toggle reaches 'Get tickets' link — Get tickets from SEPTA
+↗
+PASS [firefox-phone] Journey: Space collapses; focus remains on toggle — segment-details-regional-1
+PASS [firefox-phone] Journey: details height returns to 0 after collapse animation — 0px
+PASS [firefox-phone] Journey: demo Start → Next → ArrowLeft → Reset — start=true next=true arrowLeft=true currentCards=1 reset=true
+PASS [firefox-phone] Journey: View ticket wallet link navigates
+PASS [firefox-phone] Wallet: 4 tickets for regional-connection — 4
+PASS [firefox-phone] Wallet: real SEPTA panel settles to live or unavailable — SEPTA service snapshot Refresh feed SEPTA observations retrieved. This snapshot expires af
+PASS [firefox-phone] Wallet: checklist checkbox updates progress
+PASS [firefox-phone] Wallet: no horizontal overflow — 0px
+PASS [firefox-phone] Wallet: Back returns to Journey
+PASS [firefox-phone] Wallet: Back again returns to Search
+PASS [firefox-phone] Wallet: Forward twice returns to Wallet
+PASS [firefox-phone] Wallet: SEPTA 502 state renders — SEPTA service snapshot Refresh feed SEPTA observations unavailable. Try Refresh feed or ch
+PASS [firefox-phone] Wallet: SEPTA success state renders — SEPTA service snapshot Refresh feed SEPTA observations retrieved. This snapshot expires af
+INFO [firefox-phone] plain Tab sequence (first 14): ["a \"Skip to content\"","a \"OneLine home\"","a \"Search\"","a \"Journey\"","a \"Wallet\"","summary \"Corridors, cities & coverage gap\"","input[text origin]#origin \"Departure city\"","button \"Swap origin and destination\"","input[text destination]#destination \"Where to?\"","input[date departure-date] \"\"","input[date departure-date] \"\"","input[date departure-date] \"\"","input[date departure-date] \"\"","input[time departure-time] \"\""]
+INFO [firefox-phone] plain Tab reaches links: true
+PASS [firefox-phone] Keyboard: first Tab focuses Skip to content — a "Skip to content"
+INFO [firefox-phone] Tab sequence (first 40): ["a \"Skip to content\"","a \"OneLine home\"","a \"Search\"","a \"Journey\"","a \"Wallet\"","summary \"Corridors, cities & coverage gap\"","input[text origin]#origin \"Departure city\"","button \"Swap origin and destination\"","input[text destination]#destination \"Where to?\"","input[date departure-date] \"\"","input[date departure-date] \"\"","input[date departure-date] \"\"","input[date departure-date] \"\"","input[time departure-time] \"\"","input[time departure-time] \"\"","input[time departure-time] \"\"","input[time departure-time] \"\"","button \"Find my way\"","button \"NEW ENGLAND Boston New York City\"","button \"MID-ATLANTIC New York Washington\"","button \"THE CAROLINAS Raleigh Charlotte \"","button \"FLORIDA Orlando Miami Chase the \"","summary \"See all 24 cities and coverage l\"","select#sort \"sort\"","button \"All transport\"","button \"Rail only\"","button \"Bus only\"","button \"Rail + bus\"","select \"\"","input[checkbox] \"\"","button \"Compare two options\"","input[checkbox] \"Compare The scenic connection\"","button \"Copy preview link for The scenic\"","button \"View route details\"","a \"Choose this route\"","input[checkbox] \"Compare The express connection\"","button \"Copy preview link for The expres\"","button \"View route details\"","a \"Choose this route\"","a \"Back to search\""]
+PASS [firefox-phone] Keyboard: every focused control in first 40 stops has a visible outline/box-shadow
+PASS [firefox-phone] Keyboard: skip link moves focus to main content — main-content
+PASS [firefox-phone] Keyboard: Journey in-page 'View ticket wallet' reachable from page top — stop 6
+PASS [firefox-phone] Console: no page errors, console errors, failed or 4xx/5xx same-origin requests
+
+[firefox-phone] 74/74 checks passed
