@@ -193,7 +193,12 @@ export default function SearchPage() {
           <button
             className="compare-tray-action"
             disabled={comparedTrips.length !== 2}
-            onClick={() => setCompareOpen(true)}
+            onClick={(event) => {
+              // Safari does not focus buttons on click; focus the opener so
+              // RouteComparison returns focus here when the dialog closes.
+              event.currentTarget.focus();
+              setCompareOpen(true);
+            }}
           >
             Compare routes <ArrowRight size={15} />
           </button>
