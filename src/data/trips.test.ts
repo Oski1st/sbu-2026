@@ -48,6 +48,14 @@ describe("original Philadelphia demo route planning", () => {
     expect(regional.durationMinutes).toBe(demoTrips[0].durationMinutes);
     expect(+new Date(regional.legs.at(-1)!.arrival) - +new Date(regional.legs[0].departure)).toBe(regional.durationMinutes * 60_000);
     expect(demoTrips[0].legs[0].departure).toContain("2026-10-24");
+    // The shift applies on top of the official-source corrections (docs/sample-data-accuracy.md):
+    // scenic 4h 57m arriving 9:27 PM, express 3h 37m arriving 8:37 PM: still 50 min sooner, $14 more.
+    expect([formatDuration(regional.durationMinutes), formatTime(regional.legs.at(-1)!.arrival)]).toEqual(["4h 57m", "9:27 PM"]);
+    expect([formatDuration(express.durationMinutes), formatTime(express.legs.at(-1)!.arrival)]).toEqual(["3h 37m", "8:37 PM"]);
+    const shiftedComparison = compareTrips(regional, express);
+    expect(shiftedComparison.minutesSaved).toBe(50);
+    expect(formatMoney(shiftedComparison.fareDifference!)).toBe("$14");
+    expect([formatMoney(sampleTotal(regional)!), formatMoney(sampleTotal(express)!)]).toEqual(["$47", "$61"]);
   });
   it("matches the demo corridor case-insensitively and trims whitespace", () => {
     expect(
