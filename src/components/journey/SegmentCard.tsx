@@ -127,6 +127,7 @@ export function SegmentCard({ leg, index, isExpanded, isDelayed, isCurrent, onTo
                   className="mt-4 inline-flex min-h-10 items-center rounded-lg bg-white px-3 font-bold text-slate-900 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-950"
                 >
                   Get tickets from {styles.label}
+                  <span className="sr-only"> for segment {index + 1}, {leg.from} to {leg.to} (opens in a new tab)</span>
                   <span className="ml-2" aria-hidden="true">↗</span>
                 </a>
               </div>

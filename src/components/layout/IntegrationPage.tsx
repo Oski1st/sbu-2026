@@ -80,6 +80,7 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
                   {kind === "wallet" && (
                     <a target="_blank" rel="noreferrer" href={leg.purchaseUrl}>
                       Official tickets <ArrowUpRight size={14} />
+                      <span className="sr-only"> · {agencies[leg.agency].name}, {leg.line}, {leg.from} to {leg.to} (opens in a new tab)</span>
                     </a>
                   )}
                 </div>
