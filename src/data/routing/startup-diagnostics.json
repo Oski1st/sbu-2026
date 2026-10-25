@@ -1,0 +1,76 @@
+{
+  "phase": "fresh Vite SSR App-module import; not browser performance",
+  "consumerBase": "e24b794d7e231b07687bd4f17241bde7d7f77976",
+  "originalIds": [
+    "regional-connection",
+    "amtrak-connection"
+  ],
+  "initial": {
+    "datasetVersion": "east-coast-21d77dd-v1",
+    "cacheVersion": "concept-trip-v1",
+    "cacheMaxEntries": 128,
+    "cacheEntries": 0,
+    "startupRouteComputations": 0,
+    "queries": 0,
+    "routeComputations": 0,
+    "tripCreations": 0,
+    "cacheHits": 0,
+    "evictions": 0,
+    "totalQueries": 0,
+    "graphs": {
+      "AMTRAK": {
+        "nodes": 24,
+        "edges": 46
+      },
+      "GREYHOUND": {
+        "nodes": 24,
+        "edges": 48
+      },
+      "FLIXBUS": {
+        "nodes": 24,
+        "edges": 48
+      }
+    }
+  },
+  "rebuilt": [
+    {
+      "id": "east-portland--miami--amtrak",
+      "resolved": true
+    },
+    {
+      "id": "east-boston--stony-brook--greyhound",
+      "resolved": true
+    },
+    {
+      "id": "east-miami--portland--flixbus",
+      "resolved": true
+    }
+  ],
+  "afterExplicitLookups": {
+    "datasetVersion": "east-coast-21d77dd-v1",
+    "cacheVersion": "concept-trip-v1",
+    "cacheMaxEntries": 128,
+    "cacheEntries": 3,
+    "startupRouteComputations": 0,
+    "queries": 3,
+    "routeComputations": 3,
+    "tripCreations": 3,
+    "cacheHits": 0,
+    "evictions": 0,
+    "totalQueries": 3,
+    "graphs": {
+      "AMTRAK": {
+        "nodes": 24,
+        "edges": 46
+      },
+      "GREYHOUND": {
+        "nodes": 24,
+        "edges": 48
+      },
+      "FLIXBUS": {
+        "nodes": 24,
+        "edges": 48
+      }
+    }
+  }
+}

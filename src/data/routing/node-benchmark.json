@@ -1,0 +1,96 @@
+{
+  "baselineSha": "21d77dd618538284d77ee48db7fc34821a04bd99",
+  "checkedDate": "2026-10-24",
+  "environment": {
+    "node": "v24.22.1",
+    "v8": "13.6.233.17-node.58",
+    "os": "darwin",
+    "release": "25.6.0",
+    "cpu": "Apple M5"
+  },
+  "protocol": "10 fresh Node processes per module; fixed seed20261024,200 pair queries twice/process; retained import heap after explicit GC;1000 heap/reference graph queries/process. Not browser or production timings. Candidate isolated module only: legacy app eager consumers remain pending migration.",
+  "sourceHashes": {
+    "src/data/tripLookup.ts": "756bd5e2960f1849fd916f807f445408c47e7979badb74df4a89d9b8ca0d3607",
+    "src/data/routing/graph.ts": "3ba5b7dde2afa9fc1825329a930d8f3978a02c4545c002846cd3319902afed3a",
+    "src/data/eastCoast.ts": "68e1a097f1d5428ad331c02c5ed815c11aefcfbe5b2be9f18064308779b1d24c",
+    "src/data/originalDemoTrips.ts": "6b1d85f9551cf275b13f1274f71755c6cbf520d4f1b092db7eaf1431fcfab51d"
+  },
+  "results": {
+    "baseline": {
+      "coldImportMs": {
+        "p50": 26.84525,
+        "p95": 27.752708000000002
+      },
+      "retainedHeapDeltaBytes": {
+        "p50": 1520608,
+        "p95": 1520608
+      },
+      "firstPassQueryMs": {
+        "p50": 6.945459000000028,
+        "p95": 10.050916999999913
+      },
+      "repeatPassQueryMs": {
+        "p50": 6.9317080000000715,
+        "p95": 10.06616599999984
+      },
+      "tripsCreatedAtBaselineImport": 1651,
+      "diagnostics": null,
+      "heapPathMs": null,
+      "arrayReferencePathMs": null
+    },
+    "candidate": {
+      "coldImportMs": {
+        "p50": 0.7542919999999995,
+        "p95": 1.1067920000000004
+      },
+      "retainedHeapDeltaBytes": {
+        "p50": 238408,
+        "p95": 238440
+      },
+      "firstPassQueryMs": {
+        "p50": 0.019207999999999004,
+        "p95": 0.07691699999999813
+      },
+      "repeatPassQueryMs": {
+        "p50": 0.01741599999999721,
+        "p95": 0.030208999999999264
+      },
+      "tripsCreatedAtBaselineImport": null,
+      "diagnostics": {
+        "datasetVersion": "east-coast-21d77dd-v1",
+        "cacheVersion": "concept-trip-v1",
+        "cacheMaxEntries": 128,
+        "cacheEntries": 128,
+        "startupRouteComputations": 0,
+        "queries": 1188,
+        "routeComputations": 1038,
+        "tripCreations": 1030,
+        "cacheHits": 150,
+        "evictions": 910,
+        "totalQueries": 1188,
+        "graphs": {
+          "AMTRAK": {
+            "nodes": 24,
+            "edges": 46
+          },
+          "GREYHOUND": {
+            "nodes": 24,
+            "edges": 48
+          },
+          "FLIXBUS": {
+            "nodes": 24,
+            "edges": 48
+          }
+        }
+      },
+      "heapPathMs": {
+        "p50": 0.0014590000000005432,
+        "p95": 0.003208000000000766
+      },
+      "arrayReferencePathMs": {
+        "p50": 0.004417000000000115,
+        "p95": 0.010874999999998636
+      }
+    }
+  }
+}
