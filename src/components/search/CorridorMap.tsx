@@ -25,7 +25,7 @@ const [, , viewWidth, viewHeight] = geometry.viewBox;
 const coverageSummaries: Record<string, string> = {
   SEPTA: "Commuter-rail alignment is not mapped.",
   "NJ TRANSIT": "Commuter-rail alignment is not mapped.",
-  LIRR: "Stony Brook is in the sample trips; its alignment is not mapped.",
+  LIRR: "Stony Brook's station is marked; LIRR track is not drawn.",
   "Greyhound / FlixBus": "Coach services use roads, so they are outside this rail layer.",
 };
 
