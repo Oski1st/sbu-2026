@@ -1,0 +1,864 @@
+{
+  "base": "http://127.0.0.1:5178",
+  "chrome": "156.0.8078.47",
+  "pairStats": {
+    "total": 552,
+    "withRoutes": 552,
+    "noRoutes": [],
+    "errors": []
+  },
+  "routeCount": 1651,
+  "findings": [
+    {
+      "area": "A city pairs (552)",
+      "result": "PASS",
+      "detail": {
+        "total": 552,
+        "withRoutes": 552,
+        "noRoutesCount": 0,
+        "noRoutesSample": [],
+        "errors": []
+      }
+    },
+    {
+      "area": "B Journey/Wallet pages",
+      "result": "FAIL",
+      "detail": {
+        "uniqueRoutes": 1651,
+        "pagesChecked": 3302,
+        "problems": [
+          {
+            "path": "/journey/east-portland--boston--amtrak",
+            "len": 24,
+            "chooseRoute": false,
+            "bad": null
+          },
+          {
+            "path": "/wallet/east-portland--boston--amtrak",
+            "len": 24,
+            "chooseRoute": false,
+            "bad": null
+          },
+          {
+            "path": "/journey/east-portland--boston--greyhound",
+            "len": 24,
+            "chooseRoute": false,
+            "bad": null
+          },
+          {
+            "path": "/wallet/east-portland--boston--greyhound",
+            "len": 24,
+            "chooseRoute": false,
+            "bad": null
+          },
+          {
+            "path": "/journey/east-portland--boston--flixbus",
+            "len": 24,
+            "chooseRoute": false,
+            "bad": null
+          },
+          {
+            "path": "/wallet/east-portland--boston--flixbus",
+            "len": 24,
+            "chooseRoute": false,
+            "bad": null
+          },
+          {
+            "path": "/journey/east-portland--providence--amtrak",
+            "len": 24,
+            "chooseRoute": false,
+            "bad": null
+          },
+          {
+            "path": "/wallet/east-portland--providence--amtrak",
+            "len": 24,
+            "chooseRoute": false,
+            "bad": null
+          }
+        ]
+      }
+    },
+    {
+      "area": "C same city",
+      "result": "INFO",
+      "detail": {
+        "origin": "Boston",
+        "dest": "Boston",
+        "routes": 0,
+        "live": "0 sample connections for Boston → Boston",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C alias NYC→philly",
+      "result": "INFO",
+      "detail": {
+        "origin": "NYC",
+        "dest": "philly",
+        "routes": 3,
+        "live": "3 sample connections for NYC → philly",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C alias DC→long island",
+      "result": "INFO",
+      "detail": {
+        "origin": "DC",
+        "dest": "long island",
+        "routes": 3,
+        "live": "3 sample connections for DC → long island",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C alias Washington D.C.",
+      "result": "INFO",
+      "detail": {
+        "origin": "Washington, D.C.",
+        "dest": "Boston",
+        "routes": 3,
+        "live": "3 sample connections for Washington, D.C. → Boston",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C case/space",
+      "result": "INFO",
+      "detail": {
+        "origin": "new   york",
+        "dest": "MIAMI",
+        "routes": 3,
+        "live": "3 sample connections for new   york → MIAMI",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C unknown Chicago",
+      "result": "INFO",
+      "detail": {
+        "origin": "Chicago",
+        "dest": "Boston",
+        "routes": 0,
+        "live": "0 sample connections for Chicago → Boston",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C unknown both",
+      "result": "INFO",
+      "detail": {
+        "origin": "Atlantis",
+        "dest": "El Dorado",
+        "routes": 0,
+        "live": "0 sample connections for Atlantis → El Dorado",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C empty from",
+      "result": "INFO",
+      "detail": {
+        "origin": "Philadelphia",
+        "dest": "Boston",
+        "routes": 3,
+        "live": "3 sample connections for Philadelphia → Boston",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C long 300 chars",
+      "result": "INFO",
+      "detail": {
+        "origin": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "dest": "Boston",
+        "routes": 0,
+        "live": "0 sample connections for xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx → Boston",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C html injection",
+      "result": "INFO",
+      "detail": {
+        "origin": "<img src=x onerror=alert(1)>",
+        "dest": "Boston",
+        "routes": 0,
+        "live": "0 sample connections for <img src=x onerror=alert(1)> → Boston",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C emoji",
+      "result": "INFO",
+      "detail": {
+        "origin": "🚆 Boston",
+        "dest": "Miami",
+        "routes": 0,
+        "live": "0 sample connections for 🚆 Boston → Miami",
+        "overflow": false,
+        "bad": null
+      }
+    },
+    {
+      "area": "C no script execution from URL input",
+      "result": "PASS",
+      "detail": {
+        "dialogFired": false
+      }
+    },
+    {
+      "area": "D date 2026-10-24",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-10-24",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2026-12-31",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-12-31",
+        "got": "2026-12-31",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2027-01-01",
+      "result": "PASS",
+      "detail": {
+        "expect": "2027-01-01",
+        "got": "2027-01-01",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2028-02-29",
+      "result": "PASS",
+      "detail": {
+        "expect": "2028-02-29",
+        "got": "2028-02-29",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2026-02-29",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-10-24",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2026-03-08",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-03-08",
+        "got": "2026-03-08",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2026-11-01",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-11-01",
+        "got": "2026-11-01",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 1999-12-31",
+      "result": "PASS",
+      "detail": {
+        "expect": "1999-12-31",
+        "got": "1999-12-31",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2000-02-29",
+      "result": "PASS",
+      "detail": {
+        "expect": "2000-02-29",
+        "got": "2000-02-29",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2100-02-29",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-10-24",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2099-12-31",
+      "result": "PASS",
+      "detail": {
+        "expect": "2099-12-31",
+        "got": "2099-12-31",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 9999-12-31",
+      "result": "PASS",
+      "detail": {
+        "expect": "9999-12-31",
+        "got": "9999-12-31",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 0001-01-01",
+      "result": "FAIL",
+      "detail": {
+        "expect": "0001-01-01",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2026-13-01",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-10-24",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2026-00-10",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-10-24",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2026-04-31",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-10-24",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 26-10-24",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-10-24",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date garbage",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-10-24",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 2026-1-5",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-10-24",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "D date 20260-01-01",
+      "result": "PASS",
+      "detail": {
+        "expect": "2026-10-24",
+        "got": "2026-10-24",
+        "sameRoutes": true,
+        "bad": null
+      }
+    },
+    {
+      "area": "E time 00:00",
+      "result": "PASS",
+      "detail": {
+        "expect": "00:00",
+        "got": "00:00",
+        "bad": null
+      }
+    },
+    {
+      "area": "E time 23:59",
+      "result": "PASS",
+      "detail": {
+        "expect": "23:59",
+        "got": "23:59",
+        "bad": null
+      }
+    },
+    {
+      "area": "E time 12:00",
+      "result": "PASS",
+      "detail": {
+        "expect": "12:00",
+        "got": "12:00",
+        "bad": null
+      }
+    },
+    {
+      "area": "E time 12:30",
+      "result": "PASS",
+      "detail": {
+        "expect": "12:30",
+        "got": "12:30",
+        "bad": null
+      }
+    },
+    {
+      "area": "E time 24:00",
+      "result": "PASS",
+      "detail": {
+        "expect": "08:00",
+        "got": "08:00",
+        "bad": null
+      }
+    },
+    {
+      "area": "E time 23:60",
+      "result": "PASS",
+      "detail": {
+        "expect": "08:00",
+        "got": "08:00",
+        "bad": null
+      }
+    },
+    {
+      "area": "E time 9:05",
+      "result": "PASS",
+      "detail": {
+        "expect": "08:00",
+        "got": "08:00",
+        "bad": null
+      }
+    },
+    {
+      "area": "E time -01:00",
+      "result": "PASS",
+      "detail": {
+        "expect": "08:00",
+        "got": "08:00",
+        "bad": null
+      }
+    },
+    {
+      "area": "E time ab:cd",
+      "result": "PASS",
+      "detail": {
+        "expect": "08:00",
+        "got": "08:00",
+        "bad": null
+      }
+    },
+    {
+      "area": "E time 07:30:00",
+      "result": "PASS",
+      "detail": {
+        "expect": "08:00",
+        "got": "08:00",
+        "bad": null
+      }
+    },
+    {
+      "area": "F typed date 2027-01-01",
+      "result": "PASS",
+      "detail": {
+        "typed": "2027-01-01",
+        "urlDate": "2027-01-01",
+        "routes": 3
+      }
+    },
+    {
+      "area": "F typed date 2028-02-29",
+      "result": "PASS",
+      "detail": {
+        "typed": "2028-02-29",
+        "urlDate": "2028-02-29",
+        "routes": 3
+      }
+    },
+    {
+      "area": "F typed date 2099-12-31",
+      "result": "PASS",
+      "detail": {
+        "typed": "2099-12-31",
+        "urlDate": "2099-12-31",
+        "routes": 3
+      }
+    },
+    {
+      "area": "F typed date 1776-07-04",
+      "result": "PASS",
+      "detail": {
+        "typed": "1776-07-04",
+        "urlDate": "1776-07-04",
+        "routes": 3
+      }
+    },
+    {
+      "area": "F typed date 2026-03-08",
+      "result": "PASS",
+      "detail": {
+        "typed": "2026-03-08",
+        "urlDate": "2026-03-08",
+        "routes": 3
+      }
+    },
+    {
+      "area": "F typed 5-digit year",
+      "result": "INFO",
+      "detail": {
+        "typed": "20270-01-01",
+        "urlDate": "20270-01-01",
+        "shownAfterSubmit": "2026-10-24",
+        "routes": 3
+      }
+    },
+    {
+      "area": "F typed 5-digit year after reload",
+      "result": "INFO",
+      "detail": {
+        "shownAfterReload": "2026-10-24"
+      }
+    },
+    {
+      "area": "F cleared date then submit",
+      "result": "INFO",
+      "detail": {
+        "url": "/?from=Boston&to=Miami&date=2026-11-15",
+        "shown": "",
+        "routes": 3,
+        "live": "3 sample connections for Boston → Miami"
+      }
+    },
+    {
+      "area": "G filter controls present",
+      "result": "INFO",
+      "detail": {
+        "buttons": [
+          "All transport",
+          "Rail only",
+          "Bus only",
+          "Rail + bus",
+          "Compare two options",
+          "Copy preview link",
+          "View route details",
+          "Copy preview link",
+          "View route details",
+          "Copy preview link",
+          "View route details"
+        ]
+      }
+    },
+    {
+      "area": "G mode=all sort=recommended",
+      "result": "PASS",
+      "detail": {
+        "count": 3,
+        "order": [
+          "1800m/$null",
+          "1855m/$null",
+          "1855m/$null"
+        ]
+      }
+    },
+    {
+      "area": "G mode=all sort=fastest",
+      "result": "PASS",
+      "detail": {
+        "count": 3,
+        "order": [
+          "1800m/$null",
+          "1855m/$null",
+          "1855m/$null"
+        ]
+      }
+    },
+    {
+      "area": "G mode=all sort=fare",
+      "result": "PASS",
+      "detail": {
+        "count": 3,
+        "order": [
+          "1800m/$null",
+          "1855m/$null",
+          "1855m/$null"
+        ]
+      }
+    },
+    {
+      "area": "G mode=rail sort=recommended",
+      "result": "PASS",
+      "detail": {
+        "count": 1,
+        "order": [
+          "1800m/$null"
+        ]
+      }
+    },
+    {
+      "area": "G mode=rail sort=fastest",
+      "result": "PASS",
+      "detail": {
+        "count": 1,
+        "order": [
+          "1800m/$null"
+        ]
+      }
+    },
+    {
+      "area": "G mode=rail sort=fare",
+      "result": "PASS",
+      "detail": {
+        "count": 1,
+        "order": [
+          "1800m/$null"
+        ]
+      }
+    },
+    {
+      "area": "G mode=bus sort=recommended",
+      "result": "PASS",
+      "detail": {
+        "count": 2,
+        "order": [
+          "1855m/$null",
+          "1855m/$null"
+        ]
+      }
+    },
+    {
+      "area": "G mode=bus sort=fastest",
+      "result": "PASS",
+      "detail": {
+        "count": 2,
+        "order": [
+          "1855m/$null",
+          "1855m/$null"
+        ]
+      }
+    },
+    {
+      "area": "G mode=bus sort=fare",
+      "result": "PASS",
+      "detail": {
+        "count": 2,
+        "order": [
+          "1855m/$null",
+          "1855m/$null"
+        ]
+      }
+    },
+    {
+      "area": "G mode=mixed sort=recommended",
+      "result": "PASS",
+      "detail": {
+        "count": 0,
+        "order": []
+      }
+    },
+    {
+      "area": "G mode=mixed sort=fastest",
+      "result": "PASS",
+      "detail": {
+        "count": 0,
+        "order": []
+      }
+    },
+    {
+      "area": "G mode=mixed sort=fare",
+      "result": "PASS",
+      "detail": {
+        "count": 0,
+        "order": []
+      }
+    },
+    {
+      "area": "G amtrak=1",
+      "result": "INFO",
+      "detail": {
+        "mentionsAmtrak": 4,
+        "live": "3 sample connections for Boston → Miami"
+      }
+    },
+    {
+      "area": "G amtrak=0",
+      "result": "CHECK",
+      "detail": {
+        "mentionsAmtrak": 2,
+        "live": "2 sample connections for Boston → Miami"
+      }
+    },
+    {
+      "area": "H swap",
+      "result": "PASS",
+      "detail": {
+        "origin": "Miami",
+        "dest": "Boston"
+      }
+    },
+    {
+      "area": "I 320px Fort Lauderdale→Portland journey overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 320,
+        "vw": 320
+      }
+    },
+    {
+      "area": "I 320px Fort Lauderdale→Portland search overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 320,
+        "vw": 320
+      }
+    },
+    {
+      "area": "I 320px Washington, DC→Stony Brook journey overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 320,
+        "vw": 320
+      }
+    },
+    {
+      "area": "I 320px Washington, DC→Stony Brook search overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 320,
+        "vw": 320
+      }
+    },
+    {
+      "area": "I 375px Fort Lauderdale→Portland journey overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 375,
+        "vw": 375
+      }
+    },
+    {
+      "area": "I 375px Fort Lauderdale→Portland search overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 375,
+        "vw": 375
+      }
+    },
+    {
+      "area": "I 375px Washington, DC→Stony Brook journey overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 375,
+        "vw": 375
+      }
+    },
+    {
+      "area": "I 375px Washington, DC→Stony Brook search overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 375,
+        "vw": 375
+      }
+    },
+    {
+      "area": "I 390px Fort Lauderdale→Portland journey overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 390,
+        "vw": 390
+      }
+    },
+    {
+      "area": "I 390px Fort Lauderdale→Portland search overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 390,
+        "vw": 390
+      }
+    },
+    {
+      "area": "I 390px Washington, DC→Stony Brook journey overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 390,
+        "vw": 390
+      }
+    },
+    {
+      "area": "I 390px Washington, DC→Stony Brook search overflow",
+      "result": "PASS",
+      "detail": {
+        "scrollW": 390,
+        "vw": 390
+      }
+    },
+    {
+      "area": "Z console errors",
+      "result": "FAIL",
+      "detail": {
+        "count": 1,
+        "sample": [
+          {
+            "url": "http://127.0.0.1:5178/?from=Portland&to=Boston",
+            "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+          }
+        ]
+      }
+    }
+  ],
+  "consoleErrors": [
+    {
+      "url": "http://127.0.0.1:5178/?from=Portland&to=Boston",
+      "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    }
+  ]
+}
