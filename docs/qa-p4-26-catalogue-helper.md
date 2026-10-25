@@ -63,7 +63,7 @@ The control build reproduces the frozen #26 assets measured in P4-18 / P4-21 exa
 | # | Severity | Finding |
 | --- | --- | --- |
 | A1 | Gate not met (documented, not a defect) | The original "**built bundle hash unchanged from #26**" gate is **not met**. One unused CSS rule (+30 bytes raw, +6 gzip) changes the CSS file name, which changes the hashed references in all three JS chunks and `index.html`. JS logic is byte-identical once normalised. |
-| A2 | Note | **I couldn't reproduce the reported "+32 bytes"; in an identical environment the delta is +30 bytes.** The added rule `.rounded{border-radius:.25rem}` is 29 characters plus one shifted `}` separator. The reported 32 may come from a different measurement method; it doesn't change the conclusion. |
+| A2 | Note | **I couldn't reproduce the reported "+32 bytes"; in an identical environment the delta is +30 bytes.** The added rule `.rounded{border-radius:.25rem}` is exactly 30 bytes. The reported 32 may come from a different measurement method; it doesn't change the conclusion. |
 | — | No other findings | No larger or unexplained delta. No functional, scope or provenance issue was found. |
 
 **Verdict:** #30 is a faithful, byte-identical assembly of #27 and #28 onto #26 with no runtime consumer. The only build effect is the documented +30-byte unused CSS rule and the resulting hash and reference changes. Following the instructions, I made no source-scan or application fix. #30 stays frozen.
