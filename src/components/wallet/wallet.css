@@ -328,3 +328,146 @@
   min-width:0;
   overflow-wrap:anywhere;
 }
+
+/* ---- OneLine UI refresh: oneline theme tokens, ticket-stub cards. Visual only. ---- */
+.oneline-wallet {
+  --ol-ink:#1f3a30;
+  --ol-muted:#55675b;
+  --ol-border:#dfe5d6;
+  background:transparent;
+  font-family:inherit;
+}
+.oneline-wallet h1 {
+  color:var(--color-primary, #173f35);
+}
+.oneline-wallet .ol-eyebrow {
+  color:#3f6b4a;
+}
+.oneline-wallet a {
+  color:var(--color-primary, #173f35);
+}
+.oneline-wallet :focus-visible {
+  outline:3px solid var(--focus-ring, #173f35);
+  outline-offset:3px;
+}
+.oneline-wallet .ol-notice {
+  border-color:#cbdcb7;
+  border-left-color:var(--color-primary, #173f35);
+  background:#f1f6e4;
+  border-radius:6px var(--radius-box, 18px) var(--radius-box, 18px) 6px;
+}
+.oneline-wallet .ol-section-heading [role=status] {
+  font-weight:700;
+  color:var(--color-primary, #173f35);
+}
+.oneline-wallet progress {
+  appearance:none;
+  height:10px;
+  border:0;
+  border-radius:999px;
+  background:#e3e9da;
+  overflow:hidden;
+}
+.oneline-wallet progress::-webkit-progress-bar {
+  background:#e3e9da;
+  border-radius:999px;
+}
+.oneline-wallet progress::-webkit-progress-value {
+  background:var(--color-primary, #173f35);
+  border-radius:999px;
+}
+.oneline-wallet progress::-moz-progress-bar {
+  background:var(--color-primary, #173f35);
+  border-radius:999px;
+}
+
+/* Ticket stub: forest header band (paper/lime on forest ≥8:1) over a white body. */
+.oneline-wallet .ol-ticket {
+  position:relative;
+  overflow:hidden;
+  border-color:var(--ol-border);
+  border-radius:var(--radius-box, 18px);
+  box-shadow:0 1px 2px #173f350d, 0 12px 32px -18px #173f3540;
+}
+.oneline-wallet .ol-ticket-top {
+  margin:-26px -26px 0;
+  padding:14px 26px;
+  background:var(--color-primary, #173f35);
+  color:var(--color-primary-content, #f8f9f3);
+}
+.oneline-wallet .ol-agency {
+  color:var(--color-accent, #d7ef95);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.oneline-wallet .ol-status {
+  border-radius:999px;
+  padding:5px 12px;
+}
+.oneline-wallet .ol-status-done {
+  background:var(--color-accent, #d7ef95);
+  color:var(--color-primary, #173f35);
+}
+.oneline-wallet .ol-ticket-checked {
+  border-color:#9fbf7a;
+  background:#f7fbef;
+}
+.oneline-wallet .ol-ticket h2 {
+  margin-top:20px;
+  font-weight:700;
+  color:var(--color-primary, #173f35);
+}
+.oneline-wallet .ol-stations {
+  padding:16px 18px;
+  border-radius:12px;
+  background:var(--color-base-100, #f8f9f3);
+}
+.oneline-wallet .ol-stations strong {
+  font-size:20px;
+  color:var(--ol-ink);
+}
+.oneline-wallet .ol-arrow {
+  color:#4f7a46;
+}
+.oneline-wallet .ol-button {
+  background:var(--color-primary, #173f35);
+  border-color:var(--color-primary, #173f35);
+  border-radius:var(--radius-field, 10px);
+  box-shadow:0 6px 14px -8px #173f35aa;
+}
+.oneline-wallet .ol-button:hover {
+  background:var(--color-secondary, #234f3e);
+}
+.oneline-wallet .ol-secondary {
+  background:white;
+  color:var(--color-primary, #173f35);
+  box-shadow:none;
+}
+.oneline-wallet .ol-secondary:hover {
+  background:var(--color-base-200, #eef1e6);
+}
+.oneline-wallet input[type=checkbox] {
+  accent-color:var(--color-primary, #173f35);
+}
+.oneline-wallet .ol-coverage {
+  border-left-color:var(--color-primary, #173f35);
+  background:#f1f6e4;
+}
+/* Perforation between the ticket body and its fine print. */
+.oneline-wallet .ol-fine {
+  border-top:2px dashed var(--ol-border);
+}
+.oneline-wallet .ol-live {
+  background:white;
+  border-radius:var(--radius-box, 18px);
+  box-shadow:0 1px 2px #173f350d, 0 12px 32px -18px #173f3540;
+}
+@media(max-width:560px) {
+  .oneline-wallet .ol-ticket-top {
+    margin:-20px -20px 0;
+    padding:12px 20px;
+  }
+  .oneline-wallet .ol-stations {
+    padding:12px 14px;
+  }
+}
