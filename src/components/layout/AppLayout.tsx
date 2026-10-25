@@ -10,31 +10,33 @@ export function AppLayout() {
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <header className="site-header">
-        <Link to="/" aria-label="OneLine home">
-          <Brand />
-        </Link>
-        <nav aria-label="Main navigation">
-          <NavLink to="/" end>
-            <Search size={15} />
-            Search
-          </NavLink>
-          <NavLink
-            to={selectedTrip ? `/journey/${selectedTrip.id}` : "/journey"}
-          >
-            <Route size={15} />
-            Journey
-          </NavLink>
-          <NavLink to={selectedTrip ? `/wallet/${selectedTrip.id}` : "/wallet"}>
-            <Wallet size={15} />
-            Wallet
-          </NavLink>
-        </nav>
-        <span className="header-note">
-          <span className="little-dot" />
-          Less switching. More going.
-        </span>
-      </header>
+      <div className="site-header-bar">
+        <header className="site-header">
+          <Link to="/" aria-label="OneLine home">
+            <Brand />
+          </Link>
+          <nav aria-label="Main navigation">
+            <NavLink to="/" end>
+              <Search size={15} />
+              Search
+            </NavLink>
+            <NavLink
+              to={selectedTrip ? `/journey/${selectedTrip.id}` : "/journey"}
+            >
+              <Route size={15} />
+              Journey
+            </NavLink>
+            <NavLink to={selectedTrip ? `/wallet/${selectedTrip.id}` : "/wallet"}>
+              <Wallet size={15} />
+              Wallet
+            </NavLink>
+          </nav>
+          <span className="header-note">
+            <span className="little-dot" />
+            Less switching. More going.
+          </span>
+        </header>
+      </div>
       <div id="main-content" tabIndex={-1}>
         <Suspense
           fallback={
