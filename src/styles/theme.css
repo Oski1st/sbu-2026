@@ -32,11 +32,23 @@
   --focus-ring: #d7ef95;
 }
 
+/* The skip link can land over either the forest bar or paper, so its lime ring is
+   framed by forest on both sides (9.3:1 each way). */
+.skip-link:focus-visible {
+  outline-offset: 0;
+  box-shadow: 0 0 0 6px var(--ui-forest);
+}
+
 /* The location inputs previously signalled focus only with a #97b47e underline
    (2.3:1). Keep the underline but make it forest and 2px. */
 .location-field input:focus {
   border-bottom: 2px solid var(--ui-forest);
   margin-bottom: -1px;
+}
+.location-field input:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 4px;
+  border-radius: 2px;
 }
 .date-time-controls input:focus-visible {
   outline: 3px solid var(--focus-ring);
