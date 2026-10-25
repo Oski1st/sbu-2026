@@ -1,0 +1,906 @@
+{
+  "summary": {
+    "target": "production",
+    "base": "https://oneline-sbu-2026.onrender.com",
+    "at": "2026-10-25T06:32:53.879Z",
+    "passed": 111,
+    "failed": 18,
+    "info": 48
+  },
+  "results": [
+    {
+      "status": "INFO",
+      "id": "wake.cold-start-ms",
+      "detail": "109 (final status 200)"
+    },
+    {
+      "status": "INFO",
+      "id": "home.load-ms",
+      "detail": "742"
+    },
+    {
+      "status": "PASS",
+      "id": "home.http-200",
+      "detail": "status 200"
+    },
+    {
+      "status": "INFO",
+      "id": "home.assets",
+      "detail": "/assets/index-j4_4uBJG.js, /assets/index-DdmW2BIM.css"
+    },
+    {
+      "status": "PASS",
+      "id": "home.title",
+      "detail": "OneLine · A better way there"
+    },
+    {
+      "status": "PASS",
+      "id": "home.h1-visible",
+      "detail": "Different lines. Same direction."
+    },
+    {
+      "status": "PASS",
+      "id": "home.no-broken-images",
+      "detail": ""
+    },
+    {
+      "status": "INFO",
+      "id": "feature.autocomplete",
+      "detail": "false"
+    },
+    {
+      "status": "INFO",
+      "id": "feature.date-time-inputs",
+      "detail": "false"
+    },
+    {
+      "status": "INFO",
+      "id": "feature.corridor-shortcuts",
+      "detail": "false"
+    },
+    {
+      "status": "PASS",
+      "id": "search.default-two-routes",
+      "detail": "2 routes shown before submit"
+    },
+    {
+      "status": "PASS",
+      "id": "search.default-submit",
+      "detail": "2 routes after Find my way"
+    },
+    {
+      "status": "INFO",
+      "id": "search.focus-after-submit",
+      "detail": "routes"
+    },
+    {
+      "status": "INFO",
+      "id": "auto.skipped",
+      "detail": "no combobox on this target"
+    },
+    {
+      "status": "FAIL",
+      "id": "plan.boston-new-york",
+      "detail": "0 routes; \"0 sample connections for Boston → New York\""
+    },
+    {
+      "status": "FAIL",
+      "id": "plan.alias-nyc-dc",
+      "detail": "0 routes; status \"0 sample connections for NYC → DC\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "FAIL",
+      "id": "plan.nyc-washington-full",
+      "detail": "0 routes; status \"0 sample connections for New York → Washington\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "FAIL",
+      "id": "plan.alias-philly-stony",
+      "detail": "0 routes; status \"0 sample connections for Philly → Stony Brook\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "PASS",
+      "id": "plan.case-insensitive",
+      "detail": "2 routes; status \"2 sample connections for philadelphia → stony brook\""
+    },
+    {
+      "status": "INFO",
+      "id": "plan.misspelling-bostn",
+      "detail": "0 routes; status \"0 sample connections for Bostn → New York\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "INFO",
+      "id": "plan.misspelling-philadelpia",
+      "detail": "0 routes; status \"0 sample connections for Philadelpia → Stony Brook\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "PASS",
+      "id": "plan.unsupported-chicago",
+      "detail": "0 routes; status \"0 sample connections for Chicago → New York\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "PASS",
+      "id": "plan.same-city",
+      "detail": "0 routes; status \"0 sample connections for Boston → Boston\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "INFO",
+      "id": "plan.reverse-stony-philly",
+      "detail": "0 routes; status \"0 sample connections for Stony Brook → Philadelphia\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "FAIL",
+      "id": "plan.raleigh-charlotte",
+      "detail": "0 routes; status \"0 sample connections for Raleigh → Charlotte\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "FAIL",
+      "id": "plan.orlando-miami",
+      "detail": "0 routes; status \"0 sample connections for Orlando → Miami\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "FAIL",
+      "id": "plan.whitespace",
+      "detail": "0 routes; status \"0 sample connections for Boston → New York\"; empty-state \"We’re starting with one great connection.  This demo covers Philadelphia → Stony Brook. More destinations are on our horizon.  Show demo routes\""
+    },
+    {
+      "status": "PASS",
+      "id": "plan.empty-state-show-demo",
+      "detail": "2 routes, origin=Philadelphia"
+    },
+    {
+      "status": "PASS",
+      "id": "search.swap",
+      "detail": "Stony Brook / Philadelphia"
+    },
+    {
+      "status": "INFO",
+      "id": "search.swap-submit",
+      "detail": "0 routes; \"0 sample connections for Stony Brook → Philadelphia\""
+    },
+    {
+      "status": "PASS",
+      "id": "search.empty-origin-blocked",
+      "detail": "validationMessage=\"Please fill out this field.\""
+    },
+    {
+      "status": "INFO",
+      "id": "date.skipped",
+      "detail": "no date/time inputs on this target"
+    },
+    {
+      "status": "INFO",
+      "id": "sort.options",
+      "detail": "Recommended | Fastest | Lowest sample fare"
+    },
+    {
+      "status": "PASS",
+      "id": "sort.fastest-order",
+      "detail": "[{\"id\":\"/journey/amtrak-connection\",\"price\":61,\"minutes\":250},{\"id\":\"/journey/regional-connection\",\"price\":46,\"minutes\":315}]"
+    },
+    {
+      "status": "FAIL",
+      "id": "sort.in-url",
+      "detail": "/"
+    },
+    {
+      "status": "PASS",
+      "id": "sort.fare-order",
+      "detail": "[{\"id\":\"/journey/regional-connection\",\"price\":46,\"minutes\":315},{\"id\":\"/journey/amtrak-connection\",\"price\":61,\"minutes\":250}]"
+    },
+    {
+      "status": "PASS",
+      "id": "filter.exclude-amtrak",
+      "detail": "[\"/journey/regional-connection\"]"
+    },
+    {
+      "status": "INFO",
+      "id": "filter.mode-skipped",
+      "detail": "no mode filters on this target"
+    },
+    {
+      "status": "PASS",
+      "id": "compare.shortcut-opens-dialog",
+      "detail": ""
+    },
+    {
+      "status": "INFO",
+      "id": "compare.dialog-text",
+      "detail": "A LITTLE PERSPECTIVE Find your kind of journey. Side by side. Every trade-off in the open. All times and fares below are sample data. The express connection gets you there 65 minutes sooner for $15 more in sample fares. Compare selected sample journeys Metric \tScenic Connection SEPTA + NJT + LIRR \tExpress Connection Amtrak + LIRR Total journey\t5h 15m\t4h 10m Sample fare\t$46 Illustrative, USD \t$61 I"
+    },
+    {
+      "status": "PASS",
+      "id": "compare.escape-closes",
+      "detail": ""
+    },
+    {
+      "status": "INFO",
+      "id": "compare.focus-after-close",
+      "detail": "Compare both options"
+    },
+    {
+      "status": "INFO",
+      "id": "compare.tray-after-one",
+      "detail": "2 of 2 routes selected A clearer view of your options. Compare routes"
+    },
+    {
+      "status": "PASS",
+      "id": "compare.tray-enabled-with-two",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "compare.tray-opens-dialog",
+      "detail": ""
+    },
+    {
+      "status": "INFO",
+      "id": "compare.dialog-links",
+      "detail": "Choose route | Choose route"
+    },
+    {
+      "status": "PASS",
+      "id": "compare.close-button",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "compare.clear",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "compare.backdrop-click-closes",
+      "detail": ""
+    },
+    {
+      "status": "INFO",
+      "id": "card.details-expanded",
+      "detail": "aria-expanded=false label now \"Hide route details\""
+    },
+    {
+      "status": "PASS",
+      "id": "card.details-collapse",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "card.share-copies-link",
+      "detail": "clipboard=https://oneline-sbu-2026.onrender.com/journey/regional-connection feedback=\"Journey link copied.\""
+    },
+    {
+      "status": "INFO",
+      "id": "cta.lets-go-somewhere",
+      "detail": "scrollY=124 focus=main-content url=/#main-content"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.navigates",
+      "detail": "/journey/regional-connection"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.title",
+      "detail": "OneLine · Your journey"
+    },
+    {
+      "status": "INFO",
+      "id": "journey.philly-scenic.h1",
+      "detail": "Philadelphia → Stony Brook"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.starts-at-top",
+      "detail": "scrollY=0"
+    },
+    {
+      "status": "INFO",
+      "id": "journey.philly-scenic.times",
+      "detail": "8:00 AM 8:55 AM 9:10 AM 9:10 AM 10:40 AM 11:00 AM 11:00 AM 12:10 PM 12:25 PM 12:25 PM 1:15 PM"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.details-expand",
+      "detail": "4 toggles; label \"Hide trip details\""
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.details-collapse",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.demo-disabled-before-start",
+      "detail": ""
+    },
+    {
+      "status": "INFO",
+      "id": "journey.philly-scenic.demo-steps",
+      "detail": "Step 1 of 7 > Step 2 of 7 > Step 3 of 7 > Step 4 of 7 > Step 5 of 7 > Step 6 of 7 > Step 7 of 7"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.demo-reaches-end",
+      "detail": "Step 7 of 7"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.demo-previous",
+      "detail": "Step 6 of 7"
+    },
+    {
+      "status": "INFO",
+      "id": "journey.philly-scenic.demo-arrowright",
+      "detail": "Step 7 of 7"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.demo-reset",
+      "detail": "Ready to start"
+    },
+    {
+      "status": "INFO",
+      "id": "journey.philly-scenic.delay-recovery",
+      "detail": "!  SIMULATED RECOVERY PLAN  Your connection may no longer be comfortable.  At Trenton Transit Center, check live departure boards for the next Northeast Corridor service toward New York Penn Station. If the planned departure has passed, ask an on-site NJ TRANSIT representative for the next available"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.delay-toggle",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "journey.philly-scenic.wallet-link",
+      "detail": "/wallet/regional-connection"
+    },
+    {
+      "status": "PASS",
+      "id": "wallet.philly-scenic.title",
+      "detail": "OneLine · Your wallet"
+    },
+    {
+      "status": "INFO",
+      "id": "wallet.philly-scenic.tickets",
+      "detail": "4"
+    },
+    {
+      "status": "PASS",
+      "id": "wallet.philly-scenic.external-links-new-tab",
+      "detail": "6 external; bad: "
+    },
+    {
+      "status": "INFO",
+      "id": "wallet.philly-scenic.septa-feed",
+      "detail": "SEPTA observations retrieved. This snapshot expires after 60 seconds."
+    },
+    {
+      "status": "PASS",
+      "id": "wallet.philly-scenic.septa-refresh",
+      "detail": "during=\"Refreshing SEPTA observations. Please wait.\" after=\"SEPTA observations retrieved. This snapshot expires after 60 seconds.\""
+    },
+    {
+      "status": "INFO",
+      "id": "wallet.philly-scenic.checklist",
+      "detail": "1 / 4 demo items checked"
+    },
+    {
+      "status": "PASS",
+      "id": "wallet.philly-scenic.browser-back",
+      "detail": "/journey/regional-connection"
+    },
+    {
+      "status": "PASS",
+      "id": "wallet.philly-scenic.browser-forward",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.navigates",
+      "detail": "/journey/regional-connection"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.title",
+      "detail": "OneLine · Your journey"
+    },
+    {
+      "status": "INFO",
+      "id": "journey.boston-ny.h1",
+      "detail": "Philadelphia → Stony Brook"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.starts-at-top",
+      "detail": "scrollY=0"
+    },
+    {
+      "status": "INFO",
+      "id": "journey.boston-ny.times",
+      "detail": "8:00 AM 8:55 AM 9:10 AM 9:10 AM 10:40 AM 11:00 AM 11:00 AM 12:10 PM 12:25 PM 12:25 PM 1:15 PM"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.details-expand",
+      "detail": "4 toggles; label \"Hide trip details\""
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.details-collapse",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.demo-disabled-before-start",
+      "detail": ""
+    },
+    {
+      "status": "INFO",
+      "id": "journey.boston-ny.demo-steps",
+      "detail": "Step 1 of 7 > Step 2 of 7 > Step 3 of 7 > Step 4 of 7 > Step 5 of 7 > Step 6 of 7 > Step 7 of 7"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.demo-reaches-end",
+      "detail": "Step 7 of 7"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.demo-previous",
+      "detail": "Step 6 of 7"
+    },
+    {
+      "status": "INFO",
+      "id": "journey.boston-ny.demo-arrowright",
+      "detail": "Step 7 of 7"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.demo-reset",
+      "detail": "Ready to start"
+    },
+    {
+      "status": "INFO",
+      "id": "journey.boston-ny.delay-recovery",
+      "detail": "!  SIMULATED RECOVERY PLAN  Your connection may no longer be comfortable.  At Trenton Transit Center, check live departure boards for the next Northeast Corridor service toward New York Penn Station. If the planned departure has passed, ask an on-site NJ TRANSIT representative for the next available"
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.delay-toggle",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "journey.boston-ny.wallet-link",
+      "detail": "/wallet/regional-connection"
+    },
+    {
+      "status": "PASS",
+      "id": "wallet.boston-ny.title",
+      "detail": "OneLine · Your wallet"
+    },
+    {
+      "status": "INFO",
+      "id": "wallet.boston-ny.tickets",
+      "detail": "4"
+    },
+    {
+      "status": "PASS",
+      "id": "wallet.boston-ny.external-links-new-tab",
+      "detail": "6 external; bad: "
+    },
+    {
+      "status": "INFO",
+      "id": "wallet.boston-ny.septa-feed",
+      "detail": "SEPTA observations retrieved. This snapshot expires after 60 seconds."
+    },
+    {
+      "status": "PASS",
+      "id": "wallet.boston-ny.septa-refresh",
+      "detail": "during=\"Refreshing SEPTA observations. Please wait.\" after=\"SEPTA observations retrieved. This snapshot expires after 60 seconds.\""
+    },
+    {
+      "status": "INFO",
+      "id": "wallet.boston-ny.checklist",
+      "detail": "1 / 4 demo items checked"
+    },
+    {
+      "status": "PASS",
+      "id": "wallet.boston-ny.browser-back",
+      "detail": "/journey/regional-connection"
+    },
+    {
+      "status": "PASS",
+      "id": "wallet.boston-ny.browser-forward",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "nav.remembers-selected-trip",
+      "detail": "/journey/amtrak-connection /wallet/amtrak-connection"
+    },
+    {
+      "status": "PASS",
+      "id": "nav.wallet-tab",
+      "detail": "OneLine · Your wallet"
+    },
+    {
+      "status": "PASS",
+      "id": "nav.journey-tab",
+      "detail": "OneLine · Your journey"
+    },
+    {
+      "status": "PASS",
+      "id": "nav.logo-home",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./",
+      "detail": "HTTP 200 title \"OneLine · A better way there\" h1 \"Different lines. Same direction.\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./",
+      "detail": "h1 after reload \"Different lines. Same direction.\""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./journey/regional-connection",
+      "detail": "HTTP 200 title \"OneLine · Your journey\" h1 \"Philadelphia → Stony Brook\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./journey/regional-connection",
+      "detail": "h1 after reload \"Philadelphia → Stony Brook\""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./journey/amtrak-connection",
+      "detail": "HTTP 200 title \"OneLine · Your journey\" h1 \"Philadelphia → Stony Brook\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./journey/amtrak-connection",
+      "detail": "h1 after reload \"Philadelphia → Stony Brook\""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./wallet/regional-connection",
+      "detail": "HTTP 200 title \"OneLine · Your wallet\" h1 \"One journey. Every ticket, together.\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./wallet/regional-connection",
+      "detail": "h1 after reload \"One journey. Every ticket, together.\""
+    },
+    {
+      "status": "FAIL",
+      "id": "deeplink./journey/east-boston--new-york--amtrak",
+      "detail": "HTTP 200 title \"OneLine · Your journey\" h1 \"Journey not found\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./journey/east-boston--new-york--amtrak",
+      "detail": "h1 after reload \"Journey not found\""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./wallet/east-boston--new-york--greyhound",
+      "detail": "HTTP 200 title \"OneLine · Your wallet\" h1 \"Journey not found\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./wallet/east-boston--new-york--greyhound",
+      "detail": "h1 after reload \"Journey not found\""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./journey",
+      "detail": "HTTP 200 title \"OneLine · Your journey\" h1 \"A clear path ahead.\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./journey",
+      "detail": "h1 after reload \"A clear path ahead.\""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./wallet",
+      "detail": "HTTP 200 title \"OneLine · Your wallet\" h1 \"Every ticket. One starting point.\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./wallet",
+      "detail": "h1 after reload \"Every ticket. One starting point.\""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./journey/does-not-exist",
+      "detail": "HTTP 200 title \"OneLine · Your journey\" h1 \"Journey not found\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./journey/does-not-exist",
+      "detail": "h1 after reload \"Journey not found\""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./wallet/does-not-exist",
+      "detail": "HTTP 200 title \"OneLine · Your wallet\" h1 \"Journey not found\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./wallet/does-not-exist",
+      "detail": "h1 after reload \"Journey not found\""
+    },
+    {
+      "status": "FAIL",
+      "id": "deeplink./journey/%E0%A4%A",
+      "detail": "HTTP 520 title \"onrender.com | 520: Web server is returning an unknown error\" h1 \"Web server is returning an unknown error Error code 520\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./journey/%E0%A4%A",
+      "detail": "h1 after reload \"Web server is returning an unknown error Error code 520\""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./some/random/path",
+      "detail": "HTTP 200 title \"OneLine · A better way there\" h1 \"A little off the line.\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./some/random/path",
+      "detail": "h1 after reload \"A little off the line.\""
+    },
+    {
+      "status": "PASS",
+      "id": "deeplink./?from=Boston&to=New%20York&sort=fastest&mode=rail",
+      "detail": "HTTP 200 title \"OneLine · A better way there\" h1 \"Different lines. Same direction.\""
+    },
+    {
+      "status": "PASS",
+      "id": "refresh./?from=Boston&to=New%20York&sort=fastest&mode=rail",
+      "detail": "h1 after reload \"Different lines. Same direction.\""
+    },
+    {
+      "status": "INFO",
+      "id": "http./assets/does-not-exist.js",
+      "detail": "404"
+    },
+    {
+      "status": "INFO",
+      "id": "http./api/unknown",
+      "detail": "404"
+    },
+    {
+      "status": "INFO",
+      "id": "http./.env",
+      "detail": "404"
+    },
+    {
+      "status": "INFO",
+      "id": "http./favicon.ico",
+      "detail": "404"
+    },
+    {
+      "status": "FAIL",
+      "id": "history.back-restores-previous-search",
+      "detail": "after 2nd search url /; Back -> url /journey/amtrak-connection, origin field \"(no search form)\""
+    },
+    {
+      "status": "FAIL",
+      "id": "history.forward",
+      "detail": "/ origin \"Philadelphia\""
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.320.home.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.320.journey.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.320.wallet.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.320.results-bny.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.320.compare-dialog-fits",
+      "detail": "{\"x\":19,\"y\":12,\"width\":282,\"height\":776}"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.375.home.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.375.journey.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.375.wallet.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.375.results-bny.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.375.compare-dialog-fits",
+      "detail": "{\"x\":19,\"y\":12,\"width\":337,\"height\":776}"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.390.home.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.390.journey.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.390.wallet.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.390.results-bny.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.390.compare-dialog-fits",
+      "detail": "{\"x\":19,\"y\":12,\"width\":352,\"height\":776}"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.1280.home.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.1280.journey.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.1280.wallet.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "responsive.1280.results-bny.no-horizontal-scroll",
+      "detail": "overflow 0px"
+    },
+    {
+      "status": "PASS",
+      "id": "keyboard.first-stop-skip-link",
+      "detail": "Skip to content"
+    },
+    {
+      "status": "FAIL",
+      "id": "keyboard.focus-visible-all-stops",
+      "detail": "no outline/box-shadow on: origin | destination"
+    },
+    {
+      "status": "FAIL",
+      "id": "keyboard.focused-element-scrolled-into-view",
+      "detail": "OneLine home"
+    },
+    {
+      "status": "INFO",
+      "id": "keyboard.tab-order",
+      "detail": "Skip to content > OneLine home > Search > Journey > Wallet > origin > Swap origin and destination > destination > Find my way > RecommendedFastestLowest sample  > INPUT > Compare both options > Compare The scenic connection > Share The scenic connection > View route details > Choose this route > Compare The express connection > Share The express connection > View route details > Choose this route > Back to search > OneLine home > Built together >  > Skip to content > OneLine home > Search > Journey > Wallet > origin > Swap origin and destination > destination > Find my way > RecommendedFastestLowest sample  > INPUT > Compare both options > Compare The scenic connection > Share The scenic connection > View route details > Choose this route > Compare The express connection > Share The express connection > View route details > Choose this route > Back to search"
+    },
+    {
+      "status": "PASS",
+      "id": "keyboard.skip-link-moves-focus",
+      "detail": "main-content"
+    },
+    {
+      "status": "FAIL",
+      "id": "keyboard.plan-trip-without-mouse",
+      "detail": "0 routes; url /; origin \"Bost\" dest \"Stony Brook\""
+    },
+    {
+      "status": "INFO",
+      "id": "keyboard.focus-after-route-change",
+      "detail": "A"
+    },
+    {
+      "status": "INFO",
+      "id": "keyboard.shift-tab-from-main",
+      "detail": "View route details"
+    },
+    {
+      "status": "INFO",
+      "id": "content.over-claim wording./",
+      "detail": "tony Brook Sample schedules & fares. No live arrivals. GOOD COMPANY. GREAT CONNECTIONS. SE"
+    },
+    {
+      "status": "INFO",
+      "id": "content.over-claim wording./?from=Boston&to=New+York",
+      "detail": "tony Brook Sample schedules & fares. No live arrivals. GOOD COMPANY. GREAT CONNECTIONS. SE"
+    },
+    {
+      "status": "INFO",
+      "id": "content.over-claim wording./journey/regional-connection",
+      "detail": " not use GPS, confirm boarding, or show live arrivals.  Ready to start  Choose Start demo "
+    },
+    {
+      "status": "PASS",
+      "id": "content.links-have-names",
+      "detail": ""
+    },
+    {
+      "status": "PASS",
+      "id": "links.external-new-tab-with-rel",
+      "detail": "5 unique external links; bad: "
+    },
+    {
+      "status": "FAIL",
+      "id": "links.http.https://github.com/Oski1st/sbu-2026",
+      "detail": "404"
+    },
+    {
+      "status": "PASS",
+      "id": "links.http.https://wwww.septa.org/fares/",
+      "detail": "200"
+    },
+    {
+      "status": "PASS",
+      "id": "links.http.https://www.njtransit.com/tickets/train-tickets",
+      "detail": "200"
+    },
+    {
+      "status": "PASS",
+      "id": "links.http.https://www.mta.info/traintime",
+      "detail": "200"
+    },
+    {
+      "status": "PASS",
+      "id": "links.http.https://api.septa.org/",
+      "detail": "200"
+    },
+    {
+      "status": "FAIL",
+      "id": "runtime.console-errors",
+      "detail": "[fresh] Failed to load resource: the server responded with a status of 520 () || [fresh] Failed to load resource: the server responded with a status of 520 ()"
+    },
+    {
+      "status": "FAIL",
+      "id": "runtime.failed-requests",
+      "detail": "[fresh] HTTP 520 https://oneline-sbu-2026.onrender.com/journey/%E0%A4%A || [fresh] HTTP 520 https://oneline-sbu-2026.onrender.com/journey/%E0%A4%A"
+    },
+    {
+      "status": "INFO",
+      "id": "runtime.third-party-requests",
+      "detail": "none"
+    }
+  ],
+  "consoleErrors": [
+    "[fresh] Failed to load resource: the server responded with a status of 520 ()",
+    "[fresh] Failed to load resource: the server responded with a status of 520 ()"
+  ],
+  "failedRequests": [
+    "[fresh] HTTP 520 https://oneline-sbu-2026.onrender.com/journey/%E0%A4%A",
+    "[fresh] HTTP 520 https://oneline-sbu-2026.onrender.com/journey/%E0%A4%A"
+  ],
+  "thirdParty": []
+}
