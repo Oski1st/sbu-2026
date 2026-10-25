@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { LocationAutocomplete } from "./LocationAutocomplete";
 import { sampleLocationCatalogue, type LocationCatalogue } from "./locationCatalogue";
+import { todayInNewYork } from "../../data/searchState";
 
 interface Props {
   initialOrigin?: string;
@@ -26,7 +27,7 @@ export function SearchForm({
   onSearch,
   initialOrigin = "Philadelphia",
   initialDestination = "Stony Brook",
-  initialDepartureDate = "2026-10-24",
+  initialDepartureDate = todayInNewYork(),
   initialDepartureTime = "08:00",
   catalogue = sampleLocationCatalogue,
 }: Props) {
@@ -99,7 +100,7 @@ export function SearchForm({
                   type="date"
                   value={departureDate}
                   onChange={(event) => setDepartureDate(event.target.value)}
-                  min="0001-01-01"
+                  min={todayInNewYork()}
                   max="9999-12-31"
                   required
                 />

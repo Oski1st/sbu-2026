@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import SearchPage from "../../pages/SearchPage";
-import { readSearchState, writeSearchState, defaultSearch } from "../../data/searchState";
+import { readSearchState, writeSearchState, defaultSearch, todayInNewYork } from "../../data/searchState";
 import { getTripById } from "../../data/tripLookup";
 import { formatTime } from "../../data/tripUtils";
 
@@ -24,6 +24,14 @@ describe("Search URL and controlled-input integration", () => {
     expect(html).toContain('value="17:45"');
     expect(html).toContain("Sample itinerary times do not change.");
     expect(html).not.toContain("station-options");
+  });
+
+  it("prefills today's date and blocks picking past dates in the form (W3)", () => {
+    const today = todayInNewYork();
+    const html = renderSearch("");
+    expect(html).toContain(`value="${today}"`);
+    expect(html).toContain(`min="${today}"`);
+    expect(html).toContain('max="9999-12-31"');
   });
 
   it("renders restored date/time states when only preferences differ between URLs", () => {
