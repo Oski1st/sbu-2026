@@ -129,3 +129,5 @@ How to read this:
 ### Verdict
 
 **No QA blockers for #26 at `35ed196`.** K1–K8 pass. The provisional integration size check passes (+673 bytes over map-only). The total size increase over readiness (+40,660 bytes gzip) is a reported trade-off from the bundled geography. The proposed CPU ×4 p95 budgets were missed in one of two runs because of a single outlier load and are flagged for budget review, not for a fix.
+
+**Coordinator acceptance (hub #2, 6392230195):** the functional K1–K8 handoff is accepted. Both performance runs stay **unadjusted**: run 1 **missed** the proposed CPU ×4 p95 budgets (57 ms total blocking, 317.3 ms first card) and run 2 met them (30 ms, 256.7 ms). Slow loads aren't trimmed, p95 isn't redefined and budgets aren't relaxed. **Two 10-load runs don't establish repeatable compliance** with the proposed p95 budgets. A larger, pre-specified sample would be a separately requested follow-up. The +40,660-byte total over readiness is not approved by the provisional integration check. No production or deployed performance claim is made.
