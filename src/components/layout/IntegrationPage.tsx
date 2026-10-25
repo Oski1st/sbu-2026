@@ -25,16 +25,16 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
         <Icon size={27} />
       </span>
       <span className="eyebrow">
-        {kind === "journey" ? "YOUR NEXT CHAPTER" : "OFFICIAL TICKET OPTIONS"}
+        {kind === "journey" ? "JOURNEY" : "OFFICIAL TICKET OPTIONS"}
       </span>
       <h1>
         {kind === "journey"
-          ? "A clear path ahead."
-          : "Every ticket. One starting point."}
+          ? "Your journey"
+          : "Ticket links"}
       </h1>
       <p className="integration-intro">
         {kind === "journey"
-          ? "Your selected connection is ready to explore."
+          ? "The route you choose on Search appears here."
           : "Continue with each agency to check fares and buy valid tickets."}
       </p>
       <p className="integration-notice">
@@ -102,10 +102,10 @@ export function IntegrationPage({ kind }: { kind: "journey" | "wallet" }) {
         </>
       ) : (
         <div className="empty-state">
-          <h2>Start with a connection.</h2>
-          <p>Choose a route from Search to bring your journey here.</p>
+          <h2>No route chosen yet.</h2>
+          <p>Choose a route on the Search page first.</p>
           <Link className="search-button handoff-cta" to="/">
-            Find my way <ArrowRight size={17} />
+            Go to search <ArrowRight size={17} />
           </Link>
         </div>
       )}
