@@ -75,4 +75,30 @@ Screenshots: `pr49-c2cf626-card-{1440,390,320}.png`, `base-7fa350d-card-{1440,39
 Static checks on the exported tree of 5438bcc: frozen install PASS, `tsc -b` PASS, build PASS, `pnpm test` PASS
 (**29 files, 189 tests**), `git diff --check 7fa350d 5438bcc` PASS (clean).
 
-Browser QA is in progress. This section will be updated.
+### Browser checks on 5438bcc (PR on 4205, base on 4206)
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Coverage panel reads clearly | PASS | "Not shown on this map" with a one-line intro. At 1440 it is a 2-column card grid; at 390 and 320 it is 1 column |
+| Each operator's limitation stays explicit | PASS | SEPTA and NJ TRANSIT: "Commuter-rail alignment is not mapped."; LIRR: "Stony Brook is in the sample trips; its alignment is not mapped."; Greyhound / FlixBus: "Coach services use roads, so they are outside this rail layer." |
+| Official page links | PASS | SEPTA, NJ TRANSIT and LIRR each have "Details ↗" pointing to the same official URL as the base |
+| Boarding notes separated | PASS | A separate `prm-boarding-note` paragraph starts with "Boarding notes:" |
+| Nothing clipped or overflowing | PASS | No panel child is outside the panel, no link overflows its card, and page horizontal overflow is 0 px at 1440/390/320 (PR and base) |
+| Open and close the map details | PASS | Closed on load; open after 1 click; closed again after a 2nd click, with the panel hidden (PR and base, all 3 widths) |
+| New-tab link names | PASS | 41 new-tab links in the details, all with an "opens in a new tab" warning, 41/41 distinct (same as base). The 3 changed links are "Details about SEPTA / NJ TRANSIT / LIRR (opens in a new tab)". 7 names use the exact "(opens in a new tab)". The other 34 corridor and station links, unchanged from the base, use "(official source/station, opens in a new tab)" |
+| Console and page errors | PASS | none |
+| `node qa/e2e-check.cjs http://127.0.0.1:4205` | PASS (known) | **120/122**. The 2 fails are the known closed-details false fails at 390/320 |
+| `node qa/smoke.mjs http://127.0.0.1:4205` | PASS | home, deep links, SPA fallback, 404 asset, SEPTA proxy |
+
+Note: on narrow screens the coverage panel is taller than the existing scroll area inside the details
+(`max-height: min(24rem, 60vh)`), so it is read by scrolling inside the details, as in the base.
+
+No defects, so no continuation branch was created. Recommendation: put **#48 @ 5438bcc** into the next RC as is.
+
+Screenshots: `pr48-5438bcc-coverage-{1440,390,320}.png`, `pr48-5438bcc-panel-{1440,320}.png`,
+`base-7fa350d-map-gaps-{1440,390,320}.png`.
+
+## Not run
+
+- e2e and smoke for #49 ran against v2 (abe499b), not c2cf626. v2 is c2cf626 plus the fixes above.
+- No production or Render checks were run.
